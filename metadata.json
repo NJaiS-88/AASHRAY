@@ -1,0 +1,12 @@
+{
+  "model_name": "Linear SVM",
+  "threshold": 0.14,
+  "test_accuracy": 0.8564762670957361,
+  "test_f1": 0.8564146210326272,
+  "overfit_gap": 0.05225103544892995,
+  "tfidf_max_features": 20000,
+  "tfidf_ngram_range": [
+    1,
+    2
+  ]
+}
