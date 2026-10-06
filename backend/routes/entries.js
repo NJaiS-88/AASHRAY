@@ -10,13 +10,15 @@ const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:5001';
 
 /**
  * Call the Python ML classifier service.
- * Concatenates all non-empty text inputs and sends them as one string.
+ * Accepts all text segments as separate strings and joins non-empty ones.
  * Returns the disasterReport object, or null if the service is unreachable.
  */
-async function classifyText(text1, text2, text3) {
-    // Concatenate all non-empty parts
-    const combined = [text1, text2, text3]
+async function classifyText(...segments) {
+    // Deduplicate and join all non-empty text segments
+    const seen = new Set();
+    const combined = segments
         .filter(t => t && t.trim())
+        .filter(t => { if (seen.has(t.trim())) return false; seen.add(t.trim()); return true; })
         .join(' ');
 
     if (!combined.trim()) return null;
@@ -152,49 +154,144 @@ async function generateImageCaption(imageBase64) {
     return '';
 }
 
+/**
+ * Call Python ML service to execute TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B).
+ */
+async function generateRagPlan(scenarioText, scenarioId) {
+    if (!scenarioText || !scenarioText.trim()) return null;
+    try {
+        const response = await fetch(`${ML_SERVICE_URL}/rag/plan`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                scenario: scenarioText.trim(),
+                scenario_id: scenarioId || `SCEN-${Date.now()}`
+            }),
+            signal: AbortSignal.timeout(45000), // 45s timeout for retrieval + generation
+        });
+        if (response.ok) {
+            return await response.json();
+        } else {
+            console.warn(`RAG plan HTTP error: ${response.status}`);
+        }
+    } catch (err) {
+        console.warn('RAG plan service offline or failed:', err.message);
+    }
+    return null;
+}
+
 router.post('/', protect, async (req, res) => {
     try {
         const { text, text1, text2, text3, image, audio, audioText, imageCaption: clientCaption, location, clientTimestamp } = req.body;
-        
+
         // Use client pre-processed image caption or generate image caption via BLIP if image is attached
         const imageCaption = clientCaption || (await generateImageCaption(image));
 
-        // Assemble parts for semantic similarity (include image caption if available)
+        // Resolve each named text source independently (no || short-circuiting across sources)
+        const primaryText   = (text1 || text || '').trim();   // text input 1 (primary)
+        const contextText   = (text2 || '').trim();           // text input 2 (context)
+        const detailText    = (text3 || '').trim();           // text input 3 (detail / manual)
+        const audioTextVal  = (audioText || '').trim();       // audio transcript (Whisper)
+        const imageCaptionVal = (imageCaption || '').trim();  // image description (BLIP)
+
+        // Assemble parts for semantic similarity (include all non-empty sources)
         const parts = {
-            "Input 1": text1 || text || "",
-            "Input 2": text2 || "",
-            "Input 3": text3 || audioText || "",
-            ...(imageCaption ? { "Image Description (BLIP)": imageCaption } : {})
+            ...(primaryText    ? { 'Input 1 (Primary)': primaryText }           : {}),
+            ...(contextText    ? { 'Input 2 (Context)': contextText }           : {}),
+            ...(detailText     ? { 'Input 3 (Detail)': detailText }             : {}),
+            ...(audioTextVal   ? { 'Audio Transcript (Whisper)': audioTextVal } : {}),
+            ...(imageCaptionVal? { 'Image Description (BLIP)': imageCaptionVal }: {}),
         };
 
         // Compute similarity report (semantic transformers with TF-IDF fallback)
         const similarityReport = await getSimilarityReport(parts);
 
-        // Run ML disaster classification on all text inputs + audio + image caption combined
+        // Run ML disaster classification — pass every text source as a separate segment
+        // classifyText deduplicates and joins them all into one combined string
         const disasterReport = await classifyText(
-            text1 || text || '',
-            text2 || '',
-            [text3, audioText, imageCaption].filter((v, i, self) => v && self.indexOf(v) === i).join(' ')
+            primaryText,
+            contextText,
+            detailText,
+            audioTextVal,
+            imageCaptionVal
         );
+
+        // Build the full combined scenario string for RAG retrieval
+        // Include ALL sources: text1, text2, text3, audioText, imageCaption
+        const combinedScenario = [
+            primaryText,
+            contextText,
+            detailText,
+            audioTextVal,
+            imageCaptionVal
+        ]
+        .filter(Boolean)
+        .filter((v, i, arr) => arr.indexOf(v) === i)  // deduplicate
+        .join(' ');
+
+        // If classified as disaster, trigger the TypeSafe JEV + LLM RAG Pipeline
+        let ragReport = null;
+        if (disasterReport && disasterReport.label === 'disaster' && combinedScenario) {
+            ragReport = await generateRagPlan(combinedScenario);
+        }
 
         const entry = new Entry({
             user: req.user._id,
-            text: text1 || text || '',
-            text1: text1 || text || '',
-            text2: text2 || '',
-            text3: text3 || audioText || '',
+            text: primaryText,
+            text1: primaryText,
+            text2: contextText,
+            text3: detailText,
             image,
-            imageCaption,
+            imageCaption: imageCaptionVal,
             audio,
-            audioText,
+            audioText: audioTextVal,
             location,
             similarityReport,
             disasterReport,
+            ragReport,
             clientTimestamp: clientTimestamp || new Date()
         });
 
         const createdEntry = await entry.save();
         res.status(201).json(createdEntry);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// POST generate or refresh RAG plan for a specific entry
+router.post('/:id/rag', protect, async (req, res) => {
+    try {
+        const entry = await Entry.findOne({ _id: req.params.id, user: req.user._id });
+        if (!entry) return res.status(404).json({ message: 'Entry not found' });
+
+        // Collect every text source independently — no || short-circuiting between sources
+        const sources = [
+            (entry.text1 || entry.text || '').trim(),  // primary text
+            (entry.text2 || '').trim(),                 // context text
+            (entry.text3 || '').trim(),                 // detail text
+            (entry.audioText || '').trim(),             // audio transcript (Whisper)
+            (entry.imageCaption || '').trim()           // image description (BLIP)
+        ];
+
+        // Deduplicate and join
+        const combinedScenario = sources
+            .filter(Boolean)
+            .filter((v, i, arr) => arr.indexOf(v) === i)
+            .join(' ');
+
+        if (!combinedScenario.trim()) {
+            return res.status(400).json({ message: 'Entry contains no text scenario for RAG analysis' });
+        }
+
+        const ragReport = await generateRagPlan(combinedScenario, `ENTRY-${entry._id}`);
+        if (!ragReport) {
+            return res.status(502).json({ message: 'Could not generate RAG plan at this time' });
+        }
+
+        entry.ragReport = ragReport;
+        await entry.save();
+        res.json(entry);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -4,17 +4,30 @@ Loads best_model.pkl + tfidf_vectorizer.pkl + metadata.json at startup.
 Exposes POST /classify → returns disaster probability + label.
 """
 
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 import pickle
 import json
 import re
 import os
+import time
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Paths — go one level up from ml_service/ to find the root artifacts
+# Paths — go one level up from ml_service/ to find root artifacts and RAG folder
 # ──────────────────────────────────────────────────────────────────────────────
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+load_dotenv(os.path.join(ROOT, ".env"))
+
+JEV_LLM_DIR = os.path.join(ROOT, "NEW HYPOTHESIS", "jev + llm")
+if JEV_LLM_DIR not in sys.path:
+    sys.path.insert(0, JEV_LLM_DIR)
 
 MODEL_PATH      = os.path.join(ROOT, "best_model.pkl")
 VECTORIZER_PATH = os.path.join(ROOT, "tfidf_vectorizer.pkl")
@@ -91,6 +104,18 @@ def caption_image(base64_image_str: str) -> str:
     return caption.strip()
 
 # ──────────────────────────────────────────────────────────────────────────────
+# Load TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B)
+# ──────────────────────────────────────────────────────────────────────────────
+try:
+    from pipeline_b import DisasterRAGPipelineB
+    print("Loading TypeSafe JEV + LLM Disaster RAG Pipeline…")
+    rag_pipeline = DisasterRAGPipelineB(pipeline_name="jev_llm")
+    print("✓ Disaster RAG Pipeline loaded successfully.")
+except Exception as e:
+    print(f"Warning: Could not load Disaster RAG Pipeline ({e}). /rag/plan endpoint will be disabled.")
+    rag_pipeline = None
+
+# ──────────────────────────────────────────────────────────────────────────────
 # Text cleaner — must match the logic used during training
 # ──────────────────────────────────────────────────────────────────────────────
 def clean_text(text: str) -> str:
@@ -152,7 +177,67 @@ def classify():
         return jsonify({"error": "Text is empty"}), 400
 
     result = predict(text)
+
+    # Optionally run RAG pipeline if disaster detected and requested
+    if data.get("include_rag") and result.get("label") == "disaster" and rag_pipeline:
+        scenario_id = data.get("scenario_id", f"DISASTER-{int(time.time())}")
+        try:
+            plan = rag_pipeline.run(scenario_id=scenario_id, scenario=text)
+            last_rec = rag_pipeline.last_run_record or {}
+            result["ragReport"] = {
+                "success": True if plan else False,
+                "scenario_id": scenario_id,
+                "plan": plan,
+                "pipeline": "jev_llm",
+                "stage_1_resources": last_rec.get("stage_1_resources", []),
+                "stage_1_probabilities": last_rec.get("stage_1_probabilities", {}),
+                "retrieved_chunks": last_rec.get("retrieved_chunks", []),
+                "latency": last_rec.get("latency", {}),
+                "tokens": last_rec.get("tokens", {})
+            }
+        except Exception as rag_err:
+            result["rag_error"] = str(rag_err)
+
     return jsonify(result)
+
+
+@app.post("/rag/plan")
+def rag_plan_endpoint():
+    """
+    Execute TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B).
+    Evaluates scenario, identifies required resources from the 9 relief categories,
+    retrieves authoritative SOPs from VectorDB/cache, and synthesizes dispatch plan.
+    """
+    if not rag_pipeline:
+        return jsonify({"error": "Disaster RAG pipeline is not available"}), 503
+
+    data = request.get_json(silent=True)
+    if not data or "scenario" not in data:
+        return jsonify({"error": "Missing 'scenario' field in JSON body"}), 400
+
+    scenario = data["scenario"]
+    if not scenario or not scenario.strip():
+        return jsonify({"error": "Scenario text is empty"}), 400
+
+    scenario_id = data.get("scenario_id", f"AASHRAY-{int(time.time())}")
+
+    try:
+        plan = rag_pipeline.run(scenario_id=scenario_id, scenario=scenario)
+        last_rec = rag_pipeline.last_run_record or {}
+
+        return jsonify({
+            "success": True if plan else False,
+            "scenario_id": scenario_id,
+            "pipeline": "jev_llm",
+            "plan": plan,
+            "stage_1_resources": last_rec.get("stage_1_resources", []),
+            "stage_1_probabilities": last_rec.get("stage_1_probabilities", {}),
+            "retrieved_chunks": last_rec.get("retrieved_chunks", []),
+            "latency": last_rec.get("latency", {}),
+            "tokens": last_rec.get("tokens", {})
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.post("/similarity")

@@ -1,5 +1,7 @@
 import os
 import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import re
 import json
 import time
@@ -13,6 +15,7 @@ from schema import FinalResponse, ResourceInstruction, SourceReference
 from stage1_classifier import get_key_pool
 from constants import GROQ_CHAT_URL, DEFAULT_GROQ_MODEL
 
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 

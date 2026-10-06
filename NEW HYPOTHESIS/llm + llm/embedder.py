@@ -9,7 +9,11 @@ class Embedder:
         self.model_name = model_name
         self.device = device
         self.model = SentenceTransformer(model_name, device=device)
-        self.dimension = self.model.get_sentence_embedding_dimension()
+        # get_sentence_embedding_dimension was renamed to get_embedding_dimension in newer versions
+        if hasattr(self.model, "get_embedding_dimension"):
+            self.dimension = self.model.get_embedding_dimension()
+        else:
+            self.dimension = self.model.get_sentence_embedding_dimension()
 
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
         """Embed a list of strings into normalized vectors."""

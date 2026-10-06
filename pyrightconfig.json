@@ -1,0 +1,14 @@
+{
+  "pythonVersion": "3.13",
+  "include": [
+    "ml_service",
+    "NEW HYPOTHESIS"
+  ],
+  "extraPaths": [
+    "NEW HYPOTHESIS/llm + llm",
+    "NEW HYPOTHESIS/jev + llm"
+  ],
+  "reportMissingImports": "warning",
+  "reportMissingModuleSource": "none",
+  "typeCheckingMode": "basic"
+}
