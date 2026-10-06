@@ -1,6 +1,6 @@
 {
   "model_name": "Linear SVM",
-  "threshold": 0.14,
+  "threshold": 0.41,
   "test_accuracy": 0.8564762670957361,
   "test_f1": 0.8564146210326272,
   "overfit_gap": 0.05225103544892995,

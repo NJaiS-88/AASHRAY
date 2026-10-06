@@ -84,7 +84,7 @@ export default function MapComponent({ lat, lng, isExpandable = true }) {
       <div 
         ref={mapContainerRef} 
         style={{ height: expanded ? '280px' : '140px' }} 
-        className={`w-full rounded-xl border border-zinc-200/50 shadow-sm transition-all duration-300 overflow-hidden ${isExpandable ? 'cursor-pointer hover:border-zinc-300' : ''}`}
+        className={`relative z-0 isolate w-full rounded-xl border border-zinc-200/50 shadow-sm transition-all duration-300 overflow-hidden ${isExpandable ? 'cursor-pointer hover:border-zinc-300' : ''}`}
         onClick={() => isExpandable && setExpanded(!expanded)}
       />
       <div className="flex justify-between items-center text-[10px] text-zinc-500 px-1 font-mono">

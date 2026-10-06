@@ -55,10 +55,14 @@ async function computeSemanticSimilarity(text1, text2) {
         });
         if (response.ok) {
             const data = await response.json();
-            return data.similarity;
+            if (data && typeof data.similarity === 'number') {
+                return data.similarity;
+            }
+        } else {
+            console.warn(`Semantic similarity HTTP error: ${response.status}`);
         }
     } catch (err) {
-        console.warn('Semantic similarity endpoint error:', err.message);
+        console.warn('Semantic similarity service offline or failed:', err.message);
     }
     return null;
 }
@@ -126,25 +130,51 @@ async function getSimilarityReport(parts) {
     return validateRelatedness(parts);
 }
 
+/**
+ * Call Python ML service to convert image (base64) to text caption using BLIP model.
+ */
+async function generateImageCaption(imageBase64) {
+    if (!imageBase64) return '';
+    try {
+        const response = await fetch(`${ML_SERVICE_URL}/caption-image`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: imageBase64 }),
+            signal: AbortSignal.timeout(10000), // 10s timeout for image processing
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data.caption || '';
+        }
+    } catch (err) {
+        console.warn('Image captioning service unavailable or failed:', err.message);
+    }
+    return '';
+}
+
 router.post('/', protect, async (req, res) => {
     try {
-        const { text, text1, text2, text3, image, audio, audioText, location, clientTimestamp } = req.body;
+        const { text, text1, text2, text3, image, audio, audioText, imageCaption: clientCaption, location, clientTimestamp } = req.body;
         
-        // Assemble parts for semantic similarity
+        // Use client pre-processed image caption or generate image caption via BLIP if image is attached
+        const imageCaption = clientCaption || (await generateImageCaption(image));
+
+        // Assemble parts for semantic similarity (include image caption if available)
         const parts = {
             "Input 1": text1 || text || "",
             "Input 2": text2 || "",
-            "Input 3": text3 || audioText || ""
+            "Input 3": text3 || audioText || "",
+            ...(imageCaption ? { "Image Description (BLIP)": imageCaption } : {})
         };
 
         // Compute similarity report (semantic transformers with TF-IDF fallback)
         const similarityReport = await getSimilarityReport(parts);
 
-        // Run ML disaster classification on all text inputs (always, regardless of similarity)
+        // Run ML disaster classification on all text inputs + audio + image caption combined
         const disasterReport = await classifyText(
             text1 || text || '',
             text2 || '',
-            text3 || audioText || ''
+            [text3, audioText, imageCaption].filter((v, i, self) => v && self.indexOf(v) === i).join(' ')
         );
 
         const entry = new Entry({
@@ -154,6 +184,7 @@ router.post('/', protect, async (req, res) => {
             text2: text2 || '',
             text3: text3 || audioText || '',
             image,
+            imageCaption,
             audio,
             audioText,
             location,

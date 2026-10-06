@@ -1,0 +1,16 @@
+subset,metric,n_scenarios,pipeline_a_mean,pipeline_b_mean,diff_b_minus_a,ci_95_lower,ci_95_upper,non_inferior_pass,noise_floor_mean,noise_floor_ci_lower,noise_floor_ci_upper
+All Scenarios,gold_resource_coverage,35,0.6816,0.8848,0.2032,0.0968,0.3286,True,-0.0032,-0.019,0.0095
+All Scenarios,invented_resources,35,0.0,0.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+All Scenarios,citation_validity,35,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+All Scenarios,evidence_sufficient_share,35,0.8874,0.7015,-0.1859,-0.306,-0.0674,False,0.0077,-0.0757,0.1009
+All Scenarios,json_validity,35,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Disagree Subset (disagree=1),gold_resource_coverage,12,0.713,0.9167,0.2037,0.0185,0.4352,True,-0.0093,-0.0556,0.0278
+Disagree Subset (disagree=1),invented_resources,12,0.0,0.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Disagree Subset (disagree=1),citation_validity,12,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Disagree Subset (disagree=1),evidence_sufficient_share,12,0.8846,0.758,-0.1266,-0.3216,0.0352,False,-0.0479,-0.1863,0.0817
+Disagree Subset (disagree=1),json_validity,12,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Agree Subset (disagree=0),gold_resource_coverage,23,0.6652,0.8681,0.2029,0.0725,0.3551,True,0.0,0.0,0.0
+Agree Subset (disagree=0),invented_resources,23,0.0,0.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Agree Subset (disagree=0),citation_validity,23,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0
+Agree Subset (disagree=0),evidence_sufficient_share,23,0.8889,0.6721,-0.2168,-0.374,-0.055,False,0.0367,-0.0676,0.1536
+Agree Subset (disagree=0),json_validity,23,1.0,1.0,0.0,0.0,0.0,True,0.0,0.0,0.0

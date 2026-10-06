@@ -1,0 +1,39 @@
+{
+  "scenario_id": "SCEN-DIS-12",
+  "scenario": "We are a family of 15 members, 5 men 10 women, we need help because our home has collapsed.",
+  "query_sources": [
+    {
+      "file": "ndmaguidelinesmanagementofsunamis.pdf",
+      "page": 94
+    },
+    {
+      "file": "a.pdf",
+      "page": 61
+    }
+  ],
+  "resources": [
+    {
+      "resource": "shelter",
+      "required": true,
+      "instructions": [
+        "Identify and contact pre-approved shelter suppliers for tents and temporary shelter materials as per local DM Plan.",
+        "Stockpile tents, tarpaulins, and other temporary shelter materials in regional warehouses or ERCs to ensure availability within 24 hours.",
+        "Coordinate with the relevant Central Ministry to secure additional supplies if required.",
+        "Deploy the stockpiled shelters to the collapsed home site to provide immediate protection for the 15 family members."
+      ],
+      "sources": [
+        {
+          "file": "ndmp-2019.pdf",
+          "page": 313
+        },
+        {
+          "file": "landslidessnowavalanches.pdf",
+          "page": 164
+        }
+      ],
+      "evidence_sufficient": true
+    }
+  ],
+  "report": "The collapsed home of a 15-member family requires immediate shelter provision. Trained community teams are mandated to set up emergency shelters (NDMA guidelines, page 94; a.pdf, page 61). The resource evidence from ndmp-2019.pdf (page 313) and landslidessnowavalanches.pdf (page 164) confirms that suppliers should be identified, stockpiles maintained, and coordination with central ministries ensured. These steps are sufficient to dispatch temporary shelters to the affected family.",
+  "pipeline": "llm_llm"
+}

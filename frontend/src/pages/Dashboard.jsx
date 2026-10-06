@@ -150,6 +150,85 @@ export default function Dashboard() {
     );
   };
 
+  // Live processing states for audio & image
+  const [isProcessingAudio, setIsProcessingAudio] = useState(false);
+  const [isProcessingImage, setIsProcessingImage] = useState(false);
+  const [audioStatusText, setAudioStatusText] = useState('');
+  const [imageStatusText, setImageStatusText] = useState('');
+  const [transcribedAudioText, setTranscribedAudioText] = useState('');
+  const [imageCaptionText, setImageCaptionText] = useState('');
+
+  // Promise refs to track background tasks if user clicks Send before background tasks complete
+  const audioPromiseRef = useRef(null);
+  const imagePromiseRef = useRef(null);
+
+  // Process Audio immediately when recorded
+  const processAudioBlob = (blob) => {
+    if (!blob) return;
+    setIsProcessingAudio(true);
+    setAudioStatusText('Audio being processed...');
+    
+    audioPromiseRef.current = (async () => {
+      try {
+        const res = await fetch(WHISPER_URL, {
+          method: 'POST',
+          body: blob,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const transcript = data.transcription || '';
+          setTranscribedAudioText(transcript);
+          setAudioStatusText('Audio processed ✓');
+          setText3(prev => prev ? prev + ' ' + transcript : transcript);
+          return transcript;
+        } else {
+          setAudioStatusText('Audio processing failed ✕');
+          return '';
+        }
+      } catch (err) {
+        console.error('Whisper API call failed:', err);
+        setAudioStatusText('Audio processing failed ✕');
+        return '';
+      } finally {
+        setIsProcessingAudio(false);
+      }
+    })();
+  };
+
+  // Process Image immediately when captured
+  const processCapturedImage = (dataUrl) => {
+    if (!dataUrl) return;
+    setIsProcessingImage(true);
+    setImageStatusText('Image being processed...');
+    
+    imagePromiseRef.current = (async () => {
+      try {
+        const mlUrl = import.meta.env.VITE_ML_SERVICE_URL || 'http://localhost:5001';
+        const res = await fetch(`${mlUrl}/caption-image`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: dataUrl }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const caption = data.caption || '';
+          setImageCaptionText(caption);
+          setImageStatusText('Image processed ✓');
+          return caption;
+        } else {
+          setImageStatusText('Image processing failed ✕');
+          return '';
+        }
+      } catch (err) {
+        console.error('Image captioning call failed:', err);
+        setImageStatusText('Image processing failed ✕');
+        return '';
+      } finally {
+        setIsProcessingImage(false);
+      }
+    })();
+  };
+
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -164,6 +243,8 @@ export default function Dashboard() {
         const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         setAudioBlob(blob);
         setAudioUrl(URL.createObjectURL(blob));
+        // Start background processing immediately!
+        processAudioBlob(blob);
       };
 
       mediaRecorderRef.current.start();
@@ -182,35 +263,34 @@ export default function Dashboard() {
     }
   };
 
+  const handleImageCaptured = (dataUrl) => {
+    setImageUrl(dataUrl);
+    // Start background processing immediately!
+    processCapturedImage(dataUrl);
+  };
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     if (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob) return;
     setIsSubmitting(true);
 
     try {
-      let audioText = '';
+      let finalAudioText = transcribedAudioText;
+      let finalImageCaption = imageCaptionText;
 
-      // Transcribe audio via Whisper API if present
-      if (audioBlob) {
-        try {
-          const response = await fetch(WHISPER_URL, {
-            method: 'POST',
-            body: audioBlob,
-          });
-          if (response.ok) {
-            const data = await response.json();
-            audioText = data.transcription || '';
-            // Auto fill transcription into text3
-            setText3(prev => prev ? prev + ' ' + audioText : audioText);
-          } else {
-            console.error('Whisper transcription failed:', response.statusText);
-          }
-        } catch (err) {
-          console.error('Whisper API call failed:', err);
-        }
+      // If user hit submit while audio is still processing, wait for it automatically!
+      if (audioPromiseRef.current) {
+        const result = await audioPromiseRef.current;
+        if (result) finalAudioText = result;
       }
 
-      // Convert audio blob to base64 for MongoDB storage if needed
+      // If user hit submit while image is still processing, wait for it automatically!
+      if (imagePromiseRef.current) {
+        const result = await imagePromiseRef.current;
+        if (result) finalImageCaption = result;
+      }
+
+      // Convert audio blob to base64 for database payload
       let audioBase64 = '';
       if (audioBlob) {
         audioBase64 = await new Promise((resolve) => {
@@ -220,15 +300,16 @@ export default function Dashboard() {
         });
       }
 
-      // Send entry to backend
+      // Send entry to backend with latest processed audioText and imageCaption
       const payload = {
         text: text.trim(),
         text1: text.trim(),
         text2: text2.trim(),
-        text3: text3.trim() || audioText,
+        text3: text3.trim() || finalAudioText,
         image: imageUrl || '',
         audio: audioBase64,
-        audioText: audioText,
+        audioText: finalAudioText,
+        imageCaption: finalImageCaption,
         location: location,
         clientTimestamp: new Date().toISOString(),
       };
@@ -238,13 +319,19 @@ export default function Dashboard() {
       // Refresh entries
       await fetchEntries();
 
-      // Reset prompt input elements
+      // Reset prompt input elements & promise refs
       setText('');
       setText2('');
       setText3('');
       setImageUrl(null);
       setAudioBlob(null);
       setAudioUrl(null);
+      setAudioStatusText('');
+      setImageStatusText('');
+      setTranscribedAudioText('');
+      setImageCaptionText('');
+      audioPromiseRef.current = null;
+      imagePromiseRef.current = null;
     } catch (err) {
       console.error('Failed to submit message:', err);
     } finally {
@@ -417,10 +504,16 @@ export default function Dashboard() {
                           )}
                         </div>
                         
-                        {/* Inline Image Preview */}
+                        {/* Inline Image Preview & BLIP AI Description */}
                         {entry.image && (
-                          <div className="rounded-lg overflow-hidden border border-zinc-200 max-w-xs bg-zinc-50">
+                          <div className="rounded-lg overflow-hidden border border-zinc-200 max-w-xs bg-zinc-50 space-y-1">
                             <img src={entry.image} alt="Captured" className="w-full object-contain max-h-48" />
+                            {entry.imageCaption && (
+                              <div className="px-2 py-1 bg-zinc-100 border-t border-zinc-200 text-[11px] text-zinc-700 font-sans italic">
+                                <span className="text-[9px] text-zinc-400 font-mono block not-italic">🖼️ BLIP AI Description:</span>
+                                "{entry.imageCaption}"
+                              </div>
+                            )}
                           </div>
                         )}
 
@@ -504,11 +597,17 @@ export default function Dashboard() {
               {/* Submitting Status placeholder */}
               {isSubmitting && (
                 <div className="flex gap-3 items-start animate-pulse">
-                  <div className="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center text-xs text-zinc-400 shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-zinc-900 flex items-center justify-center text-xs font-semibold text-white shrink-0">
                     A
                   </div>
-                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs text-zinc-500">
-                    Processing...
+                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs text-zinc-600 space-y-1">
+                    <div className="font-semibold text-zinc-800 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping" />
+                      Processing Submission...
+                    </div>
+                    {isProcessingAudio && <div className="text-[11px] text-amber-600">🎙️ Transcribing audio via Whisper...</div>}
+                    {isProcessingImage && <div className="text-[11px] text-indigo-600">🖼️ Generating image caption via BLIP...</div>}
+                    {!isProcessingAudio && !isProcessingImage && <div className="text-[11px] text-zinc-500">⚡ Running ML classification & similarity checks...</div>}
                   </div>
                 </div>
               )}
@@ -521,8 +620,8 @@ export default function Dashboard() {
         <div className="p-4 bg-white border-t border-zinc-200">
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-2.5">
             
-            {/* Attachment Previews */}
-            {(imageUrl || audioUrl || locationError) && (
+            {/* Attachment Previews & Live Processing Status */}
+            {(imageUrl || audioUrl || locationError || isProcessingAudio || isProcessingImage || audioStatusText || imageStatusText) && (
               <div className="flex flex-wrap gap-2 p-2 bg-zinc-50 rounded-xl border border-zinc-200">
                 {imageUrl && (
                   <div className="relative group w-16 h-16 rounded-lg overflow-hidden border border-zinc-200 bg-white flex items-center justify-center">
@@ -552,6 +651,42 @@ export default function Dashboard() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
+                  </div>
+                )}
+
+                {/* Audio Live Processing Badge */}
+                {(isProcessingAudio || audioStatusText) && (
+                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs border ${
+                    isProcessingAudio 
+                      ? 'bg-amber-50 border-amber-200 text-amber-700 animate-pulse' 
+                      : audioStatusText.includes('✓') 
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                        : 'bg-red-50 border-red-200 text-red-700'
+                  }`}>
+                    <span>🎙️ {audioStatusText}</span>
+                    {transcribedAudioText && (
+                      <span className="font-mono text-[10px] bg-white/70 px-1.5 py-0.5 rounded border border-emerald-300 max-w-[200px] truncate">
+                        "{transcribedAudioText}"
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Image Live Processing Badge */}
+                {(isProcessingImage || imageStatusText) && (
+                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs border ${
+                    isProcessingImage 
+                      ? 'bg-indigo-50 border-indigo-200 text-indigo-700 animate-pulse' 
+                      : imageStatusText.includes('✓') 
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                        : 'bg-zinc-100 border-zinc-200 text-zinc-700'
+                  }`}>
+                    <span>🖼️ {imageStatusText}</span>
+                    {imageCaptionText && (
+                      <span className="font-mono text-[10px] bg-white/70 px-1.5 py-0.5 rounded border border-emerald-300 max-w-[200px] truncate">
+                        "{imageCaptionText}"
+                      </span>
+                    )}
                   </div>
                 )}
 
@@ -804,7 +939,7 @@ export default function Dashboard() {
       {/* Camera Clicker Overlay Modal */}
       {showCamera && (
         <CameraCapture 
-          onCapture={(dataUrl) => setImageUrl(dataUrl)}
+          onCapture={(dataUrl) => handleImageCaptured(dataUrl)}
           onClose={() => setShowCamera(false)}
         />
       )}

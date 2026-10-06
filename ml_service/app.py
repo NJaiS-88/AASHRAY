@@ -59,6 +59,37 @@ def semantic_similarity(text1: str, text2: str) -> float:
     score = util.cos_sim(embeddings[0], embeddings[1]).item()
     return float(score)
 
+try:
+    import base64
+    import io
+    from PIL import Image
+    import torch
+    from transformers import BlipProcessor, BlipForConditionalGeneration
+    print("Loading BLIP image captioning model ('Salesforce/blip-image-captioning-base')…")
+    blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+    blip_model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+    print("✓ BLIP image model loaded successfully.")
+except Exception as e:
+    print(f"Warning: Could not load BLIP model ({e}). /caption-image endpoint will be disabled.")
+    blip_processor = None
+    blip_model = None
+
+def caption_image(base64_image_str: str) -> str:
+    if not blip_processor or not blip_model:
+        raise RuntimeError("BLIP image captioning model is not loaded.")
+    
+    # Strip data URL prefix if present
+    if "," in base64_image_str:
+        base64_image_str = base64_image_str.split(",")[1]
+    
+    image_bytes = base64.b64decode(base64_image_str)
+    raw_image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    
+    inputs = blip_processor(raw_image, return_tensors="pt")
+    out = blip_model.generate(**inputs, max_new_tokens=50)
+    caption = blip_processor.decode(out[0], skip_special_tokens=True)
+    return caption.strip()
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Text cleaner — must match the logic used during training
 # ──────────────────────────────────────────────────────────────────────────────
@@ -133,6 +164,19 @@ def similarity():
     try:
         score = semantic_similarity(data["text1"], data["text2"])
         return jsonify({"similarity": round(score, 4)})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.post("/caption-image")
+def caption_image_endpoint():
+    data = request.get_json(silent=True)
+    if not data or "image" not in data:
+        return jsonify({"error": "Missing 'image' base64 string in JSON body"}), 400
+
+    try:
+        caption = caption_image(data["image"])
+        return jsonify({"caption": caption})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

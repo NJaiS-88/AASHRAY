@@ -46,6 +46,10 @@ const entrySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         default: null
     },
+    imageCaption: {
+        type: String,
+        default: ''
+    },
     clientTimestamp: {
         type: Date,
     }

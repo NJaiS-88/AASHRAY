@@ -94,7 +94,7 @@ function validateRelatedness(parts) {
 
   const avgSimilarity = count > 0 ? sumSimilarity / count : 0.0;
   const minSimilarity = Math.min(...pairwiseSimilarities.map(p => p.similarity));
-  const isValid = avgSimilarity >= 0.40;
+  const isValid = avgSimilarity >= 0.25;
 
   return {
     num_inputs: nParts,
