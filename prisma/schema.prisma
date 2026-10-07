@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EvidenceSource {
+  OPENWEB_NINJA
+  CITIZEN
+  RESPONDER
+  GOVERNMENT
+  WEATHER
+  SATELLITE
+}
+
+enum ConditionType {
+  ROAD_CLOSED
+  ROAD_BLOCKED
+  FLOODED
+  ACCIDENT
+  TRAFFIC
+  OTHER
+}
+
+enum RoadStatus {
+  OPEN
+  RISKY
+  BLOCKED
+  UNKNOWN
+}
+
+enum ConfidenceLevel {
+  LOW
+  MEDIUM
+  HIGH
+  UNKNOWN
+}
+
+model RoadConditionEvidence {
+  id String @id @default(uuid())
+
+  // Provenance
+  source     EvidenceSource
+  externalId String?
+
+  // Classification
+  conditionType ConditionType
+  status        RoadStatus
+
+  // Location
+  latitude  Float
+  longitude Float
+  street    String?
+
+  // Evaluation
+  severity   Int?
+  confidence ConfidenceLevel @default(UNKNOWN)
+
+  // Temporality
+  reportedAt DateTime
+  expiresAt  DateTime?
+
+  // Raw Data (flexibility for multiple different providers)
+  rawMetadata Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([latitude, longitude])
+  @@index([source, externalId])
+  @@index([status])
+  @@index([reportedAt])
+}
+
+model MissionRouteState {
+  id String @id @default(uuid())
+
+  // Mission context (consumed from Resource Allocation when available)
+  missionId    String  @unique
+  resourceId   String?
+  resourceType String  @default("DEFAULT")
+  priority     String  @default("MEDIUM")
+
+  // Origin & Destination
+  sourceLatitude       Float
+  sourceLongitude      Float
+  destinationLatitude  Float
+  destinationLongitude Float
+
+  // Routing State
+  routeStatus    String  @default("ROUTE_FOUND") // ROUTE_FOUND | NO_SAFE_ROUTE_FOUND | RECALCULATING
+  primaryRouteId String?
+  routeScore     Float?
+
+  // Compact route references (preserving external provider IDs without storing redundant raw blobs)
+  primaryRouteData Json?
+  backupRoutesData Json?
+
+  // Re-routing & Tracking counters
+  rerouteCount                Int       @default(0)
+  lastRerouteAt               DateTime?
+  lastRouteCalculationAt      DateTime  @default(now())
+  lastRoadConditionEvaluation DateTime  @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([missionId])
+  @@index([resourceId])
+  @@index([routeStatus])
+}
