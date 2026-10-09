@@ -1,0 +1,186 @@
+[
+  {
+    "warehouse_id": "WH001",
+    "name": "Central Emergency Warehouse",
+    "location": {
+      "latitude": 19.0760,
+      "longitude": 72.8777
+    },
+    "inventory": {
+      "water": {
+        "available": 1000,
+        "capacity": 1500
+      },
+      "food": {
+        "available": 500,
+        "capacity": 800
+      },
+      "medical_kits": {
+        "available": 100,
+        "capacity": 150
+      }
+    },
+    "vehicles": {
+      "ambulance": {
+        "total": 2,
+        "available": 1
+      },
+      "rescue_truck": {
+        "total": 3,
+        "available": 2
+      },
+      "fire_truck": {
+        "total": 1,
+        "available": 1
+      }
+    }
+  },
+
+  {
+    "warehouse_id": "WH002",
+    "name": "North Emergency Warehouse",
+    "location": {
+      "latitude": 19.1100,
+      "longitude": 72.8500
+    },
+    "inventory": {
+      "water": {
+        "available": 600,
+        "capacity": 1000
+      },
+      "food": {
+        "available": 800,
+        "capacity": 1000
+      },
+      "medical_kits": {
+        "available": 50,
+        "capacity": 100
+      }
+    },
+    "vehicles": {
+      "ambulance": {
+        "total": 1,
+        "available": 1
+      },
+      "rescue_truck": {
+        "total": 1,
+        "available": 1
+      },
+      "fire_truck": {
+        "total": 0,
+        "available": 0
+      }
+    }
+  },
+
+  {
+    "warehouse_id": "WH003",
+    "name": "South Emergency Warehouse",
+    "location": {
+      "latitude": 19.0200,
+      "longitude": 72.8500
+    },
+    "inventory": {
+      "water": {
+        "available": 700,
+        "capacity": 1000
+      },
+      "food": {
+        "available": 300,
+        "capacity": 500
+      },
+      "medical_kits": {
+        "available": 200,
+        "capacity": 250
+      }
+    },
+    "vehicles": {
+      "ambulance": {
+        "total": 3,
+        "available": 2
+      },
+      "rescue_truck": {
+        "total": 2,
+        "available": 1
+      },
+      "fire_truck": {
+        "total": 1,
+        "available": 1
+      }
+    }
+  },
+
+  {
+    "warehouse_id": "WH004",
+    "name": "East Emergency Warehouse",
+    "location": {
+      "latitude": 19.0600,
+      "longitude": 73.0200
+    },
+    "inventory": {
+      "water": {
+        "available": 300,
+        "capacity": 500
+      },
+      "food": {
+        "available": 200,
+        "capacity": 400
+      },
+      "medical_kits": {
+        "available": 80,
+        "capacity": 100
+      }
+    },
+    "vehicles": {
+      "ambulance": {
+        "total": 1,
+        "available": 0
+      },
+      "rescue_truck": {
+        "total": 2,
+        "available": 2
+      },
+      "fire_truck": {
+        "total": 1,
+        "available": 0
+      }
+    }
+  },
+
+  {
+    "warehouse_id": "WH005",
+    "name": "West Emergency Warehouse",
+    "location": {
+      "latitude": 19.0500,
+      "longitude": 72.8200
+    },
+    "inventory": {
+      "water": {
+        "available": 150,
+        "capacity": 300
+      },
+      "food": {
+        "available": 100,
+        "capacity": 200
+      },
+      "medical_kits": {
+        "available": 20,
+        "capacity": 50
+      }
+    },
+    "vehicles": {
+      "ambulance": {
+        "total": 1,
+        "available": 1
+      },
+      "rescue_truck": {
+        "total": 0,
+        "available": 0
+      },
+      "fire_truck": {
+        "total": 1,
+        "available": 1
+      }
+    }
+  }
+]

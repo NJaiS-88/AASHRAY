@@ -1,0 +1,52 @@
+[
+  {
+    "responder_id": "R001",
+    "name": "Responder 001",
+    "vehicle_type": "RESCUE_TRUCK",
+    "location": {
+      "latitude": 19.08,
+      "longitude": 72.88
+    },
+    "status": "AVAILABLE"
+  },
+  {
+    "responder_id": "R002",
+    "name": "Responder 002",
+    "vehicle_type": "AMBULANCE",
+    "location": {
+      "latitude": 19.06,
+      "longitude": 72.9
+    },
+    "status": "AVAILABLE"
+  },
+  {
+    "responder_id": "R003",
+    "name": "Responder 003",
+    "vehicle_type": "FIRE_TRUCK",
+    "location": {
+      "latitude": 19.04,
+      "longitude": 72.84
+    },
+    "status": "AVAILABLE"
+  },
+  {
+    "responder_id": "R004",
+    "name": "Responder 004",
+    "vehicle_type": "RESCUE_TRUCK",
+    "location": {
+      "latitude": 19.1,
+      "longitude": 72.86
+    },
+    "status": "AVAILABLE"
+  },
+  {
+    "responder_id": "R005",
+    "name": "Responder 005",
+    "vehicle_type": "AMBULANCE",
+    "location": {
+      "latitude": 19.03,
+      "longitude": 72.87
+    },
+    "status": "BUSY"
+  }
+]

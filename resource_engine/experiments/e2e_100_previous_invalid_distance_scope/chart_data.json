@@ -1,0 +1,68 @@
+{
+  "outcome_distribution": {
+    "SUCCESS_FULLY_FULFILLED": 7,
+    "SUCCESS_PARTIALLY_FULFILLED": 9,
+    "NO_SAFE_ROUTE": 0,
+    "ROUTE_ENGINE_UNAVAILABLE": 0,
+    "NO_RESPONDER_AVAILABLE": 0,
+    "PIPELINE_FAILURE": 84,
+    "VALIDATION_FAILURE": 0
+  },
+  "resources": {
+    "required": {
+      "water": 221539662.0,
+      "food": 110769831.0,
+      "medical_kits": 5538491.55
+    },
+    "allocated": {
+      "water": 160716.0,
+      "food": 106104.0,
+      "medical_kits": 20888.6
+    },
+    "shortage": {
+      "water": 221378946.0,
+      "food": 110663727.0,
+      "medical_kits": 5517602.95
+    }
+  },
+  "route_distance_km": {
+    "E2E-038": 37.39,
+    "E2E-001": 100.54,
+    "E2E-002": 398.83,
+    "E2E-009": 595.29,
+    "E2E-005": 780.64,
+    "E2E-006": 878.03,
+    "E2E-004": 1135.41,
+    "E2E-007": 1139.7,
+    "E2E-011": 1233.9,
+    "E2E-013": 1338.89,
+    "E2E-012": 1385.7,
+    "E2E-010": 1442.77,
+    "E2E-035": 1468.77,
+    "E2E-003": 1776.43,
+    "E2E-008": 1789.83,
+    "E2E-016": 2142.88
+  },
+  "responder_utilization": {
+    "R001": {
+      "completed": 3,
+      "cancelled": 35
+    },
+    "R002": {
+      "completed": 12,
+      "cancelled": 50
+    },
+    "R003": {
+      "completed": 0,
+      "cancelled": 0
+    },
+    "R004": {
+      "completed": 0,
+      "cancelled": 0
+    },
+    "R005": {
+      "completed": 0,
+      "cancelled": 0
+    }
+  }
+}

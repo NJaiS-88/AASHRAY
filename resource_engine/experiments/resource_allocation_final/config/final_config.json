@@ -1,0 +1,341 @@
+{
+  "experiment": "resource_allocation_final",
+  "role": "FINAL held-out hypothesis test with pre-registered settings. Not development, not tuning, not exploratory.",
+  "master_seed": 20261209,
+  "seed_namespace": "aashray-resource-allocation-final",
+  "excluded_seeds": {
+    "pilot": 20261007,
+    "development": 20261108
+  },
+  "excluded_namespaces": [
+    "aashray-resource-allocation-development"
+  ],
+  "n_scenarios": 12000,
+  "resource_types": [
+    "water",
+    "food",
+    "medical_kits"
+  ],
+  "scenario_design": {
+    "scarcity_levels": {
+      "LOW": {
+        "scenario_count": 1200,
+        "supply_to_demand_ratio": [
+          1.15,
+          1.6
+        ],
+        "supply_rounding": "ceil"
+      },
+      "MODERATE": {
+        "scenario_count": 4800,
+        "supply_to_demand_ratio": [
+          0.9,
+          1.1
+        ],
+        "supply_rounding": "round"
+      },
+      "HIGH": {
+        "scenario_count": 6000,
+        "supply_to_demand_ratio": [
+          0.3,
+          0.7
+        ],
+        "supply_rounding": "floor"
+      }
+    },
+    "scarcity_note": "Pre-registered before generation: LOW 1,200 / MODERATE 4,800 / HIGH 6,000 (same 10/40/50 proportions as development). Not to be rebalanced after results.",
+    "scenario_sizes": {
+      "SMALL": [
+        3,
+        6
+      ],
+      "MEDIUM": [
+        8,
+        14
+      ],
+      "LARGE": [
+        18,
+        30
+      ]
+    },
+    "su_profiles": [
+      "LL_DOMINANT",
+      "LH_DOMINANT",
+      "HL_DOMINANT",
+      "HH_DOMINANT",
+      "MODERATE_MIXED"
+    ],
+    "cell_allocation_rule": "Each scarcity level is spread evenly over the same 15 size x S-U-profile cells as development: LOW 80, MODERATE 320, HIGH 400 scenarios per cell.",
+    "warehouses_per_scenario": [
+      2,
+      5
+    ]
+  },
+  "severity_urgency": {
+    "domain": "0 < S <= 1 and 0 < U <= 1",
+    "decimals": 4,
+    "bands": {
+      "LOW": [
+        0.01,
+        0.35
+      ],
+      "MODERATE": [
+        0.35,
+        0.65
+      ],
+      "HIGH": [
+        0.65,
+        1.0
+      ],
+      "FULL": [
+        0.01,
+        1.0
+      ]
+    },
+    "emergency_strata": {
+      "LL": [
+        "LOW",
+        "LOW"
+      ],
+      "LH": [
+        "LOW",
+        "HIGH"
+      ],
+      "HL": [
+        "HIGH",
+        "LOW"
+      ],
+      "HH": [
+        "HIGH",
+        "HIGH"
+      ],
+      "MM": [
+        "MODERATE",
+        "MODERATE"
+      ],
+      "MIXED": [
+        "FULL",
+        "FULL"
+      ]
+    },
+    "profile_weights": {
+      "LL_DOMINANT": {
+        "LL": 0.6,
+        "LH": 0.08,
+        "HL": 0.08,
+        "HH": 0.08,
+        "MM": 0.08,
+        "MIXED": 0.08
+      },
+      "LH_DOMINANT": {
+        "LL": 0.08,
+        "LH": 0.6,
+        "HL": 0.08,
+        "HH": 0.08,
+        "MM": 0.08,
+        "MIXED": 0.08
+      },
+      "HL_DOMINANT": {
+        "LL": 0.08,
+        "LH": 0.08,
+        "HL": 0.6,
+        "HH": 0.08,
+        "MM": 0.08,
+        "MIXED": 0.08
+      },
+      "HH_DOMINANT": {
+        "LL": 0.08,
+        "LH": 0.08,
+        "HL": 0.08,
+        "HH": 0.6,
+        "MM": 0.08,
+        "MIXED": 0.08
+      },
+      "MODERATE_MIXED": {
+        "LL": 0.05,
+        "LH": 0.05,
+        "HL": 0.05,
+        "HH": 0.05,
+        "MM": 0.4,
+        "MIXED": 0.4
+      }
+    },
+    "note": "Same strata as the pilot. Within a stratum S and U are independent uniform draws."
+  },
+  "demand": {
+    "per_person_rates_source": "resource_services/config/resource_rules.json (read only)",
+    "affected_population": {
+      "min": 60,
+      "max": 600,
+      "step": 20
+    },
+    "type_multiplier": [
+      0.6,
+      1.4
+    ],
+    "quantity_rule": "quantity = max(1, round(base_per_person[type] * affected_population * multiplier)) for each required type, 0 otherwise",
+    "required_type_patterns": {
+      "ALL": {
+        "types": [
+          "water",
+          "food",
+          "medical_kits"
+        ],
+        "weight": 0.4
+      },
+      "WATER_FOOD": {
+        "types": [
+          "water",
+          "food"
+        ],
+        "weight": 0.12
+      },
+      "WATER_MEDICAL": {
+        "types": [
+          "water",
+          "medical_kits"
+        ],
+        "weight": 0.12
+      },
+      "FOOD_MEDICAL": {
+        "types": [
+          "food",
+          "medical_kits"
+        ],
+        "weight": 0.12
+      },
+      "WATER_ONLY": {
+        "types": [
+          "water"
+        ],
+        "weight": 0.08
+      },
+      "FOOD_ONLY": {
+        "types": [
+          "food"
+        ],
+        "weight": 0.08
+      },
+      "MEDICAL_ONLY": {
+        "types": [
+          "medical_kits"
+        ],
+        "weight": 0.08
+      }
+    },
+    "independence_note": "Own random stream; independent of S, U, GT labels, arrival and all AASHRAY parameters."
+  },
+  "arrival": {
+    "base_timestamp": "2026-01-01T00:00:00Z",
+    "window_seconds": 3600,
+    "rule": "Independent integer offset in [0, window_seconds] per emergency from a dedicated arrival stream.",
+    "fcfs_order": "ascending (arrival_timestamp, emergency_id)"
+  },
+  "ground_truth": {
+    "rule": "GT_critical = 1 if (S >= 0.8 AND U >= 0.8) OR S >= 0.95 OR U >= 0.95, else 0",
+    "both_high_threshold": 0.8,
+    "single_extreme_threshold": 0.95,
+    "status": "FROZEN development reference rule, applied unchanged. A predefined experimental reference rule, not an externally validated truth. Independent of alpha, k, m, n, every allocation method and the MILP."
+  },
+  "critical_coverage_guarantee": {
+    "requirement": "Every scenario contains at least one GT-critical emergency.",
+    "mechanism": "Rejection sampling of the scenario's severity/urgency draws only. Attempt 0 uses the stream sha256(scenario_seed | 'severity_urgency' | 0). If no emergency is GT-critical under the fixed rule, the whole S/U draw is repeated with attempt 1, 2, ... (a new deterministic stream each time) until at least one is. Arrival, demand and inventory use their own streams and are unaffected. Only the fixed GT rule is consulted, never an AASHRAY score.",
+    "max_attempts": 10000
+  },
+  "identifiers": {
+    "scenario_prefix": "FIN",
+    "index_digits": 5,
+    "warehouse_name": "Final Warehouse",
+    "note": "Labels only; they feed no random stream. Within a scenario the emergency-id order is the same as in development, so FCFS tie-breaking is unchanged."
+  },
+  "generator_equivalence_requirement": "The copied generator, run with the development config, identifiers and metadata, must reproduce experiments/resource_allocation_development/data/development_3000_scenarios.json byte for byte.",
+  "methods": {
+    "FCFS": "Validated development implementation (experiments/resource_allocation_development/scripts/policies.py: fcfs_order): ascending (arrival_timestamp, emergency_id); sees only id and arrival.",
+    "AASHRAY": "Validated development implementation (policies.py: aashray_order) with the frozen parameters read from frozen_parameters.json; descending P_o, ties (within 1e-12) in FCFS order.",
+    "MILP": "Validated implementation experiments/resource_allocation_milp/scripts/milp_model.py (run_scenario) with the options in experiments/resource_allocation_milp/config/milp_config.json; unmodified.",
+    "allocator": "FCFS and AASHRAY orders go to the existing ResourceAllocationService.allocate_batch, unchanged, with identical placeholder priority inputs so the presented order is kept (verified on every call).",
+    "placeholder_inputs": {
+      "severity": 0.5,
+      "urgency": 0.5,
+      "priority": "MODERATE"
+    }
+  },
+  "frozen_aashray": {
+    "source": "experiments/resource_allocation_development/results/frozen_parameters.json",
+    "expected": {
+      "config_id": "C045",
+      "alpha": 0.0,
+      "k": 0.5,
+      "m": 0.0,
+      "n": 0.5
+    },
+    "equivalent_ranking": "0.5*S + 0.5*U"
+  },
+  "hypothesis": {
+    "primary_metric": "CDC",
+    "difference": "Delta_i = CDC_AASHRAY,i - CDC_FCFS,i",
+    "H0": "mean(Delta) <= 0",
+    "H1": "mean(Delta) > 0",
+    "alpha": 0.05,
+    "valid_pairs": "scenarios where both CDC values are defined (critical_required > 0)",
+    "decision": "reject H0 if the permutation p-value < 0.05; otherwise fail to reject H0 (never accept H0)"
+  },
+  "statistics": {
+    "primary_permutation_test": {
+      "type": "one-sided paired sign-flip randomization test",
+      "statistic": "mean(Delta)",
+      "permutations": 100000,
+      "seed": 20261210,
+      "rng": "numpy.random.default_rng (PCG64)",
+      "p_value": "(1 + number of permuted means >= observed mean) / (permutations + 1)"
+    },
+    "bootstrap_ci": {
+      "type": "paired percentile bootstrap of mean(Delta)",
+      "resamples": 10000,
+      "seed": 20261211,
+      "level": 0.95,
+      "percentiles": [
+        2.5,
+        97.5
+      ]
+    },
+    "secondary_wilcoxon": {
+      "type": "one-sided paired Wilcoxon signed-rank (scipy.stats.wilcoxon)",
+      "alternative": "greater (AASHRAY > FCFS)",
+      "zero_method": "wilcox (zero differences dropped from the test, counted separately)"
+    },
+    "effect_size": {
+      "cohens_dz": "mean(Delta) / sample SD(Delta) (ddof = 1); NaN if SD = 0",
+      "also": [
+        "win rate",
+        "tie rate",
+        "FCFS win rate",
+        "probability of superiority = (wins + 0.5 * ties) / n"
+      ]
+    },
+    "tie_tolerance": 1e-09,
+    "tie_rule": "|CDC_AASHRAY - CDC_FCFS| <= 1e-9 is a tie; the same tolerance is used for wins, losses and the exact-optimum test",
+    "percentile_method": "linear interpolation (numpy default)"
+  },
+  "edge_cases": {
+    "cdc_undefined": "critical_required == 0 -> CDC = NaN for every method; excluded from the paired test; counted",
+    "relative_improvement": "(CDC_AASHRAY - CDC_FCFS) / CDC_FCFS; NaN when CDC_FCFS == 0 (counted separately, never infinity)",
+    "optimality_gap": "relative gap = (CDC_MILP - CDC_AASHRAY) / CDC_MILP; if critical_required > 0 and CDC_MILP == 0, AASHRAY must also be 0 and the gap is defined as 0 (flagged); NaN when CDC is undefined",
+    "within_x_percent": "relative gap <= x / 100",
+    "exact_optimum": "CDC_MILP - CDC_AASHRAY <= 1e-9"
+  },
+  "tdc": "TDC is computed for FCFS and AASHRAY only. MILP total fulfilment is stored only as milp_tdc_solver_dependent (diagnostic) and is never a benchmark.",
+  "timing": {
+    "timer": "time.perf_counter",
+    "fcfs": "decision (fcfs_order) + allocation (building the allocator requests + allocate_batch)",
+    "aashray": "decision (scores + order) + allocation (building the allocator requests + allocate_batch)",
+    "milp": "model build + solver (the validated run_scenario timing)",
+    "excluded": "dataset loading/generation, Python start-up, warm-up, writing and loading each scenario's inventory file (the existing allocator only loads warehouses from a file), order verification, result extraction, file writing",
+    "warm_up": "the first 3 scenarios are run once for every method before timing starts; those warm-up runs are not recorded",
+    "execution": "single process; scenarios in dataset order; within each scenario FCFS, then AASHRAY, then MILP"
+  },
+  "tolerances": {
+    "cdc_tdc_upper_bound": 1e-12,
+    "aashray_not_above_milp": 1e-12
+  }
+}

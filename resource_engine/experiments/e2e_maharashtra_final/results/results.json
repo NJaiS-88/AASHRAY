@@ -1,0 +1,2192 @@
+{
+ "experiment": "AASHRAY Maharashtra local final E2E validation",
+ "command": "python scripts/run_e2e.py --aashray http://127.0.0.1:8100 --data-root \"<aashray dummy>\" --scenarios scenarios_final.json --out results/results.jsonl --route-engine-log logs/route_engine.log --aashray-log logs/aashray.log --cancel-ids E2E-023 E2E-059 E2E-092",
+ "scenarios": [
+  {
+   "scenario_id": "E2E-001",
+   "event_name": "1944 Bombay explosion",
+   "disaster_type": "EXPLOSION",
+   "date": "1944-04-14",
+   "year": "1944",
+   "state": "Maharashtra",
+   "district": "Mumbai City",
+   "location": "Victoria Dock, Mazagaon, Mumbai",
+   "latitude": 18.95278,
+   "longitude": 72.845,
+   "source": "https://en.wikipedia.org/wiki/1944_Bombay_explosion",
+   "incident_id": "MHF-INC-001",
+   "affected_population": 80000,
+   "affected_population_basis": "displaced",
+   "severity": 0.85,
+   "urgency": 0.9,
+   "priority": "HIGH",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_PARTIALLY_FULFILLED",
+   "resource_requirement": {
+    "water": 160000.0,
+    "food": 80000.0,
+    "medical_kits": 4000.0
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-E294BAE9",
+    "required": {
+     "water": 160000.0,
+     "food": 80000.0,
+     "medical_kits": 4000.0
+    },
+    "allocated": {
+     "water": 2750.0,
+     "food": 1900.0,
+     "medical_kits": 450.0
+    },
+    "shortage": {
+     "water": 157250.0,
+     "food": 78100.0,
+     "medical_kits": 3550.0
+    },
+    "allocation_status": "PARTIALLY_FULFILLED",
+    "warehouses_used": [
+     "WH001",
+     "WH002",
+     "WH003",
+     "WH004",
+     "WH005"
+    ],
+    "warehouse_count": 5,
+    "final_priority_level": "CRITICAL"
+   },
+   "fulfilment": {
+    "fulfilment_status": "PARTIALLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 160000.0,
+      "allocated": 2750.0,
+      "shortage": 157250.0,
+      "status": "SHORTAGE"
+     },
+     "food": {
+      "required": 80000.0,
+      "allocated": 1900.0,
+      "shortage": 78100.0,
+      "status": "SHORTAGE"
+     },
+     "medical_kits": {
+      "required": 4000.0,
+      "allocated": 450.0,
+      "shortage": 3550.0,
+      "status": "SHORTAGE"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-478B534C",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 2750.0,
+     "food": 1900.0,
+     "medical_kits": 450.0
+    },
+    "priority": "CRITICAL",
+    "risk_score": 0.85,
+    "pickup_sequence": [
+     "WH001",
+     "WH002",
+     "WH003",
+     "WH004",
+     "WH005"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 6,
+    "distance_km": 99.58,
+    "estimated_time_minutes": 254.62,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-478B534C-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "WAREHOUSE:WH002",
+      "route_engine_mission_id": "MIS-478B534C-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 10.03,
+      "duration_minutes": 29.32,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     },
+     {
+      "leg_index": 2,
+      "source": "WAREHOUSE:WH002",
+      "destination": "WAREHOUSE:WH003",
+      "route_engine_mission_id": "MIS-478B534C-LEG-2",
+      "route_id": "google-route-0",
+      "distance_km": 12.78,
+      "duration_minutes": 53.48,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     },
+     {
+      "leg_index": 3,
+      "source": "WAREHOUSE:WH003",
+      "destination": "WAREHOUSE:WH004",
+      "route_engine_mission_id": "MIS-478B534C-LEG-3",
+      "route_id": "google-route-0",
+      "distance_km": 23.38,
+      "duration_minutes": 38.87,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     },
+     {
+      "leg_index": 4,
+      "source": "WAREHOUSE:WH004",
+      "destination": "WAREHOUSE:WH005",
+      "route_engine_mission_id": "MIS-478B534C-LEG-4",
+      "route_id": "google-route-0",
+      "distance_km": 29.06,
+      "duration_minutes": 66.37,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     },
+     {
+      "leg_index": 5,
+      "source": "WAREHOUSE:WH005",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-478B534C-LEG-5",
+      "route_id": "google-route-0",
+      "distance_km": 19.86,
+      "duration_minutes": 40.5,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.1
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-478B534C-LEG-0",
+     "MIS-478B534C-LEG-1",
+     "MIS-478B534C-LEG-2",
+     "MIS-478B534C-LEG-3",
+     "MIS-478B534C-LEG-4",
+     "MIS-478B534C-LEG-5"
+    ],
+    "warehouse_sequence": [
+     "WH001",
+     "WH002",
+     "WH003",
+     "WH004",
+     "WH005"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "50-100",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:14.824Z",
+    "finished_at": "2026-10-09T07:06:29.156Z"
+   },
+   "orchestrate_seconds": 14.295,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 6,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-023",
+   "event_name": "Maharashtra floods of 2005",
+   "disaster_type": "FLOOD",
+   "date": "2005-07-26",
+   "year": "2005",
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "location": "Santacruz, Mumbai",
+   "latitude": 19.08167,
+   "longitude": 72.84139,
+   "source": "https://en.wikipedia.org/wiki/Maharashtra_floods_of_2005",
+   "incident_id": "MHF-INC-023",
+   "affected_population": 1094,
+   "affected_population_basis": "deaths_only",
+   "severity": 0.95,
+   "urgency": 0.8,
+   "priority": "CRITICAL",
+   "patient_present": false,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 2188.0,
+    "food": 1094.0,
+    "medical_kits": 54.7
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-05C0A9A3",
+    "required": {
+     "water": 2188.0,
+     "food": 1094.0,
+     "medical_kits": 54.7
+    },
+    "allocated": {
+     "water": 2188.0,
+     "food": 1094.0,
+     "medical_kits": 54.7
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001",
+     "WH002",
+     "WH003"
+    ],
+    "warehouse_count": 3,
+    "final_priority_level": "CRITICAL"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 2188.0,
+      "allocated": 2188.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 1094.0,
+      "allocated": 1094.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 54.7,
+      "allocated": 54.7,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-2A57613B",
+    "creation_status": null,
+    "final_state": "CANCELLED",
+    "required_responder_types": [
+     "RESCUE_TRUCK"
+    ],
+    "resources": {
+     "water": 2188.0,
+     "food": 1094.0,
+     "medical_kits": 54.7
+    },
+    "priority": "CRITICAL",
+    "risk_score": 0.95,
+    "pickup_sequence": [
+     "WH001",
+     "WH002",
+     "WH003"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R001",
+    "responder_type": "RESCUE_TRUCK",
+    "responder_location": {
+     "latitude": 19.08,
+     "longitude": 72.88
+    },
+    "distance_to_first_warehouse_km": 0.506,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 4,
+    "distance_km": 32.55,
+    "estimated_time_minutes": 136.43,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R001",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-2A57613B-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 1.03,
+      "duration_minutes": 6.38,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 6.03
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "WAREHOUSE:WH002",
+      "route_engine_mission_id": "MIS-2A57613B-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 10.03,
+      "duration_minutes": 29.32,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 6.03
+     },
+     {
+      "leg_index": 2,
+      "source": "WAREHOUSE:WH002",
+      "destination": "WAREHOUSE:WH003",
+      "route_engine_mission_id": "MIS-2A57613B-LEG-2",
+      "route_id": "google-route-0",
+      "distance_km": 12.78,
+      "duration_minutes": 53.48,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 6.03
+     },
+     {
+      "leg_index": 3,
+      "source": "WAREHOUSE:WH003",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-2A57613B-LEG-3",
+      "route_id": "google-route-0",
+      "distance_km": 8.71,
+      "duration_minutes": 47.25,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 6.03
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-2A57613B-LEG-0",
+     "MIS-2A57613B-LEG-1",
+     "MIS-2A57613B-LEG-2",
+     "MIS-2A57613B-LEG-3"
+    ],
+    "warehouse_sequence": [
+     "WH001",
+     "WH002",
+     "WH003"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "cancel",
+    "reason": "cancellation sample (pre-selected)",
+    "http_status": 200,
+    "released_responders": [
+     "R001"
+    ],
+    "mission_status_after": "CANCELLED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "25-50",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:29.159Z",
+    "finished_at": "2026-10-09T07:06:33.988Z"
+   },
+   "orchestrate_seconds": 4.795,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 4,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-038",
+   "event_name": "2013 Thane building collapse",
+   "disaster_type": "BUILDING_COLLAPSE",
+   "date": "2013-04-04",
+   "year": "2013",
+   "state": "Maharashtra",
+   "district": "Thane",
+   "location": "Shil Phata, Mumbra, Thane",
+   "latitude": 19.1709,
+   "longitude": 73.0277,
+   "source": "https://en.wikipedia.org/wiki/2013_Thane_building_collapse",
+   "incident_id": "MHF-INC-038",
+   "affected_population": 174,
+   "affected_population_basis": "casualties",
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 348.0,
+    "food": 174.0,
+    "medical_kits": 8.700000000000001
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-0911D3B7",
+    "required": {
+     "water": 348.0,
+     "food": 174.0,
+     "medical_kits": 8.700000000000001
+    },
+    "allocated": {
+     "water": 348.0,
+     "food": 174.0,
+     "medical_kits": 8.700000000000001
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 348.0,
+      "allocated": 348.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 174.0,
+      "allocated": 174.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 8.700000000000001,
+      "allocated": 8.700000000000001,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-5FA91B55",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 348.0,
+     "food": 174.0,
+     "medical_kits": 8.700000000000001
+    },
+    "priority": "HIGH",
+    "risk_score": 0.75,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 37.3,
+    "estimated_time_minutes": 86.01,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-5FA91B55-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-5FA91B55-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 32.83,
+      "duration_minutes": 59.93,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-5FA91B55-LEG-0",
+     "MIS-5FA91B55-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "25-50",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:33.989Z",
+    "finished_at": "2026-10-09T07:06:36.086Z"
+   },
+   "orchestrate_seconds": 2.06,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-051",
+   "event_name": "2017 Mumbai stampede",
+   "disaster_type": "STAMPEDE",
+   "date": "2017-09-29",
+   "year": "2017",
+   "state": "Maharashtra",
+   "district": "Mumbai City",
+   "location": "Prabhadevi (Elphinstone Road), Mumbai",
+   "latitude": 19.00753,
+   "longitude": 72.83598,
+   "source": "https://en.wikipedia.org/wiki/2017_Mumbai_stampede",
+   "incident_id": "MHF-INC-051",
+   "affected_population": 62,
+   "affected_population_basis": "casualties",
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 124.0,
+    "food": 62.0,
+    "medical_kits": 3.1
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-C83A72D1",
+    "required": {
+     "water": 124.0,
+     "food": 62.0,
+     "medical_kits": 3.1
+    },
+    "allocated": {
+     "water": 124.0,
+     "food": 62.0,
+     "medical_kits": 3.1
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 124.0,
+      "allocated": 124.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 62.0,
+      "allocated": 62.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 3.1,
+      "allocated": 3.1,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-A233CDAB",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 124.0,
+     "food": 62.0,
+     "medical_kits": 3.1
+    },
+    "priority": "HIGH",
+    "risk_score": 0.75,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 16.43,
+    "estimated_time_minutes": 71.3,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-A233CDAB-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-A233CDAB-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 11.96,
+      "duration_minutes": 45.22,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-A233CDAB-LEG-0",
+     "MIS-A233CDAB-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "10-25",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:36.088Z",
+    "finished_at": "2026-10-09T07:06:39.775Z"
+   },
+   "orchestrate_seconds": 3.657,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-053",
+   "event_name": "Kamala Mills fire",
+   "disaster_type": "FIRE",
+   "date": "2017-12-29",
+   "year": "2017",
+   "state": "Maharashtra",
+   "district": "Mumbai City",
+   "location": "Lower Parel, Mumbai",
+   "latitude": 19.00369,
+   "longitude": 72.82754,
+   "source": "https://en.wikipedia.org/wiki/Kamala_Mills_fire",
+   "incident_id": "MHF-INC-053",
+   "affected_population": 69,
+   "affected_population_basis": "casualties",
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 138.0,
+    "food": 69.0,
+    "medical_kits": 3.45
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-57027278",
+    "required": {
+     "water": 138.0,
+     "food": 69.0,
+     "medical_kits": 3.45
+    },
+    "allocated": {
+     "water": 138.0,
+     "food": 69.0,
+     "medical_kits": 3.45
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 138.0,
+      "allocated": 138.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 69.0,
+      "allocated": 69.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 3.45,
+      "allocated": 3.45,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-15D6B67C",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 138.0,
+     "food": 69.0,
+     "medical_kits": 3.45
+    },
+    "priority": "HIGH",
+    "risk_score": 0.65,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 17.97,
+    "estimated_time_minutes": 73.3,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-15D6B67C-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-15D6B67C-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 13.5,
+      "duration_minutes": 47.22,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-15D6B67C-LEG-0",
+     "MIS-15D6B67C-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "10-25",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:39.776Z",
+    "finished_at": "2026-10-09T07:06:41.646Z"
+   },
+   "orchestrate_seconds": 1.836,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-059",
+   "event_name": "2019 Mumbai foot overbridge collapse",
+   "disaster_type": "STRUCTURAL_COLLAPSE",
+   "date": "2019-03-14",
+   "year": "2019",
+   "state": "Maharashtra",
+   "district": "Mumbai City",
+   "location": "CSMT, Mumbai",
+   "latitude": 18.9422,
+   "longitude": 72.83466,
+   "source": "https://en.wikipedia.org/wiki/2019_Mumbai_foot_overbridge_collapse",
+   "incident_id": "MHF-INC-059",
+   "affected_population": 36,
+   "affected_population_basis": "casualties",
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 72.0,
+    "food": 36.0,
+    "medical_kits": 1.8
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-198704EB",
+    "required": {
+     "water": 72.0,
+     "food": 36.0,
+     "medical_kits": 1.8
+    },
+    "allocated": {
+     "water": 72.0,
+     "food": 36.0,
+     "medical_kits": 1.8
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 72.0,
+      "allocated": 72.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 36.0,
+      "allocated": 36.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 1.8,
+      "allocated": 1.8,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-F4DEE99E",
+    "creation_status": null,
+    "final_state": "CANCELLED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 72.0,
+     "food": 36.0,
+     "medical_kits": 1.8
+    },
+    "priority": "HIGH",
+    "risk_score": 0.65,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 28.02,
+    "estimated_time_minutes": 62.36,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-F4DEE99E-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-F4DEE99E-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 23.55,
+      "duration_minutes": 36.28,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-F4DEE99E-LEG-0",
+     "MIS-F4DEE99E-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "cancel",
+    "reason": "cancellation sample (pre-selected)",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "CANCELLED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "25-50",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:41.650Z",
+    "finished_at": "2026-10-09T07:06:43.788Z"
+   },
+   "orchestrate_seconds": 2.097,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-076",
+   "event_name": "2021 Mumbai landslide",
+   "disaster_type": "LANDSLIDE",
+   "date": "2021-07-18",
+   "year": "2021",
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "location": "Chembur, Mumbai",
+   "latitude": 19.051,
+   "longitude": 72.894,
+   "source": "https://en.wikipedia.org/wiki/2021_Mumbai_landslide",
+   "incident_id": "MHF-INC-076",
+   "affected_population": 152,
+   "affected_population_basis": "casualties",
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 304.0,
+    "food": 152.0,
+    "medical_kits": 7.6000000000000005
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-B5DBFAC5",
+    "required": {
+     "water": 304.0,
+     "food": 152.0,
+     "medical_kits": 7.6000000000000005
+    },
+    "allocated": {
+     "water": 304.0,
+     "food": 152.0,
+     "medical_kits": 7.6000000000000005
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 304.0,
+      "allocated": 304.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 152.0,
+      "allocated": 152.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 7.6000000000000005,
+      "allocated": 7.6000000000000005,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-3FD7A95A",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 304.0,
+     "food": 152.0,
+     "medical_kits": 7.6000000000000005
+    },
+    "priority": "HIGH",
+    "risk_score": 0.75,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 9.05,
+    "estimated_time_minutes": 42.08,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-3FD7A95A-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.08,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-3FD7A95A-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 4.58,
+      "duration_minutes": 16.0,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-3FD7A95A-LEG-0",
+     "MIS-3FD7A95A-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "0-10",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:43.789Z",
+    "finished_at": "2026-10-09T07:06:47.037Z"
+   },
+   "orchestrate_seconds": 3.214,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-081",
+   "event_name": "2022 Mumbai building collapse",
+   "disaster_type": "BUILDING_COLLAPSE",
+   "date": "2022-06-27",
+   "year": "2022",
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "location": "Kurla, Mumbai",
+   "latitude": 19.07261,
+   "longitude": 72.8845,
+   "source": "https://en.wikipedia.org/wiki/2022_Mumbai_building_collapse",
+   "incident_id": "MHF-INC-081",
+   "affected_population": 19,
+   "affected_population_basis": "deaths_only",
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 38.0,
+    "food": 19.0,
+    "medical_kits": 0.9500000000000001
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-698E3846",
+    "required": {
+     "water": 38.0,
+     "food": 19.0,
+     "medical_kits": 0.9500000000000001
+    },
+    "allocated": {
+     "water": 38.0,
+     "food": 19.0,
+     "medical_kits": 0.9500000000000001
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 38.0,
+      "allocated": 38.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 19.0,
+      "allocated": 19.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 0.9500000000000001,
+      "allocated": 0.9500000000000001,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-3E86E1E5",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 38.0,
+     "food": 19.0,
+     "medical_kits": 0.9500000000000001
+    },
+    "priority": "HIGH",
+    "risk_score": 0.65,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 5.31,
+    "estimated_time_minutes": 30.01,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-3E86E1E5-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.88,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-3E86E1E5-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 0.84,
+      "duration_minutes": 3.13,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-3E86E1E5-LEG-0",
+     "MIS-3E86E1E5-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "0-10",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:47.040Z",
+    "finished_at": "2026-10-09T07:06:53.537Z"
+   },
+   "orchestrate_seconds": 6.461,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-087",
+   "event_name": "2023 Raigad landslide",
+   "disaster_type": "LANDSLIDE",
+   "date": "2023-07-19",
+   "year": "2023",
+   "state": "Maharashtra",
+   "district": "Raigad",
+   "location": "Irshalwadi, Khalapur, Raigad",
+   "latitude": 18.81667,
+   "longitude": 73.26667,
+   "source": "https://en.wikipedia.org/wiki/2023_Raigad_landslide",
+   "incident_id": "MHF-INC-087",
+   "affected_population": 233,
+   "affected_population_basis": "casualties",
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 466.0,
+    "food": 233.0,
+    "medical_kits": 11.65
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-A5464FE4",
+    "required": {
+     "water": 466.0,
+     "food": 233.0,
+     "medical_kits": 11.65
+    },
+    "allocated": {
+     "water": 466.0,
+     "food": 233.0,
+     "medical_kits": 11.65
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 466.0,
+      "allocated": 466.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 233.0,
+      "allocated": 233.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 11.65,
+      "allocated": 11.65,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-96FFF6BA",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 466.0,
+     "food": 233.0,
+     "medical_kits": 11.65
+    },
+    "priority": "HIGH",
+    "risk_score": 0.75,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 75.11,
+    "estimated_time_minutes": 117.1,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-96FFF6BA-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.88,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-96FFF6BA-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 70.64,
+      "duration_minutes": 90.22,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-96FFF6BA-LEG-0",
+     "MIS-96FFF6BA-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "50-100",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:53.538Z",
+    "finished_at": "2026-10-09T07:06:57.374Z"
+   },
+   "orchestrate_seconds": 3.802,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-092",
+   "event_name": "Mumbai billboard collapse",
+   "disaster_type": "STRUCTURAL_COLLAPSE",
+   "date": "2024-05-13",
+   "year": "2024",
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "location": "Chheda Nagar, Ghatkopar, Mumbai",
+   "latitude": 19.08,
+   "longitude": 72.91,
+   "source": "https://en.wikipedia.org/wiki/Mumbai_billboard_collapse",
+   "incident_id": "MHF-INC-092",
+   "affected_population": 92,
+   "affected_population_basis": "casualties",
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 184.0,
+    "food": 92.0,
+    "medical_kits": 4.6000000000000005
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-6C9ED75E",
+    "required": {
+     "water": 184.0,
+     "food": 92.0,
+     "medical_kits": 4.6000000000000005
+    },
+    "allocated": {
+     "water": 184.0,
+     "food": 92.0,
+     "medical_kits": 4.6000000000000005
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 184.0,
+      "allocated": 184.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 92.0,
+      "allocated": 92.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 4.6000000000000005,
+      "allocated": 4.6000000000000005,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-6AAED4F7",
+    "creation_status": null,
+    "final_state": "CANCELLED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 184.0,
+     "food": 92.0,
+     "medical_kits": 4.6000000000000005
+    },
+    "priority": "HIGH",
+    "risk_score": 0.65,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 9.48,
+    "estimated_time_minutes": 40.91,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-6AAED4F7-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.88,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-6AAED4F7-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 5.01,
+      "duration_minutes": 14.03,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-6AAED4F7-LEG-0",
+     "MIS-6AAED4F7-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "cancel",
+    "reason": "cancellation sample (pre-selected)",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "CANCELLED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "0-10",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:57.376Z",
+    "finished_at": "2026-10-09T07:06:59.498Z"
+   },
+   "orchestrate_seconds": 2.088,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  },
+  {
+   "scenario_id": "E2E-093",
+   "event_name": "2024 Thane explosion",
+   "disaster_type": "EXPLOSION",
+   "date": "2024-05-23",
+   "year": "2024",
+   "state": "Maharashtra",
+   "district": "Thane",
+   "location": "Dombivli MIDC, Thane",
+   "latitude": 19.21843,
+   "longitude": 73.08672,
+   "source": "https://en.wikipedia.org/wiki/2024_Thane_explosion",
+   "incident_id": "MHF-INC-093",
+   "affected_population": 74,
+   "affected_population_basis": "casualties",
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "patient_present": true,
+   "execution_status": "COMPLETED",
+   "final_classification": "SUCCESS_FULLY_FULFILLED",
+   "resource_requirement": {
+    "water": 148.0,
+    "food": 74.0,
+    "medical_kits": 3.7
+   },
+   "allocation": {
+    "allocation_id": "ALLOC-38307ED0",
+    "required": {
+     "water": 148.0,
+     "food": 74.0,
+     "medical_kits": 3.7
+    },
+    "allocated": {
+     "water": 148.0,
+     "food": 74.0,
+     "medical_kits": 3.7
+    },
+    "shortage": {
+     "water": 0.0,
+     "food": 0.0,
+     "medical_kits": 0.0
+    },
+    "allocation_status": "FULLY_FULFILLED",
+    "warehouses_used": [
+     "WH001"
+    ],
+    "warehouse_count": 1,
+    "final_priority_level": "HIGH"
+   },
+   "fulfilment": {
+    "fulfilment_status": "FULLY_FULFILLED",
+    "resource_status": {
+     "water": {
+      "required": 148.0,
+      "allocated": 148.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "food": {
+      "required": 74.0,
+      "allocated": 74.0,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     },
+     "medical_kits": {
+      "required": 3.7,
+      "allocated": 3.7,
+      "shortage": 0.0,
+      "status": "FULFILLED"
+     }
+    }
+   },
+   "mission": {
+    "mission_id": "MIS-24392753",
+    "creation_status": null,
+    "final_state": "COMPLETED",
+    "required_responder_types": [
+     "AMBULANCE"
+    ],
+    "resources": {
+     "water": 148.0,
+     "food": 74.0,
+     "medical_kits": 3.7
+    },
+    "priority": "HIGH",
+    "risk_score": 0.65,
+    "pickup_sequence": [
+     "WH001"
+    ]
+   },
+   "agent_assignment": {
+    "responder_id": "R002",
+    "responder_type": "AMBULANCE",
+    "responder_location": {
+     "latitude": 19.06,
+     "longitude": 72.9
+    },
+    "distance_to_first_warehouse_km": 2.942,
+    "responder_status_before": "AVAILABLE",
+    "responder_status_after_close": "AVAILABLE"
+   },
+   "route": {
+    "route_status": "ROUTE_PLANNED",
+    "route_data_status": "AVAILABLE",
+    "leg_count": 2,
+    "distance_km": 41.26,
+    "estimated_time_minutes": 95.9,
+    "per_leg": [
+     {
+      "leg_index": 0,
+      "source": "RESPONDER:R002",
+      "destination": "WAREHOUSE:WH001",
+      "route_engine_mission_id": "MIS-24392753-LEG-0",
+      "route_id": "google-route-0",
+      "distance_km": 4.47,
+      "duration_minutes": 26.88,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     },
+     {
+      "leg_index": 1,
+      "source": "WAREHOUSE:WH001",
+      "destination": "DESTINATION:INCIDENT_DESTINATION",
+      "route_engine_mission_id": "MIS-24392753-LEG-1",
+      "route_id": "google-route-0",
+      "distance_km": 36.79,
+      "duration_minutes": 69.02,
+      "road_condition_status": "UNKNOWN",
+      "matched_incidents": 0,
+      "route_score": 4.05
+     }
+    ],
+    "route_engine_mission_ids": [
+     "MIS-24392753-LEG-0",
+     "MIS-24392753-LEG-1"
+    ],
+    "warehouse_sequence": [
+     "WH001"
+    ]
+   },
+   "mission_lifecycle": {
+    "operation": "complete",
+    "reason": "scenario validated successfully",
+    "http_status": 200,
+    "released_responders": [
+     "R002"
+    ],
+    "mission_status_after": "COMPLETED"
+   },
+   "responder_states": {
+    "before": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    },
+    "after_close": {
+     "R001": "AVAILABLE",
+     "R002": "AVAILABLE",
+     "R003": "AVAILABLE",
+     "R004": "AVAILABLE",
+     "R005": "BUSY"
+    }
+   },
+   "distance_bucket": "25-50",
+   "distance_scope": "WITHIN_150_KM",
+   "failure_reason": "",
+   "validation_errors": [],
+   "invariants_passed": true,
+   "timestamps": {
+    "started_at": "2026-10-09T07:06:59.499Z",
+    "finished_at": "2026-10-09T07:07:03.167Z"
+   },
+   "orchestrate_seconds": 3.631,
+   "orchestrate_http_status": 200,
+   "orchestration_status": "COMPLETED",
+   "route_engine_log": {
+    "openweb_failures": 2,
+    "google_errors": 0,
+    "evidence_store_errors": 0,
+    "persist_errors": 0,
+    "other_lines": 0
+   },
+   "route_geometry": {
+    "encoded_polylines": "kept in results/results.jsonl per leg; decoded coordinate arrays omitted by runner (re-derivable)"
+   }
+  }
+ ]
+}

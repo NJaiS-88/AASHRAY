@@ -1,0 +1,38 @@
+{
+ "verified_at_utc": "2026-10-09T07:08:40+00:00",
+ "experiments_12000_unchanged": true,
+ "experiments_12000": {
+  "files": 81,
+  "tree_sha256": "377db01a3767715b22dc02cb01e872190e2a230ac64949504fdae9610fca0932",
+  "matches_recorded_tree": true
+ },
+ "previous_e2e_run_unchanged": true,
+ "route_engine_unchanged": true,
+ "route_engine": {
+  "head": "11cc789af932a522654f035da3340c17be82fc71",
+  "status_porcelain": "",
+  "files": 57,
+  "tree_sha256": "6bde47f5e8162e243f3771797942586f6caf052c2f244c46ea35bb22dfca0ab3"
+ },
+ "warehouses_json_unchanged": true,
+ "responders_json_byte_identical": true,
+ "responders_json_content_identical": true,
+ "missions_json": {
+  "pre_run_records": 100,
+  "post_run_records": 111,
+  "pre_run_history_preserved": true,
+  "new_records": 11,
+  "new_records_are_this_runs_missions": true,
+  "run_missions_missing": [],
+  "assigned_remaining": [],
+  "new_record_statuses": {
+   "CANCELLED": 3,
+   "COMPLETED": 8
+  }
+ },
+ "aashray_files_changed": [
+  "resource_services/database/missions.json"
+ ],
+ "aashray_unexpected_changes": [],
+ "all_checks_pass": true
+}

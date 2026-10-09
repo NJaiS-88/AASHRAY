@@ -1,0 +1,22 @@
+{
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+  "physical_cores": 16,
+  "logical_cpus": 32,
+  "ram_bytes": 16334508032,
+  "ram_gib": 15.21,
+  "os": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.10",
+  "python_implementation": "CPython",
+  "solver_name": "HiGHS (via scipy.optimize.milp)",
+  "solver_version": "1.12.0",
+  "scipy_version": "1.18.0",
+  "numpy_version": "2.5.1",
+  "solver_options": {
+    "mip_rel_gap": 0.0,
+    "time_limit": 60.0,
+    "presolve": true,
+    "disp": false
+  },
+  "timer": "time.perf_counter",
+  "note": "The later AASHRAY-vs-MILP timing comparison must run on this same machine and environment."
+}

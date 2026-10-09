@@ -1,0 +1,152 @@
+{
+  "experiment": "resource_allocation_pilot",
+  "purpose": "Pilot only: validate generator, FCFS, AASHRAY formulation wiring and TDC order-dependence. Not for parameter tuning or hypothesis testing.",
+
+  "master_seed": 20261007,
+  "n_scenarios": 500,
+
+  "existing_allocator": {
+    "module": "resource_services.services.resource_allocation_service",
+    "class": "ResourceAllocationService",
+    "entry_point": "allocate_batch",
+    "resource_types_source": "resource_services/schemas/resource_requirement.py::ResourceRequirement",
+    "per_person_rates_source": "resource_services/config/resource_rules.json",
+    "placeholder_inputs_note": "Every request is passed with the SAME placeholder severity/urgency/priority so the allocator's own internal ranking ties for all requests and its stable sort keeps the order supplied by the experiment. The placeholders only feed the allocator's cosmetic output fields, which the experiment discards.",
+    "placeholder_inputs": {
+      "severity": 0.5,
+      "urgency": 0.5,
+      "priority": "MODERATE"
+    }
+  },
+
+  "resource_types": ["water", "food", "medical_kits"],
+
+  "scenario_design": {
+    "scarcity_levels": {
+      "LOW": {
+        "scenario_count": 120,
+        "supply_to_demand_ratio": [1.15, 1.60],
+        "supply_rounding": "ceil",
+        "meaning": "supply > demand for every requested resource type"
+      },
+      "MODERATE": {
+        "scenario_count": 150,
+        "supply_to_demand_ratio": [0.90, 1.10],
+        "supply_rounding": "round",
+        "meaning": "supply approximately matches demand"
+      },
+      "HIGH": {
+        "scenario_count": 230,
+        "supply_to_demand_ratio": [0.30, 0.70],
+        "supply_rounding": "floor",
+        "meaning": "supply < demand for every requested resource type"
+      }
+    },
+
+    "scenario_sizes": {
+      "SMALL": [3, 6],
+      "MEDIUM": [8, 14],
+      "LARGE": [18, 30]
+    },
+
+    "su_profiles": [
+      "LL_DOMINANT",
+      "LH_DOMINANT",
+      "HL_DOMINANT",
+      "HH_DOMINANT",
+      "MODERATE_MIXED"
+    ],
+
+    "cell_allocation_rule": "Every scarcity level is crossed with every size x S-U profile cell (15 cells). LOW: 8 per cell, MODERATE: 10 per cell, HIGH: 15 per cell plus 1 extra in each LARGE cell (5 extra) so the total is exactly 500. High scarcity is over-represented on purpose because the hypothesis concerns constrained resources.",
+
+    "warehouses_per_scenario": [2, 5]
+  },
+
+  "severity_urgency": {
+    "domain": "0 < S <= 1 and 0 < U <= 1 (S = 0 and U = 0 are never generated)",
+    "decimals": 4,
+    "bands": {
+      "LOW": [0.01, 0.35],
+      "MODERATE": [0.35, 0.65],
+      "HIGH": [0.65, 1.00],
+      "FULL": [0.01, 1.00]
+    },
+    "emergency_strata": {
+      "LL": ["LOW", "LOW"],
+      "LH": ["LOW", "HIGH"],
+      "HL": ["HIGH", "LOW"],
+      "HH": ["HIGH", "HIGH"],
+      "MM": ["MODERATE", "MODERATE"],
+      "MIXED": ["FULL", "FULL"]
+    },
+    "stratum_note": "[severity band, urgency band]. Within a stratum S and U are drawn independently from separate uniform draws. The only S-U structure is the documented stratum choice.",
+    "profile_weights": {
+      "LL_DOMINANT":    {"LL": 0.60, "LH": 0.08, "HL": 0.08, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "LH_DOMINANT":    {"LL": 0.08, "LH": 0.60, "HL": 0.08, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "HL_DOMINANT":    {"LL": 0.08, "LH": 0.08, "HL": 0.60, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "HH_DOMINANT":    {"LL": 0.08, "LH": 0.08, "HL": 0.08, "HH": 0.60, "MM": 0.08, "MIXED": 0.08},
+      "MODERATE_MIXED": {"LL": 0.05, "LH": 0.05, "HL": 0.05, "HH": 0.05, "MM": 0.40, "MIXED": 0.40}
+    }
+  },
+
+  "demand": {
+    "affected_population": {"min": 60, "max": 600, "step": 20},
+    "type_multiplier": [0.6, 1.4],
+    "quantity_rule": "quantity = max(1, round(base_per_person[type] * affected_population * multiplier)) for each required type, 0 otherwise",
+    "required_type_patterns": {
+      "ALL": {"types": ["water", "food", "medical_kits"], "weight": 0.40},
+      "WATER_FOOD": {"types": ["water", "food"], "weight": 0.12},
+      "WATER_MEDICAL": {"types": ["water", "medical_kits"], "weight": 0.12},
+      "FOOD_MEDICAL": {"types": ["food", "medical_kits"], "weight": 0.12},
+      "WATER_ONLY": {"types": ["water"], "weight": 0.08},
+      "FOOD_ONLY": {"types": ["food"], "weight": 0.08},
+      "MEDICAL_ONLY": {"types": ["medical_kits"], "weight": 0.08}
+    },
+    "independence_note": "Demand is drawn from its own random stream and does not depend on S, U or arrival time."
+  },
+
+  "arrival": {
+    "base_timestamp": "2026-01-01T00:00:00Z",
+    "window_seconds": 3600,
+    "resolution_seconds": 1,
+    "rule": "Each emergency draws an independent integer offset in [0, window_seconds] from a dedicated arrival random stream that never sees S, U, P_GT or demand.",
+    "fcfs_tie_breaker": "Ascending (arrival_offset_seconds, emergency_id). emergency_id is a zero-padded string so lexicographic order equals generation order."
+  },
+
+  "ground_truth": {
+    "reference_score": "P_GT = 0.5*S + 0.5*U",
+    "threshold": 0.8,
+    "rule": "ground_truth_critical = 1 if P_GT > 0.8 else 0",
+    "rounding": "P_GT is rounded to 6 decimals before the comparison. S and U have 4 decimals, so P_GT has at most 5 exact decimals and rounding only removes floating point noise.",
+    "status": "PREDEFINED EXPERIMENTAL REFERENCE RULE. Fixed before any parameter tuning. Independent of alpha, k, m, n. Must not be changed during this experiment."
+  },
+
+  "aashray_formulation": {
+    "normalized_priority": "P_n = S^alpha * U^(1 - alpha)",
+    "overall_priority": "P_o = k*S + m*U + n*P_n",
+    "constraints": "alpha in [0,1]; k, m, n >= 0; k + m + n = 1",
+    "ranking": "Descending P_o. Ties broken by FCFS order (arrival_offset_seconds, emergency_id).",
+    "no_category_levels": "No LOW/MODERATE/HIGH/CRITICAL thresholds are used for allocation."
+  },
+
+  "aashray_parameters": {
+    "status": "PROVISIONAL_USER_SELECTED",
+    "alpha": 0.5,
+    "k": 0.4,
+    "m": 0.4,
+    "n": 0.2,
+    "source": "Selected by the user in chat on 2026-10-07 after the pilot reported that no alpha/k/m/n configuration existed. k, m, n are carried over from resource_services/config/resource_rules.json -> allocation_priority.weights (where the third term is a categorical priority, not the geometric P_n). alpha = 0.5 makes P_n the symmetric geometric mean sqrt(S*U).",
+    "note": "Provisional pilot configuration only. Not tuned and not selected from pilot results. Do NOT tune these values on the pilot dataset."
+  },
+
+  "order_conditions": [
+    "FCFS",
+    "AASHRAY",
+    "REVERSE_FCFS",
+    "RANDOM_1",
+    "RANDOM_2",
+    "RANDOM_3"
+  ],
+
+  "tdc_invariance_tolerance": 1e-9
+}

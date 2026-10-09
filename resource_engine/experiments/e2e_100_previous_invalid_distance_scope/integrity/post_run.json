@@ -1,0 +1,49 @@
+{
+  "verified_at_utc": "2026-10-08T16:41:50+00:00",
+  "responders_json": {
+    "byte_identical_to_pre_run": true,
+    "content_identical_to_pre_run": true,
+    "sha256": "eed4bb04982826566337a8ef6df7e8feeb7228b431d1bb74c9b4ed70ba96be5d",
+    "statuses": {
+      "R001": "AVAILABLE",
+      "R002": "AVAILABLE",
+      "R003": "AVAILABLE",
+      "R004": "AVAILABLE",
+      "R005": "BUSY"
+    }
+  },
+  "missions_json": {
+    "records": 100,
+    "status_counts": {
+      "COMPLETED": 15,
+      "CANCELLED": 85
+    },
+    "assigned_remaining": [],
+    "run_missions": 100,
+    "run_missions_missing": [],
+    "records_not_from_this_run": [],
+    "all_terminal": true
+  },
+  "experiments_12000": {
+    "unchanged": true,
+    "files": 81,
+    "tree_sha256": "377db01a3767715b22dc02cb01e872190e2a230ac64949504fdae9610fca0932",
+    "pre_tree_sha256": "377db01a3767715b22dc02cb01e872190e2a230ac64949504fdae9610fca0932"
+  },
+  "route_engine": {
+    "head": "11cc789af932a522654f035da3340c17be82fc71",
+    "status_porcelain": "",
+    "tree_sha256": "6bde47f5e8162e243f3771797942586f6caf052c2f244c46ea35bb22dfca0ab3",
+    "unchanged": true
+  },
+  "aashray_project_files": {
+    "changed_files": [
+      "resource_services/database/missions.json"
+    ],
+    "expected_changes": [
+      "resource_services/database/missions.json"
+    ],
+    "only_expected_changes": true
+  },
+  "all_checks_pass": true
+}

@@ -1,0 +1,2616 @@
+{
+  "verified_at": "2026-10-08T16:41:16.409Z",
+  "totals": {
+    "taken_at": "2026-10-08T16:41:17.036Z",
+    "road_condition_evidence": {
+      "rows": 3,
+      "max_created_at": "2026-10-07T17:17:22.993Z",
+      "max_updated_at": "2026-10-07T17:17:22.993Z"
+    },
+    "mission_route_state": {
+      "rows": 129,
+      "max_created_at": "2026-10-08T16:38:28.381Z",
+      "max_updated_at": "2026-10-08T16:38:28.381Z"
+    }
+  },
+  "scenarios": [
+    {
+      "scenario_id": "E2E-001",
+      "mission_id": "MIS-49A1BB13",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-49A1BB13-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4982,
+          "createdAt": "2026-10-08T16:35:53.971Z",
+          "updatedAt": "2026-10-08T16:35:53.971Z"
+        },
+        {
+          "missionId": "MIS-49A1BB13-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:35:58.047Z",
+          "updatedAt": "2026-10-08T16:35:58.047Z"
+        },
+        {
+          "missionId": "MIS-49A1BB13-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:35:58.933Z",
+          "updatedAt": "2026-10-08T16:35:58.933Z"
+        },
+        {
+          "missionId": "MIS-49A1BB13-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:35:59.944Z",
+          "updatedAt": "2026-10-08T16:35:59.944Z"
+        },
+        {
+          "missionId": "MIS-49A1BB13-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:01.194Z",
+          "updatedAt": "2026-10-08T16:36:01.194Z"
+        },
+        {
+          "missionId": "MIS-49A1BB13-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            18.95278,
+            72.845
+          ],
+          "distanceMeters": 19856,
+          "createdAt": "2026-10-08T16:36:02.647Z",
+          "updatedAt": "2026-10-08T16:36:02.647Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-002",
+      "mission_id": "MIS-018D7DE9",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-018D7DE9-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4982,
+          "createdAt": "2026-10-08T16:36:04.305Z",
+          "updatedAt": "2026-10-08T16:36:04.305Z"
+        },
+        {
+          "missionId": "MIS-018D7DE9-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:06.063Z",
+          "updatedAt": "2026-10-08T16:36:06.063Z"
+        },
+        {
+          "missionId": "MIS-018D7DE9-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:07.562Z",
+          "updatedAt": "2026-10-08T16:36:07.562Z"
+        },
+        {
+          "missionId": "MIS-018D7DE9-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:08.572Z",
+          "updatedAt": "2026-10-08T16:36:08.572Z"
+        },
+        {
+          "missionId": "MIS-018D7DE9-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:09.646Z",
+          "updatedAt": "2026-10-08T16:36:09.646Z"
+        },
+        {
+          "missionId": "MIS-018D7DE9-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            17.41,
+            73.86
+          ],
+          "distanceMeters": 318155,
+          "createdAt": "2026-10-08T16:36:10.944Z",
+          "updatedAt": "2026-10-08T16:36:10.944Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-003",
+      "mission_id": "MIS-B6D20A8B",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-B6D20A8B-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4982,
+          "createdAt": "2026-10-08T16:36:12.678Z",
+          "updatedAt": "2026-10-08T16:36:12.678Z"
+        },
+        {
+          "missionId": "MIS-B6D20A8B-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            23.7998,
+            86.4305
+          ],
+          "distanceMeters": 1771447,
+          "createdAt": "2026-10-08T16:36:14.626Z",
+          "updatedAt": "2026-10-08T16:36:14.626Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-004",
+      "mission_id": "MIS-7EEFD469",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-7EEFD469-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:36:17.710Z",
+          "updatedAt": "2026-10-08T16:36:17.710Z"
+        },
+        {
+          "missionId": "MIS-7EEFD469-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:18.548Z",
+          "updatedAt": "2026-10-08T16:36:18.548Z"
+        },
+        {
+          "missionId": "MIS-7EEFD469-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:19.322Z",
+          "updatedAt": "2026-10-08T16:36:19.322Z"
+        },
+        {
+          "missionId": "MIS-7EEFD469-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:20.143Z",
+          "updatedAt": "2026-10-08T16:36:20.143Z"
+        },
+        {
+          "missionId": "MIS-7EEFD469-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:22.083Z",
+          "updatedAt": "2026-10-08T16:36:22.083Z"
+        },
+        {
+          "missionId": "MIS-7EEFD469-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            16.01972,
+            80.92
+          ],
+          "distanceMeters": 1058683,
+          "createdAt": "2026-10-08T16:36:23.906Z",
+          "updatedAt": "2026-10-08T16:36:23.906Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-005",
+      "mission_id": "MIS-1092A4A0",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-1092A4A0-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:36:25.652Z",
+          "updatedAt": "2026-10-08T16:36:25.652Z"
+        },
+        {
+          "missionId": "MIS-1092A4A0-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:26.425Z",
+          "updatedAt": "2026-10-08T16:36:26.425Z"
+        },
+        {
+          "missionId": "MIS-1092A4A0-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:27.249Z",
+          "updatedAt": "2026-10-08T16:36:27.249Z"
+        },
+        {
+          "missionId": "MIS-1092A4A0-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:28.162Z",
+          "updatedAt": "2026-10-08T16:36:28.162Z"
+        },
+        {
+          "missionId": "MIS-1092A4A0-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:28.941Z",
+          "updatedAt": "2026-10-08T16:36:28.941Z"
+        },
+        {
+          "missionId": "MIS-1092A4A0-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            22.76389,
+            70.86583
+          ],
+          "distanceMeters": 700466,
+          "createdAt": "2026-10-08T16:36:30.167Z",
+          "updatedAt": "2026-10-08T16:36:30.167Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-006",
+      "mission_id": "MIS-372D16AA",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-372D16AA-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:36:31.872Z",
+          "updatedAt": "2026-10-08T16:36:31.872Z"
+        },
+        {
+          "missionId": "MIS-372D16AA-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:32.809Z",
+          "updatedAt": "2026-10-08T16:36:32.809Z"
+        },
+        {
+          "missionId": "MIS-372D16AA-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:33.668Z",
+          "updatedAt": "2026-10-08T16:36:33.668Z"
+        },
+        {
+          "missionId": "MIS-372D16AA-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:34.587Z",
+          "updatedAt": "2026-10-08T16:36:34.587Z"
+        },
+        {
+          "missionId": "MIS-372D16AA-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:36.005Z",
+          "updatedAt": "2026-10-08T16:36:36.005Z"
+        },
+        {
+          "missionId": "MIS-372D16AA-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            23.2799,
+            77.4099
+          ],
+          "distanceMeters": 797863,
+          "createdAt": "2026-10-08T16:36:37.519Z",
+          "updatedAt": "2026-10-08T16:36:37.519Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-007",
+      "mission_id": "MIS-60D1B6A0",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-60D1B6A0-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:36:39.604Z",
+          "updatedAt": "2026-10-08T16:36:39.604Z"
+        },
+        {
+          "missionId": "MIS-60D1B6A0-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:40.822Z",
+          "updatedAt": "2026-10-08T16:36:40.822Z"
+        },
+        {
+          "missionId": "MIS-60D1B6A0-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:41.659Z",
+          "updatedAt": "2026-10-08T16:36:41.659Z"
+        },
+        {
+          "missionId": "MIS-60D1B6A0-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:42.463Z",
+          "updatedAt": "2026-10-08T16:36:42.463Z"
+        },
+        {
+          "missionId": "MIS-60D1B6A0-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:43.825Z",
+          "updatedAt": "2026-10-08T16:36:43.825Z"
+        },
+        {
+          "missionId": "MIS-60D1B6A0-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            16.17,
+            81.13
+          ],
+          "distanceMeters": 1062974,
+          "createdAt": "2026-10-08T16:36:45.424Z",
+          "updatedAt": "2026-10-08T16:36:45.424Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-008",
+      "mission_id": "MIS-3FD3A51D",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-3FD3A51D-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:36:47.022Z",
+          "updatedAt": "2026-10-08T16:36:47.022Z"
+        },
+        {
+          "missionId": "MIS-3FD3A51D-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:47.801Z",
+          "updatedAt": "2026-10-08T16:36:47.801Z"
+        },
+        {
+          "missionId": "MIS-3FD3A51D-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:48.558Z",
+          "updatedAt": "2026-10-08T16:36:48.558Z"
+        },
+        {
+          "missionId": "MIS-3FD3A51D-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:49.423Z",
+          "updatedAt": "2026-10-08T16:36:49.423Z"
+        },
+        {
+          "missionId": "MIS-3FD3A51D-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:50.353Z",
+          "updatedAt": "2026-10-08T16:36:50.353Z"
+        },
+        {
+          "missionId": "MIS-3FD3A51D-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            30.73,
+            78.45
+          ],
+          "distanceMeters": 1709665,
+          "createdAt": "2026-10-08T16:36:52.518Z",
+          "updatedAt": "2026-10-08T16:36:52.518Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-009",
+      "mission_id": "MIS-F95D74EB",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-F95D74EB-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:36:55.016Z",
+          "updatedAt": "2026-10-08T16:36:55.016Z"
+        },
+        {
+          "missionId": "MIS-F95D74EB-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:36:55.878Z",
+          "updatedAt": "2026-10-08T16:36:55.878Z"
+        },
+        {
+          "missionId": "MIS-F95D74EB-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:36:56.894Z",
+          "updatedAt": "2026-10-08T16:36:56.894Z"
+        },
+        {
+          "missionId": "MIS-F95D74EB-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:36:57.724Z",
+          "updatedAt": "2026-10-08T16:36:57.724Z"
+        },
+        {
+          "missionId": "MIS-F95D74EB-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:36:58.509Z",
+          "updatedAt": "2026-10-08T16:36:58.509Z"
+        },
+        {
+          "missionId": "MIS-F95D74EB-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            18.07,
+            76.62
+          ],
+          "distanceMeters": 515119,
+          "createdAt": "2026-10-08T16:36:59.811Z",
+          "updatedAt": "2026-10-08T16:36:59.811Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-010",
+      "mission_id": "MIS-AB4902B8",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-AB4902B8-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:01.519Z",
+          "updatedAt": "2026-10-08T16:37:01.519Z"
+        },
+        {
+          "missionId": "MIS-AB4902B8-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:02.584Z",
+          "updatedAt": "2026-10-08T16:37:02.584Z"
+        },
+        {
+          "missionId": "MIS-AB4902B8-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            29.94766,
+            74.73223
+          ],
+          "distanceMeters": 1428268,
+          "createdAt": "2026-10-08T16:37:04.066Z",
+          "updatedAt": "2026-10-08T16:37:04.066Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-011",
+      "mission_id": "MIS-7CE69335",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-7CE69335-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:05.900Z",
+          "updatedAt": "2026-10-08T16:37:05.900Z"
+        },
+        {
+          "missionId": "MIS-7CE69335-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:06.737Z",
+          "updatedAt": "2026-10-08T16:37:06.737Z"
+        },
+        {
+          "missionId": "MIS-7CE69335-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:37:08.967Z",
+          "updatedAt": "2026-10-08T16:37:08.967Z"
+        },
+        {
+          "missionId": "MIS-7CE69335-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:37:09.811Z",
+          "updatedAt": "2026-10-08T16:37:09.811Z"
+        },
+        {
+          "missionId": "MIS-7CE69335-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:37:10.667Z",
+          "updatedAt": "2026-10-08T16:37:10.667Z"
+        },
+        {
+          "missionId": "MIS-7CE69335-LEG-5",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.05,
+            72.82
+          ],
+          "destination": [
+            16.96611,
+            82.255
+          ],
+          "distanceMeters": 1157168,
+          "createdAt": "2026-10-08T16:37:12.540Z",
+          "updatedAt": "2026-10-08T16:37:12.540Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-012",
+      "mission_id": "MIS-9532735D",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-9532735D-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:14.071Z",
+          "updatedAt": "2026-10-08T16:37:14.071Z"
+        },
+        {
+          "missionId": "MIS-9532735D-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            28.56056,
+            76.30417
+          ],
+          "distanceMeters": 1381231,
+          "createdAt": "2026-10-08T16:37:15.477Z",
+          "updatedAt": "2026-10-08T16:37:15.477Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-013",
+      "mission_id": "MIS-C4F108B0",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-C4F108B0-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:17.809Z",
+          "updatedAt": "2026-10-08T16:37:17.809Z"
+        },
+        {
+          "missionId": "MIS-C4F108B0-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            28.55,
+            77.2
+          ],
+          "distanceMeters": 1334420,
+          "createdAt": "2026-10-08T16:37:19.315Z",
+          "updatedAt": "2026-10-08T16:37:19.315Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-014",
+      "mission_id": "MIS-E190434E",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-E190434E-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:20.899Z",
+          "updatedAt": "2026-10-08T16:37:20.899Z"
+        },
+        {
+          "missionId": "MIS-E190434E-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:21.740Z",
+          "updatedAt": "2026-10-08T16:37:21.740Z"
+        },
+        {
+          "missionId": "MIS-E190434E-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:37:22.524Z",
+          "updatedAt": "2026-10-08T16:37:22.524Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-015",
+      "mission_id": "MIS-274200C5",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-274200C5-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:23.828Z",
+          "updatedAt": "2026-10-08T16:37:23.828Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-016",
+      "mission_id": "MIS-6201FF5C",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-6201FF5C-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:25.102Z",
+          "updatedAt": "2026-10-08T16:37:25.102Z"
+        },
+        {
+          "missionId": "MIS-6201FF5C-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:26.246Z",
+          "updatedAt": "2026-10-08T16:37:26.246Z"
+        },
+        {
+          "missionId": "MIS-6201FF5C-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            26.18417,
+            88.08944
+          ],
+          "distanceMeters": 2128383,
+          "createdAt": "2026-10-08T16:37:28.213Z",
+          "updatedAt": "2026-10-08T16:37:28.213Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-017",
+      "mission_id": "MIS-AFE9027A",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-AFE9027A-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:30.235Z",
+          "updatedAt": "2026-10-08T16:37:30.235Z"
+        },
+        {
+          "missionId": "MIS-AFE9027A-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:31.114Z",
+          "updatedAt": "2026-10-08T16:37:31.114Z"
+        },
+        {
+          "missionId": "MIS-AFE9027A-LEG-2",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.11,
+            72.85
+          ],
+          "destination": [
+            19.02,
+            72.85
+          ],
+          "distanceMeters": 13233,
+          "createdAt": "2026-10-08T16:37:32.091Z",
+          "updatedAt": "2026-10-08T16:37:32.091Z"
+        },
+        {
+          "missionId": "MIS-AFE9027A-LEG-3",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.02,
+            72.85
+          ],
+          "destination": [
+            19.06,
+            73.02
+          ],
+          "distanceMeters": 23377,
+          "createdAt": "2026-10-08T16:37:32.906Z",
+          "updatedAt": "2026-10-08T16:37:32.906Z"
+        },
+        {
+          "missionId": "MIS-AFE9027A-LEG-4",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            73.02
+          ],
+          "destination": [
+            19.05,
+            72.82
+          ],
+          "distanceMeters": 29058,
+          "createdAt": "2026-10-08T16:37:33.909Z",
+          "updatedAt": "2026-10-08T16:37:33.909Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-018",
+      "mission_id": "MIS-F40687C5",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-019",
+      "mission_id": "MIS-951901D0",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-020",
+      "mission_id": "MIS-06F1B977",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-06F1B977-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:37.133Z",
+          "updatedAt": "2026-10-08T16:37:37.133Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-021",
+      "mission_id": "MIS-4F887B54",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-022",
+      "mission_id": "MIS-E6F1DD0E",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-023",
+      "mission_id": "MIS-380F9E8E",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-024",
+      "mission_id": "MIS-72C1FB54",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-72C1FB54-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:40.475Z",
+          "updatedAt": "2026-10-08T16:37:40.475Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-025",
+      "mission_id": "MIS-2C3FCDB8",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-026",
+      "mission_id": "MIS-238CDD68",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-027",
+      "mission_id": "MIS-72BDCBB6",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-028",
+      "mission_id": "MIS-91CEF86D",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-029",
+      "mission_id": "MIS-9A8432A3",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-9A8432A3-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:43.973Z",
+          "updatedAt": "2026-10-08T16:37:43.973Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-030",
+      "mission_id": "MIS-FA1CFCFA",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-FA1CFCFA-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:45.174Z",
+          "updatedAt": "2026-10-08T16:37:45.174Z"
+        },
+        {
+          "missionId": "MIS-FA1CFCFA-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:37:46.020Z",
+          "updatedAt": "2026-10-08T16:37:46.020Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-031",
+      "mission_id": "MIS-7A4EF197",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-032",
+      "mission_id": "MIS-040F0E5D",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-033",
+      "mission_id": "MIS-0FD93BD5",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-034",
+      "mission_id": "MIS-FD8D68D2",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-035",
+      "mission_id": "MIS-2DAF1751",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-2DAF1751-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:49.209Z",
+          "updatedAt": "2026-10-08T16:37:49.209Z"
+        },
+        {
+          "missionId": "MIS-2DAF1751-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            9.4533,
+            77.8024
+          ],
+          "distanceMeters": 1464300,
+          "createdAt": "2026-10-08T16:37:51.175Z",
+          "updatedAt": "2026-10-08T16:37:51.175Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-036",
+      "mission_id": "MIS-BE8E68D9",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-037",
+      "mission_id": "MIS-E88C28AB",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-038",
+      "mission_id": "MIS-4F64FBA3",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-4F64FBA3-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:37:54.288Z",
+          "updatedAt": "2026-10-08T16:37:54.288Z"
+        },
+        {
+          "missionId": "MIS-4F64FBA3-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.1709,
+            73.0277
+          ],
+          "distanceMeters": 32922,
+          "createdAt": "2026-10-08T16:37:55.250Z",
+          "updatedAt": "2026-10-08T16:37:55.250Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-039",
+      "mission_id": "MIS-4457773F",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-040",
+      "mission_id": "MIS-88F5831F",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-041",
+      "mission_id": "MIS-FBAC30B7",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-042",
+      "mission_id": "MIS-2D709408",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-043",
+      "mission_id": "MIS-2EC20743",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-044",
+      "mission_id": "MIS-36EBFE06",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-36EBFE06-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:37:59.004Z",
+          "updatedAt": "2026-10-08T16:37:59.004Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-045",
+      "mission_id": "MIS-0C681880",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-046",
+      "mission_id": "MIS-3DA76621",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-047",
+      "mission_id": "MIS-147FFEF0",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-048",
+      "mission_id": "MIS-34CB2B01",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-34CB2B01-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "CRITICAL",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:38:02.319Z",
+          "updatedAt": "2026-10-08T16:38:02.319Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-049",
+      "mission_id": "MIS-8992EB13",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-8992EB13-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:03.579Z",
+          "updatedAt": "2026-10-08T16:38:03.579Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-050",
+      "mission_id": "MIS-3EAB0921",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-051",
+      "mission_id": "MIS-B2E666EE",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-B2E666EE-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:38:05.312Z",
+          "updatedAt": "2026-10-08T16:38:05.312Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-052",
+      "mission_id": "MIS-CC4D1E56",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-053",
+      "mission_id": "MIS-9B2B9183",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-054",
+      "mission_id": "MIS-F7EBA814",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-055",
+      "mission_id": "MIS-9F2857A9",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-056",
+      "mission_id": "MIS-9D85E2CA",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-057",
+      "mission_id": "MIS-035DFE5A",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-058",
+      "mission_id": "MIS-C8F8AAFF",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-059",
+      "mission_id": "MIS-17089B01",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-060",
+      "mission_id": "MIS-A6DD461D",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-A6DD461D-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:10.140Z",
+          "updatedAt": "2026-10-08T16:38:10.140Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-061",
+      "mission_id": "MIS-C7B8F953",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-062",
+      "mission_id": "MIS-36E112EE",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-36E112EE-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:38:11.899Z",
+          "updatedAt": "2026-10-08T16:38:11.899Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-063",
+      "mission_id": "MIS-99767A09",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-99767A09-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:13.340Z",
+          "updatedAt": "2026-10-08T16:38:13.340Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-064",
+      "mission_id": "MIS-CD4F7016",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-CD4F7016-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "HIGH",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:14.584Z",
+          "updatedAt": "2026-10-08T16:38:14.584Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-065",
+      "mission_id": "MIS-492B0082",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-066",
+      "mission_id": "MIS-124ABCCC",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-124ABCCC-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:16.250Z",
+          "updatedAt": "2026-10-08T16:38:16.250Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-067",
+      "mission_id": "MIS-81128DBF",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-068",
+      "mission_id": "MIS-B76F496B",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-069",
+      "mission_id": "MIS-541C9E19",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-070",
+      "mission_id": "MIS-48F1EDEC",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-071",
+      "mission_id": "MIS-F1C5AE5D",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-F1C5AE5D-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "HIGH",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:19.325Z",
+          "updatedAt": "2026-10-08T16:38:19.325Z"
+        },
+        {
+          "missionId": "MIS-F1C5AE5D-LEG-1",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "HIGH",
+          "source": [
+            19.076,
+            72.8777
+          ],
+          "destination": [
+            19.11,
+            72.85
+          ],
+          "distanceMeters": 10027,
+          "createdAt": "2026-10-08T16:38:20.169Z",
+          "updatedAt": "2026-10-08T16:38:20.169Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-072",
+      "mission_id": "MIS-9B4DF1CC",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-073",
+      "mission_id": "MIS-3B069CB6",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-074",
+      "mission_id": "MIS-322C9054",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-075",
+      "mission_id": "MIS-4D7A708F",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-4D7A708F-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:22.691Z",
+          "updatedAt": "2026-10-08T16:38:22.691Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-076",
+      "mission_id": "MIS-78593282",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-077",
+      "mission_id": "MIS-2336C945",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-078",
+      "mission_id": "MIS-F206AB72",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-079",
+      "mission_id": "MIS-F55B4A92",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-080",
+      "mission_id": "MIS-F3DBFFC7",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-F3DBFFC7-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-0",
+          "resourceId": "R001",
+          "resourceType": "RESCUE_VEHICLE",
+          "priority": "CRITICAL",
+          "source": [
+            19.08,
+            72.88
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 1030,
+          "createdAt": "2026-10-08T16:38:26.986Z",
+          "updatedAt": "2026-10-08T16:38:26.986Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-081",
+      "mission_id": "MIS-7E228B12",
+      "mission_route_states": [
+        {
+          "missionId": "MIS-7E228B12-LEG-0",
+          "routeStatus": "ROUTE_FOUND",
+          "primaryRouteId": "google-route-1",
+          "resourceId": "R002",
+          "resourceType": "AMBULANCE",
+          "priority": "HIGH",
+          "source": [
+            19.06,
+            72.9
+          ],
+          "destination": [
+            19.076,
+            72.8777
+          ],
+          "distanceMeters": 4466,
+          "createdAt": "2026-10-08T16:38:28.381Z",
+          "updatedAt": "2026-10-08T16:38:28.381Z"
+        }
+      ],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-082",
+      "mission_id": "MIS-B8FBDB4F",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-083",
+      "mission_id": "MIS-5FA12165",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-084",
+      "mission_id": "MIS-CE4CF760",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-085",
+      "mission_id": "MIS-D39A0792",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-086",
+      "mission_id": "MIS-18C77CD5",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-087",
+      "mission_id": "MIS-217EC56B",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-088",
+      "mission_id": "MIS-8C0C6C46",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-089",
+      "mission_id": "MIS-C6BA76AF",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-090",
+      "mission_id": "MIS-31B02B10",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-091",
+      "mission_id": "MIS-389F4B80",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-092",
+      "mission_id": "MIS-A440C381",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-093",
+      "mission_id": "MIS-F5F0797B",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-094",
+      "mission_id": "MIS-2921440C",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-095",
+      "mission_id": "MIS-324A8C4D",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-096",
+      "mission_id": "MIS-6C93D145",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-097",
+      "mission_id": "MIS-66FD4DBA",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-098",
+      "mission_id": "MIS-0916C6B5",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-099",
+      "mission_id": "MIS-D6F06208",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    },
+    {
+      "scenario_id": "E2E-100",
+      "mission_id": "MIS-A719E281",
+      "mission_route_states": [],
+      "evidence_rows_created_in_window": 0,
+      "evidence_rows_updated_in_window": 0
+    }
+  ]
+}

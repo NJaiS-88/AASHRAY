@@ -1,0 +1,95 @@
+{
+  "frozen": true,
+  "dataset_file": "final_12000_scenarios.json",
+  "sha256": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab",
+  "bytes": 94065860,
+  "n_scenarios": 12000,
+  "master_seed": 20261209,
+  "seed_namespace": "aashray-resource-allocation-final",
+  "generation_config_sha256": "48fd117da1b4e6138156029139ea7c9f1cee9df3317c00fa5914371a3ff4e99a",
+  "frozen_at_utc": "2026-10-07T20:28:30+00:00",
+  "read_only": true,
+  "pre_freeze_checks": {
+    "scenario_count": {
+      "passed": true,
+      "value": 12000
+    },
+    "schema": {
+      "passed": true,
+      "invalid_scenarios": 0
+    },
+    "scarcity_cells": {
+      "passed": true,
+      "scarcity_counts": {
+        "HIGH": 6000,
+        "MODERATE": 4800,
+        "LOW": 1200
+      },
+      "per_cell": [
+        80,
+        320,
+        400
+      ]
+    },
+    "uniqueness": {
+      "passed": true,
+      "unique_ids": 12000,
+      "unique_content": 12000
+    },
+    "seeds": {
+      "passed": true,
+      "master_seed": 20261209,
+      "namespace": "aashray-resource-allocation-final"
+    },
+    "gt_labels": {
+      "passed": true,
+      "label_mismatches": 0,
+      "scenarios_without_critical": 0,
+      "rule": "GT_critical = 1 if (S >= 0.8 AND U >= 0.8) OR S >= 0.95 OR U >= 0.95, else 0"
+    },
+    "arrival_independence": {
+      "passed": true,
+      "pearson": {
+        "fcfs_position_vs_severity": 0.0024275080115382587,
+        "fcfs_position_vs_urgency": -0.004130617978205156,
+        "fcfs_position_vs_gt_critical": 0.001338382355983675
+      },
+      "limit_abs": 0.05
+    },
+    "s_u_independence": {
+      "passed": true,
+      "informational": true,
+      "pearson_severity_vs_urgency": -0.0009609175525055638
+    },
+    "no_overlap_with_development_or_pilot": {
+      "passed": true,
+      "identical_to_development": 0,
+      "identical_to_pilot": 0
+    },
+    "distribution": {
+      "passed": true,
+      "informational": true,
+      "emergencies_total": 157889,
+      "emergencies_per_scenario": {
+        "min": 3,
+        "mean": 13.157416666666666,
+        "max": 30
+      },
+      "size_classes": {
+        "SMALL": 4000,
+        "LARGE": 4000,
+        "MEDIUM": 4000
+      },
+      "su_profiles": {
+        "HH_DOMINANT": 2400,
+        "LL_DOMINANT": 2400,
+        "HL_DOMINANT": 2400,
+        "MODERATE_MIXED": 2400,
+        "LH_DOMINANT": 2400
+      },
+      "gt_critical_emergencies": 28393,
+      "scenarios_needing_su_redraw": 3437
+    }
+  },
+  "statement": "Frozen before any allocation method was run. Not modified afterwards."
+}

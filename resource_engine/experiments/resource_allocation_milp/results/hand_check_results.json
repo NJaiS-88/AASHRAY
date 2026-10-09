@@ -1,0 +1,356 @@
+{
+  "all_passed": true,
+  "tests": [
+    {
+      "id": "TEST-01",
+      "description": "One critical emergency, enough resources",
+      "expected": {
+        "critical_required": 155,
+        "critical_fulfilled": 155,
+        "cdc": 1.0
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 155.0,
+        "critical_required": 155,
+        "critical_fulfilled": 155,
+        "cdc": 1.0,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 100
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "food",
+            "warehouse_id": "W1",
+            "allocated_quantity": 50
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "medical_kits",
+            "warehouse_id": "W1",
+            "allocated_quantity": 5
+          }
+        ]
+      },
+      "analytical_optimum": 155,
+      "property": "E1 receives all 155 units",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-02",
+      "description": "One critical emergency, insufficient resources",
+      "expected": {
+        "critical_required": 100,
+        "critical_fulfilled": 60,
+        "cdc": 0.6
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 60.0,
+        "critical_required": 100,
+        "critical_fulfilled": 60,
+        "cdc": 0.6,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 60
+          }
+        ]
+      },
+      "analytical_optimum": 60,
+      "property": "E1 receives exactly the 60 available",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-03",
+      "description": "Two critical emergencies compete for one resource",
+      "expected": {
+        "critical_required": 150,
+        "critical_fulfilled": 100,
+        "cdc": 0.6666666666666666
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 100.0,
+        "critical_required": 150,
+        "critical_fulfilled": 100,
+        "cdc": 0.6666666666666666,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 80
+          },
+          {
+            "emergency_id": "E2",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 20
+          }
+        ]
+      },
+      "analytical_optimum": 100,
+      "property": "all 100 units go to the two critical emergencies",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-04",
+      "description": "Critical and non-critical compete for a scarce resource",
+      "expected": {
+        "critical_required": 80,
+        "critical_fulfilled": 80,
+        "cdc": 1.0
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 80.0,
+        "critical_required": 80,
+        "critical_fulfilled": 80,
+        "cdc": 1.0,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E2",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 80
+          }
+        ]
+      },
+      "analytical_optimum": 80,
+      "property": "critical E2 gets all 80; non-critical E1 gets at most the 20 left",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-05",
+      "description": "One resource split across multiple warehouses",
+      "expected": {
+        "critical_required": 100,
+        "critical_fulfilled": 90,
+        "cdc": 0.9
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 90.0,
+        "critical_required": 100,
+        "critical_fulfilled": 90,
+        "cdc": 0.9,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 40
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W2",
+            "allocated_quantity": 30
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W3",
+            "allocated_quantity": 20
+          }
+        ]
+      },
+      "analytical_optimum": 90,
+      "property": "every warehouse is emptied: W1 40, W2 30, W3 20",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-06",
+      "description": "Multiple resource types with different shortages",
+      "expected": {
+        "critical_required": 210,
+        "critical_fulfilled": 150,
+        "cdc": 0.7142857142857143
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 150.0,
+        "critical_required": 210,
+        "critical_fulfilled": 150,
+        "cdc": 0.7142857142857143,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 100
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "food",
+            "warehouse_id": "W1",
+            "allocated_quantity": 40
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "medical_kits",
+            "warehouse_id": "W1",
+            "allocated_quantity": 10
+          }
+        ]
+      },
+      "analytical_optimum": 150,
+      "property": "water 100 (surplus), food 40 (short), kits 10 (exact)",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-07",
+      "description": "Partial fulfilment required",
+      "expected": {
+        "critical_required": 50,
+        "critical_fulfilled": 15,
+        "cdc": 0.3
+      },
+      "expected_cdc_undefined": false,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": 15.0,
+        "critical_required": 50,
+        "critical_fulfilled": 15,
+        "cdc": 0.3,
+        "cdc_undefined": false,
+        "allocations": [
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W1",
+            "allocated_quantity": 6
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "water",
+            "warehouse_id": "W2",
+            "allocated_quantity": 4
+          },
+          {
+            "emergency_id": "E1",
+            "resource_type": "food",
+            "warehouse_id": "W1",
+            "allocated_quantity": 5
+          }
+        ]
+      },
+      "analytical_optimum": 15,
+      "property": "E1 is partially (neither fully nor not at all) served",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    },
+    {
+      "id": "TEST-08",
+      "description": "No critical demand: CDC undefined",
+      "expected": {
+        "critical_required": 0,
+        "critical_fulfilled": 0,
+        "cdc": null
+      },
+      "expected_cdc_undefined": true,
+      "got": {
+        "solver_status": 0,
+        "is_proven_optimum": true,
+        "objective_value": -0.0,
+        "critical_required": 0,
+        "critical_fulfilled": 0,
+        "cdc": null,
+        "cdc_undefined": true,
+        "allocations": []
+      },
+      "analytical_optimum": 0,
+      "property": "objective is 0 and CDC is NaN, not 0 or 1",
+      "checks": {
+        "proven_optimum": true,
+        "critical_required": true,
+        "critical_fulfilled": true,
+        "cdc": true,
+        "analytical_oracle_agrees": true,
+        "property": true
+      },
+      "passed": true
+    }
+  ]
+}

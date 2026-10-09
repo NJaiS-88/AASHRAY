@@ -1,0 +1,20 @@
+{
+  "resources": {
+    "water": {
+      "base_per_person": 2
+    },
+    "food": {
+      "base_per_person": 1
+    },
+    "medical_kits": {
+      "base_per_person": 0.05
+    }
+  },
+  "allocation_priority": {
+    "weights": {
+      "severity": 0.4,
+      "urgency": 0.4,
+      "priority": 0.2
+    }
+  }
+}

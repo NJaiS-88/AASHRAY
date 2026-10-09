@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "resource-service",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-c",
+        "import os, uvicorn; os.chdir('..') if os.path.basename(os.getcwd()) == 'resource_services' else None; uvicorn.run('resource_services.app:app', host='127.0.0.1', port=8765)"
+      ],
+      "port": 8765
+    }
+  ]
+}

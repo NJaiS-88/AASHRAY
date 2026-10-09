@@ -1,0 +1,1334 @@
+[
+  {
+    "mission_id": "MIS-49A1BB13",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7B4EE257",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:35:51.467238Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:03.006385Z"
+  },
+  {
+    "mission_id": "MIS-018D7DE9",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-215B24BF",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:03.034458Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:11.656747Z"
+  },
+  {
+    "mission_id": "MIS-B6D20A8B",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-24C5E5F0",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:11.702992Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:16.370216Z"
+  },
+  {
+    "mission_id": "MIS-7EEFD469",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-57365AFF",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:36:16.432441Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:24.658062Z"
+  },
+  {
+    "mission_id": "MIS-1092A4A0",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0830E6DE",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:24.712685Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:31.031117Z"
+  },
+  {
+    "mission_id": "MIS-372D16AA",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5569BD6C",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:31.078933Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:38.364222Z"
+  },
+  {
+    "mission_id": "MIS-60D1B6A0",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-714D8F4D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:36:38.413957Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:46.269680Z"
+  },
+  {
+    "mission_id": "MIS-3FD3A51D",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-21BC9BD3",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:46.317781Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:36:54.101688Z"
+  },
+  {
+    "mission_id": "MIS-F95D74EB",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3D84DB0B",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:36:54.181512Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:00.525384Z"
+  },
+  {
+    "mission_id": "MIS-AB4902B8",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-48E7BBE9",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:00.562669Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:05.010035Z"
+  },
+  {
+    "mission_id": "MIS-7CE69335",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-26F20A78",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:05.062858Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:13.286866Z"
+  },
+  {
+    "mission_id": "MIS-9532735D",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E2957EBD",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:13.339401Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:16.957615Z"
+  },
+  {
+    "mission_id": "MIS-C4F108B0",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1F09F317",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:17.022546Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:20.086475Z"
+  },
+  {
+    "mission_id": "MIS-E190434E",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-15DD7B9A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:20.137626Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:22.958943Z"
+  },
+  {
+    "mission_id": "MIS-274200C5",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-85FEA156",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:22.996133Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:24.329638Z"
+  },
+  {
+    "mission_id": "MIS-6201FF5C",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D10A3517",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:24.364161Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:29.246820Z"
+  },
+  {
+    "mission_id": "MIS-AFE9027A",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D4FE10DE",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:29.317698Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:34.705998Z"
+  },
+  {
+    "mission_id": "MIS-F40687C5",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-671CE105",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:34.735003Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:35.265167Z"
+  },
+  {
+    "mission_id": "MIS-951901D0",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3E042AE6",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:35.291819Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:35.812458Z"
+  },
+  {
+    "mission_id": "MIS-06F1B977",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9B6B4781",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:35.846566Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:37.624841Z"
+  },
+  {
+    "mission_id": "MIS-4F887B54",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-225DC075",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:37.660134Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:38.286069Z"
+  },
+  {
+    "mission_id": "MIS-E6F1DD0E",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-788F7FDD",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:38.317465Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:39.014472Z"
+  },
+  {
+    "mission_id": "MIS-380F9E8E",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3D9DBE37",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:39.046389Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:39.566493Z"
+  },
+  {
+    "mission_id": "MIS-72C1FB54",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A4CF547C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:39.601527Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:40.981974Z"
+  },
+  {
+    "mission_id": "MIS-2C3FCDB8",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D8AF42E6",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:41.005491Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:41.451262Z"
+  },
+  {
+    "mission_id": "MIS-238CDD68",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AB8E30E9",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:41.484267Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:42.121728Z"
+  },
+  {
+    "mission_id": "MIS-72BDCBB6",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-67B6B0A3",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:42.153878Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:42.623179Z"
+  },
+  {
+    "mission_id": "MIS-91CEF86D",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2026EE15",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:42.654768Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:43.124036Z"
+  },
+  {
+    "mission_id": "MIS-9A8432A3",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DE29DE82",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:43.159092Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:44.434127Z"
+  },
+  {
+    "mission_id": "MIS-FA1CFCFA",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-75478B87",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:44.468292Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:46.435310Z"
+  },
+  {
+    "mission_id": "MIS-7A4EF197",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E4DEED2F",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:46.468401Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:46.912744Z"
+  },
+  {
+    "mission_id": "MIS-040F0E5D",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D7324D13",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:46.947744Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:47.370838Z"
+  },
+  {
+    "mission_id": "MIS-0FD93BD5",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9FC6C0FF",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:47.406353Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:47.793594Z"
+  },
+  {
+    "mission_id": "MIS-FD8D68D2",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CF15805D",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:47.826738Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:48.265277Z"
+  },
+  {
+    "mission_id": "MIS-2DAF1751",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-54A2B639",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:48.298800Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:52.218081Z"
+  },
+  {
+    "mission_id": "MIS-BE8E68D9",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F589884B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:52.283709Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:52.779470Z"
+  },
+  {
+    "mission_id": "MIS-E88C28AB",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-092C949C",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:52.810059Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:53.271007Z"
+  },
+  {
+    "mission_id": "MIS-4F64FBA3",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BFEFD53A",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:53.303530Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:55.576427Z"
+  },
+  {
+    "mission_id": "MIS-4457773F",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4DDD2354",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:55.611697Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:56.069463Z"
+  },
+  {
+    "mission_id": "MIS-88F5831F",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-ED436158",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:56.108599Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:56.560249Z"
+  },
+  {
+    "mission_id": "MIS-FBAC30B7",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-57A8BC5D",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:56.594255Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:57.123829Z"
+  },
+  {
+    "mission_id": "MIS-2D709408",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-32E7E4EA",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:57.160342Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:57.576970Z"
+  },
+  {
+    "mission_id": "MIS-2EC20743",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C0010856",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:57.611163Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:58.067460Z"
+  },
+  {
+    "mission_id": "MIS-36EBFE06",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-523F9651",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:37:58.102100Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:37:59.628471Z"
+  },
+  {
+    "mission_id": "MIS-0C681880",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-43DDBF7E",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:37:59.664587Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:00.139719Z"
+  },
+  {
+    "mission_id": "MIS-3DA76621",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2128F143",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:00.170721Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:00.596841Z"
+  },
+  {
+    "mission_id": "MIS-147FFEF0",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-37F7538F",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:00.634822Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:01.062175Z"
+  },
+  {
+    "mission_id": "MIS-34CB2B01",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BE630AAE",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:01.092999Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:02.775672Z"
+  },
+  {
+    "mission_id": "MIS-8992EB13",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DC05CE7D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:02.814315Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:04.019289Z"
+  },
+  {
+    "mission_id": "MIS-3EAB0921",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-61B9999D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:04.059423Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:04.501573Z"
+  },
+  {
+    "mission_id": "MIS-B2E666EE",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-FFEE9BD7",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:04.538431Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:05.760784Z"
+  },
+  {
+    "mission_id": "MIS-CC4D1E56",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2792FFAC",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:05.792786Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:06.235215Z"
+  },
+  {
+    "mission_id": "MIS-9B2B9183",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AD2A52C2",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:06.270855Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:06.699858Z"
+  },
+  {
+    "mission_id": "MIS-F7EBA814",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C761DD8F",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:06.739577Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:07.217569Z"
+  },
+  {
+    "mission_id": "MIS-9F2857A9",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0B225B0A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:07.245575Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:07.662221Z"
+  },
+  {
+    "mission_id": "MIS-9D85E2CA",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BA876D5D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:07.699221Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:08.093885Z"
+  },
+  {
+    "mission_id": "MIS-035DFE5A",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-6C308B75",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:08.125987Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:08.555308Z"
+  },
+  {
+    "mission_id": "MIS-C8F8AAFF",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D059452E",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:08.593863Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:09.053202Z"
+  },
+  {
+    "mission_id": "MIS-17089B01",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-226B0483",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:09.084295Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:09.453152Z"
+  },
+  {
+    "mission_id": "MIS-A6DD461D",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DB9DE38D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:09.481305Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:10.572353Z"
+  },
+  {
+    "mission_id": "MIS-C7B8F953",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EAC2FD37",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:10.608917Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:11.059115Z"
+  },
+  {
+    "mission_id": "MIS-36E112EE",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-04EC4773",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:11.097542Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:12.339227Z"
+  },
+  {
+    "mission_id": "MIS-99767A09",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-ECC5CE4B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:12.379674Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:13.775321Z"
+  },
+  {
+    "mission_id": "MIS-CD4F7016",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-372D25F7",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:13.806320Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:15.029157Z"
+  },
+  {
+    "mission_id": "MIS-492B0082",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2A8524B0",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:15.065471Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:15.499165Z"
+  },
+  {
+    "mission_id": "MIS-124ABCCC",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BAEC857A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:15.537127Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:16.699687Z"
+  },
+  {
+    "mission_id": "MIS-81128DBF",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DC84413C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:16.737670Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:17.178409Z"
+  },
+  {
+    "mission_id": "MIS-B76F496B",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-755F6F2E",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:17.219215Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:17.756002Z"
+  },
+  {
+    "mission_id": "MIS-541C9E19",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-98F6BB39",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:17.796178Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:18.177499Z"
+  },
+  {
+    "mission_id": "MIS-48F1EDEC",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4F3135ED",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:18.212015Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:18.523811Z"
+  },
+  {
+    "mission_id": "MIS-F1C5AE5D",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CCC5B4DE",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:18.563942Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:20.612955Z"
+  },
+  {
+    "mission_id": "MIS-9B4DF1CC",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A18860E0",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:20.654102Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:21.053913Z"
+  },
+  {
+    "mission_id": "MIS-3B069CB6",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2BDA8F7F",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:21.095025Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:21.457913Z"
+  },
+  {
+    "mission_id": "MIS-322C9054",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E02F28BA",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:21.493912Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:21.914272Z"
+  },
+  {
+    "mission_id": "MIS-4D7A708F",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3A835BF7",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:21.950566Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:23.139072Z"
+  },
+  {
+    "mission_id": "MIS-78593282",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1A7F85AC",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:23.181442Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:23.610475Z"
+  },
+  {
+    "mission_id": "MIS-2336C945",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CC5EABB3",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:23.647485Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:24.346771Z"
+  },
+  {
+    "mission_id": "MIS-F206AB72",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EA5D615D",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:24.387904Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:25.178730Z"
+  },
+  {
+    "mission_id": "MIS-F55B4A92",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-82C6B390",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:25.217746Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:25.859032Z"
+  },
+  {
+    "mission_id": "MIS-F3DBFFC7",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-46AF71C8",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:25.896036Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:27.450580Z"
+  },
+  {
+    "mission_id": "MIS-7E228B12",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-ACC9A822",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:27.508581Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:29.185364Z"
+  },
+  {
+    "mission_id": "MIS-B8FBDB4F",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-100FBC91",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:29.222382Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:29.614381Z"
+  },
+  {
+    "mission_id": "MIS-5FA12165",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-08E4075A",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:29.645998Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:30.092664Z"
+  },
+  {
+    "mission_id": "MIS-CE4CF760",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0D324F0B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:30.133181Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:30.570925Z"
+  },
+  {
+    "mission_id": "MIS-D39A0792",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-67D867DF",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:30.609925Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:31.043894Z"
+  },
+  {
+    "mission_id": "MIS-18C77CD5",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AF90F80B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:31.086551Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:31.545676Z"
+  },
+  {
+    "mission_id": "MIS-217EC56B",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9F37363A",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:31.585793Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:32.001931Z"
+  },
+  {
+    "mission_id": "MIS-8C0C6C46",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A6367463",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:32.036937Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:32.462874Z"
+  },
+  {
+    "mission_id": "MIS-C6BA76AF",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DB67DB19",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:32.503911Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:32.847984Z"
+  },
+  {
+    "mission_id": "MIS-31B02B10",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-70B330F8",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:32.881298Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:33.413593Z"
+  },
+  {
+    "mission_id": "MIS-389F4B80",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3B17AFA5",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:33.449318Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:33.813016Z"
+  },
+  {
+    "mission_id": "MIS-A440C381",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EA147750",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:33.853053Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:34.183590Z"
+  },
+  {
+    "mission_id": "MIS-F5F0797B",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7C9C1406",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:34.226591Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:34.654511Z"
+  },
+  {
+    "mission_id": "MIS-2921440C",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A4C14565",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:34.697328Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:35.130936Z"
+  },
+  {
+    "mission_id": "MIS-324A8C4D",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-083C454C",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:35.172440Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:35.761005Z"
+  },
+  {
+    "mission_id": "MIS-6C93D145",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-37DD7AF4",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:35.795449Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:36.249466Z"
+  },
+  {
+    "mission_id": "MIS-66FD4DBA",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3B52BCF0",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-08T16:38:36.293850Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:36.815199Z"
+  },
+  {
+    "mission_id": "MIS-0916C6B5",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-14C61225",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:36.857624Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:37.318099Z"
+  },
+  {
+    "mission_id": "MIS-D6F06208",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-10B0E478",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:37.354205Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:37.748438Z"
+  },
+  {
+    "mission_id": "MIS-A719E281",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-52B97175",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-08T16:38:37.784566Z"
+      }
+    ],
+    "closed_at": "2026-10-08T16:38:38.149848Z"
+  },
+  {
+    "mission_id": "MIS-478B534C",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4EC99673",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:14.849170Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:29.137152Z"
+  },
+  {
+    "mission_id": "MIS-2A57613B",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-FDCFAE95",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-09T07:06:29.169174Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:33.968360Z"
+  },
+  {
+    "mission_id": "MIS-5FA91B55",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-393FE6BE",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:33.993325Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:36.065669Z"
+  },
+  {
+    "mission_id": "MIS-A233CDAB",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F7929227",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:36.092464Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:39.755779Z"
+  },
+  {
+    "mission_id": "MIS-15D6B67C",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-76AA4B3D",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:39.780300Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:41.625114Z"
+  },
+  {
+    "mission_id": "MIS-F4DEE99E",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CD9704FB",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:41.655376Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:43.766830Z"
+  },
+  {
+    "mission_id": "MIS-3FD7A95A",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7FFA732F",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:43.793326Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:47.016147Z"
+  },
+  {
+    "mission_id": "MIS-3E86E1E5",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2B346452",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:47.044494Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:53.513445Z"
+  },
+  {
+    "mission_id": "MIS-96FFF6BA",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BECBB547",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:53.543779Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:57.352201Z"
+  },
+  {
+    "mission_id": "MIS-6AAED4F7",
+    "status": "CANCELLED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8F40E6FB",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:57.381814Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:06:59.477824Z"
+  },
+  {
+    "mission_id": "MIS-24392753",
+    "status": "COMPLETED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0AD023CD",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T07:06:59.505252Z"
+      }
+    ],
+    "closed_at": "2026-10-09T07:07:03.144425Z"
+  }
+]

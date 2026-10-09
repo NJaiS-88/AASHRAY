@@ -1,0 +1,961 @@
+{
+ "dataset": "Maharashtra-local subset of the existing genuine-disaster dataset (experiments/e2e_100_previous_invalid_distance_scope/scenarios.json)",
+ "selection": "screening/screening.json (IN_SCOPE only)",
+ "scenario_count": 11,
+ "scenarios": [
+  {
+   "scenario_id": "E2E-001",
+   "event_name": "1944 Bombay explosion",
+   "disaster_type": "EXPLOSION",
+   "date": "1944-04-14",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Victoria Dock, Mazagaon, Mumbai",
+   "latitude": 18.95278,
+   "longitude": 72.845,
+   "coordinate_source": {
+    "kind": "event article",
+    "wikipedia_title": "1944 Bombay explosion",
+    "url": "https://en.wikipedia.org/wiki/1944_Bombay_explosion",
+    "revision_id": 1369378679,
+    "distance_to_locality_km": 2.0
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "1944 Bombay explosion",
+    "url": "https://en.wikipedia.org/wiki/1944_Bombay_explosion",
+    "pageid": 301418,
+    "revision_id": 1369378679,
+    "wikidata": "Q17989657"
+   },
+   "reported_deaths": 800,
+   "reported_deaths_evidence": [
+    {
+     "value": 800,
+     "token": "800",
+     "class": "deaths",
+     "keyword": "killing",
+     "text_offset": 326
+    }
+   ],
+   "affected_population": 80000,
+   "affected_population_basis": "displaced",
+   "affected_population_evidence": [
+    {
+     "value": 80000,
+     "token": "80,000",
+     "class": "displaced",
+     "keyword": "homeless",
+     "text_offset": 352
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.85,
+   "urgency": 0.9,
+   "priority": "HIGH",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-001",
+   "aashray_request": {
+    "incident_id": "MHF-INC-001",
+    "incident_type": "EXPLOSION",
+    "location": {
+     "latitude": 18.95278,
+     "longitude": 72.845
+    },
+    "locality": {
+     "name": "Victoria Dock, Mazagaon, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 80000
+    },
+    "severity": 0.85,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "HIGH"
+   },
+   "original_incident_id": "E2E100-INC-001",
+   "district": "Mumbai City"
+  },
+  {
+   "scenario_id": "E2E-023",
+   "event_name": "Maharashtra floods of 2005",
+   "disaster_type": "FLOOD",
+   "date": "2005-07-26",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Santacruz, Mumbai",
+   "latitude": 19.08167,
+   "longitude": 72.84139,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Santacruz, Mumbai",
+    "url": "https://en.wikipedia.org/wiki/Santacruz,_Mumbai",
+    "revision_id": 1376773681,
+    "via": "Wikipedia article coordinates"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "Maharashtra floods of 2005",
+    "url": "https://en.wikipedia.org/wiki/Maharashtra_floods_of_2005",
+    "pageid": 2320150,
+    "revision_id": 1368845593,
+    "wikidata": "Q6733375"
+   },
+   "reported_deaths": 1094,
+   "reported_deaths_evidence": [
+    {
+     "value": 1094,
+     "token": "1,094",
+     "class": "deaths",
+     "keyword": "died",
+     "text_offset": 236
+    }
+   ],
+   "affected_population": 1094,
+   "affected_population_basis": "deaths_only",
+   "affected_population_evidence": [
+    {
+     "value": 1094,
+     "token": "1,094",
+     "class": "deaths",
+     "keyword": "died",
+     "text_offset": 236
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.95,
+   "urgency": 0.8,
+   "priority": "CRITICAL",
+   "estimated_duration_hours": 120.0,
+   "patient_present": false,
+   "incident_id": "MHF-INC-023",
+   "aashray_request": {
+    "incident_id": "MHF-INC-023",
+    "incident_type": "FLOOD",
+    "location": {
+     "latitude": 19.08167,
+     "longitude": 72.84139
+    },
+    "locality": {
+     "name": "Santacruz, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 1094
+    },
+    "severity": 0.95,
+    "estimated_duration_hours": 120.0,
+    "patient_present": false,
+    "urgency": 0.8,
+    "priority": "CRITICAL"
+   },
+   "original_incident_id": "E2E100-INC-023",
+   "district": "Mumbai Suburban"
+  },
+  {
+   "scenario_id": "E2E-038",
+   "event_name": "2013 Thane building collapse",
+   "disaster_type": "BUILDING_COLLAPSE",
+   "date": "2013-04-04",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Shil Phata, Mumbra, Thane",
+   "latitude": 19.1709,
+   "longitude": 73.0277,
+   "coordinate_source": {
+    "kind": "event article",
+    "wikipedia_title": "2013 Thane building collapse",
+    "url": "https://en.wikipedia.org/wiki/2013_Thane_building_collapse",
+    "revision_id": 1376673095,
+    "distance_to_locality_km": 1.1
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2013 Thane building collapse",
+    "url": "https://en.wikipedia.org/wiki/2013_Thane_building_collapse",
+    "pageid": 39018856,
+    "revision_id": 1376673095,
+    "wikidata": "Q10526777"
+   },
+   "reported_deaths": 74,
+   "reported_deaths_evidence": [
+    {
+     "value": 74,
+     "token": "Seventy-four",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 165
+    }
+   ],
+   "affected_population": 174,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 74,
+     "token": "Seventy-four",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 165
+    },
+    {
+     "value": 100,
+     "token": "100",
+     "class": "stranded",
+     "keyword": "survived",
+     "text_offset": 249
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Thane district",
+    "wikidata": "Q943099",
+    "population": 11060148,
+    "area_km2": 4214.0,
+    "population_density": 2624.6
+   },
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-038",
+   "aashray_request": {
+    "incident_id": "MHF-INC-038",
+    "incident_type": "BUILDING_COLLAPSE",
+    "location": {
+     "latitude": 19.1709,
+     "longitude": 73.0277
+    },
+    "locality": {
+     "name": "Shil Phata, Mumbra, Thane",
+     "population": 11060148,
+     "population_density": 2624.6,
+     "affected_population": 174
+    },
+    "severity": 0.75,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "MODERATE"
+   },
+   "original_incident_id": "E2E100-INC-038",
+   "district": "Thane"
+  },
+  {
+   "scenario_id": "E2E-051",
+   "event_name": "2017 Mumbai stampede",
+   "disaster_type": "STAMPEDE",
+   "date": "2017-09-29",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Prabhadevi (Elphinstone Road), Mumbai",
+   "latitude": 19.00753,
+   "longitude": 72.83598,
+   "coordinate_source": {
+    "kind": "event article",
+    "wikipedia_title": "2017 Mumbai stampede",
+    "url": "https://en.wikipedia.org/wiki/2017_Mumbai_stampede",
+    "revision_id": 1376673450,
+    "distance_to_locality_km": 0.1
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2017 Mumbai stampede",
+    "url": "https://en.wikipedia.org/wiki/2017_Mumbai_stampede",
+    "pageid": 55384732,
+    "revision_id": 1376673450,
+    "wikidata": "Q41336956"
+   },
+   "reported_deaths": 23,
+   "reported_deaths_evidence": [
+    {
+     "value": 23,
+     "token": "23",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 118
+    }
+   ],
+   "affected_population": 62,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 23,
+     "token": "23",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 118
+    },
+    {
+     "value": 39,
+     "token": "39",
+     "class": "injured",
+     "keyword": "injured",
+     "text_offset": 144
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-051",
+   "aashray_request": {
+    "incident_id": "MHF-INC-051",
+    "incident_type": "STAMPEDE",
+    "location": {
+     "latitude": 19.00753,
+     "longitude": 72.83598
+    },
+    "locality": {
+     "name": "Prabhadevi (Elphinstone Road), Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 62
+    },
+    "severity": 0.75,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "MODERATE"
+   },
+   "original_incident_id": "E2E100-INC-051",
+   "district": "Mumbai City"
+  },
+  {
+   "scenario_id": "E2E-053",
+   "event_name": "Kamala Mills fire",
+   "disaster_type": "FIRE",
+   "date": "2017-12-29",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Lower Parel, Mumbai",
+   "latitude": 19.00369,
+   "longitude": 72.82754,
+   "coordinate_source": {
+    "kind": "event article",
+    "wikipedia_title": "Kamala Mills fire",
+    "url": "https://en.wikipedia.org/wiki/Kamala_Mills_fire",
+    "revision_id": 1370438521,
+    "distance_to_locality_km": 1.0
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "Kamala Mills fire",
+    "url": "https://en.wikipedia.org/wiki/Kamala_Mills_fire",
+    "pageid": 56171685,
+    "revision_id": 1370438521,
+    "wikidata": "Q48732703"
+   },
+   "reported_deaths": 14,
+   "reported_deaths_evidence": [
+    {
+     "value": 14,
+     "token": "14",
+     "class": "deaths",
+     "keyword": "deaths",
+     "text_offset": 149
+    }
+   ],
+   "affected_population": 69,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 14,
+     "token": "14",
+     "class": "deaths",
+     "keyword": "deaths",
+     "text_offset": 149
+    },
+    {
+     "value": 55,
+     "token": "55",
+     "class": "injured",
+     "keyword": "injuries",
+     "text_offset": 176
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-053",
+   "aashray_request": {
+    "incident_id": "MHF-INC-053",
+    "incident_type": "FIRE",
+    "location": {
+     "latitude": 19.00369,
+     "longitude": 72.82754
+    },
+    "locality": {
+     "name": "Lower Parel, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 69
+    },
+    "severity": 0.65,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "LOW"
+   },
+   "original_incident_id": "E2E100-INC-053",
+   "district": "Mumbai City"
+  },
+  {
+   "scenario_id": "E2E-059",
+   "event_name": "2019 Mumbai foot overbridge collapse",
+   "disaster_type": "STRUCTURAL_COLLAPSE",
+   "date": "2019-03-14",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "CSMT, Mumbai",
+   "latitude": 18.9422,
+   "longitude": 72.83466,
+   "coordinate_source": {
+    "kind": "event article",
+    "wikipedia_title": "2019 Mumbai foot overbridge collapse",
+    "url": "https://en.wikipedia.org/wiki/2019_Mumbai_foot_overbridge_collapse",
+    "revision_id": 1360540794,
+    "distance_to_locality_km": 0.3
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2019 Mumbai foot overbridge collapse",
+    "url": "https://en.wikipedia.org/wiki/2019_Mumbai_foot_overbridge_collapse",
+    "pageid": 60233509,
+    "revision_id": 1360540794,
+    "wikidata": "Q65082870"
+   },
+   "reported_deaths": 6,
+   "reported_deaths_evidence": [
+    {
+     "value": 6,
+     "token": "Six",
+     "class": "deaths",
+     "keyword": "died",
+     "text_offset": 222
+    }
+   ],
+   "affected_population": 36,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 6,
+     "token": "Six",
+     "class": "deaths",
+     "keyword": "died",
+     "text_offset": 222
+    },
+    {
+     "value": 30,
+     "token": "30",
+     "class": "injured",
+     "keyword": "injured",
+     "text_offset": 251
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-059",
+   "aashray_request": {
+    "incident_id": "MHF-INC-059",
+    "incident_type": "STRUCTURAL_COLLAPSE",
+    "location": {
+     "latitude": 18.9422,
+     "longitude": 72.83466
+    },
+    "locality": {
+     "name": "CSMT, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 36
+    },
+    "severity": 0.65,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "LOW"
+   },
+   "original_incident_id": "E2E100-INC-059",
+   "district": "Mumbai City"
+  },
+  {
+   "scenario_id": "E2E-076",
+   "event_name": "2021 Mumbai landslide",
+   "disaster_type": "LANDSLIDE",
+   "date": "2021-07-18",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Chembur, Mumbai",
+   "latitude": 19.051,
+   "longitude": 72.894,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Chembur",
+    "url": "https://en.wikipedia.org/wiki/Chembur",
+    "revision_id": 1377581447,
+    "via": "Wikipedia article coordinates"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2021 Mumbai landslide",
+    "url": "https://en.wikipedia.org/wiki/2021_Mumbai_landslide",
+    "pageid": 68287976,
+    "revision_id": 1360541477,
+    "wikidata": "Q107675053"
+   },
+   "reported_deaths": 32,
+   "reported_deaths_evidence": [
+    {
+     "value": 32,
+     "token": "thirty-two",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 170
+    }
+   ],
+   "affected_population": 152,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 32,
+     "token": "thirty-two",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 170
+    },
+    {
+     "value": 120,
+     "token": "120",
+     "class": "displaced",
+     "keyword": "shifted",
+     "text_offset": 622
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "estimated_duration_hours": 72.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-076",
+   "aashray_request": {
+    "incident_id": "MHF-INC-076",
+    "incident_type": "LANDSLIDE",
+    "location": {
+     "latitude": 19.051,
+     "longitude": 72.894
+    },
+    "locality": {
+     "name": "Chembur, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 152
+    },
+    "severity": 0.75,
+    "estimated_duration_hours": 72.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "MODERATE"
+   },
+   "original_incident_id": "E2E100-INC-076",
+   "district": "Mumbai Suburban"
+  },
+  {
+   "scenario_id": "E2E-081",
+   "event_name": "2022 Mumbai building collapse",
+   "disaster_type": "BUILDING_COLLAPSE",
+   "date": "2022-06-27",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Kurla, Mumbai",
+   "latitude": 19.07261,
+   "longitude": 72.8845,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Kurla",
+    "url": "https://en.wikipedia.org/wiki/Kurla",
+    "revision_id": 1378640815,
+    "via": "Wikipedia article coordinates"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2022 Mumbai building collapse",
+    "url": "https://en.wikipedia.org/wiki/2022_Mumbai_building_collapse",
+    "pageid": 71187148,
+    "revision_id": 1360467821,
+    "wikidata": "Q113070675"
+   },
+   "reported_deaths": 19,
+   "reported_deaths_evidence": [
+    {
+     "value": 19,
+     "token": "19",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 207
+    }
+   ],
+   "affected_population": 19,
+   "affected_population_basis": "deaths_only",
+   "affected_population_evidence": [
+    {
+     "value": 19,
+     "token": "19",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 207
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-081",
+   "aashray_request": {
+    "incident_id": "MHF-INC-081",
+    "incident_type": "BUILDING_COLLAPSE",
+    "location": {
+     "latitude": 19.07261,
+     "longitude": 72.8845
+    },
+    "locality": {
+     "name": "Kurla, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 19
+    },
+    "severity": 0.65,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "LOW"
+   },
+   "original_incident_id": "E2E100-INC-081",
+   "district": "Mumbai Suburban"
+  },
+  {
+   "scenario_id": "E2E-087",
+   "event_name": "2023 Raigad landslide",
+   "disaster_type": "LANDSLIDE",
+   "date": "2023-07-19",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Irshalwadi, Khalapur, Raigad",
+   "latitude": 18.81667,
+   "longitude": 73.26667,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Khalapur",
+    "url": "https://en.wikipedia.org/wiki/Khalapur",
+    "revision_id": 1378266503,
+    "via": "Wikidata Q4494967 P625"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2023 Raigad landslide",
+    "url": "https://en.wikipedia.org/wiki/2023_Raigad_landslide",
+    "pageid": 74396212,
+    "revision_id": 1376673908,
+    "wikidata": "Q121144504"
+   },
+   "reported_deaths": 26,
+   "reported_deaths_evidence": [
+    {
+     "value": 26,
+     "token": "26",
+     "class": "deaths",
+     "keyword": "deaths",
+     "text_offset": 174
+    }
+   ],
+   "affected_population": 233,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 26,
+     "token": "26",
+     "class": "deaths",
+     "keyword": "deaths",
+     "text_offset": 174
+    },
+    {
+     "value": 98,
+     "token": "98",
+     "class": "stranded",
+     "keyword": "rescued",
+     "text_offset": 895
+    },
+    {
+     "value": 109,
+     "token": "109",
+     "class": "stranded",
+     "keyword": "missing",
+     "text_offset": 1181
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Raigad district",
+    "wikidata": "Q2019683",
+    "population": 2634200,
+    "area_km2": 7152.0,
+    "population_density": 368.3
+   },
+   "severity": 0.75,
+   "urgency": 0.9,
+   "priority": "MODERATE",
+   "estimated_duration_hours": 72.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-087",
+   "aashray_request": {
+    "incident_id": "MHF-INC-087",
+    "incident_type": "LANDSLIDE",
+    "location": {
+     "latitude": 18.81667,
+     "longitude": 73.26667
+    },
+    "locality": {
+     "name": "Irshalwadi, Khalapur, Raigad",
+     "population": 2634200,
+     "population_density": 368.3,
+     "affected_population": 233
+    },
+    "severity": 0.75,
+    "estimated_duration_hours": 72.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "MODERATE"
+   },
+   "original_incident_id": "E2E100-INC-087",
+   "district": "Raigad"
+  },
+  {
+   "scenario_id": "E2E-092",
+   "event_name": "Mumbai billboard collapse",
+   "disaster_type": "STRUCTURAL_COLLAPSE",
+   "date": "2024-05-13",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Chheda Nagar, Ghatkopar, Mumbai",
+   "latitude": 19.08,
+   "longitude": 72.91,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Ghatkopar",
+    "url": "https://en.wikipedia.org/wiki/Ghatkopar",
+    "revision_id": 1377609210,
+    "via": "Wikipedia article coordinates"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "Mumbai billboard collapse",
+    "url": "https://en.wikipedia.org/wiki/Mumbai_billboard_collapse",
+    "pageid": 77024481,
+    "revision_id": 1375108444,
+    "wikidata": "Q126489144"
+   },
+   "reported_deaths": 17,
+   "reported_deaths_evidence": [
+    {
+     "value": 17,
+     "token": "17",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 96
+    }
+   ],
+   "affected_population": 92,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 17,
+     "token": "17",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 96
+    },
+    {
+     "value": 75,
+     "token": "75",
+     "class": "injured",
+     "keyword": "injured",
+     "text_offset": 132
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Mumbai",
+    "wikidata": "Q1156",
+    "population": 15414288,
+    "area_km2": 603.0,
+    "population_density": 25562.7
+   },
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-092",
+   "aashray_request": {
+    "incident_id": "MHF-INC-092",
+    "incident_type": "STRUCTURAL_COLLAPSE",
+    "location": {
+     "latitude": 19.08,
+     "longitude": 72.91
+    },
+    "locality": {
+     "name": "Chheda Nagar, Ghatkopar, Mumbai",
+     "population": 15414288,
+     "population_density": 25562.7,
+     "affected_population": 92
+    },
+    "severity": 0.65,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "LOW"
+   },
+   "original_incident_id": "E2E100-INC-092",
+   "district": "Mumbai Suburban"
+  },
+  {
+   "scenario_id": "E2E-093",
+   "event_name": "2024 Thane explosion",
+   "disaster_type": "EXPLOSION",
+   "date": "2024-05-23",
+   "country": "India",
+   "state": "Maharashtra",
+   "locality": "Dombivli MIDC, Thane",
+   "latitude": 19.21843,
+   "longitude": 73.08672,
+   "coordinate_source": {
+    "kind": "affected locality",
+    "wikipedia_title": "Dombivli",
+    "url": "https://en.wikipedia.org/wiki/Dombivli",
+    "revision_id": 1375609789,
+    "via": "Wikipedia article coordinates"
+   },
+   "source": {
+    "publisher": "Wikipedia",
+    "title": "2024 Thane explosion",
+    "url": "https://en.wikipedia.org/wiki/2024_Thane_explosion",
+    "pageid": 77252146,
+    "revision_id": 1360469442,
+    "wikidata": "Q127424969"
+   },
+   "reported_deaths": 10,
+   "reported_deaths_evidence": [
+    {
+     "value": 10,
+     "token": "Ten",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 128
+    }
+   ],
+   "affected_population": 74,
+   "affected_population_basis": "casualties",
+   "affected_population_evidence": [
+    {
+     "value": 10,
+     "token": "Ten",
+     "class": "deaths",
+     "keyword": "killed",
+     "text_offset": 128
+    },
+    {
+     "value": 64,
+     "token": "64",
+     "class": "injured",
+     "keyword": "injured",
+     "text_offset": 165
+    }
+   ],
+   "locality_population": {
+    "wikipedia_title": "Thane district",
+    "wikidata": "Q943099",
+    "population": 11060148,
+    "area_km2": 4214.0,
+    "population_density": 2624.6
+   },
+   "severity": 0.65,
+   "urgency": 0.9,
+   "priority": "LOW",
+   "estimated_duration_hours": 24.0,
+   "patient_present": true,
+   "incident_id": "MHF-INC-093",
+   "aashray_request": {
+    "incident_id": "MHF-INC-093",
+    "incident_type": "EXPLOSION",
+    "location": {
+     "latitude": 19.21843,
+     "longitude": 73.08672
+    },
+    "locality": {
+     "name": "Dombivli MIDC, Thane",
+     "population": 11060148,
+     "population_density": 2624.6,
+     "affected_population": 74
+    },
+    "severity": 0.65,
+    "estimated_duration_hours": 24.0,
+    "patient_present": true,
+    "urgency": 0.9,
+    "priority": "LOW"
+   },
+   "original_incident_id": "E2E100-INC-093",
+   "district": "Thane"
+  }
+ ]
+}

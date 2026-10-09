@@ -1,0 +1,34 @@
+# Node & Dependencies
+node_modules/
+dist/
+build/
+.next/
+.out/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Python & Virtual Envs
+.venv/
+venv/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs & OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Heavy models / artifacts if not using LFS
+*.bin
+*.pt
+*.safetensors
+disaster_distilbert_model/
+

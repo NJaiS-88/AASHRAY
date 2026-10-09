@@ -1,0 +1,145 @@
+{
+ "experiment": "AASHRAY Maharashtra local final E2E validation",
+ "dataset_source": "experiments/e2e_100_previous_invalid_distance_scope/scenarios.json (filtered; no new scenarios)",
+ "total_candidate_scenarios": 100,
+ "maharashtra_candidates": 23,
+ "qualifying_scenarios": 11,
+ "executed": 11,
+ "successful": 11,
+ "fully_fulfilled": 10,
+ "partially_fulfilled": 1,
+ "no_safe_route": 0,
+ "no_responder": 0,
+ "route_engine_failures": 0,
+ "pipeline_failures": 0,
+ "validation_failures": 0,
+ "distance_violations": 0,
+ "classification_counts": {
+  "SUCCESS_PARTIALLY_FULFILLED": 1,
+  "SUCCESS_FULLY_FULFILLED": 10
+ },
+ "success_rate_pct": 100.0,
+ "partial_fulfilment_rate_pct": 9.09,
+ "technical_failure_rate_pct": 0.0,
+ "route_distance_km": {
+  "min": 5.31,
+  "median": 28.02,
+  "mean": 33.82,
+  "max": 99.58,
+  "p25": 12.96,
+  "p75": 39.28
+ },
+ "route_time_minutes": {
+  "min": 30.01,
+  "median": 73.3,
+  "mean": 91.82,
+  "max": 254.62,
+  "total": 1010.02
+ },
+ "distance_buckets": {
+  "0-10": 3,
+  "10-25": 2,
+  "25-50": 4,
+  "50-100": 2,
+  "100-150": 0,
+  ">150": 0
+ },
+ "total_route_legs": 28,
+ "average_route_legs": 2.55,
+ "route_engine_calls": {
+  "total": 28,
+  "successful_legs": 28,
+  "failed_legs": 0,
+  "google_quota_errors": 0,
+  "openweb_ninja_failures": 28
+ },
+ "missions": {
+  "created": 11,
+  "assigned": 11,
+  "completed": 8,
+  "cancelled": 3,
+  "assigned_remaining": 0,
+  "lifecycle_violations": []
+ },
+ "responders": {
+  "assignments_per_responder": {
+   "R001": 1,
+   "R002": 10
+  },
+  "responders_used": 2,
+  "reuse_missions": 9,
+  "initial_state": {
+   "R001": "AVAILABLE",
+   "R002": "AVAILABLE",
+   "R003": "AVAILABLE",
+   "R004": "AVAILABLE",
+   "R005": "BUSY"
+  },
+  "final_state": {
+   "R001": "AVAILABLE",
+   "R002": "AVAILABLE",
+   "R003": "AVAILABLE",
+   "R004": "AVAILABLE",
+   "R005": "BUSY"
+  },
+  "initial_available": 4,
+  "initial_busy": 1,
+  "final_available": 4,
+  "final_busy": 1,
+  "state_identical_initial_vs_final": true
+ },
+ "resource_totals": {
+  "water": {
+   "required": 164010.0,
+   "allocated": 6760.0,
+   "shortage": 157250.0,
+   "fulfilment_pct": 4.12
+  },
+  "food": {
+   "required": 82005.0,
+   "allocated": 3905.0,
+   "shortage": 78100.0,
+   "fulfilment_pct": 4.76
+  },
+  "medical_kits": {
+   "required": 4100.25,
+   "allocated": 550.25,
+   "shortage": 3550.0,
+   "fulfilment_pct": 13.42
+  }
+ },
+ "invariants": {
+  "builder_checks_per_scenario": 11,
+  "scenarios_with_invariant_failures": 0,
+  "failures": []
+ },
+ "lifecycle_checks": {
+  "checks": 4,
+  "passed": 4,
+  "responders_json_unchanged": true,
+  "missions_json_unchanged": true
+ },
+ "database": {
+  "mission_route_state_rows_before_run": 129,
+  "mission_route_state_rows_after_run": 157,
+  "new_rows": 28,
+  "legs_expected": 28,
+  "road_condition_evidence_rows_before": 3,
+  "road_condition_evidence_rows_after": 3
+ },
+ "integrity": {
+  "all_checks_pass": true,
+  "warehouses_json_unchanged": true,
+  "responders_json_byte_identical": true,
+  "experiments_12000_unchanged": true,
+  "previous_e2e_run_unchanged": true,
+  "route_engine_unchanged": true,
+  "aashray_unexpected_changes": [],
+  "new_mission_records": 11,
+  "new_mission_statuses": {
+   "CANCELLED": 3,
+   "COMPLETED": 8
+  }
+ },
+ "overall_result": "PASS WITH LIMITATIONS"
+}

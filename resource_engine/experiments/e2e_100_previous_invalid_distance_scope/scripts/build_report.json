@@ -1,0 +1,55 @@
+{
+  "candidates": 112,
+  "valid": 100,
+  "excluded": [
+    {
+      "title": "2017 Mumbai flood",
+      "reason": "excluded during curation: thin article; only a deaths figure"
+    },
+    {
+      "title": "2011 AMRI Hospital fire",
+      "reason": "excluded during curation: only figure in the article is a mid-day partial death toll"
+    },
+    {
+      "title": "2018 Varanasi flyover collapse",
+      "reason": "excluded during curation: source article is a stub; only a deaths figure"
+    },
+    {
+      "title": "Cyclone Thane",
+      "reason": "excluded during curation: article reports deaths only for a regional cyclone"
+    },
+    {
+      "title": "2020 Hyderabad floods",
+      "reason": "excluded during curation: affected counts are reported only in families, not people"
+    },
+    {
+      "title": "2022 Amarnath floods",
+      "reason": "excluded during curation: source article is a 135-character stub"
+    },
+    {
+      "title": "Virar hospital fire",
+      "reason": "excluded during curation: stub article whose text also describes a separate Nashik incident"
+    },
+    {
+      "title": "2000 Mumbai landslide",
+      "reason": "excluded during curation: article gives no casualty or affected figure"
+    },
+    {
+      "title": "2013 drought in Maharashtra",
+      "reason": "excluded during curation: article gives no affected-population figure"
+    },
+    {
+      "title": "Cyclone Phyan",
+      "reason": "excluded during curation: article gives no numeric impact figures"
+    },
+    {
+      "title": "1997 Jabalpur earthquake",
+      "reason": "excluded during curation: article gives no numeric impact figures"
+    },
+    {
+      "title": "2006 Surat flood",
+      "reason": "excluded during curation: article gives only percentages, no people counts"
+    }
+  ],
+  "failed_validation": []
+}

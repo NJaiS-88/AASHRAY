@@ -1,0 +1,612 @@
+{
+  "source": "experiments/resource_allocation_final (validated final results)",
+  "dataset": {
+    "n": 12000,
+    "scarcity_counts": {
+      "LOW": 1200,
+      "MODERATE": 4800,
+      "HIGH": 6000
+    },
+    "seed": 20261209,
+    "namespace": "aashray-resource-allocation-final",
+    "sha256": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab",
+    "generation_config_sha256": "48fd117da1b4e6138156029139ea7c9f1cee9df3317c00fa5914371a3ff4e99a",
+    "frozen_at_utc": "2026-10-07T20:28:30+00:00",
+    "bytes": 94065860,
+    "emergencies_total": 157889,
+    "emergencies_per_scenario": {
+      "min": 3,
+      "mean": 13.157416666666666,
+      "max": 30
+    },
+    "gt_critical_emergencies": 28393,
+    "scenarios_needing_su_redraw": 3437,
+    "scenario_sizes": {
+      "SMALL": [
+        3,
+        6
+      ],
+      "MEDIUM": [
+        8,
+        14
+      ],
+      "LARGE": [
+        18,
+        30
+      ]
+    },
+    "warehouses_per_scenario": [
+      2,
+      5
+    ],
+    "scarcity_design": {
+      "LOW": {
+        "ratio": [
+          1.15,
+          1.6
+        ],
+        "rounding": "ceil"
+      },
+      "MODERATE": {
+        "ratio": [
+          0.9,
+          1.1
+        ],
+        "rounding": "round"
+      },
+      "HIGH": {
+        "ratio": [
+          0.3,
+          0.7
+        ],
+        "rounding": "floor"
+      }
+    },
+    "su_bands": {
+      "LOW": [
+        0.01,
+        0.35
+      ],
+      "MODERATE": [
+        0.35,
+        0.65
+      ],
+      "HIGH": [
+        0.65,
+        1.0
+      ],
+      "FULL": [
+        0.01,
+        1.0
+      ]
+    },
+    "su_profiles": [
+      "LL_DOMINANT",
+      "LH_DOMINANT",
+      "HL_DOMINANT",
+      "HH_DOMINANT",
+      "MODERATE_MIXED"
+    ],
+    "arrival_window_s": 3600,
+    "undefined_cdc": 0
+  },
+  "frozen_parameters": {
+    "config_id": "C045",
+    "alpha": 0.0,
+    "k": 0.5,
+    "m": 0.0,
+    "n": 0.5
+  },
+  "cdc": {
+    "FCFS": {
+      "mean": 0.7362852905492039,
+      "median": 0.9946285027117769,
+      "std": 0.3604034678468841,
+      "p10": 0.012421717601771133,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "AASHRAY": {
+      "mean": 0.9477183937163263,
+      "median": 1.0,
+      "std": 0.15237017006537384,
+      "p10": 0.8107943142831435,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "MILP": {
+      "mean": 0.9816549390655118,
+      "median": 1.0,
+      "std": 0.07344610132562115,
+      "p10": 0.9932875229500452,
+      "min": 0.30077519379844964,
+      "max": 1.0
+    }
+  },
+  "tdc": {
+    "FCFS": 0.739440301759351,
+    "AASHRAY": 0.739440301759351,
+    "identical_in_every_scenario": true,
+    "by_scarcity": {
+      "LOW": 1.0,
+      "MODERATE": 0.9746791006653402,
+      "HIGH": 0.4991373229864295
+    }
+  },
+  "paired": {
+    "n": 12000,
+    "mean": 0.2114331031671225,
+    "median": 0.0,
+    "pp": 21.14331031671224,
+    "relative_improvement": 0.28716192742274116,
+    "fcfs_cdc_zero": 1080
+  },
+  "permutation": {
+    "statistic": 0.2114331031671225,
+    "n": 12000,
+    "permutations": 100000,
+    "seed": 20261210,
+    "permuted_means_at_least_observed": 0,
+    "p_value": 9.99990000099999e-06,
+    "p_value_formula": "(1 + count) / (permutations + 1)",
+    "smallest_attainable_p_value": 9.99990000099999e-06,
+    "alpha": 0.05,
+    "reject_H0": true
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261211,
+    "level": 0.95,
+    "confidence_interval": [
+      0.205321619120623,
+      0.2177026697041447
+    ],
+    "bootstrap_standard_error": 0.0031717040786134543
+  },
+  "bootstrap_regenerated_matches_stored_ci": true,
+  "wilcoxon": {
+    "statistic": 17244745.5,
+    "p_value_file": 0.0,
+    "n_nonzero": 6004,
+    "n_zero": 5996,
+    "z": 61.30656388480906,
+    "log10_p_normal_approx": -818.3334829839645,
+    "method": "normal approximation (n is large); tied absolute differences get average ranks"
+  },
+  "effect": {
+    "cohens_dz": 0.6029150344884523,
+    "sd_difference": 0.35068474175057596,
+    "aashray_wins": 5656,
+    "ties": 5996,
+    "fcfs_wins": 348,
+    "win_rate": 0.4713333333333333,
+    "tie_rate": 0.49966666666666665,
+    "fcfs_win_rate": 0.029,
+    "probability_of_superiority": 0.7211666666666666,
+    "probability_of_superiority_definition": "(AASHRAY wins + 0.5 * ties) / n, paired by scenario"
+  },
+  "win_tie_loss": {
+    "ALL": {
+      "scope": "ALL",
+      "n": 12000.0,
+      "aashray_wins": 5656.0,
+      "ties": 5996.0,
+      "fcfs_wins": 348.0,
+      "aashray_win_pct": 47.13333333333333,
+      "tie_pct": 49.96666666666667,
+      "fcfs_win_pct": 2.9
+    },
+    "LOW": {
+      "scope": "LOW",
+      "n": 1200.0,
+      "aashray_wins": 0.0,
+      "ties": 1200.0,
+      "fcfs_wins": 0.0,
+      "aashray_win_pct": 0.0,
+      "tie_pct": 100.0,
+      "fcfs_win_pct": 0.0
+    },
+    "MODERATE": {
+      "scope": "MODERATE",
+      "n": 4800.0,
+      "aashray_wins": 1180.0,
+      "ties": 3579.0,
+      "fcfs_wins": 41.0,
+      "aashray_win_pct": 24.583333333333332,
+      "tie_pct": 74.5625,
+      "fcfs_win_pct": 0.8541666666666666
+    },
+    "HIGH": {
+      "scope": "HIGH",
+      "n": 6000.0,
+      "aashray_wins": 4476.0,
+      "ties": 1217.0,
+      "fcfs_wins": 307.0,
+      "aashray_win_pct": 74.6,
+      "tie_pct": 20.283333333333335,
+      "fcfs_win_pct": 5.116666666666666
+    }
+  },
+  "scarcity": {
+    "LOW": {
+      "n": 1200,
+      "cdc": {
+        "FCFS": 1.0,
+        "AASHRAY": 1.0,
+        "MILP": 1.0
+      },
+      "cdc_median": {
+        "FCFS": 1.0,
+        "AASHRAY": 1.0,
+        "MILP": 1.0
+      },
+      "diff_mean": 0.0,
+      "diff_median": 0.0,
+      "diff_ci_descriptive": [
+        0.0,
+        0.0
+      ],
+      "mean_relative_gap": 0.0,
+      "mean_absolute_gap": 0.0,
+      "p95_relative_gap": 0.0,
+      "max_relative_gap": 0.0,
+      "exact_pct": 100.0,
+      "within_10_pct": 100.0,
+      "gap_bins": {
+        "exact": 1200,
+        "le_1pct": 0,
+        "1_to_5pct": 0,
+        "5_to_10pct": 0,
+        "gt_10pct": 0
+      },
+      "wins": 0,
+      "ties": 1200,
+      "fcfs_wins": 0,
+      "win_pct": 0.0,
+      "tie_pct": 100.0,
+      "fcfs_win_pct": 0.0,
+      "runtime_ms": {
+        "FCFS": {
+          "mean": 0.33047308381355833,
+          "median": 0.2748499973677099,
+          "p95": 0.7429550110828131
+        },
+        "AASHRAY": {
+          "mean": 0.23772808390882952,
+          "median": 0.20824999955948442,
+          "p95": 0.4493249871302396
+        },
+        "MILP": {
+          "mean": 1.7442704163840972,
+          "median": 1.2892000086139888,
+          "p95": 5.626210008631454
+        }
+      },
+      "tdc": 1.0
+    },
+    "MODERATE": {
+      "n": 4800,
+      "cdc": {
+        "FCFS": 0.9709408727546084,
+        "AASHRAY": 0.9983367877236439,
+        "MILP": 0.999525937707434
+      },
+      "cdc_median": {
+        "FCFS": 1.0,
+        "AASHRAY": 1.0,
+        "MILP": 1.0
+      },
+      "diff_mean": 0.027395914969035373,
+      "diff_median": 0.0,
+      "diff_ci_descriptive": [
+        0.024801423526788005,
+        0.030061077792036067
+      ],
+      "mean_relative_gap": 0.0011896599645990736,
+      "mean_absolute_gap": 0.0011891499837902344,
+      "p95_relative_gap": 0.0,
+      "max_relative_gap": 0.6,
+      "exact_pct": 98.27083333333333,
+      "within_10_pct": 99.66666666666667,
+      "gap_bins": {
+        "exact": 4717,
+        "le_1pct": 27,
+        "1_to_5pct": 24,
+        "5_to_10pct": 16,
+        "gt_10pct": 16
+      },
+      "wins": 1180,
+      "ties": 3579,
+      "fcfs_wins": 41,
+      "win_pct": 24.583333333333332,
+      "tie_pct": 74.5625,
+      "fcfs_win_pct": 0.8541666666666666,
+      "runtime_ms": {
+        "FCFS": {
+          "mean": 0.5357904374977807,
+          "median": 0.27609999233391136,
+          "p95": 0.7831049966625869
+        },
+        "AASHRAY": {
+          "mean": 0.2461780833073135,
+          "median": 0.21194999862927943,
+          "p95": 0.48152999952435505
+        },
+        "MILP": {
+          "mean": 2.0566068538816276,
+          "median": 1.328099999227561,
+          "p95": 6.305769993923605
+        }
+      },
+      "tdc": 0.9746791006653402
+    },
+    "HIGH": {
+      "n": 6000,
+      "cdc": {
+        "FCFS": 0.49581788289472106,
+        "AASHRAY": 0.8967673572537377,
+        "MILP": 0.9636891279650763
+      },
+      "cdc_median": {
+        "FCFS": 0.49218169615588286,
+        "AASHRAY": 1.0,
+        "MILP": 1.0
+      },
+      "diff_mean": 0.4009494743590167,
+      "diff_median": 0.356175918427446,
+      "diff_ci_descriptive": [
+        0.39059327098556906,
+        0.41120733709756635
+      ],
+      "mean_relative_gap": 0.06909763723729513,
+      "mean_absolute_gap": 0.06692177071133855,
+      "p95_relative_gap": 0.46337091050968926,
+      "max_relative_gap": 1.0,
+      "exact_pct": 74.7,
+      "within_10_pct": 83.26666666666667,
+      "gap_bins": {
+        "exact": 4482,
+        "le_1pct": 183,
+        "1_to_5pct": 173,
+        "5_to_10pct": 158,
+        "gt_10pct": 1004
+      },
+      "wins": 4476,
+      "ties": 1217,
+      "fcfs_wins": 307,
+      "win_pct": 74.6,
+      "tie_pct": 20.283333333333335,
+      "fcfs_win_pct": 5.116666666666666,
+      "runtime_ms": {
+        "FCFS": {
+          "mean": 0.36337205008021556,
+          "median": 0.28110000130254775,
+          "p95": 0.766404987371061
+        },
+        "AASHRAY": {
+          "mean": 0.25046399985149037,
+          "median": 0.21499999274965376,
+          "p95": 0.4993000184185803
+        },
+        "MILP": {
+          "mean": 2.9507814501800262,
+          "median": 1.5059500001370907,
+          "p95": 7.4665049847681075
+        }
+      },
+      "tdc": 0.4991373229864295
+    }
+  },
+  "optimality": {
+    "mean_gap": 0.0350246826044872,
+    "median_gap": 0.0,
+    "std_gap": 0.13590967496475237,
+    "p90_gap": 0.04873541417953565,
+    "p95_gap": 0.24414584421823216,
+    "p99_gap": 0.842646711202469,
+    "max_gap": 1.0,
+    "exact_optimum_pct": 86.65833333333333,
+    "within_1pct_pct": 88.40833333333333,
+    "within_5pct_pct": 90.05,
+    "within_10pct_pct": 91.5,
+    "scenarios_with_milp_cdc_zero_gap_defined_as_zero": 0,
+    "exact_count": 10399,
+    "within_1_count": 10609,
+    "within_5_count": 10806,
+    "within_10_count": 10980,
+    "mean_absolute_gap": 0.033936545349185374
+  },
+  "runtime": {
+    "AASHRAY_raw": {
+      "mean": 0.24747604163955353,
+      "median": 0.21329999435693026,
+      "p95": 0.48760001664049923,
+      "total_s": 2.9697124996746425
+    },
+    "AASHRAY_conservative": {
+      "mean": 0.4396918668887035,
+      "median": 0.28870000096503645,
+      "p95": 0.7857150136260314,
+      "total_s": 5.276302402664442
+    },
+    "MILP": {
+      "mean": 2.472460508281074,
+      "median": 1.3847500085830688,
+      "p95": 7.087029976537448,
+      "total_s": 29.669526099372888
+    },
+    "FCFS_raw": {
+      "mean": 0.4290495084205759,
+      "median": 0.2785500109894201,
+      "p95": 0.7715999978245236,
+      "total_s": 5.1485941010469105
+    },
+    "milp_build_mean": 0.2428434249086422,
+    "milp_solver_mean": 2.229617083372432,
+    "aashray_decision_mean": 0.019993866587659188,
+    "aashray_allocation_mean": 0.22748217505189436,
+    "fcfs_allocation_mean": 0.41969800030104426,
+    "speedup_raw_total": 9.990706542341536,
+    "speedup_raw_median": 6.492030216680957,
+    "speedup_conservative_total": 5.623166345505574,
+    "speedup_conservative_median": 4.796501572408278,
+    "scenarios_milp_slower_raw": 12000,
+    "scenarios_milp_slower_conservative": 11995,
+    "first_position_allocation_slower": 11645,
+    "fcfs_runs_over_140ms": 5,
+    "fcfs_max_ms": 292.4356000148691,
+    "conservative_definition": "AASHRAY decision time + the first-position (FCFS) allocation time of the same scenario"
+  },
+  "worst_case": {
+    "count": 59,
+    "mechanism": {
+      "top_ranked_emergency_noncritical": 59,
+      "all_critical_via_single_extreme_rule_only": 59,
+      "gt_critical_emergencies_in_these": 64
+    },
+    "by_scarcity": {
+      "LOW": 0,
+      "MODERATE": 0,
+      "HIGH": 59
+    },
+    "fcfs_cdc_mean_in_these": 0.3577988291896296,
+    "milp_cdc_mean_in_these": 0.9769517041137757,
+    "example": {
+      "scenario_id": "FIN-00065",
+      "scarcity": "HIGH",
+      "num_emergencies": 3,
+      "supply": {
+        "water": 634,
+        "food": 204,
+        "medical_kits": 1
+      },
+      "cdc_fcfs": 0.0,
+      "cdc_milp": 1.0,
+      "aashray_order": [
+        {
+          "rank": 1,
+          "emergency_id": "FIN-00065-E02",
+          "severity": 0.4993,
+          "urgency": 0.5746,
+          "score": 0.53695,
+          "gt_critical": 0,
+          "required": 1605,
+          "allocated": 838.0
+        },
+        {
+          "rank": 2,
+          "emergency_id": "FIN-00065-E01",
+          "severity": 0.0655,
+          "urgency": 0.9774,
+          "score": 0.52145,
+          "gt_critical": 1,
+          "required": 168,
+          "allocated": 0.0
+        },
+        {
+          "rank": 3,
+          "emergency_id": "FIN-00065-E03",
+          "severity": 0.0239,
+          "urgency": 0.762,
+          "score": 0.39295,
+          "gt_critical": 0,
+          "required": 311,
+          "allocated": 1.0
+        }
+      ]
+    }
+  },
+  "milp": {
+    "proven_optimal": 12000,
+    "analytical_match": 12000,
+    "failures": 0,
+    "solver": "HiGHS 1.12.0 via scipy.optimize.milp (SciPy 1.18.0)",
+    "options": {
+      "mip_rel_gap": 0.0,
+      "time_limit": 60.0,
+      "presolve": true,
+      "disp": false
+    }
+  },
+  "integrity": {
+    "gate": "35/35",
+    "validation": "37/37",
+    "validation_failures": 0,
+    "generator_byte_identical": true,
+    "dev_overlap": 0,
+    "pilot_overlap": 0,
+    "scripts_unchanged_since_preflight": true,
+    "protected_unchanged": {
+      "28": "PASS",
+      "29": "PASS",
+      "30": "PASS",
+      "E1": "PASS",
+      "E3": "PASS",
+      "26": "PASS",
+      "27": "PASS"
+    },
+    "run_id": "12e24320131d4603b1b2cd875ee4ad93",
+    "run_started": "2026-10-07T20:28:39+00:00",
+    "warm_up": [
+      "FIN-00001",
+      "FIN-00002",
+      "FIN-00003"
+    ],
+    "scenarios_run": 12000,
+    "application_tests": "93 passed in 0.70s"
+  },
+  "environment": {
+    "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+    "ram_gib": 15.21,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "scipy_version": "1.18.0",
+    "highs_version": "1.12.0",
+    "numpy_version": "2.5.1"
+  },
+  "git_commit": "8b9022361dc84715b54555ac622ec5076162ea14",
+  "statistics_config": {
+    "primary_permutation_test": {
+      "type": "one-sided paired sign-flip randomization test",
+      "statistic": "mean(Delta)",
+      "permutations": 100000,
+      "seed": 20261210,
+      "rng": "numpy.random.default_rng (PCG64)",
+      "p_value": "(1 + number of permuted means >= observed mean) / (permutations + 1)"
+    },
+    "bootstrap_ci": {
+      "type": "paired percentile bootstrap of mean(Delta)",
+      "resamples": 10000,
+      "seed": 20261211,
+      "level": 0.95,
+      "percentiles": [
+        2.5,
+        97.5
+      ]
+    },
+    "secondary_wilcoxon": {
+      "type": "one-sided paired Wilcoxon signed-rank (scipy.stats.wilcoxon)",
+      "alternative": "greater (AASHRAY > FCFS)",
+      "zero_method": "wilcox (zero differences dropped from the test, counted separately)"
+    },
+    "effect_size": {
+      "cohens_dz": "mean(Delta) / sample SD(Delta) (ddof = 1); NaN if SD = 0",
+      "also": [
+        "win rate",
+        "tie rate",
+        "FCFS win rate",
+        "probability of superiority = (wins + 0.5 * ties) / n"
+      ]
+    },
+    "tie_tolerance": 1e-09,
+    "tie_rule": "|CDC_AASHRAY - CDC_FCFS| <= 1e-9 is a tie; the same tolerance is used for wins, losses and the exact-optimum test",
+    "percentile_method": "linear interpolation (numpy default)"
+  },
+  "discrepancies_with_request": [
+    "Scarcity column requested as 'AASHRAY-MILP' with values 0.0012 / 0.0691: these are the mean relative optimality gaps (MILP-AASHRAY)/MILP. The difference of means AASHRAY-MILP is -0.0012 (MODERATE) and -0.0669 (HIGH). The report labels the column as the mean optimality gap.",
+    "Within-5% rate requested as 90.1%: the exact value is 90.05% (10,806/12,000); reported with two decimals.",
+    "Runtime figure requested 'conservative' values but quoted AASHRAY mean 0.248 ms, which is the raw (order-affected) measurement; the conservative mean is 0.440 ms. Both are shown and labelled.",
+    "Mean runtimes requested as 0.248 ms (AASHRAY) and 2.473 ms (MILP): the exact values are 0.247476 ms and 2.472461 ms, i.e. 0.247 ms and 2.472 ms to three decimals. 0.248 / 2.473 came from rounding twice (to 4, then 3 decimals) in an earlier summary; the same rounding appears in experiments/resource_allocation_final/README.md, which was not modified.",
+    "Reference PDF requested as 'AASHRAY_Hypothesis_Report(1).pdf'; the file found is Downloads/AASHRAY_Hypothesis_Report.pdf."
+  ]
+}

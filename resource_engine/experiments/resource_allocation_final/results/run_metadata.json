@@ -1,0 +1,59 @@
+{
+  "run_id": "12e24320131d4603b1b2cd875ee4ad93",
+  "started_at_utc": "2026-10-07T20:28:39+00:00",
+  "finished_at_utc": "2026-10-07T20:30:18+00:00",
+  "wall_clock_seconds_including_io": 94.50185559998499,
+  "process_id": 31704,
+  "dataset_sha256_verified": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab",
+  "freeze_record_frozen_at_utc": "2026-10-07T20:28:30+00:00",
+  "scenarios_run": 12000,
+  "scenarios_in_dataset": 12000,
+  "frozen_parameters_used": {
+    "config_id": "C045",
+    "alpha": 0.0,
+    "k": 0.5,
+    "m": 0.0,
+    "n": 0.5
+  },
+  "milp_options_used": {
+    "mip_rel_gap": 0.0,
+    "time_limit": 60.0,
+    "presolve": true,
+    "disp": false
+  },
+  "allocator_placeholders": {
+    "severity": 0.5,
+    "urgency": 0.5,
+    "priority": "MODERATE"
+  },
+  "warm_up_scenarios": [
+    "FIN-00001",
+    "FIN-00002",
+    "FIN-00003"
+  ],
+  "timing_methodology": {
+    "timer": "time.perf_counter",
+    "fcfs": "decision (fcfs_order) + allocation (building the allocator requests + allocate_batch)",
+    "aashray": "decision (scores + order) + allocation (building the allocator requests + allocate_batch)",
+    "milp": "model build + solver (the validated run_scenario timing)",
+    "excluded": "dataset loading/generation, Python start-up, warm-up, writing and loading each scenario's inventory file (the existing allocator only loads warehouses from a file), order verification, result extraction, file writing",
+    "warm_up": "the first 3 scenarios are run once for every method before timing starts; those warm-up runs are not recorded",
+    "execution": "single process; scenarios in dataset order; within each scenario FCFS, then AASHRAY, then MILP"
+  },
+  "environment": {
+    "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+    "physical_cores": 16,
+    "logical_cpus": 32,
+    "ram_bytes": 16334508032,
+    "ram_gib": 15.21,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "python_implementation": "CPython",
+    "numpy_version": "2.5.1",
+    "scipy_version": "1.18.0",
+    "highs_version": "1.12.0",
+    "pydantic_version": "2.13.5",
+    "solver": "HiGHS via scipy.optimize.milp",
+    "timer": "time.perf_counter"
+  }
+}

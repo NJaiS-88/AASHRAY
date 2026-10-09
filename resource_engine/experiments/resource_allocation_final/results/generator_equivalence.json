@@ -1,0 +1,8 @@
+{
+  "requirement": "copied generator + development config reproduces the development dataset byte for byte",
+  "development_dataset": "experiments/resource_allocation_development/data/development_3000_scenarios.json",
+  "development_dataset_sha256": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+  "reproduced_sha256": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+  "byte_identical": true,
+  "bytes": 23458752
+}

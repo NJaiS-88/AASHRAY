@@ -1,0 +1,116 @@
+{
+ "method": "Google Routes computeRoutes, DRIVE, first route, one request per pair",
+ "measurements": [
+  {
+   "scenario_id": "E2E-022",
+   "leg": "WH001 -> incident",
+   "origin": [
+    19.076,
+    72.8777
+   ],
+   "destination": [
+    18.04672,
+    73.87548
+   ],
+   "http_status": 200,
+   "measured_at_utc": "2026-10-08T19:56:28+00:00",
+   "road_km": 213.13,
+   "duration_s": 15174
+  },
+  {
+   "scenario_id": "E2E-041",
+   "leg": "WH001 -> incident",
+   "origin": [
+    19.076,
+    72.8777
+   ],
+   "destination": [
+    19.16111,
+    73.68833
+   ],
+   "http_status": 200,
+   "measured_at_utc": "2026-10-08T19:56:28+00:00",
+   "road_km": 224.38,
+   "duration_s": 17136
+  },
+  {
+   "scenario_id": "E2E-064",
+   "leg": "WH005 -> incident",
+   "origin": [
+    19.05,
+    72.82
+   ],
+   "destination": [
+    18.52489,
+    73.72288
+   ],
+   "http_status": 429,
+   "measured_at_utc": "2026-10-08T19:56:28+00:00",
+   "error": "RESOURCE_EXHAUSTED"
+  },
+  {
+   "scenario_id": "E2E-064",
+   "leg": "WH005 -> incident",
+   "origin": [
+    19.05,
+    72.82
+   ],
+   "destination": [
+    18.52489,
+    73.72288
+   ],
+   "http_status": 429,
+   "measured_at_utc": "2026-10-08T19:57:55+00:00",
+   "error": "RESOURCE_EXHAUSTED",
+   "error_message": "Quota exceeded for quota metric 'Directions - ComputeRoutes per request quota' and limit 'Directions - ComputeRoutes per request quota per day' of service 'routes.googleapis.com' for consumer 'project_number:531208441346'."
+  },
+  {
+   "scenario_id": "E2E-067",
+   "leg": "WH005 -> incident",
+   "origin": [
+    19.05,
+    72.82
+   ],
+   "destination": [
+    18.64,
+    72.88
+   ],
+   "http_status": 429,
+   "measured_at_utc": "2026-10-08T20:17:28+00:00",
+   "error": "RESOURCE_EXHAUSTED",
+   "error_message": "Quota exceeded for quota metric 'Directions - ComputeRoutes per request quota' and limit 'Directions - ComputeRoutes per request quota per day' of service 'routes.googleapis.com' for consumer 'project_number:531208441346'."
+  },
+  {
+   "scenario_id": "E2E-067",
+   "leg": "WH005 -> incident",
+   "origin": [
+    19.05,
+    72.82
+   ],
+   "destination": [
+    18.64,
+    72.88
+   ],
+   "http_status": 200,
+   "measured_at_utc": "2026-10-09T07:04:47+00:00",
+   "road_km": 105.39,
+   "duration_s": 9788
+  },
+  {
+   "scenario_id": "E2E-070",
+   "leg": "WH001 -> incident",
+   "origin": [
+    19.076,
+    72.8777
+   ],
+   "destination": [
+    18.083,
+    73.417
+   ],
+   "http_status": 200,
+   "measured_at_utc": "2026-10-09T07:05:09+00:00",
+   "road_km": 163.2,
+   "duration_s": 12270
+  }
+ ]
+}

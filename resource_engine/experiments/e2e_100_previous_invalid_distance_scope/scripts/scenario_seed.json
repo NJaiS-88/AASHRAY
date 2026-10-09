@@ -1,0 +1,1022 @@
+[
+ {
+  "wiki": "Maharashtra floods of 2005",
+  "type": "FLOOD",
+  "date": "2005-07-26",
+  "state": "Maharashtra",
+  "locality": "Santacruz, Mumbai",
+  "coord_page": "Santacruz, Mumbai",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "Kamala Mills fire",
+  "type": "FIRE",
+  "date": "2017-12-29",
+  "state": "Maharashtra",
+  "locality": "Lower Parel, Mumbai",
+  "coord_page": "Lower Parel",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2017 Mumbai stampede",
+  "type": "STAMPEDE",
+  "date": "2017-09-29",
+  "state": "Maharashtra",
+  "locality": "Prabhadevi (Elphinstone Road), Mumbai",
+  "coord_page": "Prabhadevi railway station",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2019 Mumbai foot overbridge collapse",
+  "type": "STRUCTURAL_COLLAPSE",
+  "date": "2019-03-14",
+  "state": "Maharashtra",
+  "locality": "CSMT, Mumbai",
+  "coord_page": "Chhatrapati Shivaji Terminus",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2013 Thane building collapse",
+  "type": "BUILDING_COLLAPSE",
+  "date": "2013-04-04",
+  "state": "Maharashtra",
+  "locality": "Shil Phata, Mumbra, Thane",
+  "coord_page": "Mumbra",
+  "admin_page": "Thane district"
+ },
+ {
+  "wiki": "2023 Raigad landslide",
+  "type": "LANDSLIDE",
+  "date": "2023-07-19",
+  "state": "Maharashtra",
+  "locality": "Irshalwadi, Khalapur, Raigad",
+  "coord_page": "Khalapur",
+  "admin_page": "Raigad district"
+ },
+ {
+  "wiki": "Tariq Garden collapse",
+  "type": "BUILDING_COLLAPSE",
+  "date": "2020-08-24",
+  "state": "Maharashtra",
+  "locality": "Mahad, Raigad",
+  "coord_page": "Mahad",
+  "admin_page": "Raigad district"
+ },
+ {
+  "wiki": "Cyclone Nisarga",
+  "type": "CYCLONE",
+  "date": "2020-06-03",
+  "state": "Maharashtra",
+  "locality": "Alibag, Raigad",
+  "coord_page": "Alibag",
+  "admin_page": "Raigad district"
+ },
+ {
+  "wiki": "2014 Malin landslide",
+  "type": "LANDSLIDE",
+  "date": "2014-07-30",
+  "state": "Maharashtra",
+  "locality": "Malin, Ambegaon, Pune",
+  "coord_page": "Ambegaon taluka",
+  "admin_page": "Pune district"
+ },
+ {
+  "wiki": "2021 Maharashtra floods",
+  "type": "FLOOD",
+  "date": "2021-07-22",
+  "state": "Maharashtra",
+  "locality": "Chiplun, Ratnagiri",
+  "coord_page": "Chiplun",
+  "admin_page": "Ratnagiri district"
+ },
+ {
+  "wiki": "1993 Latur earthquake",
+  "type": "EARTHQUAKE",
+  "date": "1993-09-30",
+  "state": "Maharashtra",
+  "locality": "Killari, Latur",
+  "coord_page": "Killari",
+  "admin_page": "Latur district"
+ },
+ {
+  "wiki": "1967 Koynanagar earthquake",
+  "type": "EARTHQUAKE",
+  "date": "1967-12-11",
+  "state": "Maharashtra",
+  "locality": "Koynanagar, Satara",
+  "coord_page": "Koynanagar",
+  "admin_page": "Satara district"
+ },
+ {
+  "wiki": "2023 Buldhana bus accident",
+  "type": "ROAD_ACCIDENT",
+  "date": "2023-07-01",
+  "state": "Maharashtra",
+  "locality": "Sindkhed Raja, Buldhana",
+  "coord_page": "Sindkhed Raja",
+  "admin_page": "Buldhana district"
+ },
+ {
+  "wiki": "Tiware dam failure",
+  "type": "DAM_FAILURE",
+  "date": "2019-07-02",
+  "state": "Maharashtra",
+  "locality": "Tiware, Chiplun, Ratnagiri",
+  "coord_page": "Chiplun",
+  "admin_page": "Ratnagiri district"
+ },
+ {
+  "wiki": "Mandher Devi temple stampede",
+  "type": "STAMPEDE",
+  "date": "2005-01-25",
+  "state": "Maharashtra",
+  "locality": "Mandhardevi, Wai, Satara",
+  "coord_page": "Mandhradevi",
+  "admin_page": "Satara district"
+ },
+ {
+  "wiki": "2017 Mumbai flood",
+  "type": "FLOOD",
+  "date": "2017-08-29",
+  "state": "Maharashtra",
+  "locality": "Mumbai",
+  "coord_page": "Mumbai",
+  "admin_page": "Mumbai",
+  "excluded": "thin article; only a deaths figure"
+ },
+ {
+  "wiki": "2024 Thane explosion",
+  "type": "EXPLOSION",
+  "date": "2024-05-23",
+  "state": "Maharashtra",
+  "locality": "Dombivli MIDC, Thane",
+  "coord_page": "Dombivli",
+  "admin_page": "Thane district"
+ },
+ {
+  "wiki": "2022 Mumbai building collapse",
+  "type": "BUILDING_COLLAPSE",
+  "date": "2022-06-27",
+  "state": "Maharashtra",
+  "locality": "Kurla, Mumbai",
+  "coord_page": "Kurla",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "1944 Bombay explosion",
+  "type": "EXPLOSION",
+  "date": "1944-04-14",
+  "state": "Maharashtra",
+  "locality": "Victoria Dock, Mazagaon, Mumbai",
+  "coord_page": "Mazagaon",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2019 Pune flood",
+  "type": "FLOOD",
+  "date": "2019-09-25",
+  "state": "Maharashtra",
+  "locality": "Pune",
+  "coord_page": "Pune",
+  "admin_page": "Pune"
+ },
+ {
+  "wiki": "Mumbai billboard collapse",
+  "type": "STRUCTURAL_COLLAPSE",
+  "date": "2024-05-13",
+  "state": "Maharashtra",
+  "locality": "Chheda Nagar, Ghatkopar, Mumbai",
+  "coord_page": "Ghatkopar",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2021 Mumbai landslide",
+  "type": "LANDSLIDE",
+  "date": "2021-07-18",
+  "state": "Maharashtra",
+  "locality": "Chembur, Mumbai",
+  "coord_page": "Chembur",
+  "admin_page": "Mumbai"
+ },
+ {
+  "wiki": "2023 Nagpur flood",
+  "type": "FLOOD",
+  "date": "2023-09-23",
+  "state": "Maharashtra",
+  "locality": "Nagpur",
+  "coord_page": "Nagpur",
+  "admin_page": "Nagpur"
+ },
+ {
+  "wiki": "2020 Vidarbha floods",
+  "type": "FLOOD",
+  "date": "2020-08-29",
+  "state": "Maharashtra",
+  "locality": "Bhandara, Vidarbha",
+  "coord_page": "Bhandara, India",
+  "admin_page": "Bhandara district"
+ },
+ {
+  "wiki": "Cyclone Tauktae",
+  "type": "CYCLONE",
+  "date": "2021-05-17",
+  "state": "Gujarat",
+  "locality": "Una, Gir Somnath",
+  "coord_page": "Una, Gujarat",
+  "admin_page": "Gir Somnath district"
+ },
+ {
+  "wiki": "2001 Gujarat earthquake",
+  "type": "EARTHQUAKE",
+  "date": "2001-01-26",
+  "state": "Gujarat",
+  "locality": "Bhachau, Kutch",
+  "coord_page": "Bhachau",
+  "admin_page": "Kutch district"
+ },
+ {
+  "wiki": "2018 Kerala floods",
+  "type": "FLOOD",
+  "date": "2018-08-16",
+  "state": "Kerala",
+  "locality": "Chengannur, Alappuzha",
+  "coord_page": "Chengannur",
+  "admin_page": "Alappuzha district"
+ },
+ {
+  "wiki": "2015 South India floods",
+  "type": "FLOOD",
+  "date": "2015-12-01",
+  "state": "Tamil Nadu",
+  "locality": "Chennai",
+  "coord_page": "Chennai",
+  "admin_page": "Chennai"
+ },
+ {
+  "wiki": "2013 North India floods",
+  "type": "FLASH_FLOOD",
+  "date": "2013-06-16",
+  "state": "Uttarakhand",
+  "locality": "Kedarnath, Rudraprayag",
+  "coord_page": "Kedarnath",
+  "admin_page": "Rudraprayag district"
+ },
+ {
+  "wiki": "2014 India–Pakistan floods",
+  "type": "FLOOD",
+  "date": "2014-09-07",
+  "state": "Jammu and Kashmir",
+  "locality": "Srinagar",
+  "coord_page": "Srinagar",
+  "admin_page": "Srinagar"
+ },
+ {
+  "wiki": "Cyclone Fani",
+  "type": "CYCLONE",
+  "date": "2019-05-03",
+  "state": "Odisha",
+  "locality": "Puri",
+  "coord_page": "Puri (city)",
+  "admin_page": "Puri district"
+ },
+ {
+  "wiki": "Cyclone Amphan",
+  "type": "CYCLONE",
+  "date": "2020-05-20",
+  "state": "West Bengal",
+  "locality": "Bakkhali, South 24 Parganas",
+  "coord_page": "Bakkhali",
+  "admin_page": "South 24 Parganas district"
+ },
+ {
+  "wiki": "2004 Indian Ocean earthquake and tsunami",
+  "type": "TSUNAMI",
+  "date": "2004-12-26",
+  "state": "Tamil Nadu",
+  "locality": "Nagapattinam",
+  "coord_page": "Nagapattinam",
+  "admin_page": "Nagapattinam district"
+ },
+ {
+  "wiki": "2023 Odisha train collision",
+  "type": "RAIL_ACCIDENT",
+  "date": "2023-06-02",
+  "state": "Odisha",
+  "locality": "Bahanaga, Balasore",
+  "coord_page": "Bahanaga Bazar railway station",
+  "admin_page": "Balasore district"
+ },
+ {
+  "wiki": "Puttingal temple fire",
+  "type": "EXPLOSION",
+  "date": "2016-04-10",
+  "state": "Kerala",
+  "locality": "Paravur, Kollam",
+  "coord_page": "Paravur, Kollam",
+  "admin_page": "Kollam district"
+ },
+ {
+  "wiki": "Bhopal disaster",
+  "type": "CHEMICAL_LEAK",
+  "date": "1984-12-02",
+  "state": "Madhya Pradesh",
+  "locality": "Bhopal",
+  "coord_page": "Bhopal",
+  "admin_page": "Bhopal"
+ },
+ {
+  "wiki": "Visakhapatnam gas leak",
+  "type": "CHEMICAL_LEAK",
+  "date": "2020-05-07",
+  "state": "Andhra Pradesh",
+  "locality": "R. R. Venkatapuram, Visakhapatnam",
+  "coord_page": "Visakhapatnam",
+  "admin_page": "Visakhapatnam"
+ },
+ {
+  "wiki": "2022 Morbi bridge collapse",
+  "type": "STRUCTURAL_COLLAPSE",
+  "date": "2022-10-30",
+  "state": "Gujarat",
+  "locality": "Morbi",
+  "coord_page": "Morbi",
+  "admin_page": "Morbi district"
+ },
+ {
+  "wiki": "2021 Uttarakhand flood",
+  "type": "FLASH_FLOOD",
+  "date": "2021-02-07",
+  "state": "Uttarakhand",
+  "locality": "Tapovan, Chamoli",
+  "coord_page": "Joshimath",
+  "admin_page": "Chamoli district"
+ },
+ {
+  "wiki": "2023 Sikkim flash floods",
+  "type": "FLASH_FLOOD",
+  "date": "2023-10-04",
+  "state": "Sikkim",
+  "locality": "Chungthang, Mangan",
+  "coord_page": "Chungthang",
+  "admin_page": "Mangan district"
+ },
+ {
+  "wiki": "2024 Wayanad landslides",
+  "type": "LANDSLIDE",
+  "date": "2024-07-30",
+  "state": "Kerala",
+  "locality": "Mundakkai–Chooralmala, Meppadi, Wayanad",
+  "coord_page": "Meppadi",
+  "admin_page": "Wayanad district"
+ },
+ {
+  "wiki": "Cyclone Hudhud",
+  "type": "CYCLONE",
+  "date": "2014-10-12",
+  "state": "Andhra Pradesh",
+  "locality": "Visakhapatnam",
+  "coord_page": "Visakhapatnam",
+  "admin_page": "Visakhapatnam"
+ },
+ {
+  "wiki": "1999 Odisha cyclone",
+  "type": "CYCLONE",
+  "date": "1999-10-29",
+  "state": "Odisha",
+  "locality": "Paradip, Jagatsinghpur",
+  "coord_page": "Paradip",
+  "admin_page": "Jagatsinghpur district"
+ },
+ {
+  "wiki": "2008 Bihar flood",
+  "type": "FLOOD",
+  "date": "2008-08-18",
+  "state": "Bihar",
+  "locality": "Supaul",
+  "coord_page": "Supaul",
+  "admin_page": "Supaul district"
+ },
+ {
+  "wiki": "Uphaar Cinema fire",
+  "type": "FIRE",
+  "date": "1997-06-13",
+  "state": "Delhi",
+  "locality": "Green Park, New Delhi",
+  "coord_page": "Green Park, Delhi",
+  "admin_page": "Delhi"
+ },
+ {
+  "wiki": "2019 Surat fire",
+  "type": "FIRE",
+  "date": "2019-05-24",
+  "state": "Gujarat",
+  "locality": "Sarthana, Surat",
+  "coord_page": "Surat",
+  "admin_page": "Surat"
+ },
+ {
+  "wiki": "2011 AMRI Hospital fire",
+  "type": "FIRE",
+  "date": "2011-12-09",
+  "state": "West Bengal",
+  "locality": "Dhakuria, Kolkata",
+  "coord_page": "Dhakuria",
+  "admin_page": "Kolkata",
+  "excluded": "only figure in the article is a mid-day partial death toll"
+ },
+ {
+  "wiki": "2024 Hathras crowd crush",
+  "type": "STAMPEDE",
+  "date": "2024-07-02",
+  "state": "Uttar Pradesh",
+  "locality": "Phulrai, Hathras",
+  "coord_page": "Sikandra Rao",
+  "admin_page": "Hathras district"
+ },
+ {
+  "wiki": "2013 Prayag Kumbh Mela stampede",
+  "type": "STAMPEDE",
+  "date": "2013-02-10",
+  "state": "Uttar Pradesh",
+  "locality": "Allahabad Junction, Prayagraj",
+  "coord_page": "Prayagraj Junction railway station",
+  "admin_page": "Prayagraj"
+ },
+ {
+  "wiki": "2008 Naina Devi temple stampede",
+  "type": "STAMPEDE",
+  "date": "2008-08-03",
+  "state": "Himachal Pradesh",
+  "locality": "Naina Devi, Bilaspur",
+  "coord_page": "Naina Devi",
+  "admin_page": "Bilaspur district, Himachal Pradesh"
+ },
+ {
+  "wiki": "2011 Sabarimala crowd crush",
+  "type": "STAMPEDE",
+  "date": "2011-01-14",
+  "state": "Kerala",
+  "locality": "Pulmedu, Idukki",
+  "coord_page": "Vandiperiyar",
+  "admin_page": "Idukki district"
+ },
+ {
+  "wiki": "2016 Kolkata flyover collapse",
+  "type": "STRUCTURAL_COLLAPSE",
+  "date": "2016-03-31",
+  "state": "West Bengal",
+  "locality": "Girish Park, Kolkata",
+  "coord_page": "Girish Park metro station",
+  "admin_page": "Kolkata"
+ },
+ {
+  "wiki": "2018 Varanasi flyover collapse",
+  "type": "STRUCTURAL_COLLAPSE",
+  "date": "2018-05-15",
+  "state": "Uttar Pradesh",
+  "locality": "Varanasi Cantonment",
+  "coord_page": "Varanasi Junction railway station",
+  "admin_page": "Varanasi",
+  "excluded": "source article is a stub; only a deaths figure"
+ },
+ {
+  "wiki": "Gaisal train collision",
+  "type": "RAIL_ACCIDENT",
+  "date": "1999-08-02",
+  "state": "West Bengal",
+  "locality": "Gaisal, Uttar Dinajpur",
+  "coord_page": "Islampur, Uttar Dinajpur",
+  "admin_page": "Uttar Dinajpur district"
+ },
+ {
+  "wiki": "Pukhrayan train derailment",
+  "type": "RAIL_ACCIDENT",
+  "date": "2016-11-20",
+  "state": "Uttar Pradesh",
+  "locality": "Pukhrayan, Kanpur Dehat",
+  "coord_page": "Pukhrayan",
+  "admin_page": "Kanpur Dehat district"
+ },
+ {
+  "wiki": "Amritsar train disaster",
+  "type": "RAIL_ACCIDENT",
+  "date": "2018-10-19",
+  "state": "Punjab",
+  "locality": "Joda Phatak, Amritsar",
+  "coord_page": "Amritsar",
+  "admin_page": "Amritsar"
+ },
+ {
+  "wiki": "1979 Machchhu dam failure",
+  "type": "DAM_FAILURE",
+  "date": "1979-08-11",
+  "state": "Gujarat",
+  "locality": "Morbi",
+  "coord_page": "Morbi",
+  "admin_page": "Morbi district"
+ },
+ {
+  "wiki": "1991 Uttarkashi earthquake",
+  "type": "EARTHQUAKE",
+  "date": "1991-10-20",
+  "state": "Uttarakhand",
+  "locality": "Uttarkashi",
+  "coord_page": "Uttarkashi",
+  "admin_page": "Uttarkashi district"
+ },
+ {
+  "wiki": "1999 Chamoli earthquake",
+  "type": "EARTHQUAKE",
+  "date": "1999-03-29",
+  "state": "Uttarakhand",
+  "locality": "Gopeshwar, Chamoli",
+  "coord_page": "Gopeshwar",
+  "admin_page": "Chamoli district"
+ },
+ {
+  "wiki": "2016 Imphal earthquake",
+  "type": "EARTHQUAKE",
+  "date": "2016-01-04",
+  "state": "Manipur",
+  "locality": "Imphal",
+  "coord_page": "Imphal",
+  "admin_page": "Imphal"
+ },
+ {
+  "wiki": "2011 Sikkim earthquake",
+  "type": "EARTHQUAKE",
+  "date": "2011-09-18",
+  "state": "Sikkim",
+  "locality": "Mangan, North Sikkim",
+  "coord_page": "Mangan, India",
+  "admin_page": "Mangan district"
+ },
+ {
+  "wiki": "2010 Ladakh floods",
+  "type": "FLASH_FLOOD",
+  "date": "2010-08-06",
+  "state": "Ladakh",
+  "locality": "Leh",
+  "coord_page": "Leh",
+  "admin_page": "Leh district"
+ },
+ {
+  "wiki": "Cyclone Ockhi",
+  "type": "CYCLONE",
+  "date": "2017-11-30",
+  "state": "Tamil Nadu",
+  "locality": "Kanyakumari",
+  "coord_page": "Kanyakumari",
+  "admin_page": "Kanyakumari district"
+ },
+ {
+  "wiki": "Cyclone Gaja",
+  "type": "CYCLONE",
+  "date": "2018-11-16",
+  "state": "Tamil Nadu",
+  "locality": "Vedaranyam, Nagapattinam",
+  "coord_page": "Vedaranyam",
+  "admin_page": "Nagapattinam district"
+ },
+ {
+  "wiki": "Cyclone Vardah",
+  "type": "CYCLONE",
+  "date": "2016-12-12",
+  "state": "Tamil Nadu",
+  "locality": "Chennai",
+  "coord_page": "Chennai",
+  "admin_page": "Chennai"
+ },
+ {
+  "wiki": "Cyclone Phailin",
+  "type": "CYCLONE",
+  "date": "2013-10-12",
+  "state": "Odisha",
+  "locality": "Gopalpur, Ganjam",
+  "coord_page": "Gopalpur, Odisha",
+  "admin_page": "Ganjam district"
+ },
+ {
+  "wiki": "Cyclone Titli",
+  "type": "CYCLONE",
+  "date": "2018-10-11",
+  "state": "Andhra Pradesh",
+  "locality": "Palasa, Srikakulam",
+  "coord_page": "Palasa",
+  "admin_page": "Srikakulam district"
+ },
+ {
+  "wiki": "Cyclone Yaas",
+  "type": "CYCLONE",
+  "date": "2021-05-26",
+  "state": "Odisha",
+  "locality": "Dhamra, Bhadrak",
+  "coord_page": "Dhamra",
+  "admin_page": "Bhadrak district"
+ },
+ {
+  "wiki": "Cyclone Michaung",
+  "type": "CYCLONE",
+  "date": "2023-12-05",
+  "state": "Andhra Pradesh",
+  "locality": "Bapatla",
+  "coord_page": "Bapatla",
+  "admin_page": "Bapatla district"
+ },
+ {
+  "wiki": "Cyclone Biparjoy",
+  "type": "CYCLONE",
+  "date": "2023-06-15",
+  "state": "Gujarat",
+  "locality": "Jakhau, Kutch",
+  "coord_page": "Jakhau",
+  "admin_page": "Kutch district"
+ },
+ {
+  "wiki": "Cyclone Nivar",
+  "type": "CYCLONE",
+  "date": "2020-11-25",
+  "state": "Puducherry",
+  "locality": "Puducherry",
+  "coord_page": "Pondicherry",
+  "admin_page": "Puducherry (union territory)"
+ },
+ {
+  "wiki": "Cyclone Thane",
+  "type": "CYCLONE",
+  "date": "2011-12-30",
+  "state": "Tamil Nadu",
+  "locality": "Cuddalore",
+  "coord_page": "Cuddalore",
+  "admin_page": "Cuddalore district",
+  "excluded": "article reports deaths only for a regional cyclone"
+ },
+ {
+  "wiki": "2020 Hyderabad floods",
+  "type": "FLOOD",
+  "date": "2020-10-13",
+  "state": "Telangana",
+  "locality": "Hyderabad",
+  "coord_page": "Hyderabad",
+  "admin_page": "Hyderabad",
+  "excluded": "affected counts are reported only in families, not people"
+ },
+ {
+  "wiki": "2019 Kerala floods",
+  "type": "FLOOD",
+  "date": "2019-08-08",
+  "state": "Kerala",
+  "locality": "Kavalappara, Nilambur, Malappuram",
+  "coord_page": "Nilambur",
+  "admin_page": "Malappuram district"
+ },
+ {
+  "wiki": "2020 Pettimudi landslide",
+  "type": "LANDSLIDE",
+  "date": "2020-08-06",
+  "state": "Kerala",
+  "locality": "Pettimudi, Munnar, Idukki",
+  "coord_page": "Munnar",
+  "admin_page": "Idukki district"
+ },
+ {
+  "wiki": "Uttarakhand tunnel rescue",
+  "type": "TUNNEL_COLLAPSE",
+  "date": "2023-11-12",
+  "state": "Uttarakhand",
+  "locality": "Silkyara, Uttarkashi",
+  "coord_page": "Uttarkashi",
+  "admin_page": "Uttarkashi district"
+ },
+ {
+  "wiki": "2024 Rajkot gaming zone fire",
+  "type": "FIRE",
+  "date": "2024-05-25",
+  "state": "Gujarat",
+  "locality": "Rajkot",
+  "coord_page": "Rajkot",
+  "admin_page": "Rajkot"
+ },
+ {
+  "wiki": "1977 Andhra Pradesh cyclone",
+  "type": "CYCLONE",
+  "date": "1977-11-19",
+  "state": "Andhra Pradesh",
+  "locality": "Diviseema, Krishna",
+  "coord_page": "Avanigadda",
+  "admin_page": "Krishna district"
+ },
+ {
+  "wiki": "2022 India–Bangladesh floods",
+  "type": "FLOOD",
+  "date": "2022-06-20",
+  "state": "Assam",
+  "locality": "Silchar, Cachar",
+  "coord_page": "Silchar",
+  "admin_page": "Cachar district"
+ },
+ {
+  "wiki": "2017 Gujarat flood",
+  "type": "FLOOD",
+  "date": "2017-07-25",
+  "state": "Gujarat",
+  "locality": "Dhanera, Banaskantha",
+  "coord_page": "Dhanera",
+  "admin_page": "Banaskantha district"
+ },
+ {
+  "wiki": "Air India Express Flight 812",
+  "type": "AIR_ACCIDENT",
+  "date": "2010-05-22",
+  "state": "Karnataka",
+  "locality": "Bajpe, Mangalore",
+  "coord_page": "Mangalore International Airport",
+  "admin_page": "Dakshina Kannada district"
+ },
+ {
+  "wiki": "Air India Express Flight 1344",
+  "type": "AIR_ACCIDENT",
+  "date": "2020-08-07",
+  "state": "Kerala",
+  "locality": "Karipur, Kozhikode",
+  "coord_page": "Calicut International Airport",
+  "admin_page": "Malappuram district"
+ },
+ {
+  "wiki": "1996 Charkhi Dadri mid-air collision",
+  "type": "AIR_ACCIDENT",
+  "date": "1996-11-12",
+  "state": "Haryana",
+  "locality": "Charkhi Dadri",
+  "coord_page": "Charkhi Dadri",
+  "admin_page": "Charkhi Dadri district"
+ },
+ {
+  "wiki": "Rafiganj train wreck",
+  "type": "RAIL_ACCIDENT",
+  "date": "2002-09-10",
+  "state": "Bihar",
+  "locality": "Rafiganj, Aurangabad",
+  "coord_page": "Rafiganj",
+  "admin_page": "Aurangabad district, Bihar"
+ },
+ {
+  "wiki": "Sivakasi factory explosion",
+  "type": "EXPLOSION",
+  "date": "2012-09-05",
+  "state": "Tamil Nadu",
+  "locality": "Mudalipatti, Sivakasi",
+  "coord_page": "Sivakasi",
+  "admin_page": "Virudhunagar district"
+ },
+ {
+  "wiki": "1998 Gujarat cyclone",
+  "type": "CYCLONE",
+  "date": "1998-06-09",
+  "state": "Gujarat",
+  "locality": "Kandla, Kutch",
+  "coord_page": "Kandla",
+  "admin_page": "Kutch district"
+ },
+ {
+  "wiki": "2009 Jaipur fire",
+  "type": "EXPLOSION",
+  "date": "2009-10-29",
+  "state": "Rajasthan",
+  "locality": "Sitapura, Jaipur",
+  "coord_page": "Sanganer",
+  "admin_page": "Jaipur"
+ },
+ {
+  "wiki": "Chasnala mining disaster",
+  "type": "MINING_ACCIDENT",
+  "date": "1975-12-27",
+  "state": "Jharkhand",
+  "locality": "Chasnala, Dhanbad",
+  "coord_page": "Dhanbad",
+  "admin_page": "Dhanbad district"
+ },
+ {
+  "wiki": "Stephen Court fire",
+  "type": "FIRE",
+  "date": "2010-03-23",
+  "state": "West Bengal",
+  "locality": "Park Street, Kolkata",
+  "coord_page": "Kolkata",
+  "admin_page": "Kolkata"
+ },
+ {
+  "wiki": "Dabwali fire accident",
+  "type": "FIRE",
+  "date": "1995-12-23",
+  "state": "Haryana",
+  "locality": "Mandi Dabwali, Sirsa",
+  "coord_page": "Mandi Dabwali",
+  "admin_page": "Sirsa district"
+ },
+ {
+  "wiki": "2018 Indian dust storms",
+  "type": "DUST_STORM",
+  "date": "2018-05-02",
+  "state": "Uttar Pradesh",
+  "locality": "Agra",
+  "coord_page": "Agra",
+  "admin_page": "Agra"
+ },
+ {
+  "wiki": "2007 Bihar flood",
+  "type": "FLOOD",
+  "date": "2007-08-01",
+  "state": "Bihar",
+  "locality": "Darbhanga",
+  "coord_page": "Darbhanga",
+  "admin_page": "Darbhanga district"
+ },
+ {
+  "wiki": "1990 Andhra Pradesh cyclone",
+  "type": "CYCLONE",
+  "date": "1990-05-09",
+  "state": "Andhra Pradesh",
+  "locality": "Machilipatnam, Krishna",
+  "coord_page": "Machilipatnam",
+  "admin_page": "Krishna district"
+ },
+ {
+  "wiki": "1996 Andhra Pradesh cyclone",
+  "type": "CYCLONE",
+  "date": "1996-11-06",
+  "state": "Andhra Pradesh",
+  "locality": "Kakinada, East Godavari",
+  "coord_page": "Kakinada",
+  "admin_page": "Kakinada district"
+ },
+ {
+  "wiki": "2023 North India floods",
+  "type": "FLOOD",
+  "date": "2023-07-10",
+  "state": "Himachal Pradesh",
+  "locality": "Mandi",
+  "coord_page": "Mandi, Himachal Pradesh",
+  "admin_page": "Mandi district"
+ },
+ {
+  "wiki": "2022 Delhi fire",
+  "type": "FIRE",
+  "date": "2022-05-13",
+  "state": "Delhi",
+  "locality": "Mundka, New Delhi",
+  "coord_page": "Mundka",
+  "admin_page": "Delhi"
+ },
+ {
+  "wiki": "2004 Kumbakonam School fire",
+  "type": "FIRE",
+  "date": "2004-07-16",
+  "state": "Tamil Nadu",
+  "locality": "Kumbakonam, Thanjavur",
+  "coord_page": "Kumbakonam",
+  "admin_page": "Thanjavur district"
+ },
+ {
+  "wiki": "2022 Amarnath floods",
+  "type": "FLASH_FLOOD",
+  "date": "2022-07-08",
+  "state": "Jammu and Kashmir",
+  "locality": "Amarnath cave, Anantnag",
+  "coord_page": "Amarnath Temple",
+  "admin_page": "Anantnag district",
+  "excluded": "source article is a 135-character stub"
+ },
+ {
+  "wiki": "2025 Uttarakhand flash flood",
+  "type": "FLASH_FLOOD",
+  "date": "2025-08-05",
+  "state": "Uttarakhand",
+  "locality": "Dharali, Uttarkashi",
+  "coord_page": "Harsil",
+  "admin_page": "Uttarkashi district"
+ },
+ {
+  "wiki": "Cyclone Aila",
+  "type": "CYCLONE",
+  "date": "2009-05-25",
+  "state": "West Bengal",
+  "locality": "Sagar Island, South 24 Parganas",
+  "coord_page": "Sagar Island",
+  "admin_page": "South 24 Parganas district"
+ },
+ {
+  "wiki": "Air India Flight 171",
+  "type": "AIR_ACCIDENT",
+  "date": "2025-06-12",
+  "state": "Gujarat",
+  "locality": "Meghaninagar, Ahmedabad",
+  "coord_page": "Ahmedabad",
+  "admin_page": "Ahmedabad"
+ },
+ {
+  "wiki": "2025 Bengaluru crowd crush",
+  "type": "STAMPEDE",
+  "date": "2025-06-04",
+  "state": "Karnataka",
+  "locality": "M. Chinnaswamy Stadium, Bengaluru",
+  "coord_page": "M. Chinnaswamy Stadium",
+  "admin_page": "Bangalore"
+ },
+ {
+  "wiki": "Cyclone Laila",
+  "type": "CYCLONE",
+  "date": "2010-05-20",
+  "state": "Andhra Pradesh",
+  "locality": "Bapatla",
+  "coord_page": "Bapatla",
+  "admin_page": "Bapatla district"
+ },
+ {
+  "wiki": "Cyclone Nilam",
+  "type": "CYCLONE",
+  "date": "2012-10-31",
+  "state": "Tamil Nadu",
+  "locality": "Mamallapuram, Chengalpattu",
+  "coord_page": "Mamallapuram",
+  "admin_page": "Chengalpattu district"
+ },
+ {
+  "wiki": "Vaishno Devi Temple stampede",
+  "type": "STAMPEDE",
+  "date": "2022-01-01",
+  "state": "Jammu and Kashmir",
+  "locality": "Vaishno Devi shrine, Katra, Reasi",
+  "coord_page": "Katra, Jammu and Kashmir",
+  "admin_page": "Reasi district"
+ },
+ {
+  "wiki": "Cyclone Dana",
+  "type": "CYCLONE",
+  "date": "2024-10-25",
+  "state": "Odisha",
+  "locality": "Dhamra, Bhadrak",
+  "coord_page": "Dhamra",
+  "admin_page": "Bhadrak district"
+ },
+ {
+  "wiki": "Virar hospital fire",
+  "type": "FIRE",
+  "date": "2021-04-23",
+  "state": "Maharashtra",
+  "locality": "Virar, Palghar",
+  "coord_page": "Virar",
+  "admin_page": "Vasai-Virar",
+  "excluded": "stub article whose text also describes a separate Nashik incident"
+ },
+ {
+  "wiki": "2000 Mumbai landslide",
+  "type": "LANDSLIDE",
+  "date": "2000-07-12",
+  "state": "Maharashtra",
+  "locality": "Ghatkopar, Mumbai",
+  "coord_page": "Ghatkopar",
+  "admin_page": "Mumbai",
+  "excluded": "article gives no casualty or affected figure"
+ },
+ {
+  "wiki": "2013 drought in Maharashtra",
+  "type": "DROUGHT",
+  "date": "2013",
+  "state": "Maharashtra",
+  "locality": "Marathwada",
+  "coord_page": "Marathwada",
+  "admin_page": "Marathwada",
+  "excluded": "article gives no affected-population figure"
+ },
+ {
+  "wiki": "Cyclone Phyan",
+  "type": "CYCLONE",
+  "date": "2009-11-11",
+  "state": "Maharashtra",
+  "locality": "Alibag, Raigad",
+  "coord_page": "Alibag",
+  "admin_page": "Raigad district",
+  "excluded": "article gives no numeric impact figures"
+ },
+ {
+  "wiki": "1997 Jabalpur earthquake",
+  "type": "EARTHQUAKE",
+  "date": "1997-05-22",
+  "state": "Madhya Pradesh",
+  "locality": "Jabalpur",
+  "coord_page": "Jabalpur",
+  "admin_page": "Jabalpur",
+  "excluded": "article gives no numeric impact figures"
+ },
+ {
+  "wiki": "2006 Surat flood",
+  "type": "FLOOD",
+  "date": "2006-08-07",
+  "state": "Gujarat",
+  "locality": "Surat",
+  "coord_page": "Surat",
+  "admin_page": "Surat",
+  "excluded": "article gives only percentages, no people counts"
+ }
+]

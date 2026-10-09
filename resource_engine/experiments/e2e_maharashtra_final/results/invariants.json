@@ -1,0 +1,233 @@
+[
+ {
+  "scenario_id": "E2E-001",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-023",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-038",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-051",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-053",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-059",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-076",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-081",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-087",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-092",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ },
+ {
+  "scenario_id": "E2E-093",
+  "checks": {
+   "required_ge_allocated": true,
+   "shortage_equals_required_minus_allocated": true,
+   "allocation_equals_sum_of_warehouse_allocations": true,
+   "mission_resources_equal_allocated": true,
+   "route_distance_equals_sum_of_legs": true,
+   "route_time_equals_sum_of_legs": true,
+   "leg_count_equals_warehouses_plus_one": true,
+   "every_leg_has_parent_derived_route_engine_id": true,
+   "route_within_150_km": true,
+   "scenario_is_maharashtra": true,
+   "assigned_responder_was_available_before": true,
+   "responder_available_after_close": true,
+   "no_other_responder_changed": true,
+   "mission_closed_and_no_assigned_left": true
+  },
+  "failed": [],
+  "runner_failed_invariants": []
+ }
+]

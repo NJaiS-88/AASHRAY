@@ -1,0 +1,187 @@
+{
+  "experiment": "resource_allocation_milp",
+  "role": "Exact MILP benchmark for maximum GT-critical demand fulfilment. Not part of AASHRAY parameter selection; not a hypothesis test.",
+  "input_dataset": "experiments/resource_allocation_development/data/development_3000_scenarios.json",
+  "input_dataset_sha256": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+  "solver": "HiGHS via scipy.optimize.milp (scipy 1.18.0)",
+  "solver_options": {
+    "mip_rel_gap": 0.0,
+    "time_limit": 60.0,
+    "presolve": true
+  },
+  "subset_stage": {
+    "rule": "every 60th development scenario",
+    "scenario_ids": [
+      "DEV-0001",
+      "DEV-0061",
+      "DEV-0121",
+      "DEV-0181",
+      "DEV-0241",
+      "DEV-0301",
+      "DEV-0361",
+      "DEV-0421",
+      "DEV-0481",
+      "DEV-0541",
+      "DEV-0601",
+      "DEV-0661",
+      "DEV-0721",
+      "DEV-0781",
+      "DEV-0841",
+      "DEV-0901",
+      "DEV-0961",
+      "DEV-1021",
+      "DEV-1081",
+      "DEV-1141",
+      "DEV-1201",
+      "DEV-1261",
+      "DEV-1321",
+      "DEV-1381",
+      "DEV-1441",
+      "DEV-1501",
+      "DEV-1561",
+      "DEV-1621",
+      "DEV-1681",
+      "DEV-1741",
+      "DEV-1801",
+      "DEV-1861",
+      "DEV-1921",
+      "DEV-1981",
+      "DEV-2041",
+      "DEV-2101",
+      "DEV-2161",
+      "DEV-2221",
+      "DEV-2281",
+      "DEV-2341",
+      "DEV-2401",
+      "DEV-2461",
+      "DEV-2521",
+      "DEV-2581",
+      "DEV-2641",
+      "DEV-2701",
+      "DEV-2761",
+      "DEV-2821",
+      "DEV-2881",
+      "DEV-2941"
+    ],
+    "solved": 50,
+    "proven_optimal": 50,
+    "equal_to_analytical_optimum": 50
+  },
+  "full_run": {
+    "scenarios_solved": 3000,
+    "proven_optimal": 3000,
+    "non_optimal_or_failed": 0,
+    "solver_status_counts": {
+      "0": 3000
+    },
+    "equal_to_analytical_optimum": 3000,
+    "not_equal_to_analytical_optimum": 0,
+    "scenarios_with_undefined_cdc": 0,
+    "solved_at_root_node": 3000,
+    "max_integrality_deviation": 0.0
+  },
+  "cdc": {
+    "all": {
+      "mean": 0.9818049194750437,
+      "median": 1.0,
+      "p95": 1.0,
+      "min": 0.32432432432432434,
+      "max": 1.0
+    },
+    "by_scarcity": {
+      "LOW": {
+        "mean": 1.0,
+        "median": 1.0,
+        "p95": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "MODERATE": {
+        "mean": 0.9995999063822749,
+        "median": 1.0,
+        "p95": 1.0,
+        "min": 0.9389931740614335,
+        "max": 1.0
+      },
+      "HIGH": {
+        "mean": 0.9639299138442674,
+        "median": 1.0,
+        "p95": 1.0,
+        "min": 0.32432432432432434,
+        "max": 1.0
+      }
+    }
+  },
+  "timing_seconds": {
+    "model_build": {
+      "mean": 0.00019805059993329148,
+      "median": 0.00018260000797454268,
+      "p95": 0.00031629999284632504,
+      "min": 0.00012250000145286322,
+      "max": 0.0007227000023704022
+    },
+    "solver": {
+      "mean": 0.001941339433581258,
+      "median": 0.000979500007815659,
+      "p95": 0.006247325013100635,
+      "min": 0.0006202000076882541,
+      "max": 0.009313999995356426
+    },
+    "total_milp": {
+      "mean": 0.0021393900335145493,
+      "median": 0.0011854500189656392,
+      "p95": 0.006430794981133659,
+      "min": 0.0007445000228472054,
+      "max": 0.009437300002900884
+    },
+    "by_size_class_total_milp": {
+      "SMALL": {
+        "mean": 0.0018387878002540674,
+        "median": 0.0008830000151647255,
+        "p95": 0.006855074985651299,
+        "min": 0.0007445000228472054,
+        "max": 0.009437300002900884
+      },
+      "MEDIUM": {
+        "mean": 0.002199895200523315,
+        "median": 0.0011241500033065677,
+        "p95": 0.006409104993508663,
+        "min": 0.0008451000030618161,
+        "max": 0.0086631000158377
+      },
+      "LARGE": {
+        "mean": 0.0023794870997662656,
+        "median": 0.0015621499915141612,
+        "p95": 0.006158285049605183,
+        "min": 0.0010488000116311014,
+        "max": 0.008626299997558817
+      }
+    },
+    "note": "Build + solve only; excludes file loading, start-up and result extraction. Timings vary between runs and machines."
+  },
+  "model_size": {
+    "variables": {
+      "mean": 135.482,
+      "median": 108.0,
+      "p95": 348.0,
+      "min": 18,
+      "max": 450
+    },
+    "constraints": {
+      "mean": 49.77,
+      "median": 42.0,
+      "p95": 96.0,
+      "min": 15,
+      "max": 105
+    }
+  },
+  "determinism": {
+    "check": "the 50 subset scenarios, solved twice with identical input and configuration",
+    "objective_cdc_or_oracle_mismatches": []
+  },
+  "tdc_solver_dependent": {
+    "note": "The objective only rewards GT-critical demand, so allocation to non-critical emergencies is not determined by the optimum: any feasible split is equally optimal. The MILP's total fulfilment (and TDC) is therefore solver-dependent and is reported as such, not as a benchmark value.",
+    "mean": 0.2023284834566876
+  },
+  "structural_note": "With fungible stock and no coupling between resource types, the MILP optimum always equals the analytical optimum sum_r min(critical demand_r, supply_r). The constraint matrix is a transportation (bipartite network) matrix, which is totally unimodular, so the LP relaxation already has an integral optimum."
+}

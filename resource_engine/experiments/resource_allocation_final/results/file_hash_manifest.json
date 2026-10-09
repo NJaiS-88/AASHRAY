@@ -1,0 +1,52 @@
+{
+  "key_files": {
+    "dataset": {
+      "path": "final_12000_scenarios.json",
+      "sha256": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab"
+    },
+    "config": {
+      "path": "final_config.json",
+      "sha256": "297ffa68a38e1ed734c06055f36f10e48dc1372651bf3e43a84b63cefd6be14a"
+    },
+    "frozen_parameters": {
+      "path": "frozen_parameters.json",
+      "sha256": "3b1c7cea171ebd3c99e50e10c0160d79d07009cfc6865a9f3f8dd60df4acbeb0"
+    },
+    "milp_config": {
+      "path": "milp_config.json",
+      "sha256": "8adf11af7195dd5dcc2f42c583f8cbdaf36b4b0988538d873d78a476f2de8586"
+    }
+  },
+  "scripts": {
+    "scripts/analyze_final.py": "c74f697a3aa45d95253a087e4c307131d9d4c5b4c90ffe5475b1334c2779278c",
+    "scripts/build_final_config.py": "b6244e6daaa4bbe564d7bd68e4c30b417f3124e6b3ac8c7bc8fdf0ab5f1dce76",
+    "scripts/final_common.py": "4b6527618a1fff7ba3c253ff0cd12e79b0e7fe6a575aaa1ef1bb868759d9bc1b",
+    "scripts/final_statistics.py": "d45e31af80076d47b7470dd956208216f8bef87ec730d7ae24a0320b41dddd45",
+    "scripts/generate_final_dataset.py": "42d535fdf125b94787272a5bedc7993058c2eb63a01285c94002816f17ac691c",
+    "scripts/preflight.py": "862c1e6fab6894dd227d5f6573d09d061e3a8463d1e4ae4055b35a3e8ccc96f7",
+    "scripts/run_final_experiment.py": "26378c93506da65e799494b88552ad95bd4d93f101c60b81533026dc2ecbd741",
+    "scripts/validate_final.py": "04bc1de73eb5dda0cc2d613963246b1bb31874ad012dd119e5d1eac01eab698d",
+    "scripts/write_manifest.py": "7f3323c380361e30ea34f759c14b5ba99c1ad33a9811fb1183ed491f6247f89b"
+  },
+  "results": {
+    "results/dataset_freeze.json": "bd5be2def658e914f742788259f5ad269100c7def1b56804809b056c5231b9e4",
+    "results/environment.json": "915a6ed728ca9bc49f24b3e2ae3f242466896408b13c9f18eefdb0a96e43650e",
+    "results/final_method_summary.csv": "5f1eca067c99340034631e1f96995c8aaa7e89d2ab517d605e8dd954d59e7065",
+    "results/final_milp_allocations.csv.gz": "20532aec6487361c6482e13adcf19bb2fd5715a1fb16dc048c448fe6bf53fc8d",
+    "results/final_policy_allocations.csv.gz": "92bffc84e228a80072c40d6a708cc29dbfd114ef7182aef0e05bc829f5d23a5f",
+    "results/final_scarcity_summary.csv": "835281bbbe2ab5ca856778209c646575a9b7a74b9355ec9f640d83d6850f690d",
+    "results/final_scenario_results.csv": "bcd71e02d3a0a41f329258819eda846200ddba634df07b4b9092930fbfb771a7",
+    "results/final_statistical_tests.json": "7cd9a98d3a4ab6e913ca537e2300497475c5358a565908395e6c545914ce76c5",
+    "results/final_summary.json": "e4960f41cbc47303ec078295dc917198accf90e402b91b2b1cce8111d8d05c34",
+    "results/final_win_tie_loss.csv": "c8bcc3a0656ad08e4b14ad65482c4d56cd11207617172ce756fe0754dfca973d",
+    "results/gate_report.json": "df92119cb074df16703b28293c651431b8ccc8be53ab7938f2fb50d6e558ad72",
+    "results/generator_equivalence.json": "2dbe3f2b57c5ef24631af154247b9733aa919e0fe81bbd3733579f9443283a64",
+    "results/preflight.json": "9a7d0b40e162701198d894311b7fc8e41a60248d339e3f08cfad94504e9caeae",
+    "results/protected_manifest.json": "e08305c819ef84552c17fae8e1971f333d13ca662b836267db6bf1969a1e6100",
+    "results/run_metadata.json": "b060e64e8088f272f63413c898a969a5932709dfbdbd0738d6dbc7a3854b0a64",
+    "results/validation_report.json": "9c527df817c63e48d1de6534258e878d72282f635eea4407f01416ec5133e34a"
+  },
+  "readme": "949389b28d1b71afe57493e0eaf088574c6400f64951d84ae9d19dc374951219",
+  "scripts_unchanged_since_preflight": true,
+  "recorded_at_utc": "2026-10-07T20:33:09+00:00"
+}

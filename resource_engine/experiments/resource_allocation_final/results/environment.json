@@ -1,0 +1,54 @@
+{
+  "environment": {
+    "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+    "physical_cores": 16,
+    "logical_cpus": 32,
+    "ram_bytes": 16334508032,
+    "ram_gib": 15.21,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "python_implementation": "CPython",
+    "numpy_version": "2.5.1",
+    "scipy_version": "1.18.0",
+    "highs_version": "1.12.0",
+    "pydantic_version": "2.13.5",
+    "solver": "HiGHS via scipy.optimize.milp",
+    "timer": "time.perf_counter"
+  },
+  "environment_during_run": {
+    "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+    "physical_cores": 16,
+    "logical_cpus": 32,
+    "ram_bytes": 16334508032,
+    "ram_gib": 15.21,
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "python_implementation": "CPython",
+    "numpy_version": "2.5.1",
+    "scipy_version": "1.18.0",
+    "highs_version": "1.12.0",
+    "pydantic_version": "2.13.5",
+    "solver": "HiGHS via scipy.optimize.milp",
+    "timer": "time.perf_counter"
+  },
+  "git_before_final_experiment": {
+    "commit": "8b9022361dc84715b54555ac622ec5076162ea14",
+    "working_tree_has_uncommitted_or_untracked_files": true,
+    "status_porcelain": [
+      "?? experiments/",
+      "?? flood_service/",
+      "?? resource_services/"
+    ]
+  },
+  "git_after_final_experiment": {
+    "commit": "8b9022361dc84715b54555ac622ec5076162ea14",
+    "working_tree_has_uncommitted_or_untracked_files": true,
+    "status_porcelain": [
+      "?? experiments/",
+      "?? flood_service/",
+      "?? resource_services/"
+    ]
+  },
+  "note": "The experiment folders are untracked in git, so the commit alone does not identify them; file_hash_manifest.json does.",
+  "recorded_at_utc": "2026-10-07T20:33:09+00:00"
+}

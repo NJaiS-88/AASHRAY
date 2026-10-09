@@ -1,0 +1,171 @@
+{
+  "run": {
+    "scenarios_in_dataset": 100,
+    "scenarios_executed": 100,
+    "first_scenario_started": "2026-10-08T16:35:51.447Z",
+    "last_scenario_finished": "2026-10-08T16:38:38.177Z"
+  },
+  "outcomes": {
+    "total_scenarios": 100,
+    "successful_scenarios": 16,
+    "successful_fully_fulfilled": 7,
+    "successful_partially_fulfilled": 9,
+    "no_safe_route_scenarios": 0,
+    "route_engine_unavailable_scenarios": 0,
+    "no_responder_scenarios": 0,
+    "mission_not_dispatchable_scenarios": 0,
+    "pipeline_failure_scenarios": 84,
+    "pipeline_failures_caused_by_external_api_quota": 84,
+    "validation_failure_scenarios": 0,
+    "other_failures": 84,
+    "classification_counts": {
+      "SUCCESS_PARTIALLY_FULFILLED": 9,
+      "SUCCESS_FULLY_FULFILLED": 7,
+      "PIPELINE_FAILURE": 84
+    },
+    "pass_count": 16
+  },
+  "rates_pct": {
+    "pipeline_success_rate": 16.0,
+    "full_fulfilment_rate": 50.0,
+    "partial_fulfilment_rate": 50.0,
+    "technical_failure_rate": 84.0,
+    "technical_failure_rate_excluding_external_api_quota": 0.0
+  },
+  "fulfilment_status_counts_all_scenarios": {
+    "FULLY_FULFILLED": 50,
+    "PARTIALLY_FULFILLED": 50
+  },
+  "resources": {
+    "water": {
+      "required": 221539662.0,
+      "allocated": 160716.0,
+      "shortage": 221378946.0,
+      "fulfilment_pct": 0.0725,
+      "accounting_holds_every_scenario": true
+    },
+    "food": {
+      "required": 110769831.0,
+      "allocated": 106104.0,
+      "shortage": 110663727.0,
+      "fulfilment_pct": 0.0958,
+      "accounting_holds_every_scenario": true
+    },
+    "medical_kits": {
+      "required": 5538491.55,
+      "allocated": 20888.6,
+      "shortage": 5517602.95,
+      "fulfilment_pct": 0.3772,
+      "accounting_holds_every_scenario": true
+    },
+    "total_all_resources": {
+      "required": 337847984.55,
+      "allocated": 287708.6,
+      "shortage": 337560275.95,
+      "note": "sum of water + food + medical kits in their own units"
+    }
+  },
+  "missions": {
+    "created": 100,
+    "assigned": 100,
+    "completed": 15,
+    "cancelled": 85,
+    "cancelled_as_sample": 10,
+    "cancelled_because_not_executable": 75,
+    "closed_with_http_200": 100
+  },
+  "responders": {
+    "total_assignments": 100,
+    "unique_responders_used": 2,
+    "responder_reuse_count": 98,
+    "assignments_per_responder": {
+      "R002": 62,
+      "R001": 38
+    }
+  },
+  "route_engine": {
+    "total_http_calls": 182,
+    "successful_calls_http_200": 98,
+    "failed_calls": 84,
+    "call_outcomes": {
+      "ROUTE_FOUND": 98,
+      "HTTP_ERROR": 84
+    },
+    "google_routes_errors": 84,
+    "neon_mission_route_state_rows_verified": 98,
+    "legs_completed_but_discarded_after_a_later_leg_failed": 28
+  },
+  "routes": {
+    "total_route_legs_in_planned_routes": 70,
+    "scenarios_with_planned_route": 16,
+    "route_total_distance_km": {
+      "count": 16,
+      "mean": 1102.81,
+      "median": 1186.8,
+      "max": 2142.88,
+      "min": 37.39
+    },
+    "route_total_time_min": {
+      "count": 16,
+      "mean": 1259.67,
+      "median": 1341.9,
+      "max": 2355.42,
+      "min": 107.31
+    },
+    "leg_distance_km": {
+      "count": 70,
+      "mean": 252.07,
+      "median": 13.23,
+      "max": 2128.38,
+      "min": 1.03
+    },
+    "leg_time_min": {
+      "count": 70,
+      "mean": 287.92,
+      "median": 35.1,
+      "max": 2299.4,
+      "min": 6.08
+    },
+    "road_condition_status_counts": {
+      "UNKNOWN": 70
+    },
+    "legs_with_matched_incidents": 0
+  },
+  "openweb_ninja": {
+    "calls": 98,
+    "successful": 0,
+    "failed": 98,
+    "failure_messages": [
+      "OpenWeb Ninja incidents fetch failed or unavailable: Request failed with status code 429"
+    ]
+  },
+  "neon": {
+    "evidence_rows_written_during_run": 0,
+    "evidence_rows_before": 3,
+    "evidence_rows_after": 3,
+    "mission_route_state_rows_before": 31,
+    "mission_route_state_rows_after": 129
+  },
+  "violations": {
+    "responder_lifecycle": 0,
+    "mission_lifecycle": 0,
+    "allocation_invariant": 0,
+    "route_invariant": 0,
+    "all_invariant_failures": 0
+  },
+  "integrity": {
+    "final_responder_state_consistency": "PASS",
+    "responders_json_byte_identical_to_pre_run": true,
+    "missions_all_terminal": true,
+    "missions_status_counts": {
+      "COMPLETED": 15,
+      "CANCELLED": 85
+    },
+    "experiments_12000_unchanged": true,
+    "route_engine_unchanged": true,
+    "only_expected_project_changes": true,
+    "changed_project_files": [
+      "resource_services/database/missions.json"
+    ]
+  }
+}

@@ -1,0 +1,1685 @@
+{
+ "taken_at_utc": "2026-10-09T07:05:28+00:00",
+ "experiments_12000": {
+  "files": 81,
+  "tree_sha256": "377db01a3767715b22dc02cb01e872190e2a230ac64949504fdae9610fca0932",
+  "matches_recorded_tree": true
+ },
+ "previous_e2e_run": {
+  "files": 33,
+  "tree_sha256": "16257abf9369c2fe744abce3a528baab8a58cf3fdc6fe529be9b4540a321320c"
+ },
+ "route_engine": {
+  "head": "11cc789af932a522654f035da3340c17be82fc71",
+  "status_porcelain": "",
+  "files": 57,
+  "tree_sha256": "6bde47f5e8162e243f3771797942586f6caf052c2f244c46ea35bb22dfca0ab3"
+ },
+ "aashray": {
+  "files": 214,
+  "tree_sha256": "7fc543dd94569c856968c4f8e8d3ff3540461a767c5c24314e095cb3d0bfb2c9",
+  "manifest": {
+   ".gitignore": "bbde09558ded0bd611481101d8d760670e7e44d8fd312495e8d4fcb542877e28",
+   "best_model.pkl": "6e7d9a4849f9dfdabd134147652984e389b138ff38f090e0e42cfdd288e4dea8",
+   "metadata.json": "ba80f7ba44de8980ebf5a011db16870efb8a21d3c3cdbafc38192a01a932b128",
+   "README.md": "9787936ca1b3859e78feac21ce838ff9a7b2fed94cc97294e5371519fd0fb3af",
+   "tfidf_vectorizer.pkl": "143da95dbfcf2d3a0a6fad966312f461f4f88991de7139ab57a39601cb578c64",
+   "backend/.env.example": "7cada6ee4b97e833ada874eb2e189efc6895c6fd79609841efdc6c765c509769",
+   "backend/.gitignore": "4143ce57980b9b6ce453057af60af7ca9ba064d5a0434879ed15e3cdc2f26858",
+   "backend/package-lock.json": "adc58c9211ae2d7cd931e0d6dc91370267fa8729a37ce5fd0cf417a244323d5b",
+   "backend/package.json": "bd3752e60578101b36f712c569e155de7cd68d785680b07b397f8ac7c07bc29d",
+   "backend/render.yaml": "4612e891d6c06a1cde5c24620e157f6cb86caf4de7a544cfb38ed62ef1f53eab",
+   "backend/server.js": "9a596144985d2d2420827c04cbe94cf2537f6f27a901c441251e454ca677f60e",
+   "backend/config/db.js": "0045ddd88cb49462f8a8d21dcca4c4f9b1fdd3bdee7ea6e264f80b14e02059b7",
+   "backend/config/similarity.js": "401af6bc44f4e94d390aaf0cc087fbd652a73878b5fa9a8533c9f90317276b3d",
+   "backend/middleware/auth.js": "566f5a6047393fc68b253f425374ba89303506ce1e7d7bee3d0f69788cc48785",
+   "backend/models/entry.model.js": "7a56dc76be41d6dad7805fc71e3a3e29fd20587c164f8596144833981573f799",
+   "backend/models/user.model.js": "1a01fa1092c32df20de3286ea0b9793d5ed01f72124a9466ccf46f421c665864",
+   "backend/routes/auth.js": "cf887384d4cf4c350bf32cc821ee87d10c522059f382116d74bfcdf567b14b7a",
+   "backend/routes/entries.js": "e3593ea4aa4ae3f417149cd4c0eec937c4459ff6eea8e580d6b0b0541c851c56",
+   "experiments/e2e_100_previous_invalid_distance_scope/chart_data.json": "1d22f4127d571b4b15254d8a7be542660f84c07f7f4f7b4ecdf4360944f45c12",
+   "experiments/e2e_100_previous_invalid_distance_scope/dataset_table.md": "921e256316f05ba08690bc9c6ed1871fe22e5fbba8fb9f5f693b1ae368b0c93a",
+   "experiments/e2e_100_previous_invalid_distance_scope/FROZEN_NOTICE.md": "dd142e06fa08ebc3a1a2370fe2b6f56a12b83ccecd267968b096a865b7410c85",
+   "experiments/e2e_100_previous_invalid_distance_scope/neon_verification.json": "f0b1f1876692a36d736b9b8a8c58aa081ddbe39e09559776c1a8e987066bb60b",
+   "experiments/e2e_100_previous_invalid_distance_scope/README.md": "6907be54d62c297c615033196a3b7051640f2850c4ccf9e11684817221fc197b",
+   "experiments/e2e_100_previous_invalid_distance_scope/results.json": "954cf2d82fa0e8d8c8985c7760aeac5a140b5eb3edffa6b6edf38a1a5f480386",
+   "experiments/e2e_100_previous_invalid_distance_scope/results.jsonl": "c4f4fc8ca244ddad95cf8b139fb13747480f897bc1f710d5455a53db58872d88",
+   "experiments/e2e_100_previous_invalid_distance_scope/scenarios.json": "a441765dd8be9a96d1c04db3405a7c66e35937a84c0e7651978b56dac8b62d72",
+   "experiments/e2e_100_previous_invalid_distance_scope/summary.json": "2be4fca2a1825d1a804a144f33228ee24fc682fad8ea90cda5a055af41976159",
+   "experiments/e2e_100_previous_invalid_distance_scope/figures/1_outcome_distribution.png": "fe9a3728b4307b2c8bed4683028907641b186fef9af09edcb2b7fdaf5f9d697a",
+   "experiments/e2e_100_previous_invalid_distance_scope/figures/2_resource_fulfilment.png": "b6a6a67e411f6dfdd29e161839fcd64ffe6b15b8258e3f549aaecf9eff6d8cb4",
+   "experiments/e2e_100_previous_invalid_distance_scope/figures/3_route_distance.png": "1cfc1f4214401feb354168813aedcf63ab4aa5165fe5e3a088cfe9c1715c4eea",
+   "experiments/e2e_100_previous_invalid_distance_scope/figures/4_responder_utilisation.png": "a0c1181bd1817627544398c391a7434cfd19f3a9fc02b1fa7da3640970844c14",
+   "experiments/e2e_100_previous_invalid_distance_scope/integrity/neon_pre_run.json": "4eb93f0e8695381bbb234241763196adee38479bffd16c1eef6005957cb9e49e",
+   "experiments/e2e_100_previous_invalid_distance_scope/integrity/post_run.json": "698e4a02efbdfbe3e10c3d0612f1b629c2ce0f98eb9ba445a5c33b880c7c1502",
+   "experiments/e2e_100_previous_invalid_distance_scope/integrity/pre_run.json": "d5a7070fda38b60c62d34d6c63412c45e0dda26ffc1c4c83500e3e14e736db3b",
+   "experiments/e2e_100_previous_invalid_distance_scope/logs/aashray.log": "ed7d6a3e9e683c474fbc906dfc936496497bc6791069705597b2ef51d1d11b2b",
+   "experiments/e2e_100_previous_invalid_distance_scope/logs/route_engine.log": "6b44dfef3e475bd71162a953bb02d94690b2b8e59036ad75edb6b8a50ecd0fbf",
+   "experiments/e2e_100_previous_invalid_distance_scope/logs/runner.log": "d96bf15b9b21a5d72f308f3f596d5473eec760c31a518ae9afc1b27d84d8ccc0",
+   "experiments/e2e_100_previous_invalid_distance_scope/reports/failures.md": "189a6e87d679b2638c3c3a91958339fdcaddb0602b80fd01feebbc46bdd89eab",
+   "experiments/e2e_100_previous_invalid_distance_scope/reports/resource_results.md": "938c50b9eb4e3ec7161f29b8705b2f93aa448632eb9e21d3697e1d3f07f2ec6b",
+   "experiments/e2e_100_previous_invalid_distance_scope/reports/responder_results.md": "8171c981687305d117f9b916d91e3c02d388c693e3f138df55141bffa0d6c1ba",
+   "experiments/e2e_100_previous_invalid_distance_scope/reports/results_table.md": "cda34106b0d3d2dfa57260e1c9973a4aedc31809f27a0881a5aabe51565569b0",
+   "experiments/e2e_100_previous_invalid_distance_scope/reports/route_results.md": "ae7e285e714ec7e32ece4435bc011dd94d3b53b8500081c138a5f5f84954efe7",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/build_dataset.py": "16ab0cb00b4616ef3db28aa9e1ca44ea6383e831dcb97483a941b56ebbe8b54e",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/build_report.json": "5bf68093501f0ebf258b222c71c2128e763b1052ab7bc3f052815c2a00c75c71",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/make_readme.py": "ad238a2d17fb1ffdada073f303b2a8d4e799f156fd837ed1e25e1953520038f9",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/neon_probe.mjs": "138853a470157d3db975683f9547c4b9a009e9b5a90ddec10b377889f6e0b215",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/post_run_integrity.py": "7f397f6496acb330615c5c6fb93b840a0c079d0b6453900de2f5657be232dcb9",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/report.py": "d21fb8c84ee1d2b7e188265336544d8898b286ee6675f4ff3052ea0e5889f41f",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/run_e2e.py": "ed7de138c46a6aca9fc8ca27360994ea035764cb4d8e8b248c1959f34c0642a7",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/scenario_figures.json": "80c0eb9d45fafcbb17d3c5301cdfb409d9d1b21575ca9c3a75b7a0193a5b4010",
+   "experiments/e2e_100_previous_invalid_distance_scope/scripts/scenario_seed.json": "ccce3f97102d80909f5a44f26d6adcc88872ceb99ab2dd1e42afa12bacca72ee",
+   "experiments/resource_allocation_development/README.md": "6b2373c3f254ab407f4a219014fe0610ef487bd6bfd99b8288732cb8c6376b7c",
+   "experiments/resource_allocation_development/config/development_config.json": "405324f20a4f81ee3726857182ef35319b8518c4be53e0f1ad85024a5a55e3ac",
+   "experiments/resource_allocation_development/data/development_3000_scenarios.json": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+   "experiments/resource_allocation_development/results/application_manifest.json": "db998ba24e9cba2b69fada73d658028ad16e8abb59681e65e35ad35b6eff0f0f",
+   "experiments/resource_allocation_development/results/baseline_comparison.csv": "171163711aeb7c9569c9380091ec67f5b56f834d09e251396568e24661b0990a",
+   "experiments/resource_allocation_development/results/candidate_grid.csv": "04ac04146d3bcad70e83d6dc35cae7c66bdae3684bfc61c47c3e5c49366b61e6",
+   "experiments/resource_allocation_development/results/configuration_results.csv": "ffc8d9647a5b691ae25b4c578519c744d2b167a26973c3a6d665e6fdd42f837d",
+   "experiments/resource_allocation_development/results/development_summary.json": "f57270b960b90a86f26eba142ec1e224649b53ed61cb28096e2d7b1f35b8a86f",
+   "experiments/resource_allocation_development/results/frozen_parameters.json": "3b1c7cea171ebd3c99e50e10c0160d79d07009cfc6865a9f3f8dd60df4acbeb0",
+   "experiments/resource_allocation_development/results/per_scenario_results.csv.gz": "510278e1880f9d98f9756dba5bfff3af33e69e8fcb5bed096a484615a9017237",
+   "experiments/resource_allocation_development/results/ranking_equivalence.csv": "0d2c8c51f9d2c73af7ae31d481f9caf43791297be5e5a076e878bbe0d5543aaf",
+   "experiments/resource_allocation_development/results/scarcity_analysis.csv": "87942160c0e2189d356e9fae77d0eb2a7dcfc9a88fe4076bee461f012ec90e22",
+   "experiments/resource_allocation_development/results/top_10_configurations.csv": "bdc1ad39e0768d514af964e997aba69cd0ce919f1c308cc1212a6033fcb30139",
+   "experiments/resource_allocation_development/results/validation_report.json": "fbf7057e20056c7ea0601c3a712642758801d15ff3497c8125843d95b235fcc3",
+   "experiments/resource_allocation_development/scripts/allocator_adapter.py": "34c81131d63f31d5b676060bc0eb31709265df278b50d562728929b03b8ae484",
+   "experiments/resource_allocation_development/scripts/dev_common.py": "aeaed9684aa19b041a0b822f37ff7460616500aa6ca2c44581ff986f55b31f49",
+   "experiments/resource_allocation_development/scripts/evaluate_configurations.py": "32ea1074b6e301b48afe97e4760fb768b92fa4d050ec1315223f02dde8d67456",
+   "experiments/resource_allocation_development/scripts/generate_development_dataset.py": "414ae66791084579ed05d30dd5b2dccf9582545c750d642526e309037869ae29",
+   "experiments/resource_allocation_development/scripts/generate_parameter_grid.py": "f6770fe8f199a5bec5e7610df2d622178dd9d2a5236e2ce51bca69885c929d87",
+   "experiments/resource_allocation_development/scripts/metrics.py": "fb866f8b6be725889aee2a386608c0d31c777b1b1acee2bdff195a753084aa7f",
+   "experiments/resource_allocation_development/scripts/policies.py": "a98a987e6ddfe45c9fcb2ee17969c46e2dd81c152e4d3863305c5047c6b5768b",
+   "experiments/resource_allocation_development/scripts/ranking_equivalence.py": "b6cba53c21cfdcf0dac32ead47ca7b239f9990979001302f5ee96fdc24aaba59",
+   "experiments/resource_allocation_development/scripts/validate_development.py": "da9295b939c80288308abbdeecdf27775f802c8c983b9e72e470afd7884a4f0c",
+   "experiments/resource_allocation_final/README.md": "949389b28d1b71afe57493e0eaf088574c6400f64951d84ae9d19dc374951219",
+   "experiments/resource_allocation_final/config/final_config.json": "297ffa68a38e1ed734c06055f36f10e48dc1372651bf3e43a84b63cefd6be14a",
+   "experiments/resource_allocation_final/data/final_12000_scenarios.json": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab",
+   "experiments/resource_allocation_final/results/dataset_freeze.json": "bd5be2def658e914f742788259f5ad269100c7def1b56804809b056c5231b9e4",
+   "experiments/resource_allocation_final/results/environment.json": "915a6ed728ca9bc49f24b3e2ae3f242466896408b13c9f18eefdb0a96e43650e",
+   "experiments/resource_allocation_final/results/file_hash_manifest.json": "e74929b66e41749331acbc0a94291f390171032e510500ef02f8a99747814c57",
+   "experiments/resource_allocation_final/results/final_method_summary.csv": "5f1eca067c99340034631e1f96995c8aaa7e89d2ab517d605e8dd954d59e7065",
+   "experiments/resource_allocation_final/results/final_milp_allocations.csv.gz": "20532aec6487361c6482e13adcf19bb2fd5715a1fb16dc048c448fe6bf53fc8d",
+   "experiments/resource_allocation_final/results/final_policy_allocations.csv.gz": "92bffc84e228a80072c40d6a708cc29dbfd114ef7182aef0e05bc829f5d23a5f",
+   "experiments/resource_allocation_final/results/final_scarcity_summary.csv": "835281bbbe2ab5ca856778209c646575a9b7a74b9355ec9f640d83d6850f690d",
+   "experiments/resource_allocation_final/results/final_scenario_results.csv": "bcd71e02d3a0a41f329258819eda846200ddba634df07b4b9092930fbfb771a7",
+   "experiments/resource_allocation_final/results/final_statistical_tests.json": "7cd9a98d3a4ab6e913ca537e2300497475c5358a565908395e6c545914ce76c5",
+   "experiments/resource_allocation_final/results/final_summary.json": "e4960f41cbc47303ec078295dc917198accf90e402b91b2b1cce8111d8d05c34",
+   "experiments/resource_allocation_final/results/final_win_tie_loss.csv": "c8bcc3a0656ad08e4b14ad65482c4d56cd11207617172ce756fe0754dfca973d",
+   "experiments/resource_allocation_final/results/gate_report.json": "df92119cb074df16703b28293c651431b8ccc8be53ab7938f2fb50d6e558ad72",
+   "experiments/resource_allocation_final/results/generator_equivalence.json": "2dbe3f2b57c5ef24631af154247b9733aa919e0fe81bbd3733579f9443283a64",
+   "experiments/resource_allocation_final/results/preflight.json": "9a7d0b40e162701198d894311b7fc8e41a60248d339e3f08cfad94504e9caeae",
+   "experiments/resource_allocation_final/results/protected_manifest.json": "e08305c819ef84552c17fae8e1971f333d13ca662b836267db6bf1969a1e6100",
+   "experiments/resource_allocation_final/results/run_metadata.json": "b060e64e8088f272f63413c898a969a5932709dfbdbd0738d6dbc7a3854b0a64",
+   "experiments/resource_allocation_final/results/validation_report.json": "9c527df817c63e48d1de6534258e878d72282f635eea4407f01416ec5133e34a",
+   "experiments/resource_allocation_final/scripts/analyze_final.py": "c74f697a3aa45d95253a087e4c307131d9d4c5b4c90ffe5475b1334c2779278c",
+   "experiments/resource_allocation_final/scripts/build_final_config.py": "b6244e6daaa4bbe564d7bd68e4c30b417f3124e6b3ac8c7bc8fdf0ab5f1dce76",
+   "experiments/resource_allocation_final/scripts/final_common.py": "4b6527618a1fff7ba3c253ff0cd12e79b0e7fe6a575aaa1ef1bb868759d9bc1b",
+   "experiments/resource_allocation_final/scripts/final_statistics.py": "d45e31af80076d47b7470dd956208216f8bef87ec730d7ae24a0320b41dddd45",
+   "experiments/resource_allocation_final/scripts/generate_final_dataset.py": "42d535fdf125b94787272a5bedc7993058c2eb63a01285c94002816f17ac691c",
+   "experiments/resource_allocation_final/scripts/preflight.py": "862c1e6fab6894dd227d5f6573d09d061e3a8463d1e4ae4055b35a3e8ccc96f7",
+   "experiments/resource_allocation_final/scripts/run_final_experiment.py": "26378c93506da65e799494b88552ad95bd4d93f101c60b81533026dc2ecbd741",
+   "experiments/resource_allocation_final/scripts/validate_final.py": "04bc1de73eb5dda0cc2d613963246b1bb31874ad012dd119e5d1eac01eab698d",
+   "experiments/resource_allocation_final/scripts/write_manifest.py": "7f3323c380361e30ea34f759c14b5ba99c1ad33a9811fb1183ed491f6247f89b",
+   "experiments/resource_allocation_milp/README.md": "235b06f326073a283d7dd9aa561faddb3c459bc9c04635b9117aee7df67ddd80",
+   "experiments/resource_allocation_milp/config/milp_config.json": "8adf11af7195dd5dcc2f42c583f8cbdaf36b4b0988538d873d78a476f2de8586",
+   "experiments/resource_allocation_milp/results/development_milp_allocations.csv.gz": "7f2de1e52af2e7de47b714ec117ccade05fd4f32504c0629c00e3948bd817c2b",
+   "experiments/resource_allocation_milp/results/development_milp_results.csv": "a6ffd4ebfb1f86759d4d58fcdc445978bf08622d6b8c97788fda0347d9bb7146",
+   "experiments/resource_allocation_milp/results/development_milp_summary.json": "6a85cc13157054c75b162a2341f57d750aad4b2011c98523cf45895cdacc099f",
+   "experiments/resource_allocation_milp/results/hand_check_results.json": "fcf0a70f29db4abb851b32fb6d25a9a298863e9489c12cde259728ff6ec2a477",
+   "experiments/resource_allocation_milp/results/protected_manifest.json": "e8f42e32ee4ae279244c39071c66b6e192c1e81236c76e861b457fc0f259ccf2",
+   "experiments/resource_allocation_milp/results/solver_environment.json": "51802fd29c006c7cc28b720afe407b90748ec95f98ced6b8de258afcc6570c96",
+   "experiments/resource_allocation_milp/results/validation_report.json": "9393eea85eeaaca7b5ec6ba662d4c22eb5a5778456b2d4687f478f559c671981",
+   "experiments/resource_allocation_milp/scripts/analytical_optimum.py": "9ef5de78340562df08b453a3c108a7963c3f782a48575a435c5c11118ede1204",
+   "experiments/resource_allocation_milp/scripts/hand_check_tests.py": "7c4a7e25133001c3ccffbddcacdd09687e3a023b86c4ecd2b6ec1edf47821f78",
+   "experiments/resource_allocation_milp/scripts/milp_common.py": "12f9225a1ace2bbe5eaee33659588755c62d5ecd405553874cac7a6f43466a31",
+   "experiments/resource_allocation_milp/scripts/milp_model.py": "3ce26b43b4fafe4523f954f9933d53191a1ff83057884c3bb534fddf24dd0a08",
+   "experiments/resource_allocation_milp/scripts/solve_milp.py": "179d72fba1a20c89940dfc548df3ffafc2930d169a24de22525af2abcad1223f",
+   "experiments/resource_allocation_milp/scripts/validate_milp.py": "3b94829c833aa5a82f1b0da1abb5e746f56bdc90a8acae6bec57a76404e066b3",
+   "experiments/resource_allocation_pilot/README.md": "8c88abc0a76a7855b664aab0faa6c693066c52861c457911cab403236857ecd3",
+   "experiments/resource_allocation_pilot/config/pilot_config.json": "76fe9a16f08b7147e46f24c952df6a6b6ab587f9c0c8f3fa2e57192d4a86f68c",
+   "experiments/resource_allocation_pilot/data/pilot_500_scenarios.json": "9f3b8dbc9e863fadc0c4a0cb934deacfaef49b8d1f2f85c6d077f4ca5bfe1cad",
+   "experiments/resource_allocation_pilot/results/order_sensitivity.csv": "6602618afabd024fff5cb928761e24265c3a3a092b9589975654fdcbc4818f97",
+   "experiments/resource_allocation_pilot/results/pilot_results.csv": "703bdabc6c9c05f3d3e3a7a838ac3f15fff0099263348bad9afd415f868cba86",
+   "experiments/resource_allocation_pilot/results/pilot_summary.json": "0c7c50893987ecb1dd9125d55d15d554f826ecf2d2e1b766e58046c00941ab1e",
+   "experiments/resource_allocation_pilot/results/validation_report.json": "76e8e03a799a52be229db6e785a84c4c1742ab6d7fd98187d6814c813027f471",
+   "experiments/resource_allocation_pilot/scripts/allocator_adapter.py": "671fb1a3e1f5ed063039d350143dcd4bfa1a01a160eacb704e332dcdb12764a4",
+   "experiments/resource_allocation_pilot/scripts/generate_pilot_dataset.py": "dd09c73b9779d2685ad67230ae6c53c58604e758a2185b17ffe0ba0dbf9cc9a5",
+   "experiments/resource_allocation_pilot/scripts/metrics.py": "fb272c1b9b9d9bc5a43232298cc875ae7274007bc9237b88206017af29676fd1",
+   "experiments/resource_allocation_pilot/scripts/orderings.py": "d441e2953ad3e713eb5564fe40a4512c909c1eaa78e3bff51874edb2de828fd4",
+   "experiments/resource_allocation_pilot/scripts/pilot_common.py": "fe4fe51b676baa60795faf06578e79a387ef1af3f2e2dcd12c0a59713bc1a9b3",
+   "experiments/resource_allocation_pilot/scripts/run_pilot.py": "4df0241e96274d882a9adb2dda2d343f4e132a393d3b3c89c169ee758ec662df",
+   "experiments/resource_allocation_pilot/scripts/validate_pilot.py": "7be83e312309a46ce056866a7803385042a082fb17eb29bafa4dee896714a056",
+   "flood_service/data/38ba1ec040ea42fd321fc9bf349a7e3f.zip": "1488a8ca6fc610d9735ecdab12e2ca18ddb2c1327ea31ecf30f853a5b7fc2a0f",
+   "flood_service/data/floodevents_indofloods.csv": "72cea519d07b5c8cc679a57b16e887f58aaffba2cc162d89a955153a474cacbc",
+   "flood_service/data/metadata_indofloods.csv": "cbc03f588b164bafcf5482649ffc7379fac875050d8a113a0da010e8827b1a73",
+   "flood_service/data/precipitation_variables_indofloods.csv": "a2615f03e0e71591e336a242c329429f92415ff96e7aea5a75b2ee6fe1ab60b8",
+   "frontend/.env.example": "a6351db08816db87623153b9713c1e90eaae4d3827a48b96a1af915801b0477a",
+   "frontend/.gitignore": "d50ab07e11fa4bf3b1c7c3312e1d7baeab56cca756832ccf40476823ad2a38b7",
+   "frontend/eslint.config.js": "9f9b44b8e55768eaf86e417b96919510b12055d87806e0e2f0703c5a0eb64817",
+   "frontend/index.html": "efe2f9aa7779e8a21ed71c220218b25a67b9c12ace66ad3ed02b181ce4e44a1d",
+   "frontend/package-lock.json": "951aa5c09fcd14ea293155d23de505bc0607fd615c40023761dfe15c318ad800",
+   "frontend/package.json": "747f6fb38ae1ea79f807f03621f2e0b7d057178e8209dbccddfbe83d732b8ef7",
+   "frontend/README.md": "a2648adf2f4e92d188d79e14c2b26e207bb0654e90beb5d99e7eb594d995fe65",
+   "frontend/vercel.json": "44a3d3ed7bae63c44f6baa65404c4470568a1633ca88c5304f6460014842bb62",
+   "frontend/vite.config.js": "968db64a191573a1064132998ed6d22877f303e029c20df000ee1fc3d0b9a597",
+   "frontend/public/favicon.svg": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
+   "frontend/public/icons.svg": "7ca2d67c9c3aebf50cdc8709ee8aacf8cdb8cc7ea6325ea94939caef5da1c53d",
+   "frontend/src/App.css": "0ab7fca1aba746317df7474ddceb3d496e753ce6231abba750d64e5eafde3e8b",
+   "frontend/src/App.jsx": "ea8330b0f9ce79a6f0221afad0b2f4ef3a8a96e2767efdf73c4168699ac330c8",
+   "frontend/src/index.css": "944e6e12c0067a6767836a78ad6c4095b829f966b44f33bc95cfef1401ab3c10",
+   "frontend/src/main.jsx": "ae81f1c01f2c8018a1ba5cf73171921c8982d90b049bb6b039ea82f8e1dec958",
+   "frontend/src/api/axiosClient.js": "8806e0da55c9c2a8a0b07f815cf2b5550d1b99c28a0583e09e910cf7f4b4513c",
+   "frontend/src/assets/hero.png": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+   "frontend/src/assets/react.svg": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+   "frontend/src/assets/vite.svg": "2f1f6c6f90a0ef7422cbb4cfafcd8ad329c507a18afdc34cc21fa72179b9c54a",
+   "frontend/src/components/CameraCapture.jsx": "f9dbe40da07ff5090bdbcc519f4fd0b1273b92b48fa58eb715b9f620315a598a",
+   "frontend/src/components/MapComponent.jsx": "23c4b4432affaa9823ff83d91a4c1b9dd8150c8af599b6d802a5f0b55f6277be",
+   "frontend/src/pages/Dashboard.jsx": "927ebed8a9b4fb412384b269b2dbecf577fe879855dda285d87209b1a5ecb91f",
+   "frontend/src/pages/Login.jsx": "b568f344faecb5b3a43047b5d85a05cbf175ea3190e9ff93971cf70f48eacb1d",
+   "frontend/src/pages/Signup.jsx": "826ef17644144cf97e67af7983cfbb6291426c5450d9effd239882b8357a8136",
+   "frontend/src/store/useAuthStore.js": "edafc8c9bf91ca255d87684c25797474a053d8266740fe820c1bf96772f97b5a",
+   "ml_service/app.py": "c0fe6ee9d3c806864f874118fd6f579f798f19bfd6fb67550a6e342dde19e71a",
+   "ml_service/render.yaml": "63e082289f75782ca8c5d607597338654d4bc991da263b1038087baa1ebec89e",
+   "ml_service/requirements.txt": "76ba4a2b21d14c6a0dce22476417271095a7e41e8da838a356f77061b68c7290",
+   "ml_service/start.bat": "06ddcd68ebd393d9401cfbeae1ea1aa5e3ec2aba8a108458f1e5ece277cece99",
+   "resource_services/app.py": "421909b5537eb1512290ff5c664344d9166d498fda237be3d4db1898bea9205d",
+   "resource_services/README.md": "2e08d1f6000aef541797d008c05ac36f4dbebfb36cbac5615788e6fcc5b300a7",
+   "resource_services/requirements.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/.claude/launch.json": "da7843ad15a508245b873c4739416bc352cb41529659ae6ed13ce5212f113ece",
+   "resource_services/config/resource_rules.json": "82303fda5170957b43b6235772dc1ff3a5a0941e2c31cff40ba460cae70f13d7",
+   "resource_services/database/missions.json": "daaadf366e7d84356399f20461e9558576a647049f05e875e839ad0db9bf9147",
+   "resource_services/database/responders.json": "eed4bb04982826566337a8ef6df7e8feeb7228b431d1bb74c9b4ed70ba96be5d",
+   "resource_services/database/warehouses.json": "d17c30a51fc2ef9e8cadc0e2597da0e7fb8458f65acb5e40e3d4106b4f3d510e",
+   "resource_services/docs/orchestration_contract.md": "72297ca83cd346e4333ed564c8d130ad3960630831f8a8a5dd639faf2c6e2993",
+   "resource_services/routes/agent_assignment_routes.py": "211879f6d4d0d2b0c984bf7954d9c2d5f09ccbbc51ede43b553dc81de7f7effd",
+   "resource_services/routes/demand_routes.py": "a2f4efaab339a9b53830fe52b013836d0f64e498c77900cda1882272a607203e",
+   "resource_services/routes/mission_routes.py": "6b756f721efdb72561c4aaba042790ee6022c5d0cecf32f514660b98ade29f2b",
+   "resource_services/routes/orchestration_routes.py": "36fa55337f09bac4b7f0e26957b2b1158c42767442ad20a79a8f1f81eed7769c",
+   "resource_services/routes/resource_routes.py": "8d79d77d4c4daa55f2c2c29fd19f6366c519da5be84cccc574e683697119366b",
+   "resource_services/routes/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/schemas/agent_assignment.py": "e7f77d697f3d767ffe029ca942233e808809897a6b7c1c62b6b80f62203d7360",
+   "resource_services/schemas/allocation.py": "96fd717b2fc0db3ed060476ec6e53cf9700ac1205bbf5f21cfa95b373ccdfb43",
+   "resource_services/schemas/common.py": "3207fe7a39bb93c0a1086256805edf7c83ea2331e629d61774e00b8a89256701",
+   "resource_services/schemas/demand_fulfilment.py": "761def9939eadcc085d742a15339b62cfc49ca6c1f497da524f36cb49a945c19",
+   "resource_services/schemas/errors.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/schemas/incident.py": "e04b7352408a0545e3c18e3a7e5075631069ef92ad28614fdd5ef7bd999f4795",
+   "resource_services/schemas/mission.py": "bcb3e24c3bc575a38067aa67288c29ec9b22f44fe8bbe342fd2ee303a1817864",
+   "resource_services/schemas/mission_lifecycle.py": "ade7dce4864370c42ce74977798694321b3175846fb3003fbb8cdc50d61773be",
+   "resource_services/schemas/orchestration.py": "0d05000bc844195e45e5c72c3dbeb085b6add1f602f4bfd4245038ea94fafac2",
+   "resource_services/schemas/resource_requirement.py": "93218ef3e8244d3177d87b36e1a32326b55581ac9f15473577c1b81ffb75741b",
+   "resource_services/schemas/warehouse.py": "66c6b69f0cb971c9b8d8bcabb3627eaf955545df5d029a040d77c89e4b9e9a0e",
+   "resource_services/schemas/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/services/agent_assignment_service.py": "5a384b9e8df5e2a202b75ece6b66813f9591f802a8eab6d84a0db4f32c67c993",
+   "resource_services/services/demand_fulfilment_service.py": "be4a433af5410a0d48863ca60eee0a93baadae27bcd9daf85d97e148827cef4e",
+   "resource_services/services/mission_creation_service.py": "5cb22b26adb05d2d44c32c7005d3955eba3c1b2f70b84e3dc3cba902eb8aea8d",
+   "resource_services/services/mission_lifecycle_service.py": "4c1ad40ef8d0d9f8b3edd3e258d16a23a1e89bb4c20f8033f52a66b89073c81c",
+   "resource_services/services/mission_store.py": "7880c44fb1a10ca9889080d7a62fda7fb8bf8c7ec34486820a7343993917db24",
+   "resource_services/services/orchestration_service.py": "b1599941c4b099e01404b69898153e56d8e6365cba2a021b1d81d0910bf8423e",
+   "resource_services/services/resource_allocation_service.py": "006d919a5d10e80231228cfe6b608cdd4f096911acd978c77d4148cfdb9a63dc",
+   "resource_services/services/resource_requirement_service.py": "8e2f41cf3338e02373ae1c44643a44dd5eee9947f04f4672ba0a7a987f1a55fb",
+   "resource_services/services/route_engine_client.py": "446eac8450d3b0df5da4705dc0fca7530fcb5346874f52502902ec2069dc9804",
+   "resource_services/services/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/tests/conftest.py": "1cf921473c20630f8bd303be98cdf86611a75da3e36e8489dcb4ed8c9cb49471",
+   "resource_services/tests/test_agent_assignment.py": "ec30a11b62820cac30b74cc56af21fac3a2edefbf16912c01831c8c0ad7f6630",
+   "resource_services/tests/test_allocation.py": "801e791c6175fe1950e724faaaec83e3846b5a3b7e74c42e87c2730f6465e462",
+   "resource_services/tests/test_api.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "resource_services/tests/test_demand_fulfilment.py": "c0a12bbbb65979c1dbb3811495ce2234cd8b287ddbe81b32922586cc0ecc8dc4",
+   "resource_services/tests/test_mission_creation.py": "7e5d039905ca44618ad92da00b909d013833ad57b7721432aed6b83b24440200",
+   "resource_services/tests/test_mission_lifecycle.py": "c628bfcdd1097ff78003583fedcd4d4fc61fcc293698efe4beb1cb8d6645ada5",
+   "resource_services/tests/test_mission_pipeline.py": "33e5b2a2eb1cb47b03599359280727776543430fee3dea07c81dddad2521f408",
+   "resource_services/tests/test_orchestrator.py": "5b9bac5e3f1f9b03971ef5be2ad95c7e852ab533b4d6bd0a16867d70de7e695b",
+   "resource_services/tests/test_requirement.py": "ae7818e6c5e89a0f4dc6e0619a6bd4a450ed5c248d3fc12a9ea690736ae6884a",
+   "resource_services/tests/test_route_engine_client.py": "40d7d1e9691278dbce9245cf0b3c8bb500e94b626f6e18aa46f4df81b9dc569c",
+   "resource_services/tests/test_schemas.py": "61d1d12271d850b89f5e0f5ade8c720d1533cf475aeddc26dfd0e16d87ebcad7"
+  }
+ },
+ "data_files": {
+  "warehouses.json": {
+   "sha256": "d17c30a51fc2ef9e8cadc0e2597da0e7fb8458f65acb5e40e3d4106b4f3d510e",
+   "content": [
+    {
+     "warehouse_id": "WH001",
+     "name": "Central Emergency Warehouse",
+     "location": {
+      "latitude": 19.076,
+      "longitude": 72.8777
+     },
+     "inventory": {
+      "water": {
+       "available": 1000,
+       "capacity": 1500
+      },
+      "food": {
+       "available": 500,
+       "capacity": 800
+      },
+      "medical_kits": {
+       "available": 100,
+       "capacity": 150
+      }
+     },
+     "vehicles": {
+      "ambulance": {
+       "total": 2,
+       "available": 1
+      },
+      "rescue_truck": {
+       "total": 3,
+       "available": 2
+      },
+      "fire_truck": {
+       "total": 1,
+       "available": 1
+      }
+     }
+    },
+    {
+     "warehouse_id": "WH002",
+     "name": "North Emergency Warehouse",
+     "location": {
+      "latitude": 19.11,
+      "longitude": 72.85
+     },
+     "inventory": {
+      "water": {
+       "available": 600,
+       "capacity": 1000
+      },
+      "food": {
+       "available": 800,
+       "capacity": 1000
+      },
+      "medical_kits": {
+       "available": 50,
+       "capacity": 100
+      }
+     },
+     "vehicles": {
+      "ambulance": {
+       "total": 1,
+       "available": 1
+      },
+      "rescue_truck": {
+       "total": 1,
+       "available": 1
+      },
+      "fire_truck": {
+       "total": 0,
+       "available": 0
+      }
+     }
+    },
+    {
+     "warehouse_id": "WH003",
+     "name": "South Emergency Warehouse",
+     "location": {
+      "latitude": 19.02,
+      "longitude": 72.85
+     },
+     "inventory": {
+      "water": {
+       "available": 700,
+       "capacity": 1000
+      },
+      "food": {
+       "available": 300,
+       "capacity": 500
+      },
+      "medical_kits": {
+       "available": 200,
+       "capacity": 250
+      }
+     },
+     "vehicles": {
+      "ambulance": {
+       "total": 3,
+       "available": 2
+      },
+      "rescue_truck": {
+       "total": 2,
+       "available": 1
+      },
+      "fire_truck": {
+       "total": 1,
+       "available": 1
+      }
+     }
+    },
+    {
+     "warehouse_id": "WH004",
+     "name": "East Emergency Warehouse",
+     "location": {
+      "latitude": 19.06,
+      "longitude": 73.02
+     },
+     "inventory": {
+      "water": {
+       "available": 300,
+       "capacity": 500
+      },
+      "food": {
+       "available": 200,
+       "capacity": 400
+      },
+      "medical_kits": {
+       "available": 80,
+       "capacity": 100
+      }
+     },
+     "vehicles": {
+      "ambulance": {
+       "total": 1,
+       "available": 0
+      },
+      "rescue_truck": {
+       "total": 2,
+       "available": 2
+      },
+      "fire_truck": {
+       "total": 1,
+       "available": 0
+      }
+     }
+    },
+    {
+     "warehouse_id": "WH005",
+     "name": "West Emergency Warehouse",
+     "location": {
+      "latitude": 19.05,
+      "longitude": 72.82
+     },
+     "inventory": {
+      "water": {
+       "available": 150,
+       "capacity": 300
+      },
+      "food": {
+       "available": 100,
+       "capacity": 200
+      },
+      "medical_kits": {
+       "available": 20,
+       "capacity": 50
+      }
+     },
+     "vehicles": {
+      "ambulance": {
+       "total": 1,
+       "available": 1
+      },
+      "rescue_truck": {
+       "total": 0,
+       "available": 0
+      },
+      "fire_truck": {
+       "total": 1,
+       "available": 1
+      }
+     }
+    }
+   ]
+  },
+  "responders.json": {
+   "sha256": "eed4bb04982826566337a8ef6df7e8feeb7228b431d1bb74c9b4ed70ba96be5d",
+   "content": [
+    {
+     "responder_id": "R001",
+     "name": "Responder 001",
+     "vehicle_type": "RESCUE_TRUCK",
+     "location": {
+      "latitude": 19.08,
+      "longitude": 72.88
+     },
+     "status": "AVAILABLE"
+    },
+    {
+     "responder_id": "R002",
+     "name": "Responder 002",
+     "vehicle_type": "AMBULANCE",
+     "location": {
+      "latitude": 19.06,
+      "longitude": 72.9
+     },
+     "status": "AVAILABLE"
+    },
+    {
+     "responder_id": "R003",
+     "name": "Responder 003",
+     "vehicle_type": "FIRE_TRUCK",
+     "location": {
+      "latitude": 19.04,
+      "longitude": 72.84
+     },
+     "status": "AVAILABLE"
+    },
+    {
+     "responder_id": "R004",
+     "name": "Responder 004",
+     "vehicle_type": "RESCUE_TRUCK",
+     "location": {
+      "latitude": 19.1,
+      "longitude": 72.86
+     },
+     "status": "AVAILABLE"
+    },
+    {
+     "responder_id": "R005",
+     "name": "Responder 005",
+     "vehicle_type": "AMBULANCE",
+     "location": {
+      "latitude": 19.03,
+      "longitude": 72.87
+     },
+     "status": "BUSY"
+    }
+   ]
+  },
+  "missions.json": {
+   "sha256": "daaadf366e7d84356399f20461e9558576a647049f05e875e839ad0db9bf9147",
+   "content": [
+    {
+     "mission_id": "MIS-49A1BB13",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-7B4EE257",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:35:51.467238Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:03.006385Z"
+    },
+    {
+     "mission_id": "MIS-018D7DE9",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-215B24BF",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:03.034458Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:11.656747Z"
+    },
+    {
+     "mission_id": "MIS-B6D20A8B",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-24C5E5F0",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:11.702992Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:16.370216Z"
+    },
+    {
+     "mission_id": "MIS-7EEFD469",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-57365AFF",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:36:16.432441Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:24.658062Z"
+    },
+    {
+     "mission_id": "MIS-1092A4A0",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-0830E6DE",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:24.712685Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:31.031117Z"
+    },
+    {
+     "mission_id": "MIS-372D16AA",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-5569BD6C",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:31.078933Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:38.364222Z"
+    },
+    {
+     "mission_id": "MIS-60D1B6A0",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-714D8F4D",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:36:38.413957Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:46.269680Z"
+    },
+    {
+     "mission_id": "MIS-3FD3A51D",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-21BC9BD3",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:46.317781Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:36:54.101688Z"
+    },
+    {
+     "mission_id": "MIS-F95D74EB",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3D84DB0B",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:36:54.181512Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:00.525384Z"
+    },
+    {
+     "mission_id": "MIS-AB4902B8",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-48E7BBE9",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:00.562669Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:05.010035Z"
+    },
+    {
+     "mission_id": "MIS-7CE69335",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-26F20A78",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:05.062858Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:13.286866Z"
+    },
+    {
+     "mission_id": "MIS-9532735D",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-E2957EBD",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:13.339401Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:16.957615Z"
+    },
+    {
+     "mission_id": "MIS-C4F108B0",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-1F09F317",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:17.022546Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:20.086475Z"
+    },
+    {
+     "mission_id": "MIS-E190434E",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-15DD7B9A",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:20.137626Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:22.958943Z"
+    },
+    {
+     "mission_id": "MIS-274200C5",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-85FEA156",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:22.996133Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:24.329638Z"
+    },
+    {
+     "mission_id": "MIS-6201FF5C",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-D10A3517",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:24.364161Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:29.246820Z"
+    },
+    {
+     "mission_id": "MIS-AFE9027A",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-D4FE10DE",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:29.317698Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:34.705998Z"
+    },
+    {
+     "mission_id": "MIS-F40687C5",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-671CE105",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:34.735003Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:35.265167Z"
+    },
+    {
+     "mission_id": "MIS-951901D0",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3E042AE6",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:35.291819Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:35.812458Z"
+    },
+    {
+     "mission_id": "MIS-06F1B977",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-9B6B4781",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:35.846566Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:37.624841Z"
+    },
+    {
+     "mission_id": "MIS-4F887B54",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-225DC075",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:37.660134Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:38.286069Z"
+    },
+    {
+     "mission_id": "MIS-E6F1DD0E",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-788F7FDD",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:38.317465Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:39.014472Z"
+    },
+    {
+     "mission_id": "MIS-380F9E8E",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3D9DBE37",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:39.046389Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:39.566493Z"
+    },
+    {
+     "mission_id": "MIS-72C1FB54",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-A4CF547C",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:39.601527Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:40.981974Z"
+    },
+    {
+     "mission_id": "MIS-2C3FCDB8",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-D8AF42E6",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:41.005491Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:41.451262Z"
+    },
+    {
+     "mission_id": "MIS-238CDD68",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-AB8E30E9",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:41.484267Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:42.121728Z"
+    },
+    {
+     "mission_id": "MIS-72BDCBB6",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-67B6B0A3",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:42.153878Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:42.623179Z"
+    },
+    {
+     "mission_id": "MIS-91CEF86D",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-2026EE15",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:42.654768Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:43.124036Z"
+    },
+    {
+     "mission_id": "MIS-9A8432A3",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-DE29DE82",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:43.159092Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:44.434127Z"
+    },
+    {
+     "mission_id": "MIS-FA1CFCFA",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-75478B87",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:44.468292Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:46.435310Z"
+    },
+    {
+     "mission_id": "MIS-7A4EF197",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-E4DEED2F",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:46.468401Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:46.912744Z"
+    },
+    {
+     "mission_id": "MIS-040F0E5D",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-D7324D13",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:46.947744Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:47.370838Z"
+    },
+    {
+     "mission_id": "MIS-0FD93BD5",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-9FC6C0FF",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:47.406353Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:47.793594Z"
+    },
+    {
+     "mission_id": "MIS-FD8D68D2",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-CF15805D",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:47.826738Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:48.265277Z"
+    },
+    {
+     "mission_id": "MIS-2DAF1751",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-54A2B639",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:48.298800Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:52.218081Z"
+    },
+    {
+     "mission_id": "MIS-BE8E68D9",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-F589884B",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:52.283709Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:52.779470Z"
+    },
+    {
+     "mission_id": "MIS-E88C28AB",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-092C949C",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:52.810059Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:53.271007Z"
+    },
+    {
+     "mission_id": "MIS-4F64FBA3",
+     "status": "COMPLETED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-BFEFD53A",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:53.303530Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:55.576427Z"
+    },
+    {
+     "mission_id": "MIS-4457773F",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-4DDD2354",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:55.611697Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:56.069463Z"
+    },
+    {
+     "mission_id": "MIS-88F5831F",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-ED436158",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:56.108599Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:56.560249Z"
+    },
+    {
+     "mission_id": "MIS-FBAC30B7",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-57A8BC5D",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:56.594255Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:57.123829Z"
+    },
+    {
+     "mission_id": "MIS-2D709408",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-32E7E4EA",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:57.160342Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:57.576970Z"
+    },
+    {
+     "mission_id": "MIS-2EC20743",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-C0010856",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:57.611163Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:58.067460Z"
+    },
+    {
+     "mission_id": "MIS-36EBFE06",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-523F9651",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:37:58.102100Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:37:59.628471Z"
+    },
+    {
+     "mission_id": "MIS-0C681880",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-43DDBF7E",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:37:59.664587Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:00.139719Z"
+    },
+    {
+     "mission_id": "MIS-3DA76621",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-2128F143",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:00.170721Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:00.596841Z"
+    },
+    {
+     "mission_id": "MIS-147FFEF0",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-37F7538F",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:00.634822Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:01.062175Z"
+    },
+    {
+     "mission_id": "MIS-34CB2B01",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-BE630AAE",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:01.092999Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:02.775672Z"
+    },
+    {
+     "mission_id": "MIS-8992EB13",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-DC05CE7D",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:02.814315Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:04.019289Z"
+    },
+    {
+     "mission_id": "MIS-3EAB0921",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-61B9999D",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:04.059423Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:04.501573Z"
+    },
+    {
+     "mission_id": "MIS-B2E666EE",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-FFEE9BD7",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:04.538431Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:05.760784Z"
+    },
+    {
+     "mission_id": "MIS-CC4D1E56",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-2792FFAC",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:05.792786Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:06.235215Z"
+    },
+    {
+     "mission_id": "MIS-9B2B9183",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-AD2A52C2",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:06.270855Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:06.699858Z"
+    },
+    {
+     "mission_id": "MIS-F7EBA814",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-C761DD8F",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:06.739577Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:07.217569Z"
+    },
+    {
+     "mission_id": "MIS-9F2857A9",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-0B225B0A",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:07.245575Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:07.662221Z"
+    },
+    {
+     "mission_id": "MIS-9D85E2CA",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-BA876D5D",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:07.699221Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:08.093885Z"
+    },
+    {
+     "mission_id": "MIS-035DFE5A",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-6C308B75",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:08.125987Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:08.555308Z"
+    },
+    {
+     "mission_id": "MIS-C8F8AAFF",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-D059452E",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:08.593863Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:09.053202Z"
+    },
+    {
+     "mission_id": "MIS-17089B01",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-226B0483",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:09.084295Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:09.453152Z"
+    },
+    {
+     "mission_id": "MIS-A6DD461D",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-DB9DE38D",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:09.481305Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:10.572353Z"
+    },
+    {
+     "mission_id": "MIS-C7B8F953",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-EAC2FD37",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:10.608917Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:11.059115Z"
+    },
+    {
+     "mission_id": "MIS-36E112EE",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-04EC4773",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:11.097542Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:12.339227Z"
+    },
+    {
+     "mission_id": "MIS-99767A09",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-ECC5CE4B",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:12.379674Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:13.775321Z"
+    },
+    {
+     "mission_id": "MIS-CD4F7016",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-372D25F7",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:13.806320Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:15.029157Z"
+    },
+    {
+     "mission_id": "MIS-492B0082",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-2A8524B0",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:15.065471Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:15.499165Z"
+    },
+    {
+     "mission_id": "MIS-124ABCCC",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-BAEC857A",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:15.537127Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:16.699687Z"
+    },
+    {
+     "mission_id": "MIS-81128DBF",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-DC84413C",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:16.737670Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:17.178409Z"
+    },
+    {
+     "mission_id": "MIS-B76F496B",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-755F6F2E",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:17.219215Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:17.756002Z"
+    },
+    {
+     "mission_id": "MIS-541C9E19",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-98F6BB39",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:17.796178Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:18.177499Z"
+    },
+    {
+     "mission_id": "MIS-48F1EDEC",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-4F3135ED",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:18.212015Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:18.523811Z"
+    },
+    {
+     "mission_id": "MIS-F1C5AE5D",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-CCC5B4DE",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:18.563942Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:20.612955Z"
+    },
+    {
+     "mission_id": "MIS-9B4DF1CC",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-A18860E0",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:20.654102Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:21.053913Z"
+    },
+    {
+     "mission_id": "MIS-3B069CB6",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-2BDA8F7F",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:21.095025Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:21.457913Z"
+    },
+    {
+     "mission_id": "MIS-322C9054",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-E02F28BA",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:21.493912Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:21.914272Z"
+    },
+    {
+     "mission_id": "MIS-4D7A708F",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3A835BF7",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:21.950566Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:23.139072Z"
+    },
+    {
+     "mission_id": "MIS-78593282",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-1A7F85AC",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:23.181442Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:23.610475Z"
+    },
+    {
+     "mission_id": "MIS-2336C945",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-CC5EABB3",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:23.647485Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:24.346771Z"
+    },
+    {
+     "mission_id": "MIS-F206AB72",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-EA5D615D",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:24.387904Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:25.178730Z"
+    },
+    {
+     "mission_id": "MIS-F55B4A92",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-82C6B390",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:25.217746Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:25.859032Z"
+    },
+    {
+     "mission_id": "MIS-F3DBFFC7",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-46AF71C8",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:25.896036Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:27.450580Z"
+    },
+    {
+     "mission_id": "MIS-7E228B12",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-ACC9A822",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:27.508581Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:29.185364Z"
+    },
+    {
+     "mission_id": "MIS-B8FBDB4F",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-100FBC91",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:29.222382Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:29.614381Z"
+    },
+    {
+     "mission_id": "MIS-5FA12165",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-08E4075A",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:29.645998Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:30.092664Z"
+    },
+    {
+     "mission_id": "MIS-CE4CF760",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-0D324F0B",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:30.133181Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:30.570925Z"
+    },
+    {
+     "mission_id": "MIS-D39A0792",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-67D867DF",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:30.609925Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:31.043894Z"
+    },
+    {
+     "mission_id": "MIS-18C77CD5",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-AF90F80B",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:31.086551Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:31.545676Z"
+    },
+    {
+     "mission_id": "MIS-217EC56B",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-9F37363A",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:31.585793Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:32.001931Z"
+    },
+    {
+     "mission_id": "MIS-8C0C6C46",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-A6367463",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:32.036937Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:32.462874Z"
+    },
+    {
+     "mission_id": "MIS-C6BA76AF",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-DB67DB19",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:32.503911Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:32.847984Z"
+    },
+    {
+     "mission_id": "MIS-31B02B10",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-70B330F8",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:32.881298Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:33.413593Z"
+    },
+    {
+     "mission_id": "MIS-389F4B80",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3B17AFA5",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:33.449318Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:33.813016Z"
+    },
+    {
+     "mission_id": "MIS-A440C381",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-EA147750",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:33.853053Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:34.183590Z"
+    },
+    {
+     "mission_id": "MIS-F5F0797B",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-7C9C1406",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:34.226591Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:34.654511Z"
+    },
+    {
+     "mission_id": "MIS-2921440C",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-A4C14565",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:34.697328Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:35.130936Z"
+    },
+    {
+     "mission_id": "MIS-324A8C4D",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-083C454C",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:35.172440Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:35.761005Z"
+    },
+    {
+     "mission_id": "MIS-6C93D145",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-37DD7AF4",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:35.795449Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:36.249466Z"
+    },
+    {
+     "mission_id": "MIS-66FD4DBA",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-3B52BCF0",
+       "responder_id": "R001",
+       "assigned_at": "2026-10-08T16:38:36.293850Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:36.815199Z"
+    },
+    {
+     "mission_id": "MIS-0916C6B5",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-14C61225",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:36.857624Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:37.318099Z"
+    },
+    {
+     "mission_id": "MIS-D6F06208",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-10B0E478",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:37.354205Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:37.748438Z"
+    },
+    {
+     "mission_id": "MIS-A719E281",
+     "status": "CANCELLED",
+     "assignments": [
+      {
+       "assignment_id": "ASSIGN-52B97175",
+       "responder_id": "R002",
+       "assigned_at": "2026-10-08T16:38:37.784566Z"
+      }
+     ],
+     "closed_at": "2026-10-08T16:38:38.149848Z"
+    }
+   ]
+  }
+ }
+}

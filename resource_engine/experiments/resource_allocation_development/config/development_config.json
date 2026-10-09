@@ -1,0 +1,173 @@
+{
+  "experiment": "resource_allocation_development",
+  "purpose": "Development / parameter-selection stage. Tunes and freezes alpha, k, m, n on 3,000 development scenarios. Not the final hypothesis test.",
+
+  "master_seed": 20261108,
+  "seed_namespace": "aashray-resource-allocation-development",
+  "seed_note": "Differs from the pilot master seed 20261007. All streams are derived as sha256(namespace | master_seed | ...), so they cannot coincide with the pilot's. The future 12,000-scenario final test must use a master seed and namespace different from both.",
+  "pilot_master_seed": 20261007,
+
+  "n_scenarios": 3000,
+
+  "existing_allocator": {
+    "module": "resource_services.services.resource_allocation_service",
+    "class": "ResourceAllocationService",
+    "entry_point": "allocate_batch",
+    "method": "Same as the pilot: every request carries the same placeholder severity/urgency/priority, so the allocator's own ranking ties and its stable sort keeps the order supplied by the experiment. Verified on every call.",
+    "placeholder_inputs": {
+      "severity": 0.5,
+      "urgency": 0.5,
+      "priority": "MODERATE"
+    }
+  },
+
+  "resource_types": ["water", "food", "medical_kits"],
+
+  "scenario_design": {
+    "scarcity_levels": {
+      "LOW": {
+        "scenario_count": 300,
+        "supply_to_demand_ratio": [1.15, 1.60],
+        "supply_rounding": "ceil"
+      },
+      "MODERATE": {
+        "scenario_count": 1200,
+        "supply_to_demand_ratio": [0.90, 1.10],
+        "supply_rounding": "round"
+      },
+      "HIGH": {
+        "scenario_count": 1500,
+        "supply_to_demand_ratio": [0.30, 0.70],
+        "supply_rounding": "floor"
+      }
+    },
+    "scarcity_note": "Fixed before any development result. LOW is kept small because the pilot showed it produces no allocation-order variation.",
+
+    "scenario_sizes": {
+      "SMALL": [3, 6],
+      "MEDIUM": [8, 14],
+      "LARGE": [18, 30]
+    },
+
+    "su_profiles": [
+      "LL_DOMINANT",
+      "LH_DOMINANT",
+      "HL_DOMINANT",
+      "HH_DOMINANT",
+      "MODERATE_MIXED"
+    ],
+
+    "cell_allocation_rule": "Each scarcity level is spread evenly over the 15 size x S-U-profile cells: LOW 20, MODERATE 80, HIGH 100 scenarios per cell.",
+
+    "warehouses_per_scenario": [2, 5]
+  },
+
+  "severity_urgency": {
+    "domain": "0 < S <= 1 and 0 < U <= 1",
+    "decimals": 4,
+    "bands": {
+      "LOW": [0.01, 0.35],
+      "MODERATE": [0.35, 0.65],
+      "HIGH": [0.65, 1.00],
+      "FULL": [0.01, 1.00]
+    },
+    "emergency_strata": {
+      "LL": ["LOW", "LOW"],
+      "LH": ["LOW", "HIGH"],
+      "HL": ["HIGH", "LOW"],
+      "HH": ["HIGH", "HIGH"],
+      "MM": ["MODERATE", "MODERATE"],
+      "MIXED": ["FULL", "FULL"]
+    },
+    "profile_weights": {
+      "LL_DOMINANT":    {"LL": 0.60, "LH": 0.08, "HL": 0.08, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "LH_DOMINANT":    {"LL": 0.08, "LH": 0.60, "HL": 0.08, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "HL_DOMINANT":    {"LL": 0.08, "LH": 0.08, "HL": 0.60, "HH": 0.08, "MM": 0.08, "MIXED": 0.08},
+      "HH_DOMINANT":    {"LL": 0.08, "LH": 0.08, "HL": 0.08, "HH": 0.60, "MM": 0.08, "MIXED": 0.08},
+      "MODERATE_MIXED": {"LL": 0.05, "LH": 0.05, "HL": 0.05, "HH": 0.05, "MM": 0.40, "MIXED": 0.40}
+    },
+    "note": "Same strata as the pilot. Within a stratum S and U are independent uniform draws."
+  },
+
+  "demand": {
+    "per_person_rates_source": "resource_services/config/resource_rules.json (read only)",
+    "affected_population": {"min": 60, "max": 600, "step": 20},
+    "type_multiplier": [0.6, 1.4],
+    "quantity_rule": "quantity = max(1, round(base_per_person[type] * affected_population * multiplier)) for each required type, 0 otherwise",
+    "required_type_patterns": {
+      "ALL": {"types": ["water", "food", "medical_kits"], "weight": 0.40},
+      "WATER_FOOD": {"types": ["water", "food"], "weight": 0.12},
+      "WATER_MEDICAL": {"types": ["water", "medical_kits"], "weight": 0.12},
+      "FOOD_MEDICAL": {"types": ["food", "medical_kits"], "weight": 0.12},
+      "WATER_ONLY": {"types": ["water"], "weight": 0.08},
+      "FOOD_ONLY": {"types": ["food"], "weight": 0.08},
+      "MEDICAL_ONLY": {"types": ["medical_kits"], "weight": 0.08}
+    },
+    "independence_note": "Own random stream; independent of S, U, GT labels, arrival and all AASHRAY parameters."
+  },
+
+  "arrival": {
+    "base_timestamp": "2026-01-01T00:00:00Z",
+    "window_seconds": 3600,
+    "rule": "Independent integer offset in [0, window_seconds] per emergency from a dedicated arrival stream.",
+    "fcfs_order": "ascending (arrival_timestamp, emergency_id)"
+  },
+
+  "ground_truth": {
+    "rule": "GT_critical = 1 if (S >= 0.8 AND U >= 0.8) OR S >= 0.95 OR U >= 0.95, else 0",
+    "both_high_threshold": 0.8,
+    "single_extreme_threshold": 0.95,
+    "status": "PREDEFINED EXPERIMENTAL REFERENCE RULE, fixed before any development result. Not an externally validated medical or disaster-management truth. Independent of alpha, k, m, n. The pilot rule (0.5*S + 0.5*U > 0.8) is not used."
+  },
+
+  "critical_coverage_guarantee": {
+    "requirement": "Every scenario contains at least one GT-critical emergency.",
+    "mechanism": "Rejection sampling of the scenario's severity/urgency draws only. Attempt 0 uses the stream sha256(scenario_seed | 'severity_urgency' | 0). If no emergency is GT-critical under the fixed rule, the whole S/U draw is repeated with attempt 1, 2, ... (a new deterministic stream each time) until at least one is. Arrival, demand and inventory use their own streams and are unaffected. Only the fixed GT rule is consulted, never an AASHRAY score.",
+    "max_attempts": 10000
+  },
+
+  "policies": {
+    "FCFS": "ascending (arrival_timestamp, emergency_id); sees nothing else",
+    "LINEAR": "descending P_linear = 0.5*S + 0.5*U; ties in FCFS order",
+    "AASHRAY": "descending P_o = k*S + m*U + n*P_n with P_n = S^alpha * U^(1-alpha); ties in FCFS order; continuous score only, no priority categories",
+    "score_tie_tolerance": 1e-12,
+    "tie_note": "Scores within 1e-12 are ties and go to FCFS order, so mathematically equal scores that differ only by floating-point rounding are not ordered by rounding noise. Added after the first evaluation run was stopped (before completion, with no results read) because its class count (558) exceeded the number of mathematically distinct functions (506)."
+  },
+
+  "parameter_grid": {
+    "alpha": "{0.0, 0.1, ..., 1.0} (11 values)",
+    "weights": "k, m, n in {0.0, 0.1, ..., 1.0} with k + m + n = 1 (66 combinations), generated as integer tenths",
+    "candidate_count": 726,
+    "config_id_order": "ascending (alpha, k, m, n)",
+    "note": "Fixed before evaluation. Generated by scripts/generate_parameter_grid.py into results/candidate_grid.csv."
+  },
+
+  "ranking_equivalence": {
+    "signature": "For each configuration, the ordered emergency-id sequence in every one of the 3,000 scenarios. Configurations with identical sequences in all scenarios form one empirical ranking-equivalence class.",
+    "evaluation": "One representative (lowest config_id) per class is evaluated. Within a scenario, an order that occurs more than once is passed to the allocator once and its result reused; the allocator is deterministic for a given order."
+  },
+
+  "metrics": {
+    "CDC": "fulfilled demand of GT-critical emergencies / required demand of GT-critical emergencies (water, food and medical_kits summed in native units)",
+    "TDC": "total fulfilled demand / total required demand (descriptive only)",
+    "percentile_method": "linear interpolation between order statistics (statistics.quantiles method='inclusive', equal to numpy's default)",
+    "standard_deviation": "sample standard deviation (n - 1)",
+    "paired_difference_tolerance": 1e-9
+  },
+
+  "selection_rule": {
+    "primary": "highest mean CDC over all 3,000 development scenarios",
+    "tie_tolerance": 1e-6,
+    "tie_breakers": [
+      "configurations whose mean CDC is within 1e-6 of the best mean CDC are tied; among them, highest median CDC",
+      "if still within 1e-6 of the best median, highest 10th-percentile CDC",
+      "if still within 1e-6 of the best 10th percentile, lexicographically smallest (alpha, k, m, n)"
+    ],
+    "not_used": "TDC, baselines, individual scenarios, closeness to pilot parameters, any researcher judgement"
+  },
+
+  "freeze": {
+    "file": "results/frozen_parameters.json",
+    "rule": "Written by scripts/validate_development.py only after every validation check passes. Never overwritten once it exists."
+  }
+}

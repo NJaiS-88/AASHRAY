@@ -1,0 +1,13 @@
+{
+  "taken_at": "2026-10-09T07:06:08.272Z",
+  "road_condition_evidence": {
+    "rows": 3,
+    "max_created_at": "2026-10-07T17:17:22.993Z",
+    "max_updated_at": "2026-10-07T17:17:22.993Z"
+  },
+  "mission_route_state": {
+    "rows": 129,
+    "max_created_at": "2026-10-08T16:38:28.381Z",
+    "max_updated_at": "2026-10-08T16:38:28.381Z"
+  }
+}

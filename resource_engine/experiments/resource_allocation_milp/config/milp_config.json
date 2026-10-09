@@ -1,0 +1,58 @@
+{
+  "experiment": "resource_allocation_milp",
+  "role": "Exact MILP benchmark for maximum GT-critical demand fulfilment. Not part of AASHRAY parameter selection; not a hypothesis test.",
+
+  "input_dataset": "experiments/resource_allocation_development/data/development_3000_scenarios.json",
+  "input_dataset_access": "read only",
+
+  "resource_types": ["water", "food", "medical_kits"],
+
+  "formulation": {
+    "variables": "x[e,r,w] >= 0, integer: quantity of resource r from warehouse w to emergency e, for every emergency e, resource type r and warehouse w (full index set; no pre-elimination)",
+    "objective": "maximize sum_{e,r,w} GT_critical[e] * x[e,r,w]",
+    "supply_constraints": "for every warehouse w and type r: sum_e x[e,r,w] <= available[w,r]",
+    "demand_constraints": "for every emergency e and type r: sum_w x[e,r,w] <= demand[e,r] (forces x = 0 where demand is 0)",
+    "no_other_constraints": "No vehicle, compatibility, distance, time, route, personnel, shelter, road, priority-category or AASHRAY-score constraints: none exist in the current allocator.",
+    "gt_critical_source": "the stored ground_truth_critical label of each emergency: (S >= 0.8 AND U >= 0.8) OR S >= 0.95 OR U >= 0.95"
+  },
+
+  "solver": {
+    "name": "HiGHS via scipy.optimize.milp",
+    "selection_reason": "Only exact MILP solver available in the environment (OR-Tools, PuLP, highspy, Pyomo, python-mip, CVXPY and Gurobi are not installed). Reports status, objective, MIP gap and dual bound.",
+    "options": {
+      "mip_rel_gap": 0.0,
+      "time_limit": 60.0,
+      "presolve": true,
+      "disp": false
+    },
+    "options_note": "mip_rel_gap = 0 because HiGHS otherwise stops at a 1e-4 relative gap. time_limit only guards against hangs; a solve that hits it is NON-OPTIMAL.",
+    "integrality_tolerance": 1e-6,
+    "integrality_note": "HiGHS returns floating-point values. Each x is rounded to the nearest integer and the deviation recorded; a deviation above 1e-6 fails validation. All reported quantities and constraint checks use the rounded integers."
+  },
+
+  "optimality": {
+    "proven_optimum_rule": "status == 0 ('Optimal'), success == true, mip_gap == 0, and |objective - dual bound| <= 1e-6. Anything else is NON-OPTIMAL and is never reported as an optimum."
+  },
+
+  "runs": {
+    "warm_up": "One unrecorded solve before timing, so library loading is not counted.",
+    "subset": "Deterministic 50-scenario subset: every 60th development scenario (positions 0, 60, ..., 2940). Solved first; the full run only starts if all 50 are proven optimal and equal the analytical optimum.",
+    "full": "All 3,000 development scenarios."
+  },
+
+  "timing": {
+    "timer": "time.perf_counter (monotonic, high resolution)",
+    "model_build_time": "turning one scenario into the MILP arrays (objective, constraint matrix, bounds, integrality)",
+    "solver_time": "the scipy.optimize.milp call",
+    "total_milp_time": "model_build_time + solver_time",
+    "excluded": "dataset generation, file loading, Python/application start-up, result extraction and validation"
+  },
+
+  "analytical_oracle": "sum_r min(sum_e GT_critical[e] * demand[e,r], sum_w available[w,r]); used only to validate the MILP",
+
+  "cdc": "critical_fulfilled / critical_required; NaN (undefined) when critical_required == 0, never 0 or 1",
+
+  "tdc_note": "The objective only rewards GT-critical demand, so allocation to non-critical emergencies is not determined by the optimum: any feasible split is equally optimal. The MILP's total fulfilment (and TDC) is therefore solver-dependent and is reported as such, not as a benchmark value.",
+
+  "frozen_aashray_parameters": "experiments/resource_allocation_development/results/frozen_parameters.json (read only; not used by the MILP)"
+}

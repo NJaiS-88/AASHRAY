@@ -1,0 +1,385 @@
+{
+  "n_checks": 26,
+  "n_pass": 26,
+  "n_fail": 0,
+  "checks": [
+    {
+      "id": "1",
+      "name": "MILP model constructs successfully",
+      "status": "PASS",
+      "details": {
+        "scenarios_checked": 30,
+        "structure": "E*3*W integer variables >= 0; 3W supply + 3E demand rows; each variable in exactly one supply and one demand row; objective = GT_critical; no other constraints",
+        "malformed": []
+      }
+    },
+    {
+      "id": "2",
+      "name": "Hand-check TEST-01 passes",
+      "status": "PASS",
+      "details": {
+        "description": "One critical emergency, enough resources",
+        "expected": {
+          "critical_required": 155,
+          "critical_fulfilled": 155,
+          "cdc": 1.0
+        },
+        "got_critical_fulfilled": 155,
+        "got_cdc": 1.0,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "3",
+      "name": "Hand-check TEST-02 passes",
+      "status": "PASS",
+      "details": {
+        "description": "One critical emergency, insufficient resources",
+        "expected": {
+          "critical_required": 100,
+          "critical_fulfilled": 60,
+          "cdc": 0.6
+        },
+        "got_critical_fulfilled": 60,
+        "got_cdc": 0.6,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "4",
+      "name": "Hand-check TEST-03 passes",
+      "status": "PASS",
+      "details": {
+        "description": "Two critical emergencies compete for one resource",
+        "expected": {
+          "critical_required": 150,
+          "critical_fulfilled": 100,
+          "cdc": 0.6666666666666666
+        },
+        "got_critical_fulfilled": 100,
+        "got_cdc": 0.6666666666666666,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "5",
+      "name": "Hand-check TEST-04 passes",
+      "status": "PASS",
+      "details": {
+        "description": "Critical and non-critical compete for a scarce resource",
+        "expected": {
+          "critical_required": 80,
+          "critical_fulfilled": 80,
+          "cdc": 1.0
+        },
+        "got_critical_fulfilled": 80,
+        "got_cdc": 1.0,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "6",
+      "name": "Hand-check TEST-05 passes",
+      "status": "PASS",
+      "details": {
+        "description": "One resource split across multiple warehouses",
+        "expected": {
+          "critical_required": 100,
+          "critical_fulfilled": 90,
+          "cdc": 0.9
+        },
+        "got_critical_fulfilled": 90,
+        "got_cdc": 0.9,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "7",
+      "name": "Hand-check TEST-06 passes",
+      "status": "PASS",
+      "details": {
+        "description": "Multiple resource types with different shortages",
+        "expected": {
+          "critical_required": 210,
+          "critical_fulfilled": 150,
+          "cdc": 0.7142857142857143
+        },
+        "got_critical_fulfilled": 150,
+        "got_cdc": 0.7142857142857143,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "8",
+      "name": "Hand-check TEST-07 passes",
+      "status": "PASS",
+      "details": {
+        "description": "Partial fulfilment required",
+        "expected": {
+          "critical_required": 50,
+          "critical_fulfilled": 15,
+          "cdc": 0.3
+        },
+        "got_critical_fulfilled": 15,
+        "got_cdc": 0.3,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "9",
+      "name": "Hand-check TEST-08 passes",
+      "status": "PASS",
+      "details": {
+        "description": "No critical demand: CDC undefined",
+        "expected": {
+          "critical_required": 0,
+          "critical_fulfilled": 0,
+          "cdc": null
+        },
+        "got_critical_fulfilled": 0,
+        "got_cdc": null,
+        "checks": {
+          "proven_optimum": true,
+          "critical_required": true,
+          "critical_fulfilled": true,
+          "cdc": true,
+          "analytical_oracle_agrees": true,
+          "property": true
+        }
+      }
+    },
+    {
+      "id": "10",
+      "name": "Supply constraints are never violated",
+      "status": "PASS",
+      "details": {
+        "warehouse_type_pairs_checked": 13193,
+        "violations": []
+      }
+    },
+    {
+      "id": "11",
+      "name": "Demand constraints are never violated",
+      "status": "PASS",
+      "details": {
+        "emergency_type_pairs_checked": 15045,
+        "violations": []
+      }
+    },
+    {
+      "id": "12",
+      "name": "x variables are integer",
+      "status": "PASS",
+      "details": {
+        "non_integer_allocation_rows": 0,
+        "max_solver_deviation_from_integer": 0.0,
+        "tolerance": 1e-06
+      }
+    },
+    {
+      "id": "13",
+      "name": "No allocation is negative",
+      "status": "PASS",
+      "details": {
+        "allocation_rows": 19517,
+        "negative_or_zero_rows": 0,
+        "note": "only non-zero allocations are stored"
+      }
+    },
+    {
+      "id": "14",
+      "name": "MILP critical fulfilment never exceeds the analytical optimum",
+      "status": "PASS",
+      "details": {
+        "scenarios": 3000,
+        "exceeding": []
+      }
+    },
+    {
+      "id": "15",
+      "name": "MILP critical fulfilment equals the analytical optimum on every solved scenario",
+      "status": "PASS",
+      "details": {
+        "proven_optimal_scenarios": 3000,
+        "matching": 3000,
+        "mismatching": []
+      }
+    },
+    {
+      "id": "16",
+      "name": "CDC is calculated correctly",
+      "status": "PASS",
+      "details": {
+        "cdc_mismatches": [],
+        "critical_fulfilled_vs_allocations_mismatches": []
+      }
+    },
+    {
+      "id": "17",
+      "name": "Zero-critical-demand handling is correct",
+      "status": "PASS",
+      "details": {
+        "modified_development_scenario_cdc": "NaN",
+        "hand_check_TEST_08_cdc_undefined": true,
+        "development_rows_with_zero_critical_demand_but_numeric_cdc": []
+      }
+    },
+    {
+      "id": "18",
+      "name": "Solver status is recorded",
+      "status": "PASS",
+      "details": {
+        "status_values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "19",
+      "name": "Non-optimal solutions are not labelled optimum",
+      "status": "PASS",
+      "details": {
+        "labelling_unit_cases": {
+          "time_limit_incumbent": false,
+          "optimal_status_with_gap": false,
+          "bound_not_closed": false,
+          "not_successful": false,
+          "missing_gap": false,
+          "proven_optimum": true
+        },
+        "real_time_limited_solve": {
+          "scenario": "DEV-0105",
+          "solver_status": 1,
+          "solver_message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+          "labelled_proven_optimum": false
+        },
+        "every_labelled_optimum_has_status_0_gap_0_closed_bound": true
+      }
+    },
+    {
+      "id": "20",
+      "name": "Timing measurements are recorded",
+      "status": "PASS",
+      "details": {
+        "rows": 3000,
+        "fields": [
+          "model_build_time_seconds",
+          "solver_time_seconds",
+          "total_milp_time_seconds"
+        ]
+      }
+    },
+    {
+      "id": "21",
+      "name": "Existing application files are unchanged",
+      "status": "PASS",
+      "details": {
+        "files": 94,
+        "changed": []
+      }
+    },
+    {
+      "id": "22",
+      "name": "Pilot files are unchanged",
+      "status": "PASS",
+      "details": {
+        "files": 14,
+        "changed": []
+      }
+    },
+    {
+      "id": "23",
+      "name": "Development files are unchanged",
+      "status": "PASS",
+      "details": {
+        "files": 23,
+        "changed": []
+      }
+    },
+    {
+      "id": "24",
+      "name": "Frozen AASHRAY parameters are unchanged",
+      "status": "PASS",
+      "details": {
+        "frozen": {
+          "config_id": "C045",
+          "alpha": 0.0,
+          "k": 0.5,
+          "m": 0.0,
+          "n": 0.5
+        },
+        "file_hash_unchanged": true
+      }
+    },
+    {
+      "id": "25",
+      "name": "No 12,000 test data is accessed",
+      "status": "PASS",
+      "details": {
+        "input": "experiments/resource_allocation_development/data/development_3000_scenarios.json",
+        "scenarios_solved": 3000,
+        "scenario_datasets_inside_milp_folder": [],
+        "scripts_referencing_a_test_set": []
+      }
+    },
+    {
+      "id": "D1",
+      "name": "Identical input and configuration give identical objective and CDC",
+      "status": "PASS",
+      "details": {
+        "subset_solved_in_run_twice": 50,
+        "resolved_again_in_validation": 50,
+        "mismatches": []
+      }
+    }
+  ]
+}

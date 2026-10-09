@@ -1,0 +1,417 @@
+{
+  "n_checks": 37,
+  "n_pass": 37,
+  "n_fail": 0,
+  "scenario_count": 12000,
+  "valid_scenarios": 12000,
+  "invalid_scenarios": 0,
+  "milp_optimal_count": 12000,
+  "analytical_match_count": 12000,
+  "failures": [],
+  "checks": [
+    {
+      "id": "1",
+      "name": "Exactly 12,000 final scenarios generated",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "dataset": 12000,
+        "rows": 12000,
+        "expected": 12000
+      }
+    },
+    {
+      "id": "2",
+      "name": "Scenario IDs unique",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "unique_dataset_ids": 12000,
+        "unique_row_ids": 12000
+      }
+    },
+    {
+      "id": "3",
+      "name": "No duplicate scenarios",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "unique_content": 12000
+      }
+    },
+    {
+      "id": "27",
+      "name": "No scenarios discarded based on outcome",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "rows_equal_dataset_in_order": true
+      }
+    },
+    {
+      "id": "4",
+      "name": "Final dataset hash recorded",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "recorded": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab",
+        "current": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Final dataset frozen before allocation execution",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "frozen_at": "2026-10-07T20:28:30+00:00",
+        "run_started": "2026-10-07T20:28:39+00:00",
+        "read_only": true
+      }
+    },
+    {
+      "id": "6",
+      "name": "Development data not mixed with final data",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "identical_content": 0
+      }
+    },
+    {
+      "id": "7",
+      "name": "Pilot data not mixed with final data",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "identical_content": 0
+      }
+    },
+    {
+      "id": "8",
+      "name": "Frozen AASHRAY parameters unchanged",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "frozen": {
+          "config_id": "C045",
+          "alpha": 0.0,
+          "k": 0.5,
+          "m": 0.0,
+          "n": 0.5
+        }
+      }
+    },
+    {
+      "id": "9",
+      "name": "GT-criticality formula unchanged",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "label_mismatches_vs_exact_rule": 0,
+        "rule": "GT_critical = 1 if (S >= 0.8 AND U >= 0.8) OR S >= 0.95 OR U >= 0.95, else 0"
+      }
+    },
+    {
+      "id": "10",
+      "name": "FCFS implementation unchanged",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "fcfs_orders_differing_from_independent_arrival_sort": 0,
+        "fcfs_orders_changed_by_scrambling_S_U_GT_demand": 0,
+        "policy_rank_sequence_errors": 0,
+        "implementation": "experiments/resource_allocation_development/scripts/policies.py (hash-protected)"
+      }
+    },
+    {
+      "id": "E5",
+      "name": "AASHRAY orders equal the frozen ranking 0.5*S + 0.5*U (independent pairwise ranking)",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "mismatching_scenarios": 0
+      }
+    },
+    {
+      "id": "11",
+      "name": "MILP formulation unchanged",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "model_structure_errors": 0,
+        "milp_files_changed": [],
+        "options": {
+          "mip_rel_gap": 0.0,
+          "time_limit": 60.0,
+          "presolve": true,
+          "disp": false
+        }
+      }
+    },
+    {
+      "id": "12",
+      "name": "All methods receive identical scenario inputs",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "rows_with_input_mismatch": 0,
+        "method": "per-row scenario fingerprint + per-emergency demand recorded for each method"
+      }
+    },
+    {
+      "id": "13",
+      "name": "All MILP scenarios proven optimal",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "proven_optimal": 12000,
+        "rows": 12000,
+        "not_optimal": []
+      }
+    },
+    {
+      "id": "14",
+      "name": "All MILP solutions match the analytical optimum",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "matching": 12000,
+        "mismatching": []
+      }
+    },
+    {
+      "id": "15",
+      "name": "No MILP supply constraint violations",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "pairs_checked": 53795,
+        "violations": []
+      }
+    },
+    {
+      "id": "16",
+      "name": "No MILP demand constraint violations",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "pairs_checked": 60836,
+        "violations": []
+      }
+    },
+    {
+      "id": "17",
+      "name": "No negative allocations",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "policy_negative_values": 0,
+        "milp_invalid_or_non_positive_rows": 0
+      }
+    },
+    {
+      "id": "18",
+      "name": "All allocations integral",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "policy_non_integer_values": 0,
+        "milp_max_solver_deviation": 0.0
+      }
+    },
+    {
+      "id": "19",
+      "name": "CDC values correctly recomputed independently",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "mismatches": [],
+        "source": "allocation files + dataset GT labels"
+      }
+    },
+    {
+      "id": "20",
+      "name": "TDC values correctly recomputed independently",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "mismatches": []
+      }
+    },
+    {
+      "id": "21",
+      "name": "No CDC > 1 + tolerance",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "tolerance": 1e-12,
+        "undefined_cdc_rows": 0
+      }
+    },
+    {
+      "id": "22",
+      "name": "No TDC > 1 + tolerance",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "id": "23",
+      "name": "AASHRAY (and FCFS) CDC never exceed MILP CDC beyond tolerance",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "violations": [],
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "id": "24",
+      "name": "All runtime values positive and finite",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "non_positive_or_non_finite": 0,
+        "fields": [
+          "fcfs_decision_time_ms",
+          "fcfs_allocation_time_ms",
+          "fcfs_runtime_ms",
+          "aashray_decision_time_ms",
+          "aashray_allocation_time_ms",
+          "aashray_total_time_ms",
+          "milp_build_time_ms",
+          "milp_solver_time_ms",
+          "milp_total_time_ms"
+        ]
+      }
+    },
+    {
+      "id": "25",
+      "name": "Runtime methodology identical across runs",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "single_run_id": "12e24320131d4603b1b2cd875ee4ad93",
+        "process_id": 31704,
+        "totals_equal_component_sums": true,
+        "warm_up": [
+          "FIN-00001",
+          "FIN-00002",
+          "FIN-00003"
+        ]
+      }
+    },
+    {
+      "id": "E6",
+      "name": "No missing required outputs",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "empty_fields": 0
+      }
+    },
+    {
+      "id": "28",
+      "name": "No existing application files modified",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "files": 94,
+        "changed": []
+      }
+    },
+    {
+      "id": "29",
+      "name": "No development files modified",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "files": 23,
+        "changed": []
+      }
+    },
+    {
+      "id": "30",
+      "name": "No pilot files modified",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "files": 14,
+        "changed": []
+      }
+    },
+    {
+      "id": "E1",
+      "name": "No MILP files modified",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "files": 15,
+        "changed": []
+      }
+    },
+    {
+      "id": "E2",
+      "name": "Copied generator reproduces the development dataset byte for byte",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "requirement": "copied generator + development config reproduces the development dataset byte for byte",
+        "development_dataset": "experiments/resource_allocation_development/data/development_3000_scenarios.json",
+        "development_dataset_sha256": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+        "reproduced_sha256": "3ddee3593baca741d2072d62a71de47bd9c4695b4f0848b670f1f8f0cb07b507",
+        "byte_identical": true,
+        "bytes": 23458752
+      }
+    },
+    {
+      "id": "26",
+      "name": "No final-test result used for tuning",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "config_or_scripts_changed_since_preflight": [],
+        "scripts_containing_selection_code": [],
+        "aashray_configurations_evaluated": 1
+      }
+    },
+    {
+      "id": "E3",
+      "name": "Final dataset untouched after freeze",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "sha256": "39912ec07be7cc7e3bde609a65d9019322a014dfde7a15bf769f18f087db7bab"
+      }
+    },
+    {
+      "id": "P1",
+      "name": "Summary values match the raw scenario table (independent recomputation)",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "tolerance": 1e-09,
+        "mismatches": []
+      }
+    },
+    {
+      "id": "P2",
+      "name": "Statistical values reproduce exactly from raw differences",
+      "critical": true,
+      "status": "PASS",
+      "details": {
+        "delta_column_equals_recomputed_difference": true,
+        "permutation_p": true,
+        "permutation_statistic": true,
+        "bootstrap_ci": true,
+        "wilcoxon": true,
+        "cohens_dz": true,
+        "conclusion_follows_rule": true,
+        "summary_matches_tests": true
+      }
+    }
+  ]
+}

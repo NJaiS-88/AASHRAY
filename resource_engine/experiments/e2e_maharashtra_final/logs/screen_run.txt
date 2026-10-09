@@ -1,0 +1,91 @@
+{
+ "total_original_scenarios": 100,
+ "maharashtra_scenarios": 23,
+ "non_maharashtra_scenarios": 77,
+ "invalid_or_missing_location": 0,
+ "over_150_km": 12,
+ "borderline_pending_measurement": 0,
+ "final_qualifying_scenarios": 11,
+ "classification_counts": {
+  "IN_SCOPE": 11,
+  "UNREALISTIC_DISTANCE": 12,
+  "OUT_OF_SCOPE": 77
+ },
+ "non_maharashtra_by_state": {
+  "Jharkhand": 1,
+  "Andhra Pradesh": 8,
+  "Gujarat": 10,
+  "Madhya Pradesh": 1,
+  "Uttarakhand": 6,
+  "Haryana": 2,
+  "Delhi": 2,
+  "West Bengal": 5,
+  "Odisha": 6,
+  "Bihar": 3,
+  "Tamil Nadu": 8,
+  "Himachal Pradesh": 2,
+  "Rajasthan": 1,
+  "Karnataka": 2,
+  "Ladakh": 1,
+  "Kerala": 7,
+  "Sikkim": 2,
+  "Uttar Pradesh": 4,
+  "Jammu and Kashmir": 2,
+  "Manipur": 1,
+  "Punjab": 1,
+  "Puducherry": 1,
+  "Assam": 1
+ },
+ "final_expected_distance_km": {
+  "min": 6.1,
+  "max": 100.54,
+  "mean": 37.4,
+  "median": 30.9,
+  "buckets": {
+   "0-10": 1,
+   "10-25": 4,
+   "25-50": 3,
+   "50-100": 2,
+   "100-150": 1,
+   ">150": 0
+  }
+ },
+ "maharashtra_expected_distance_buckets_all": {
+  "0-10": 1,
+  "10-25": 4,
+  "25-50": 3,
+  "50-100": 2,
+  "100-150": 1,
+  ">150": 12
+ },
+ "chain_legs_measured_previous_run_km": {
+  "RESPONDER:R001 -> WAREHOUSE:WH001": 1.03,
+  "RESPONDER:R002 -> WAREHOUSE:WH001": 4.47,
+  "WAREHOUSE:WH001 -> WAREHOUSE:WH002": 10.03,
+  "WAREHOUSE:WH002 -> WAREHOUSE:WH003": 13.23,
+  "WAREHOUSE:WH003 -> WAREHOUSE:WH004": 23.38,
+  "WAREHOUSE:WH004 -> WAREHOUSE:WH005": 29.06
+ },
+ "quota_estimate": {
+  "scenarios": 11,
+  "warehouses_per_scenario": {
+   "E2E-001": 5,
+   "E2E-023": 3,
+   "E2E-038": 1,
+   "E2E-051": 1,
+   "E2E-053": 1,
+   "E2E-059": 1,
+   "E2E-076": 1,
+   "E2E-081": 1,
+   "E2E-087": 1,
+   "E2E-092": 1,
+   "E2E-093": 1
+  },
+  "expected_route_legs": 28,
+  "expected_route_engine_http_calls": 28,
+  "expected_google_compute_routes_requests": 28,
+  "expected_openweb_ninja_requests": 28,
+  "borderline_measurement_requests": 0,
+  "worst_case_if_borderline_qualify": 28
+ }
+}

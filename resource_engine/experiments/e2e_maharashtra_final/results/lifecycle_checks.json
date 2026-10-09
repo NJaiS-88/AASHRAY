@@ -1,0 +1,68 @@
+{
+ "checks": [
+  {
+   "check": "complete again on COMPLETED mission (idempotent)",
+   "mission_id": "MIS-478B534C",
+   "operation": "complete",
+   "http_status": 200,
+   "expected": 200,
+   "result": "PASS",
+   "response": {
+    "mission_id": "MIS-478B534C",
+    "status": "COMPLETED",
+    "previous_status": "COMPLETED",
+    "responder_ids": [
+     "R002"
+    ],
+    "released_responders": []
+   }
+  },
+  {
+   "check": "cancel on COMPLETED mission (must be rejected)",
+   "mission_id": "MIS-478B534C",
+   "operation": "cancel",
+   "http_status": 409,
+   "expected": 409,
+   "result": "PASS",
+   "response": {
+    "detail": {
+     "error": "MISSION_ALREADY_CLOSED",
+     "message": "Mission MIS-478B534C is COMPLETED; it cannot be CANCELLED."
+    }
+   }
+  },
+  {
+   "check": "cancel again on CANCELLED mission (idempotent)",
+   "mission_id": "MIS-2A57613B",
+   "operation": "cancel",
+   "http_status": 200,
+   "expected": 200,
+   "result": "PASS",
+   "response": {
+    "mission_id": "MIS-2A57613B",
+    "status": "CANCELLED",
+    "previous_status": "CANCELLED",
+    "responder_ids": [
+     "R001"
+    ],
+    "released_responders": []
+   }
+  },
+  {
+   "check": "complete on CANCELLED mission (must be rejected)",
+   "mission_id": "MIS-2A57613B",
+   "operation": "complete",
+   "http_status": 409,
+   "expected": 409,
+   "result": "PASS",
+   "response": {
+    "detail": {
+     "error": "MISSION_ALREADY_CLOSED",
+     "message": "Mission MIS-2A57613B is CANCELLED; it cannot be COMPLETED."
+    }
+   }
+  }
+ ],
+ "responders_json_unchanged": true,
+ "missions_json_unchanged": true
+}
