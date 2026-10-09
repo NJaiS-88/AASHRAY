@@ -14,6 +14,7 @@ const generateToken = (res, userId) => {
         sameSite: 'strict',
         maxAge: 30 * 24 * 60 * 60 * 1000,
     });
+    return token;
 };
 
 router.post('/signup', async (req, res) => {
@@ -26,8 +27,8 @@ router.post('/signup', async (req, res) => {
         }
 
         const user = await User.create({ name, email, password });
-        generateToken(res, user._id);
-        res.status(201).json({ _id: user._id, name: user.name, email: user.email });
+        const token = generateToken(res, user._id);
+        res.status(201).json({ _id: user._id, name: user.name, email: user.email, token });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -39,8 +40,8 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email });
 
         if (user && (await user.matchPassword(password))) {
-            generateToken(res, user._id);
-            res.status(200).json({ _id: user._id, name: user.name, email: user.email });
+            const token = generateToken(res, user._id);
+            res.status(200).json({ _id: user._id, name: user.name, email: user.email, token });
         } else {
             res.status(401).json({ message: 'Invalid email or password' });
         }

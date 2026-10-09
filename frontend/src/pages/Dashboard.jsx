@@ -52,6 +52,38 @@ export default function Dashboard() {
     }
   };
 
+  const [generatingRagId, setGeneratingRagId] = useState(null);
+  const [rawJsonEntry, setRawJsonEntry] = useState(null);
+
+  const handleGenerateRag = async (entryId) => {
+    try {
+      setGeneratingRagId(entryId);
+      const res = await axiosClient.post(`/entries/${entryId}/rag`);
+      if (res.data) {
+        setEntries((prev) => prev.map((e) => (e._id === entryId ? res.data : e)));
+      }
+    } catch (err) {
+      console.error('Failed to generate RAG plan:', err);
+    } finally {
+      setGeneratingRagId(null);
+    }
+  };
+
+  const getResourceIcon = (resource) => {
+    switch (resource?.toLowerCase()) {
+      case 'water': return '💧';
+      case 'food': return '🥫';
+      case 'shelter': return '⛺';
+      case 'clothing': return '👕';
+      case 'money': return '💰';
+      case 'medical_help': return '🩺';
+      case 'medical_products': return '💊';
+      case 'search_and_rescue': return '🛟';
+      case 'tools': return '🛠️';
+      default: return '📦';
+    }
+  };
+
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isSlowConnection, setIsSlowConnection] = useState(false);
 
@@ -533,10 +565,10 @@ export default function Dashboard() {
                       )}
 
                       {/* Similarity Validation report trigger */}
-                      {(entry.similarityReport || entry.disasterReport) && (
+                      {(entry.similarityReport || entry.disasterReport || entry.ragReport) && (
                         <button
                           type="button"
-                          onClick={() => setActiveReport({ similarity: entry.similarityReport, disaster: entry.disasterReport })}
+                          onClick={() => setActiveReport({ similarity: entry.similarityReport, disaster: entry.disasterReport, rag: entry.ragReport })}
                           className="flex items-center gap-1 text-[9px] font-mono text-zinc-500 hover:text-zinc-900 border border-zinc-200 bg-zinc-50 px-2 py-0.5 rounded-full transition-colors cursor-pointer"
                         >
                           {entry.disasterReport?.label === 'disaster' ? (
@@ -546,6 +578,7 @@ export default function Dashboard() {
                           ) : null}
                           <span>Behind the Scenes
                             {entry.disasterReport?.label === 'disaster' && ' · 🚨 DISASTER'}
+                            {entry.ragReport && ' · 🛡️ RAG PLAN'}
                             {entry.similarityReport && ` (${entry.similarityReport.status})`}
                           </span>
                         </button>
@@ -586,6 +619,102 @@ export default function Dashboard() {
                           entry.audio && (
                             <div className="text-xs text-zinc-400 italic">Transcribing audio...</div>
                           )
+                        )}
+
+                        {/* ── TypeSafe JEV + LLM RAG Operational Dispatch Plan ── */}
+                        {entry.ragReport?.plan ? (
+                          <div className="mt-3 p-3 bg-red-50/70 border border-red-200/80 rounded-xl space-y-2.5 text-left">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-1.5 text-red-700 font-semibold text-xs tracking-wide">
+                                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                                🛡️ Crisis Operations Dispatch Plan (JEV + LLM RAG)
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[9px] font-mono bg-red-100 text-red-800 px-2 py-0.5 rounded-full border border-red-200">
+                                  {entry.ragReport.pipeline || 'jev_llm'}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => setRawJsonEntry(entry)}
+                                  className="text-[9px] font-mono bg-zinc-800 hover:bg-zinc-700 text-white px-2 py-0.5 rounded-full border border-zinc-700 transition-colors cursor-pointer"
+                                  title="View full RAG output as JSON"
+                                >
+                                  {'{ } JSON'}
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Operational Synthesis Report */}
+                            <p className="text-zinc-800 text-xs leading-relaxed bg-white/90 p-2.5 rounded-lg border border-red-100 font-sans shadow-sm">
+                              {entry.ragReport.plan.report}
+                            </p>
+
+                            {/* Required Resource pills & field instructions */}
+                            {entry.ragReport.plan.resources?.length > 0 && (
+                              <div className="space-y-2 pt-1">
+                                <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
+                                  Required Relief Resources & Field SOPs:
+                                </div>
+                                <div className="space-y-2">
+                                  {entry.ragReport.plan.resources.map((resItem, rIdx) => (
+                                    <div key={rIdx} className="bg-white border border-zinc-200/80 rounded-lg p-2.5 text-xs space-y-1.5 shadow-xs">
+                                      <div className="flex items-center justify-between">
+                                        <span className="font-semibold text-zinc-900 capitalize flex items-center gap-1.5">
+                                          <span>{getResourceIcon(resItem.resource)}</span>
+                                          <span>{resItem.resource_label || resItem.resource.replace(/_/g, ' ')}</span>
+                                        </span>
+                                        <div className="flex items-center gap-1">
+                                          {resItem.probability != null && (
+                                            <span className="text-[9px] font-mono text-zinc-400">
+                                              {(resItem.probability * 100).toFixed(0)}%
+                                            </span>
+                                          )}
+                                          <span className={`text-[9px] px-2 py-0.5 rounded font-mono font-medium ${
+                                            resItem.evidence_sufficient 
+                                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
+                                              : 'bg-amber-50 text-amber-700 border border-amber-200'
+                                          }`}>
+                                            {resItem.evidence_sufficient ? '✓ Verified SOP' : '⚠ Protocol Guidelines'}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      <ul className="list-disc list-inside text-zinc-700 text-[11px] space-y-0.5 pl-1 leading-relaxed">
+                                        {resItem.instructions?.map((inst, iIdx) => (
+                                          <li key={iIdx}>{inst}</li>
+                                        ))}
+                                      </ul>
+
+                                      {resItem.sources?.length > 0 && (
+                                        <div className="flex flex-wrap items-center gap-1 pt-1.5 border-t border-zinc-100 text-[9px] font-mono text-zinc-400">
+                                          <span>Official Citations:</span>
+                                          {resItem.sources.map((src, sIdx) => (
+                                            <span key={sIdx} className="bg-zinc-50 text-zinc-600 border border-zinc-200/60 px-1.5 py-0.5 rounded">
+                                              📄 {src.file} (p. {src.page})
+                                            </span>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ) : entry.disasterReport?.label === 'disaster' && (
+                          <div className="mt-3 flex items-center justify-between bg-red-50 border border-red-200/70 p-2.5 rounded-xl">
+                            <span className="text-[11px] text-red-700 flex items-center gap-1.5 font-medium">
+                              🚨 Disaster Detected. Operational relief plan can be synthesized.
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleGenerateRag(entry._id)}
+                              disabled={generatingRagId === entry._id}
+                              className="text-[10px] font-semibold bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-md shadow-sm transition-all disabled:opacity-50 cursor-pointer"
+                            >
+                              {generatingRagId === entry._id ? 'Synthesizing...' : '⚡ Generate RAG Plan'}
+                            </button>
+                          </div>
                         )}
                       </div>
                       <span className="text-[9px] text-zinc-400 font-mono">Response</span>
@@ -928,8 +1057,93 @@ export default function Dashboard() {
               </div>
             )}
 
+            {/* ── TypeSafe JEV + LLM RAG Analysis ── */}
+            {activeReport.rag && (
+              <div className="space-y-3 border-t border-zinc-100 pt-4">
+                <div className="flex items-center justify-between">
+                  <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">
+                    JEV + LLM RAG Pipeline
+                  </div>
+                  <span className="text-[9px] font-mono px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200">
+                    {activeReport.rag.pipeline || 'jev_llm'}
+                  </span>
+                </div>
+
+                {/* Stage 1: JEV Resource Probabilities */}
+                {activeReport.rag.stage_1_probabilities && (
+                  <div className="space-y-2 bg-zinc-50 p-2.5 rounded-xl border border-zinc-200/60">
+                    <div className="flex justify-between items-center text-[10px] font-bold text-zinc-700">
+                      <span>TypeSafe JEV Probabilities</span>
+                      <span className="font-mono text-zinc-400 text-[9px]">Threshold: 15.0%</span>
+                    </div>
+                    <div className="space-y-1.5">
+                      {Object.entries(activeReport.rag.stage_1_probabilities).map(([resKey, prob]) => {
+                        const isReq = prob >= 0.15;
+                        return (
+                          <div key={resKey} className="space-y-0.5">
+                            <div className="flex justify-between text-[10px]">
+                              <span className={`capitalize flex items-center gap-1 ${isReq ? 'font-semibold text-zinc-900' : 'text-zinc-500'}`}>
+                                <span>{getResourceIcon(resKey)}</span>
+                                <span>{resKey.replace(/_/g, ' ')}</span>
+                              </span>
+                              <span className={`font-mono text-[9px] ${isReq ? 'text-red-600 font-bold' : 'text-zinc-400'}`}>
+                                {(prob * 100).toFixed(1)}% {isReq ? 'REQUIRED' : ''}
+                              </span>
+                            </div>
+                            <div className="w-full bg-zinc-200 rounded-full h-1 overflow-hidden">
+                              <div
+                                className={`h-full rounded-full transition-all ${isReq ? 'bg-red-500' : 'bg-zinc-400'}`}
+                                style={{ width: `${Math.min(100, Math.max(2, prob * 100))}%` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Stage 2 & 3: Retrieved Sources & Operational Plan */}
+                {activeReport.rag.plan && (
+                  <div className="space-y-2 bg-zinc-50 p-2.5 rounded-xl border border-zinc-200/60">
+                    <div className="text-[10px] font-bold text-zinc-700">
+                      Synthesized Dispatch Summary
+                    </div>
+                    <p className="text-[11px] text-zinc-600 leading-relaxed italic">
+                      "{activeReport.rag.plan.report}"
+                    </p>
+
+                    {/* Source Citations */}
+                    {activeReport.rag.plan.resources?.some(r => r.sources?.length > 0) && (
+                      <div className="pt-2 border-t border-zinc-200/50 space-y-1">
+                        <span className="text-[9px] font-mono text-zinc-400 uppercase">Authoritative NDMA Citations:</span>
+                        <div className="flex flex-wrap gap-1">
+                          {activeReport.rag.plan.resources.flatMap(r => r.sources || []).filter((s, idx, arr) => 
+                            arr.findIndex(x => x.file === s.file && x.page === s.page) === idx
+                          ).map((src, sIdx) => (
+                            <span key={sIdx} className="bg-white border border-zinc-200 text-zinc-700 text-[9px] font-mono px-1.5 py-0.5 rounded">
+                              📄 {src.file} (p. {src.page})
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Pipeline Latency Telemetry */}
+                {activeReport.rag.latency && (
+                  <div className="text-[9px] font-mono text-zinc-400 border-t border-zinc-100 pt-2 flex justify-between">
+                    <span>Classification: {activeReport.rag.latency.classification_ms || 0}ms</span>
+                    <span>Retrieval: {activeReport.rag.latency.retrieval_ms || 0}ms</span>
+                    <span>Generation: {activeReport.rag.latency.generation_ms || 0}ms</span>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Fallback when no reports */}
-            {!activeReport.disaster && !activeReport.similarity && (
+            {!activeReport.disaster && !activeReport.similarity && !activeReport.rag && (
               <div className="text-xs text-zinc-400 italic">No analysis data available.</div>
             )}
           </div>
@@ -942,6 +1156,64 @@ export default function Dashboard() {
           onCapture={(dataUrl) => handleImageCaptured(dataUrl)}
           onClose={() => setShowCamera(false)}
         />
+      )}
+
+      {/* ── RAG Raw JSON Viewer Modal ── */}
+      {rawJsonEntry && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setRawJsonEntry(null)}
+        >
+          <div
+            className="bg-zinc-950 border border-zinc-700 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-800">
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-400 font-mono text-xs font-bold tracking-wider">JEV + LLM RAG OUTPUT</span>
+                <span className="text-zinc-500 font-mono text-[10px]">{rawJsonEntry.ragReport?.scenario_id || rawJsonEntry._id}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    const blob = new Blob([JSON.stringify(rawJsonEntry.ragReport, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `rag_${rawJsonEntry._id}.json`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                  }}
+                  className="text-[10px] font-mono bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-md border border-zinc-700 transition-colors cursor-pointer"
+                >
+                  ⬇ Download JSON
+                </button>
+                <button
+                  onClick={() => setRawJsonEntry(null)}
+                  className="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            {/* JSON Body */}
+            <div className="flex-1 overflow-y-auto p-5">
+              <pre className="text-[11px] font-mono text-emerald-300 leading-relaxed whitespace-pre-wrap break-words">
+                {JSON.stringify(rawJsonEntry.ragReport, null, 2)}
+              </pre>
+            </div>
+            {/* Footer stats */}
+            <div className="px-5 py-2.5 border-t border-zinc-800 flex items-center gap-4 text-[9px] font-mono text-zinc-500">
+              <span>Pipeline: {rawJsonEntry.ragReport?.pipeline || 'jev_llm'}</span>
+              <span>Resources: {rawJsonEntry.ragReport?.plan?.resources?.length ?? 0}</span>
+              <span>SOP Fallback: {rawJsonEntry.ragReport?.plan?.sop_fallback ? 'Yes' : 'No'}</span>
+              <span>Latency: {rawJsonEntry.ragReport?.latency?.total_ms?.toFixed(0) ?? '—'}ms</span>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

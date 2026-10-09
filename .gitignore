@@ -7,9 +7,11 @@ build/
 
 # Environment files
 .env
-.env.local
-.env.production
-.env.development
+.env.*
+!.env.example
+*.env
+*.env.*
+
 
 # Python & Virtual Envs
 .venv/
@@ -31,4 +33,6 @@ Thumbs.db
 *.pt
 *.safetensors
 disaster_distilbert_model/
+retrieval_cache/
+runs.jsonl
 
