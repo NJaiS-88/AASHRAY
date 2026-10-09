@@ -1330,5 +1330,17 @@
       }
     ],
     "closed_at": "2026-10-09T07:07:03.144425Z"
+  },
+  {
+    "mission_id": "MIS-0C981FC6",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7E108BBA",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-09T17:53:36.523830Z"
+      }
+    ],
+    "closed_at": null
   }
 ]

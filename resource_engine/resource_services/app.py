@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from resource_services.routes.resource_routes import router as resource_router
 from resource_services.routes.demand_routes import router as demand_router
@@ -15,6 +16,14 @@ app = FastAPI(
     title="AASHRAY Resource Service",
     version="1.0.0",
     description="Resource requirement, allocation, demand fulfilment, and mission creation service.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

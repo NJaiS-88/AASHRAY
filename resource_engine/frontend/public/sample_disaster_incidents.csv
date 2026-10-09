@@ -1,0 +1,6 @@
+incident_id,incident_type,locality_name,latitude,longitude,population,population_density,affected_population,severity,urgency,priority,estimated_duration_hours,patient_present
+INC-FLOOD-POWAI-01,FLOOD,Powai Lake Basin,19.1290,72.9090,18000,9500,320,0.85,0.90,CRITICAL,10.5,true
+INC-LANDSLIDE-GHATKOPAR-02,LANDSLIDE,Ghatkopar Hill Slope,19.0880,72.9120,12000,8200,180,0.72,0.80,HIGH,8.0,true
+INC-WATERLOG-KURLA-03,FLOOD,Kurla West Junction,19.0680,72.8750,25000,14000,450,0.65,0.70,HIGH,6.0,false
+INC-COLLAPSE-ANDHERI-04,STRUCTURAL_COLLAPSE,Andheri East Industrial,19.1150,72.8620,15000,11000,95,0.92,0.95,CRITICAL,14.0,true
+INC-CYCLONE-BANDRA-05,CYCLONE,Bandra West Coastal,19.0550,72.8250,30000,12000,210,0.50,0.60,MODERATE,5.0,false
