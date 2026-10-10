@@ -790,26 +790,28 @@ def evaluate_resource_probabilities_openrouter_jev(text: str, incident_type: str
     groq_keys = [os.getenv("GROQ_API_KEY")] + [os.getenv(f"GROQ_API_KEY{i}") for i in range(1, 21)]
     valid_groq = [k for k in groq_keys if k and k.strip()]
     if valid_groq:
-        groq_payload = {
-            "model": "openai/gpt-oss-120b",
-            "messages": [
-                {"role": "system", "content": "You are a disaster emergency triage classifier. Output valid JSON only."},
-                {"role": "user", "content": f"Message: \"{text}\"\nEstimate probabilities (0.04 to 0.95) for all 30 resources in JSON:\n" + "\n".join([f"- {k}: {v}" for k, v in RESOURCE_CRITERIA_QUESTIONS.items()])}
-            ],
-            "response_format": {"type": "json_object"},
-            "temperature": 0.1,
-            "max_tokens": 1500
-        }
-        for gkey in valid_groq[:3]:
-            try:
-                g_resp = requests.post("https://api.groq.com/openai/v1/chat/completions", headers={"Authorization": f"Bearer {gkey}", "Content-Type": "application/json"}, json=groq_payload, timeout=10)
-                if g_resp.status_code == 200:
-                    parsed = json.loads(g_resp.json()["choices"][0]["message"]["content"])
-                    res_dict = parsed.get("resource_probabilities") or parsed
-                    if isinstance(res_dict, dict) and any(k in res_dict for k in ["search_and_rescue", "emergency_medical_care", "drinking_water"]):
-                        return {k: round(max(0.04, min(0.95, float(res_dict.get(k, 0.04)))), 3) for k in RESOURCE_CRITERIA_QUESTIONS}
-            except Exception:
-                continue
+        groq_models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "openai/gpt-oss-120b"]
+        for gkey in valid_groq[:5]:
+            for gmodel in groq_models:
+                groq_payload = {
+                    "model": gmodel,
+                    "messages": [
+                        {"role": "system", "content": "You are a disaster emergency triage classifier. Output valid JSON only."},
+                        {"role": "user", "content": f"Message: \"{text}\"\nEstimate probabilities (0.04 to 0.95) for all 30 resources in JSON:\n" + "\n".join([f"- {k}: {v}" for k, v in RESOURCE_CRITERIA_QUESTIONS.items()])}
+                    ],
+                    "response_format": {"type": "json_object"},
+                    "temperature": 0.1,
+                    "max_tokens": 1500
+                }
+                try:
+                    g_resp = requests.post("https://api.groq.com/openai/v1/chat/completions", headers={"Authorization": f"Bearer {gkey}", "Content-Type": "application/json"}, json=groq_payload, timeout=10)
+                    if g_resp.status_code == 200:
+                        parsed = json.loads(g_resp.json()["choices"][0]["message"]["content"])
+                        res_dict = parsed.get("resource_probabilities") or parsed
+                        if isinstance(res_dict, dict) and any(k in res_dict for k in ["search_and_rescue", "emergency_medical_care", "drinking_water"]):
+                            return {k: round(max(0.04, min(0.95, float(res_dict.get(k, 0.04)))), 3) for k in RESOURCE_CRITERIA_QUESTIONS}
+                except Exception:
+                    continue
 
     return None
 

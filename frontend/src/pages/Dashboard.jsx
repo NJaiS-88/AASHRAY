@@ -509,14 +509,30 @@ export default function Dashboard() {
       >
         <div className="p-4 border-b border-zinc-200 flex justify-between items-center bg-white">
           <span className="font-bold text-sm tracking-wider text-zinc-900">AASHRAY</span>
-          <button 
-            onClick={() => setSidebarOpen(false)}
-            className="p-1.5 hover:bg-zinc-100 rounded-lg text-zinc-500 hover:text-zinc-900 md:hidden"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={async () => {
+                try {
+                  await axiosClient.delete('/entries');
+                  setEntries([]);
+                } catch (e) {
+                  console.error('Failed to clear chats:', e);
+                }
+              }}
+              title="Clear all chat history from backend"
+              className="text-[10px] font-semibold bg-zinc-100 hover:bg-zinc-200 text-zinc-700 px-2 py-1 rounded transition-colors flex items-center gap-1 border border-zinc-200"
+            >
+              <span>+ New Chat</span>
+            </button>
+            <button 
+              onClick={() => setSidebarOpen(false)}
+              className="p-1.5 hover:bg-zinc-100 rounded-lg text-zinc-500 hover:text-zinc-900 md:hidden"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Entry History List */}

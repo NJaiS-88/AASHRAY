@@ -623,37 +623,39 @@ def generate_stage2_v3_plan(
     fallback = build_expert_judgment_plan(triage_result, excerpts, agencies)
     user_prompt = format_stage2_input(triage_result, excerpts, agencies)
 
-    # 1. Try Groq (openai/gpt-oss-120b) -- extremely fast, massive context, excellent detail
+    # 1. Try Groq (llama-3.3-70b-versatile, llama-3.1-8b-instant, openai/gpt-oss-120b)
     if GROQ_API_KEY:
-        try:
-            headers = {
-                "Authorization": f"Bearer {GROQ_API_KEY}",
-                "Content-Type": "application/json"
-            }
-            payload = {
-                "model": "openai/gpt-oss-120b",
-                "messages": [
-                    {"role": "system", "content": STAGE2_SYSTEM_INSTRUCTIONS},
-                    {"role": "user", "content": user_prompt}
-                ],
-                "response_format": {"type": "json_object"},
-                "temperature": 0.2,
-                "max_tokens": 3500
-            }
-            resp = SESSION.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload, timeout=25)
-            if resp.status_code == 200:
-                raw_json = resp.json()["choices"][0]["message"]["content"]
-                cleaned = re.sub(r"^```(?:json)?\s*", "", raw_json.strip())
-                cleaned = re.sub(r"\s*```$", "", cleaned)
-                plan = json.loads(cleaned)
-                if "situation" in plan and "resources" in plan and plan.get("resources"):
-                    print("[Stage 2 v3] Successfully generated detailed plan via Groq (openai/gpt-oss-120b).")
-                    plan = normalize_stage2_output(plan, fallback, excerpts, triage_result)
-                    return scrub_quantities_and_formulas(plan)
-            else:
-                print(f"[Stage 2 v3] Groq call returned status {resp.status_code}: {resp.text[:200]}")
-        except Exception as e:
-            print(f"[Stage 2 v3] Groq call failed ({e}). Attempting next provider...")
+        groq_models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "openai/gpt-oss-120b"]
+        headers = {
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        for gmodel in groq_models:
+            try:
+                payload = {
+                    "model": gmodel,
+                    "messages": [
+                        {"role": "system", "content": STAGE2_SYSTEM_INSTRUCTIONS},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    "response_format": {"type": "json_object"},
+                    "temperature": 0.2,
+                    "max_tokens": 3500
+                }
+                resp = SESSION.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload, timeout=25)
+                if resp.status_code == 200:
+                    raw_json = resp.json()["choices"][0]["message"]["content"]
+                    cleaned = re.sub(r"^```(?:json)?\s*", "", raw_json.strip())
+                    cleaned = re.sub(r"\s*```$", "", cleaned)
+                    plan = json.loads(cleaned)
+                    if "situation" in plan and "resources" in plan and plan.get("resources"):
+                        print(f"[Stage 2 v3] Successfully generated detailed plan via Groq ({gmodel}).")
+                        plan = normalize_stage2_output(plan, fallback, excerpts, triage_result)
+                        return scrub_quantities_and_formulas(plan)
+                else:
+                    print(f"[Stage 2 v3] Groq {gmodel} returned status {resp.status_code}: {resp.text[:200]}")
+            except Exception as e:
+                print(f"[Stage 2 v3] Groq {gmodel} call failed ({e}). Trying next model...")
 
     # 2. Try OpenRouter (meta-llama/llama-3.3-70b-instruct)
     if OPENROUTER_API_KEY:

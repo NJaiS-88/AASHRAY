@@ -230,36 +230,14 @@ router.post('/', protect, async (req, res) => {
 
         const activeUser = req.user || (await getOrCreateFallbackUser());
 
-        // Check if there is a recent pending entry that needed clarification from this user
-        const pendingEntry = await Entry.findOne({
-            user: activeUser?._id,
-            $or: [
-                { 'ragReport.needs_clarification': true },
-                { 'ragReport.can_proceed_to_rag': false },
-                { 'ragReport.action': 'ask_clarifying_questions' }
-            ]
-        }).sort({ createdAt: -1 });
+        // Fresh mind for each query: clear any past chat history from backend database
+        if (activeUser?._id) {
+            await Entry.deleteMany({ user: activeUser._id });
+        }
 
+        // Evaluate query completely standalone with a fresh mind (no historical context)
         let ragReport = null;
-        if (pendingEntry && combinedScenario) {
-            // Re-evaluate pending entry using this new query as clarification
-            const priorScenario = [
-                pendingEntry.text1 || pendingEntry.text,
-                pendingEntry.text2,
-                pendingEntry.text3,
-                pendingEntry.audioText,
-                pendingEntry.imageCaption
-            ].filter(Boolean).filter((v, i, arr) => arr.indexOf(v) === i).join(' ');
-
-            console.log(`[Entries] Re-evaluating pending entry ${pendingEntry._id} with additional query: "${combinedScenario}"`);
-            ragReport = await generateRagPlan(priorScenario, `ENTRY-${pendingEntry._id}`, combinedScenario);
-            if (ragReport) {
-                pendingEntry.ragReport = ragReport;
-                pendingEntry.markModified('ragReport');
-                await pendingEntry.save();
-            }
-        } else if (combinedScenario) {
-            // Normal query: always pass through Pre-RAG evaluation & RAG pipeline
+        if (combinedScenario) {
             ragReport = await generateRagPlan(combinedScenario);
         }
 
@@ -375,6 +353,18 @@ router.get('/', protect, async (req, res) => {
         const filter = activeUser?._id ? { user: activeUser._id } : {};
         const entries = await Entry.find(filter).sort({ createdAt: 1 });
         res.json(entries);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// DELETE all entries/chats for user — ensure fresh mind
+router.delete('/', protect, async (req, res) => {
+    try {
+        const activeUser = req.user || (await getOrCreateFallbackUser());
+        const filter = activeUser?._id ? { user: activeUser._id } : {};
+        await Entry.deleteMany(filter);
+        res.json({ message: 'All chat history cleared from backend' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
