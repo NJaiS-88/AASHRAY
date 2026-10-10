@@ -31,6 +31,7 @@ export default function Dashboard() {
   // Entries history
   const [entries, setEntries] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
+  const [submitError, setSubmitError] = useState(null);
 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
@@ -54,6 +55,8 @@ export default function Dashboard() {
 
   const [generatingRagId, setGeneratingRagId] = useState(null);
   const [rawJsonEntry, setRawJsonEntry] = useState(null);
+  const [clarificationInputs, setClarificationInputs] = useState({});
+  const [submittingClarifyId, setSubmittingClarifyId] = useState(null);
 
   const handleGenerateRag = async (entryId) => {
     try {
@@ -69,19 +72,126 @@ export default function Dashboard() {
     }
   };
 
-  const getResourceIcon = (resource) => {
-    switch (resource?.toLowerCase()) {
-      case 'water': return '💧';
-      case 'food': return '🥫';
-      case 'shelter': return '⛺';
-      case 'clothing': return '👕';
-      case 'money': return '💰';
-      case 'medical_help': return '🩺';
-      case 'medical_products': return '💊';
-      case 'search_and_rescue': return '🛟';
-      case 'tools': return '🛠️';
-      default: return '📦';
+  const handleClarifySubmit = async (entryId) => {
+    const text = (clarificationInputs[entryId] || '').trim();
+    if (!text) return;
+    try {
+      setSubmittingClarifyId(entryId);
+      const res = await axiosClient.post(`/entries/${entryId}/clarify`, { clarification: text });
+      if (res.data) {
+        setEntries((prev) => prev.map((e) => (e._id === entryId ? res.data : e)));
+        setClarificationInputs((prev) => ({ ...prev, [entryId]: '' }));
+      }
+    } catch (err) {
+      console.error('Failed to submit clarification:', err);
+    } finally {
+      setSubmittingClarifyId(null);
     }
+  };
+
+  // UI Triage & Evidence View State
+  const [expandedAudit, setExpandedAudit] = useState({}); // { [entryId]: boolean } (collapsed by default)
+  const [triageTabState, setTriageTabState] = useState({}); // { [entryId]: 'chosen' | 'not_chosen' }
+  const [expandedEvidence, setExpandedEvidence] = useState({}); // { [`${entryId}_${resKey}`]: boolean }
+  const [expandedActions, setExpandedActions] = useState({}); // { [`${entryId}_${resKey}`]: boolean }
+
+  const getResourceIcon = (resource) => {
+    const r = resource?.toLowerCase() || '';
+    if (r.includes('water_purif')) return '🧪';
+    if (r.includes('drinking_water') || r === 'water') return '💧';
+    if (r.includes('sanitation') || r.includes('hygiene')) return '🧼';
+    if (r.includes('infant') || r.includes('child_nutrition')) return '🍼';
+    if (r.includes('kitchen') || r.includes('cooked')) return '🍲';
+    if (r.includes('fuel')) return '⛽';
+    if (r.includes('fodder') || r.includes('livestock') || r.includes('veterinary')) return '🐄';
+    if (r.includes('dry_rations') || r === 'food') return '🥫';
+    if (r.includes('tarpaulin') || r.includes('shelter_kit')) return '🏕️';
+    if (r.includes('shelter')) return '⛺';
+    if (r.includes('blanket') || r.includes('warmth') || r === 'clothing') return '🧥';
+    if (r.includes('cash') || r === 'money') return '💵';
+    if (r.includes('boat')) return '🚤';
+    if (r.includes('evacuation') || r.includes('transport')) return '🚑';
+    if (r.includes('missing') || r.includes('reunification')) return '🔍';
+    if (r.includes('search_and_rescue')) return '🛟';
+    if (r.includes('trauma') || r.includes('first_aid')) return '🩹';
+    if (r.includes('maternal') || r.includes('newborn')) return '🤰';
+    if (r.includes('elderly') || r.includes('disability')) return '🦯';
+    if (r.includes('psychosocial')) return '🧠';
+    if (r.includes('medical_help')) return '🩺';
+    if (r.includes('chronic')) return '💉';
+    if (r.includes('vector') || r.includes('disease')) return '🦟';
+    if (r.includes('medical_products') || r.includes('medicines')) return '💊';
+    if (r.includes('machinery') || r.includes('debris') || r.includes('clearance')) return '🚜';
+    if (r.includes('power') || r.includes('lighting')) return '⚡';
+    if (r.includes('communication') || r.includes('warning')) return '📡';
+    if (r.includes('protection')) return '🛡️';
+    if (r.includes('dead_body')) return '🕊️';
+    if (r === 'tools') return '🛠️';
+    return '📦';
+  };
+
+  /**
+   * Underlines exact benchmark sentences used to ground the operational instructions in retrieved PDF chunks.
+   */
+  const renderChunkWithUnderlinedBenchmarks = (chunkText, benchmarkSnippets = []) => {
+    if (!chunkText) return null;
+    const validSnippets = (benchmarkSnippets || [])
+      .map(s => (s || '').trim())
+      .filter(s => s.length >= 20);
+
+    if (validSnippets.length === 0) {
+      return <span className="text-zinc-600 font-serif leading-relaxed text-[11px]">{chunkText}</span>;
+    }
+
+    let segments = [{ text: chunkText, isBenchmark: false }];
+
+    for (const snippet of validSnippets) {
+      const nextSegments = [];
+      for (const seg of segments) {
+        if (seg.isBenchmark) {
+          nextSegments.push(seg);
+          continue;
+        }
+        const idx = seg.text.toLowerCase().indexOf(snippet.toLowerCase());
+        if (idx !== -1) {
+          const before = seg.text.slice(0, idx);
+          const match = seg.text.slice(idx, idx + snippet.length);
+          const after = seg.text.slice(idx + snippet.length);
+          if (before) nextSegments.push({ text: before, isBenchmark: false });
+          nextSegments.push({ text: match, isBenchmark: true });
+          if (after) nextSegments.push({ text: after, isBenchmark: false });
+        } else {
+          nextSegments.push(seg);
+        }
+      }
+      segments = nextSegments;
+    }
+
+    return (
+      <div className="text-zinc-700 text-[11px] font-serif leading-relaxed space-y-1">
+        <div>
+          {segments.map((seg, sIdx) =>
+            seg.isBenchmark ? (
+              <span
+                key={sIdx}
+                className="underline decoration-red-600 decoration-2 font-semibold bg-red-100/80 text-zinc-950 px-1 py-0.5 rounded shadow-2xs border-b border-red-400 inline-block my-0.5"
+                title="Exact benchmark SOP instruction extracted from this PDF passage"
+              >
+                {seg.text}
+              </span>
+            ) : (
+              <span key={sIdx} className="text-zinc-600">{seg.text}</span>
+            )
+          )}
+        </div>
+        {validSnippets.length > 0 && (
+          <div className="flex items-center gap-1 text-[9px] font-mono text-red-700 bg-red-50/90 border border-red-200/80 px-2 py-0.5 rounded-md w-fit mt-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
+            <span>Underlined text was used as authoritative benchmark grounding for operational instructions</span>
+          </div>
+        )}
+      </div>
+    );
   };
 
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -305,21 +415,32 @@ export default function Dashboard() {
     if (e) e.preventDefault();
     if (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob) return;
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
       let finalAudioText = transcribedAudioText;
       let finalImageCaption = imageCaptionText;
 
-      // If user hit submit while audio is still processing, wait for it automatically!
+      // If user hit submit while audio is still processing, wait with a short timeout
       if (audioPromiseRef.current) {
-        const result = await audioPromiseRef.current;
-        if (result) finalAudioText = result;
+        try {
+          const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(''), 3000));
+          const result = await Promise.race([audioPromiseRef.current, timeoutPromise]);
+          if (result) finalAudioText = result;
+        } catch (e) {
+          console.warn('Audio promise race caught:', e);
+        }
       }
 
-      // If user hit submit while image is still processing, wait for it automatically!
+      // If user hit submit while image is still processing, wait with a short timeout
       if (imagePromiseRef.current) {
-        const result = await imagePromiseRef.current;
-        if (result) finalImageCaption = result;
+        try {
+          const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(''), 3000));
+          const result = await Promise.race([imagePromiseRef.current, timeoutPromise]);
+          if (result) finalImageCaption = result;
+        } catch (e) {
+          console.warn('Image promise race caught:', e);
+        }
       }
 
       // Convert audio blob to base64 for database payload
@@ -366,6 +487,8 @@ export default function Dashboard() {
       imagePromiseRef.current = null;
     } catch (err) {
       console.error('Failed to submit message:', err);
+      const errMsg = err.response?.data?.message || err.message || 'Failed to submit message. Please check backend connection.';
+      setSubmitError(errMsg);
     } finally {
       setIsSubmitting(false);
     }
@@ -621,87 +744,689 @@ export default function Dashboard() {
                           )
                         )}
 
-                        {/* ── TypeSafe JEV + LLM RAG Operational Dispatch Plan ── */}
-                        {entry.ragReport?.plan ? (
-                          <div className="mt-3 p-3 bg-red-50/70 border border-red-200/80 rounded-xl space-y-2.5 text-left">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-1.5 text-red-700 font-semibold text-xs tracking-wide">
-                                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                                🛡️ Crisis Operations Dispatch Plan (JEV + LLM RAG)
+                        {/* ── JEV v3 Triage, RAG & Report: 3 Simplified Views (Section I) ── */}
+                        {entry.ragReport?.plan ? (() => {
+                          const plan = entry.ragReport.plan || entry.ragReport;
+                          const unified = plan.unified_assessment || plan.assessment || entry.ragReport.assessment || entry.ragReport.jev_assessment || {};
+                          const personMessage = plan.person_message || entry.ragReport.person_message;
+                          const situation = plan.situation || entry.ragReport.situation;
+                          const dispatcherNotes = plan.dispatcher_notes || entry.ragReport.dispatcher_notes;
+                          const excerpts = plan.excerpts || entry.ragReport.excerpts || [];
+                          const nonSelected = plan.not_selected_resources || plan.non_selected_resources || entry.ragReport.not_selected_resources || entry.ragReport.non_selected_resources || [];
+                          const selectedRaw = plan.selected_resources || entry.ragReport.selected_resources || [];
+                          const rawProbs = plan.raw_probabilities || entry.ragReport.raw_probabilities || {};
+                          const isWideArea = plan.is_wide_area || false;
+                          const census = plan.census_context || entry.ragReport.census_context;
+                          const latencyMs = plan.latency?.total_ms || entry.ragReport?.latency?.total_ms || plan.telemetry?.total_pipeline_time_ms || entry.ragReport?.telemetry?.total_pipeline_time_ms || 0;
+                          const modelVer = plan.model_version || entry.ragReport?.model_version || plan.telemetry?.jev_model_version || 'typesafe-jev-v3-prompted';
+                          const isAuditOpen = !!expandedAudit[entry._id];
+
+                          // Normalize resources list with verified Jev confidence scores
+                          const rawResources = plan.resources || entry.ragReport.resources || selectedRaw || [];
+                          const selectedResources = rawResources.map((r, idx) => {
+                            const resId = typeof r === 'string' ? r : (r.resource_id || r.resource);
+                            const matchedSel = selectedRaw.find(s => s.resource === resId || s.resource_id === resId);
+                            const prob = (typeof r === 'object' && r.jev_probability != null)
+                              ? r.jev_probability
+                              : (matchedSel?.jev_probability != null ? matchedSel.jev_probability : (rawProbs[resId] != null ? rawProbs[resId] : 0.85));
+                            const cut = (typeof r === 'object' && r.cutoff != null)
+                              ? r.cutoff
+                              : (matchedSel?.cutoff != null ? matchedSel.cutoff : 0.10);
+                            const band = (typeof r === 'object' && r.band)
+                              ? r.band
+                              : (matchedSel?.band || 'CONFIRMED');
+                            const name = (typeof r === 'object' && r.resource_name)
+                              ? r.resource_name
+                              : (matchedSel?.resource_label || resId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
+
+                            const eids = (typeof r === 'object' && r.excerpt_ids && r.excerpt_ids.length > 0)
+                              ? r.excerpt_ids
+                              : (excerpts.length > 0 ? [excerpts[Math.min(idx, excerpts.length - 1)].id || `E${Math.min(idx, excerpts.length - 1) + 1}`] : []);
+
+                            const source = (typeof r === 'object' && r.source)
+                              ? r.source
+                              : (eids.length > 0 ? 'GROUNDED' : 'EXPERT-JUDGMENT');
+
+                            return {
+                              resource_id: resId,
+                              resource_name: name,
+                              band,
+                              jev_probability: prob,
+                              cutoff: cut,
+                              why: (typeof r === 'object' && r.why) ? r.why : ((typeof r === 'object' && r.reason) ? r.reason : 'Identified emergency need from triage'),
+                              how_to_use: (typeof r === 'object' && Array.isArray(r.how_to_use)) ? r.how_to_use : ((typeof r === 'object' && r.action) ? [r.action] : ['Deploy standard emergency response protocols']),
+                              safety: (typeof r === 'object' && Array.isArray(r.safety)) ? r.safety : ((typeof r === 'object' && r.safety) ? [r.safety] : []),
+                              what_next: (typeof r === 'object' && r.what_next) ? r.what_next : 'Handover to incident commander for continued monitoring',
+                              source,
+                              excerpt_ids: eids
+                            };
+                          });
+
+                          // Build comprehensive 30-resource taxonomy evaluation matrix with Jev confidence scores
+                          const allTaxonomyEvaluated = [];
+                          const seenResIds = new Set();
+
+                          selectedResources.forEach(sr => {
+                            seenResIds.add(sr.resource_id);
+                            allTaxonomyEvaluated.push({
+                              resource_id: sr.resource_id,
+                              resource_name: sr.resource_name,
+                              band: sr.band,
+                              isSelected: true,
+                              jev_probability: sr.jev_probability,
+                              cutoff: sr.cutoff,
+                              reason: sr.why,
+                              source: sr.source,
+                              excerpt_ids: sr.excerpt_ids
+                            });
+                          });
+
+                          nonSelected.forEach(ns => {
+                            const resId = ns.resource || ns.resource_id;
+                            if (resId && !seenResIds.has(resId)) {
+                              seenResIds.add(resId);
+                              allTaxonomyEvaluated.push({
+                                resource_id: resId,
+                                resource_name: ns.resource_label || ns.resource_name || resId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                                band: 'NOT SELECTED',
+                                isSelected: false,
+                                jev_probability: ns.jev_probability != null ? ns.jev_probability : (rawProbs[resId] || 0.04),
+                                cutoff: ns.cutoff != null ? ns.cutoff : 0.10,
+                                reason: ns.reason || 'Below calibrated activation threshold'
+                              });
+                            }
+                          });
+
+                          Object.keys(rawProbs).forEach(key => {
+                            if (!seenResIds.has(key)) {
+                              seenResIds.add(key);
+                              allTaxonomyEvaluated.push({
+                                resource_id: key,
+                                resource_name: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                                band: 'NOT SELECTED',
+                                isSelected: false,
+                                jev_probability: rawProbs[key],
+                                cutoff: 0.10,
+                                reason: rawProbs[key] <= 0.05 ? 'Not mentioned or implied in message' : `Score ${(rawProbs[key] * 100).toFixed(1)}% below cutoff`
+                              });
+                            }
+                          });
+
+                          const activeAuditTab = triageTabState[entry._id] || 'all';
+                          const displayedTaxonomy = allTaxonomyEvaluated.filter(item => {
+                            if (activeAuditTab === 'chosen') return item.isSelected;
+                            if (activeAuditTab === 'not_chosen') return !item.isSelected;
+                            return true;
+                          });
+
+                          // Safe scalar extraction of priority, severity and urgency (Invariant B2)
+                          const pLevel = typeof unified.priority === 'object' && unified.priority !== null
+                            ? (unified.priority.level || 'P2')
+                            : (unified.priority_level || unified.priority || 'P2');
+
+                          const pLabel = typeof unified.priority === 'object' && unified.priority !== null
+                            ? (unified.priority.label || unified.priority_label || 'Priority Action')
+                            : (unified.priority_label || 'Priority Action');
+
+                          const pReason = typeof unified.priority === 'object' && unified.priority !== null
+                            ? (unified.priority.reason || unified.priority_cue || unified.driving_cue || 'Triage cue criteria evaluated')
+                            : (unified.priority_cue || unified.driving_cue || 'Triage cue criteria evaluated');
+
+                          const sevLevel = typeof unified.severity === 'object' && unified.severity !== null
+                            ? (unified.severity.level || 'S2')
+                            : (unified.severity_level || unified.severity || 'S2');
+
+                          const sevWord = typeof unified.severity === 'object' && unified.severity !== null
+                            ? (unified.severity.word || 'Severe (Harm Risk)')
+                            : (unified.severity_word || 'Severe (Harm Risk)');
+
+                          const urgLevel = typeof unified.urgency === 'object' && unified.urgency !== null
+                            ? (unified.urgency.level || 'U2')
+                            : (unified.urgency_level || unified.urgency || 'U2');
+
+                          const urgWord = typeof unified.urgency === 'object' && unified.urgency !== null
+                            ? (unified.urgency.word || 'Urgent (Within few hours)')
+                            : (unified.urgency_word || 'Urgent (Within few hours)');
+
+                          const urgWindow = typeof unified.urgency === 'object' && unified.urgency !== null
+                            ? (unified.urgency.window || unified.urgency_window || '')
+                            : (unified.urgency_window || '');
+
+                          const pColor = pLevel === 'P1'
+                            ? 'bg-red-500/20 text-red-300 border-red-500/40 ring-1 ring-red-500/30'
+                            : pLevel === 'P2'
+                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 ring-1 ring-amber-500/30'
+                            : pLevel === 'P3'
+                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/40 ring-1 ring-blue-500/30'
+                            : 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40';
+
+                          return (
+                            <div className="mt-3 space-y-4 text-left">
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              {/* VIEW 1: WHAT THE PERSON SEES (CITIZEN ADVISORY)               */}
+                              {/* Plain language, no codes, person_message only                 */}
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              <div className="p-4 bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-950 text-zinc-100 rounded-xl border border-emerald-500/30 shadow-md">
+                                <div className="flex items-center justify-between border-b border-emerald-500/20 pb-2.5 mb-3">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-base">📢</span>
+                                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono">
+                                      1. What the Reporter Sees
+                                    </span>
+                                  </div>
+                                  <span className="text-[10px] text-emerald-300/70 font-sans italic">
+                                    Plain citizen advisory • No operational codes
+                                  </span>
+                                </div>
+                                <div className="p-3.5 bg-emerald-950/40 border border-emerald-500/20 rounded-lg text-xs leading-relaxed text-emerald-100 font-sans">
+                                  {personMessage ? (
+                                    <p className="whitespace-pre-line">{personMessage}</p>
+                                  ) : (
+                                    <p className="italic text-emerald-200/80">
+                                      Help has been alerted for your location. Please move to safe, higher ground if water or debris is rising. Keep phone lines open for responder contact.
+                                    </p>
+                                  )}
+                                </div>
+
+                                {plan?.needs_clarification && (
+                                  <div className="mt-3 p-3.5 bg-amber-950/60 border border-amber-500/40 rounded-lg text-amber-200 text-xs space-y-2">
+                                    <div className="flex items-center gap-2 text-amber-300 font-bold font-mono text-[11px] uppercase tracking-wider">
+                                      <span>⚠️</span> Pre-RAG Intake Clarification Needed
+                                    </div>
+                                    <p className="text-[11px] text-amber-200/90">
+                                      The query requires more information before emergency resources can be allocated.
+                                    </p>
+                                    {plan?.clarifying_questions?.length > 0 && (
+                                      <div className="space-y-1 bg-black/40 p-2.5 rounded border border-amber-500/20">
+                                        <div className="text-[10px] uppercase font-bold text-amber-400">Clarifying Questions:</div>
+                                        <ul className="list-disc list-inside space-y-0.5 text-[11px] text-zinc-200">
+                                          {plan.clarifying_questions.map((q, qIdx) => (
+                                            <li key={qIdx}>{q}</li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                    <div className="pt-1 flex gap-2">
+                                      <input
+                                        type="text"
+                                        placeholder="Type your answer to clarify (e.g. bleeding status, what is pinning leg, location)..."
+                                        value={clarificationInputs[entry._id] || ''}
+                                        onChange={(e) => setClarificationInputs((prev) => ({ ...prev, [entry._id]: e.target.value }))}
+                                        onKeyDown={(e) => {
+                                          if (e.key === 'Enter' && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleClarifySubmit(entry._id);
+                                          }
+                                        }}
+                                        className="flex-1 bg-slate-900 border border-amber-500/40 rounded px-2.5 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                                      />
+                                      <button
+                                        type="button"
+                                        disabled={submittingClarifyId === entry._id || !(clarificationInputs[entry._id] || '').trim()}
+                                        onClick={() => handleClarifySubmit(entry._id)}
+                                        className="bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white font-medium px-3 py-1.5 rounded text-xs transition-colors cursor-pointer shrink-0"
+                                      >
+                                        {submittingClarifyId === entry._id ? 'Evaluating...' : 'Submit & Re-Evaluate'}
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-[9px] font-mono bg-red-100 text-red-800 px-2 py-0.5 rounded-full border border-red-200">
-                                  {entry.ragReport.pipeline || 'jev_llm'}
-                                </span>
+
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              {/* VIEW 2: DISPATCH SUMMARY                                      */}
+                              {/* Priority badge with cue reason, severity & urgency in words,   */}
+                              {/* selected resource cards with why, how-to-use, what next,      */}
+                              {/* and source badge (Document or Expert judgment)               */}
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              <div className="p-4 bg-slate-900 text-zinc-100 rounded-xl border border-slate-800 shadow-md space-y-4">
+                                {/* Header / Incident Meta */}
+                                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-base">🚨</span>
+                                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">
+                                      2. Dispatch Summary
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    {/* Priority badge with driving cue reason */}
+                                    <div className={`px-2.5 py-1 rounded-md border text-xs font-mono font-bold flex items-center gap-1.5 ${pColor}`}>
+                                      <span>{pLevel}</span>
+                                      <span className="text-[10px] font-sans font-normal opacity-90">
+                                        ({pLabel})
+                                      </span>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={() => setRawJsonEntry(entry)}
+                                      className="text-[10px] font-mono bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-1 rounded border border-slate-700 transition-colors cursor-pointer"
+                                      title="View raw JSON"
+                                    >
+                                      {'{ } JSON'}
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {/* Priority Driver Reason Line */}
+                                <div className="text-[11px] bg-slate-800/80 border border-slate-700/60 p-2.5 rounded-lg flex items-start gap-2">
+                                  <span className="text-amber-400 shrink-0 font-bold">⚡ Priority Driver:</span>
+                                  <span className="text-zinc-200">
+                                    {pReason}
+                                  </span>
+                                </div>
+
+                                {/* Severity and Urgency in Words (Invariant B2) */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                  <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                    <div className="text-[10px] font-mono uppercase text-zinc-400 flex items-center justify-between">
+                                      <span>Severity</span>
+                                      <span className="font-bold text-red-400">{sevLevel}</span>
+                                    </div>
+                                    <div className="text-xs font-semibold text-zinc-200 mt-1">
+                                      {sevWord}
+                                    </div>
+                                  </div>
+                                  <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                    <div className="text-[10px] font-mono uppercase text-zinc-400 flex items-center justify-between">
+                                      <span>Urgency</span>
+                                      <span className="font-bold text-amber-400">{urgLevel}</span>
+                                    </div>
+                                    <div className="text-xs font-semibold text-zinc-200 mt-1">
+                                      {urgWord}
+                                      {urgWindow && (
+                                        <span className="text-zinc-400 font-normal font-mono text-[10px] ml-1.5">
+                                          ({urgWindow})
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Situation Narrative (if present) */}
+                                {situation && (
+                                  <div className="text-xs text-zinc-300 bg-slate-800/40 p-2.5 rounded-lg border border-slate-700/40 italic">
+                                    <span className="font-semibold not-italic text-zinc-200">Incident Situation: </span>
+                                    {situation}
+                                  </div>
+                                )}
+
+                                {/* Selected Resources List */}
+                                <div className="space-y-3">
+                                  <div className="text-[11px] font-mono uppercase text-zinc-400 font-bold tracking-wide flex items-center justify-between">
+                                    <span>Selected Emergency Resources ({selectedResources.length})</span>
+                                    <span className="text-[10px] text-zinc-400 lowercase font-normal">
+                                      Max 8 shown • Prioritized by criticality
+                                    </span>
+                                  </div>
+
+                                  {selectedResources.length === 0 ? (
+                                    <div className="text-xs text-zinc-400 italic p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+                                      No tactical resources selected for mobilization based on evaluated criteria.
+                                    </div>
+                                  ) : (
+                                    selectedResources.map((res, rIdx) => {
+                                      const isGrounded = res.source === 'GROUNDED' || (res.excerpt_ids && res.excerpt_ids.length > 0);
+                                      const isLikely = res.band === 'LIKELY';
+                                      const isStandby = res.band === 'STANDBY' || res.band === 'POSSIBLE';
+
+                                      return (
+                                        <div
+                                          key={rIdx}
+                                          className="p-3 bg-slate-800/90 rounded-xl border border-slate-700 hover:border-slate-600 transition-all space-y-2.5"
+                                        >
+                                          {/* Card Header: Icon, Name, Band & Source Badge */}
+                                          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/60 pb-2">
+                                            <div className="flex items-center gap-2">
+                                              <span className="text-base">{getResourceIcon(res.resource_id)}</span>
+                                              <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">
+                                                {res.resource_name}
+                                              </span>
+                                            </div>
+                                            <div className="flex flex-wrap items-center gap-1.5">
+                                              {/* Jev Confidence / Probability Score Badge */}
+                                              <span className="text-[9px] font-mono font-bold bg-amber-500/15 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1">
+                                                <span>🎯 Jev: {(res.jev_probability * 100).toFixed(1)}%</span>
+                                                <span className="text-zinc-400 font-normal text-[8px]">(Cutoff: {(res.cutoff * 100).toFixed(1)}%)</span>
+                                              </span>
+
+                                              {/* Band Badge */}
+                                              {isLikely ? (
+                                                <span className="text-[9px] font-mono font-bold bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded border border-indigo-500/30">
+                                                  LIKELY (Implied Need)
+                                                </span>
+                                              ) : isStandby ? (
+                                                <span className="text-[9px] font-mono font-bold bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">
+                                                  STANDBY (On Standby)
+                                                </span>
+                                              ) : (
+                                                <span className="text-[9px] font-mono font-bold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">
+                                                  CONFIRMED
+                                                </span>
+                                              )}
+
+                                              {/* Source Badge */}
+                                              {isGrounded ? (
+                                                <span className="text-[9px] font-mono bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-500/30 flex items-center gap-1">
+                                                  <span>📘 Document</span>
+                                                  {res.excerpt_ids?.length > 0 && (
+                                                    <span className="opacity-80">[{res.excerpt_ids.join(', ')}]</span>
+                                                  )}
+                                                </span>
+                                              ) : (
+                                                <span className="text-[9px] font-mono bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">
+                                                  🧠 Expert judgment
+                                                </span>
+                                              )}
+                                            </div>
+                                          </div>
+
+                                          {/* Responding Agency & Agency Tactical Requirements */}
+                                          {(res.agency_responsible || res.agency_requirements) && (
+                                            <div className="text-[11px] bg-slate-900/80 p-2.5 rounded-lg border border-slate-700/80 space-y-1">
+                                              {res.agency_responsible && (
+                                                <div className="flex flex-wrap items-center gap-1.5 text-sky-300 font-semibold">
+                                                  <span>🏛️ Responding Agency:</span>
+                                                  <span className="text-zinc-100 font-normal">{res.agency_responsible}</span>
+                                                </div>
+                                              )}
+                                              {res.agency_requirements && (
+                                                <div className="text-zinc-300 text-[10.5px]">
+                                                  <span className="text-emerald-400 font-semibold">🛠️ Agency Requirements: </span>
+                                                  <span className="text-zinc-200">{res.agency_requirements}</span>
+                                                </div>
+                                              )}
+                                            </div>
+                                          )}
+
+                                          {/* Why Triggered (Quote / Event) */}
+                                          <div className="text-[11px] text-zinc-300 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                                            <span className="text-amber-300 font-semibold">Why: </span>
+                                            <span>{res.why}</span>
+                                          </div>
+
+                                          {/* Concrete Steps: How To Use (2-4 steps) */}
+                                          {res.how_to_use && res.how_to_use.length > 0 && (
+                                            <div className="space-y-1">
+                                              <div className="text-[10px] font-mono uppercase text-zinc-400 font-semibold">
+                                                Operational Steps:
+                                              </div>
+                                              <ul className="text-xs text-zinc-200 space-y-1 list-disc list-inside bg-slate-900/40 p-2.5 rounded-lg border border-slate-800">
+                                                {res.how_to_use.map((step, sIdx) => (
+                                                  <li key={sIdx} className="leading-snug">
+                                                    {step}
+                                                  </li>
+                                                ))}
+                                              </ul>
+                                            </div>
+                                          )}
+
+                                          {/* Safety Hazards (if any) */}
+                                          {res.safety && res.safety.length > 0 && (
+                                            <div className="text-[11px] bg-red-950/30 border border-red-500/20 p-2 rounded text-red-200">
+                                              <span className="font-semibold text-red-300">⚠️ Hazard Safety: </span>
+                                              {res.safety.join('; ')}
+                                            </div>
+                                          )}
+
+                                          {/* What Next & Confirmation */}
+                                          {res.what_next && (
+                                            <div className="text-[11px] text-zinc-400 flex items-start gap-1.5 pt-0.5">
+                                              <span className="text-emerald-400 font-semibold shrink-0">What next:</span>
+                                              <span>{res.what_next}</span>
+                                            </div>
+                                          )}
+                                        </div>
+                                      );
+                                    })
+                                  )}
+                                </div>
+
+                                {/* Dispatcher Next Actions / Notes */}
+                                {dispatcherNotes && (
+                                  <div className="p-3 bg-amber-950/30 border border-amber-500/20 rounded-xl space-y-1.5 text-xs">
+                                    <div className="font-bold text-amber-300 font-mono text-[11px] uppercase flex items-center gap-1.5">
+                                      <span>📋 Dispatcher Follow-up Notes:</span>
+                                    </div>
+                                    <div className="text-amber-100/90 leading-relaxed">
+                                      {Array.isArray(dispatcherNotes) ? (
+                                        <ul className="space-y-1.5 list-disc list-inside">
+                                          {dispatcherNotes.map((note, nIdx) => (
+                                            <li key={nIdx}>{note}</li>
+                                          ))}
+                                        </ul>
+                                      ) : (
+                                        <p className="whitespace-pre-line">{dispatcherNotes}</p>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              {/* VIEW 3: EVIDENCE AND AUDIT (COLLAPSED BY DEFAULT)             */}
+                              {/* Retrieved excerpts with underlined sentences, human doc titles, */}
+                              {/* not-selected list with reason, Jev probability & cutoff        */}
+                              {/* ───────────────────────────────────────────────────────────── */}
+                              <div className="bg-slate-900 rounded-xl border border-slate-800 shadow-md overflow-hidden">
                                 <button
                                   type="button"
-                                  onClick={() => setRawJsonEntry(entry)}
-                                  className="text-[9px] font-mono bg-zinc-800 hover:bg-zinc-700 text-white px-2 py-0.5 rounded-full border border-zinc-700 transition-colors cursor-pointer"
-                                  title="View full RAG output as JSON"
+                                  onClick={() => setExpandedAudit(prev => ({ ...prev, [entry._id]: !prev[entry._id] }))}
+                                  className="w-full p-3.5 flex items-center justify-between text-left bg-slate-800/60 hover:bg-slate-800 transition-colors cursor-pointer"
                                 >
-                                  {'{ } JSON'}
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm">🔍</span>
+                                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-200 font-mono">
+                                      3. Evidence & Audit Trail
+                                    </span>
+                                    <span className="text-[10px] font-mono bg-slate-700 text-zinc-300 px-2 py-0.5 rounded-full">
+                                      {excerpts.length} excerpts • {nonSelected.length} non-selected
+                                    </span>
+                                  </div>
+                                  <span className="text-xs text-amber-400 font-mono">
+                                    {isAuditOpen ? '▲ Collapse' : '▼ Expand Audit'}
+                                  </span>
                                 </button>
-                              </div>
-                            </div>
 
-                            {/* Operational Synthesis Report */}
-                            <p className="text-zinc-800 text-xs leading-relaxed bg-white/90 p-2.5 rounded-lg border border-red-100 font-sans shadow-sm">
-                              {entry.ragReport.plan.report}
-                            </p>
-
-                            {/* Required Resource pills & field instructions */}
-                            {entry.ragReport.plan.resources?.length > 0 && (
-                              <div className="space-y-2 pt-1">
-                                <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-                                  Required Relief Resources & Field SOPs:
-                                </div>
-                                <div className="space-y-2">
-                                  {entry.ragReport.plan.resources.map((resItem, rIdx) => (
-                                    <div key={rIdx} className="bg-white border border-zinc-200/80 rounded-lg p-2.5 text-xs space-y-1.5 shadow-xs">
-                                      <div className="flex items-center justify-between">
-                                        <span className="font-semibold text-zinc-900 capitalize flex items-center gap-1.5">
-                                          <span>{getResourceIcon(resItem.resource)}</span>
-                                          <span>{resItem.resource_label || resItem.resource.replace(/_/g, ' ')}</span>
+                                {isAuditOpen && (
+                                  <div className="p-4 space-y-4 border-t border-slate-800 text-zinc-200">
+                                    {/* Section A: Retrieved Document Excerpts */}
+                                    <div className="space-y-2.5">
+                                      <div className="text-xs font-mono uppercase text-zinc-300 font-bold flex items-center justify-between">
+                                        <span>Retrieved Document Excerpts (Passed Relevance Gate)</span>
+                                        <span className="text-[10px] text-zinc-400 font-normal">
+                                          Supporting sentences underlined
                                         </span>
-                                        <div className="flex items-center gap-1">
-                                          {resItem.probability != null && (
-                                            <span className="text-[9px] font-mono text-zinc-400">
-                                              {(resItem.probability * 100).toFixed(0)}%
-                                            </span>
-                                          )}
-                                          <span className={`text-[9px] px-2 py-0.5 rounded font-mono font-medium ${
-                                            resItem.evidence_sufficient 
-                                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
-                                              : 'bg-amber-50 text-amber-700 border border-amber-200'
-                                          }`}>
-                                            {resItem.evidence_sufficient ? '✓ Verified SOP' : '⚠ Protocol Guidelines'}
-                                          </span>
-                                        </div>
                                       </div>
 
-                                      <ul className="list-disc list-inside text-zinc-700 text-[11px] space-y-0.5 pl-1 leading-relaxed">
-                                        {resItem.instructions?.map((inst, iIdx) => (
-                                          <li key={iIdx}>{inst}</li>
-                                        ))}
-                                      </ul>
+                                      {excerpts.length === 0 ? (
+                                        <div className="text-xs text-zinc-400 italic p-2.5 bg-slate-800/40 rounded border border-slate-800">
+                                          No external document excerpts required; recommendations guided by expert emergency judgment.
+                                        </div>
+                                      ) : (
+                                        <div className="space-y-2.5">
+                                          {excerpts.map((exc, eIdx) => (
+                                            <div
+                                              key={eIdx}
+                                              className="p-3 bg-slate-950/60 rounded-lg border border-slate-800 space-y-2"
+                                            >
+                                              <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] font-mono text-zinc-300 border-b border-slate-800 pb-1.5">
+                                                <div className="flex items-center gap-1.5 font-bold text-amber-300">
+                                                  <span>[{exc.id || `E${eIdx + 1}`}]</span>
+                                                  <span>{exc.title || 'NDMA Disaster Management Guidelines'}</span>
+                                                  <span className="text-zinc-400 font-normal">(Page {exc.page || 1})</span>
+                                                </div>
+                                                {exc.action_used && (
+                                                  <span className="text-[10px] bg-slate-800 text-zinc-300 px-2 py-0.5 rounded">
+                                                    Action: {exc.action_used}
+                                                  </span>
+                                                )}
+                                              </div>
 
-                                      {resItem.sources?.length > 0 && (
-                                        <div className="flex flex-wrap items-center gap-1 pt-1.5 border-t border-zinc-100 text-[9px] font-mono text-zinc-400">
-                                          <span>Official Citations:</span>
-                                          {resItem.sources.map((src, sIdx) => (
-                                            <span key={sIdx} className="bg-zinc-50 text-zinc-600 border border-zinc-200/60 px-1.5 py-0.5 rounded">
-                                              📄 {src.file} (p. {src.page})
-                                            </span>
+                                              {/* Excerpt text with underlined supporting sentences */}
+                                              <div className="p-2.5 bg-slate-900 rounded border border-slate-800/80">
+                                                {renderChunkWithUnderlinedBenchmarks(
+                                                  exc.text,
+                                                  exc.supporting_sentences || []
+                                                )}
+                                              </div>
+                                            </div>
                                           ))}
                                         </div>
                                       )}
                                     </div>
-                                  ))}
-                                </div>
+
+                                    {/* Section B: Complete Disaster Taxonomy Evaluation Matrix & Jev Scores */}
+                                    <div className="space-y-3 pt-2 border-t border-slate-800">
+                                      <div className="flex flex-wrap items-center justify-between gap-2">
+                                        <div>
+                                          <div className="text-xs font-mono uppercase text-zinc-300 font-bold flex items-center gap-1.5">
+                                            <span>📊 Disaster Taxonomy Resource Evaluation Matrix</span>
+                                            <span className="text-[10px] text-zinc-400 font-normal">
+                                              ({allTaxonomyEvaluated.length} Evaluated)
+                                            </span>
+                                          </div>
+                                          <div className="text-[10px] text-zinc-400">
+                                            All 30 disaster taxonomy categories with Jev probability & calibrated cutoff thresholds
+                                          </div>
+                                        </div>
+                                        <div className="flex items-center gap-1 text-[10px] font-mono bg-slate-800 p-0.5 rounded-lg border border-slate-700">
+                                          <button
+                                            type="button"
+                                            onClick={() => setTriageTabState(prev => ({ ...prev, [entry._id]: 'all' }))}
+                                            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${activeAuditTab === 'all' ? 'bg-amber-500/20 text-amber-300 font-bold' : 'text-zinc-400 hover:text-zinc-200'}`}
+                                          >
+                                            All ({allTaxonomyEvaluated.length})
+                                          </button>
+                                          <button
+                                            type="button"
+                                            onClick={() => setTriageTabState(prev => ({ ...prev, [entry._id]: 'chosen' }))}
+                                            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${activeAuditTab === 'chosen' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-zinc-400 hover:text-zinc-200'}`}
+                                          >
+                                            Selected ({selectedResources.length})
+                                          </button>
+                                          <button
+                                            type="button"
+                                            onClick={() => setTriageTabState(prev => ({ ...prev, [entry._id]: 'not_chosen' }))}
+                                            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${activeAuditTab === 'not_chosen' ? 'bg-slate-700 text-zinc-200 font-bold' : 'text-zinc-400 hover:text-zinc-200'}`}
+                                          >
+                                            Not Selected ({allTaxonomyEvaluated.filter(t => !t.isSelected).length})
+                                          </button>
+                                        </div>
+                                      </div>
+
+                                      {displayedTaxonomy.length === 0 ? (
+                                        <div className="text-xs text-zinc-400 italic p-2.5 bg-slate-800/40 rounded border border-slate-800">
+                                          No resources matching current filter.
+                                        </div>
+                                      ) : (
+                                        <div className="divide-y divide-slate-800/60 rounded-lg border border-slate-800 bg-slate-950/50 overflow-hidden text-[11px] font-mono max-h-[380px] overflow-y-auto">
+                                          {displayedTaxonomy.map((item, itmIdx) => {
+                                            const isSel = item.isSelected;
+                                            const probPct = (item.jev_probability * 100).toFixed(1);
+                                            const cutPct = (item.cutoff * 100).toFixed(1);
+                                            const meetsThreshold = item.jev_probability >= item.cutoff;
+
+                                            return (
+                                              <div
+                                                key={itmIdx}
+                                                className={`p-2.5 flex flex-wrap items-center justify-between gap-2.5 transition-colors ${isSel ? 'bg-slate-900/40 hover:bg-slate-800/50' : 'hover:bg-slate-800/30 opacity-85'}`}
+                                              >
+                                                {/* Left: Icon, Name, Band Badge & Reason */}
+                                                <div className="flex items-center gap-2 min-w-0 max-w-[62%]">
+                                                  <span className="text-sm shrink-0">{getResourceIcon(item.resource_id)}</span>
+                                                  <div className="min-w-0">
+                                                    <div className="flex items-center gap-2 flex-wrap">
+                                                      <span className={`font-bold ${isSel ? 'text-zinc-100' : 'text-zinc-400'}`}>
+                                                        {item.resource_name}
+                                                      </span>
+                                                      {/* Status Badge */}
+                                                      {item.band === 'CONFIRMED' ? (
+                                                        <span className="text-[8px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded border border-emerald-500/30">
+                                                          CONFIRMED
+                                                        </span>
+                                                      ) : item.band === 'LIKELY' ? (
+                                                        <span className="text-[8px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.2 rounded border border-indigo-500/30">
+                                                          LIKELY
+                                                        </span>
+                                                      ) : (item.band === 'STANDBY' || item.band === 'POSSIBLE') ? (
+                                                        <span className="text-[8px] bg-amber-500/20 text-amber-300 px-1.5 py-0.2 rounded border border-amber-500/30">
+                                                          STANDBY
+                                                        </span>
+                                                      ) : (
+                                                        <span className="text-[8px] bg-rose-500/15 text-rose-300/80 px-1.5 py-0.2 rounded border border-rose-500/25">
+                                                          REJECTED
+                                                        </span>
+                                                      )}
+                                                    </div>
+                                                    <div className="text-[10px] text-zinc-400 font-sans truncate" title={item.reason}>
+                                                      {item.reason}
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                {/* Right: Jev Probability Score, Cutoff & Mini Bar */}
+                                                <div className="flex items-center gap-3 shrink-0">
+                                                  <div className="text-right">
+                                                    <div className="text-[11px] font-bold flex items-center justify-end gap-1">
+                                                      <span className="text-zinc-400 font-normal text-[9px]">Jev Score:</span>
+                                                      <span className={isSel ? 'text-amber-300' : meetsThreshold ? 'text-zinc-300' : 'text-zinc-500'}>
+                                                        {probPct}%
+                                                      </span>
+                                                    </div>
+                                                    <div className="text-[9px] text-zinc-400">
+                                                      Cutoff: {cutPct}%
+                                                    </div>
+                                                  </div>
+                                                  {/* Visual mini progress bar */}
+                                                  <div className="w-16 h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700 relative">
+                                                    <div
+                                                      className={`h-full ${isSel ? 'bg-gradient-to-r from-amber-500 to-emerald-400' : 'bg-slate-600'}`}
+                                                      style={{ width: `${Math.min(100, Math.max(4, item.jev_probability * 100))}%` }}
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Section C: Census & Location Context (Wide-Area Only) */}
+                                    <div className="pt-2 border-t border-slate-800 space-y-1.5">
+                                      <div className="text-xs font-mono uppercase text-zinc-300 font-bold">
+                                        Area & Facility Context
+                                      </div>
+                                      {isWideArea && census ? (
+                                        <div className="p-2.5 bg-slate-950/60 rounded-lg border border-slate-800 text-xs space-y-1">
+                                          <div className="font-semibold text-amber-300">
+                                            Area Demographic Baseline (2011 Census — Not affected count):
+                                          </div>
+                                          <div className="text-zinc-300 text-[11px]">
+                                            Unit: {census.district || census.sub_district || 'District baseline'} • Population Baseline: {census.total_population?.toLocaleString() || 'N/A'}
+                                            {census.sc_st_pct && ` • SC/ST: ${census.sc_st_pct}%`}
+                                            {census.literacy_rate && ` • Literacy: ${census.literacy_rate}%`}
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <div className="text-xs text-zinc-400 italic p-2 bg-slate-950/40 rounded border border-slate-800">
+                                          Localized Incident: Coordinates used for nearby facility routing; census baseline omitted.
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Section D: Telemetry & Model Version */}
+                                    <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between text-[10px] font-mono text-zinc-400">
+                                      <span>Model: {modelVer}</span>
+                                      <span>Latency: {latencyMs} ms</span>
+                                      <span className="text-emerald-400">Status: Calibrated Gates Active</span>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                        ) : entry.disasterReport?.label === 'disaster' && (
+                            </div>
+                          );
+                        })() : entry.disasterReport?.label === 'disaster' ? (
                           <div className="mt-3 flex items-center justify-between bg-red-50 border border-red-200/70 p-2.5 rounded-xl">
                             <span className="text-[11px] text-red-700 flex items-center gap-1.5 font-medium">
                               🚨 Disaster Detected. Operational relief plan can be synthesized.
@@ -715,7 +1440,7 @@ export default function Dashboard() {
                               {generatingRagId === entry._id ? 'Synthesizing...' : '⚡ Generate RAG Plan'}
                             </button>
                           </div>
-                        )}
+                        ) : null}
                       </div>
                       <span className="text-[9px] text-zinc-400 font-mono">Response</span>
                     </div>
@@ -847,6 +1572,23 @@ export default function Dashboard() {
               </div>
             )}
 
+            {/* Submit Error Banner */}
+            {submitError && (
+              <div className="flex items-center justify-between bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-xl text-xs font-mono shadow-xs">
+                <span className="flex items-center gap-1.5">
+                  <span className="text-red-600 font-bold">⚠️ Error:</span>
+                  <span>{submitError}</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSubmitError(null)}
+                  className="text-red-500 hover:text-red-800 font-bold ml-2 cursor-pointer px-1"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
             {/* Prompt Form Input Area */}
             <div className="relative flex items-end gap-1.5 bg-zinc-50 border border-zinc-200 rounded-2xl p-2 focus-within:border-zinc-300 transition-colors">
               {/* Camera clicker trigger */}
@@ -904,12 +1646,20 @@ export default function Dashboard() {
               {/* Send Button */}
               <button
                 type="submit"
-                disabled={isSubmitting || !isOnline || (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob)}
-                className="p-2 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 disabled:opacity-30 disabled:bg-zinc-200 disabled:text-zinc-400 transition-all shadow-sm"
+                disabled={isSubmitting || (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob)}
+                className="p-2 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 disabled:opacity-30 disabled:bg-zinc-200 disabled:text-zinc-400 transition-all shadow-sm cursor-pointer"
+                title={isSubmitting ? 'Analyzing & sending...' : 'Send message'}
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
+                {isSubmitting ? (
+                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  </svg>
+                )}
               </button>
             </div>
             
@@ -1057,90 +1807,101 @@ export default function Dashboard() {
               </div>
             )}
 
-            {/* ── TypeSafe JEV + LLM RAG Analysis ── */}
-            {activeReport.rag && (
-              <div className="space-y-3 border-t border-zinc-100 pt-4">
-                <div className="flex items-center justify-between">
-                  <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">
-                    JEV + LLM RAG Pipeline
+            {/* ── TypeSafe JEV v2 + Advanced RAG Analysis ── */}
+            {activeReport.rag && (() => {
+              const rPlan = activeReport.rag.plan || {};
+              const rJev = activeReport.rag.jev_assessment || rPlan.jev_assessment;
+              const chosen = rJev?.chosen_resources || (rPlan.resources || []);
+              const notChosen = rJev?.not_chosen_resources || [];
+
+              return (
+                <div className="space-y-3 border-t border-zinc-100 pt-4">
+                  <div className="flex items-center justify-between">
+                    <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">
+                      TypeSafe JEV v2 + RAG Pipeline
+                    </div>
+                    <span className="text-[9px] font-mono px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200">
+                      {activeReport.rag.pipeline || 'jev_llm'}
+                    </span>
                   </div>
-                  <span className="text-[9px] font-mono px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200">
-                    {activeReport.rag.pipeline || 'jev_llm'}
-                  </span>
-                </div>
 
-                {/* Stage 1: JEV Resource Probabilities */}
-                {activeReport.rag.stage_1_probabilities && (
-                  <div className="space-y-2 bg-zinc-50 p-2.5 rounded-xl border border-zinc-200/60">
-                    <div className="flex justify-between items-center text-[10px] font-bold text-zinc-700">
-                      <span>TypeSafe JEV Probabilities</span>
-                      <span className="font-mono text-zinc-400 text-[9px]">Threshold: 15.0%</span>
-                    </div>
-                    <div className="space-y-1.5">
-                      {Object.entries(activeReport.rag.stage_1_probabilities).map(([resKey, prob]) => {
-                        const isReq = prob >= 0.15;
-                        return (
-                          <div key={resKey} className="space-y-0.5">
-                            <div className="flex justify-between text-[10px]">
-                              <span className={`capitalize flex items-center gap-1 ${isReq ? 'font-semibold text-zinc-900' : 'text-zinc-500'}`}>
-                                <span>{getResourceIcon(resKey)}</span>
-                                <span>{resKey.replace(/_/g, ' ')}</span>
-                              </span>
-                              <span className={`font-mono text-[9px] ${isReq ? 'text-red-600 font-bold' : 'text-zinc-400'}`}>
-                                {(prob * 100).toFixed(1)}% {isReq ? 'REQUIRED' : ''}
-                              </span>
-                            </div>
-                            <div className="w-full bg-zinc-200 rounded-full h-1 overflow-hidden">
-                              <div
-                                className={`h-full rounded-full transition-all ${isReq ? 'bg-red-500' : 'bg-zinc-400'}`}
-                                style={{ width: `${Math.min(100, Math.max(2, prob * 100))}%` }}
-                              />
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Stage 2 & 3: Retrieved Sources & Operational Plan */}
-                {activeReport.rag.plan && (
-                  <div className="space-y-2 bg-zinc-50 p-2.5 rounded-xl border border-zinc-200/60">
-                    <div className="text-[10px] font-bold text-zinc-700">
-                      Synthesized Dispatch Summary
-                    </div>
-                    <p className="text-[11px] text-zinc-600 leading-relaxed italic">
-                      "{activeReport.rag.plan.report}"
-                    </p>
-
-                    {/* Source Citations */}
-                    {activeReport.rag.plan.resources?.some(r => r.sources?.length > 0) && (
-                      <div className="pt-2 border-t border-zinc-200/50 space-y-1">
-                        <span className="text-[9px] font-mono text-zinc-400 uppercase">Authoritative NDMA Citations:</span>
-                        <div className="flex flex-wrap gap-1">
-                          {activeReport.rag.plan.resources.flatMap(r => r.sources || []).filter((s, idx, arr) => 
-                            arr.findIndex(x => x.file === s.file && x.page === s.page) === idx
-                          ).map((src, sIdx) => (
-                            <span key={sIdx} className="bg-white border border-zinc-200 text-zinc-700 text-[9px] font-mono px-1.5 py-0.5 rounded">
-                              📄 {src.file} (p. {src.page})
-                            </span>
-                          ))}
+                  {/* Severity, Urgency, Priority Badge */}
+                  {rJev && (
+                    <div className="bg-slate-900 text-zinc-100 p-2.5 rounded-xl border border-slate-800 space-y-2">
+                      <div className="flex justify-between items-center text-[10px] font-mono border-b border-slate-800 pb-1">
+                        <span className="text-amber-400 font-bold">⚡ STAGE 1 JEV TRIAGE</span>
+                        <span className="text-red-400 font-bold">{rJev.priority || 'P1'}</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1.5 text-[10px]">
+                        <div className="bg-slate-800 p-1.5 rounded">
+                          <span className="text-zinc-400 block font-mono text-[9px]">Severity:</span>
+                          <span className="font-semibold text-zinc-200">{rJev.severity?.level || 'S2'} - {rJev.severity?.label || 'Severe'}</span>
+                        </div>
+                        <div className="bg-slate-800 p-1.5 rounded">
+                          <span className="text-zinc-400 block font-mono text-[9px]">Urgency:</span>
+                          <span className="font-semibold text-zinc-200">{rJev.urgency?.level || 'U3'} ({rJev.urgency?.window || '<1h'})</span>
                         </div>
                       </div>
-                    )}
-                  </div>
-                )}
 
-                {/* Pipeline Latency Telemetry */}
-                {activeReport.rag.latency && (
-                  <div className="text-[9px] font-mono text-zinc-400 border-t border-zinc-100 pt-2 flex justify-between">
-                    <span>Classification: {activeReport.rag.latency.classification_ms || 0}ms</span>
-                    <span>Retrieval: {activeReport.rag.latency.retrieval_ms || 0}ms</span>
-                    <span>Generation: {activeReport.rag.latency.generation_ms || 0}ms</span>
+                      {/* Census Context */}
+                      {rJev.census_context?.district && (
+                        <div className="text-[9px] text-zinc-300 bg-slate-800/80 p-1.5 rounded font-mono">
+                          📍 District: {rJev.census_context.district} | Vuln: {(rJev.census_context.vulnerability_percentile * 100).toFixed(1)}th %ile
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Chosen Resources */}
+                  <div className="space-y-1.5 bg-zinc-50 p-2.5 rounded-xl border border-zinc-200/60">
+                    <div className="flex justify-between items-center text-[10px] font-bold text-zinc-700">
+                      <span>✓ Chosen Resources ({chosen.length})</span>
+                      <span className="font-mono text-emerald-600 text-[9px]">Active</span>
+                    </div>
+                    <div className="space-y-1">
+                      {chosen.map((cItem, idx) => (
+                        <div key={idx} className="flex justify-between items-center py-1 border-b border-zinc-200/40 text-[10px]">
+                          <span className="flex items-center gap-1 font-medium text-zinc-800 truncate">
+                            <span>{getResourceIcon(cItem.resource)}</span>
+                            <span>{cItem.resource_label || cItem.resource}</span>
+                          </span>
+                          <span className="font-mono text-emerald-700 font-bold shrink-0">
+                            {((cItem.probability || 0) * 100).toFixed(1)}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                )}
-              </div>
-            )}
+
+                  {/* Excluded Resources */}
+                  {notChosen.length > 0 && (
+                    <div className="space-y-1.5 bg-zinc-50/50 p-2.5 rounded-xl border border-zinc-200/40 opacity-90">
+                      <div className="flex justify-between items-center text-[10px] font-bold text-zinc-500">
+                        <span>✗ Excluded Resources ({notChosen.length})</span>
+                        <span className="font-mono text-zinc-400 text-[9px]">Below Cutoff</span>
+                      </div>
+                      <div className="space-y-1 max-h-36 overflow-y-auto pr-1">
+                        {notChosen.map((ncItem, idx) => (
+                          <div key={idx} className="flex justify-between items-center py-0.5 text-[9px] text-zinc-500 font-mono">
+                            <span className="truncate">{ncItem.resource_label || ncItem.resource}</span>
+                            <span>{((ncItem.probability || 0) * 100).toFixed(1)}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Pipeline Latency Telemetry */}
+                  {activeReport.rag.latency && (
+                    <div className="text-[9px] font-mono text-zinc-400 border-t border-zinc-100 pt-2 flex justify-between">
+                      <span>Classification: {activeReport.rag.latency.classification_ms || 0}ms</span>
+                      <span>Retrieval: {activeReport.rag.latency.retrieval_ms || 0}ms</span>
+                      <span>Generation: {activeReport.rag.latency.generation_ms || 0}ms</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Fallback when no reports */}
             {!activeReport.disaster && !activeReport.similarity && !activeReport.rag && (

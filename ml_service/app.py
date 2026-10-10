@@ -24,10 +24,14 @@ from dotenv import load_dotenv
 # ──────────────────────────────────────────────────────────────────────────────
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 load_dotenv(os.path.join(ROOT, ".env"))
+load_dotenv(os.path.join(ROOT, "NEW HYPOTHESIS", ".env"))
+load_dotenv(os.path.join(ROOT, "NEW HYPOTHESIS", "jev + llm", ".env"))
 
 JEV_LLM_DIR = os.path.join(ROOT, "NEW HYPOTHESIS", "jev + llm")
-if JEV_LLM_DIR not in sys.path:
-    sys.path.insert(0, JEV_LLM_DIR)
+LLM_DIR = os.path.join(ROOT, "NEW HYPOTHESIS", "llm + llm")
+for p in [JEV_LLM_DIR, LLM_DIR, ROOT]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
 MODEL_PATH      = os.path.join(ROOT, "best_model.pkl")
 VECTORIZER_PATH = os.path.join(ROOT, "tfidf_vectorizer.pkl")
@@ -103,9 +107,6 @@ def caption_image(base64_image_str: str) -> str:
     caption = blip_processor.decode(out[0], skip_special_tokens=True)
     return caption.strip()
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Load TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B)
-# ──────────────────────────────────────────────────────────────────────────────
 try:
     from pipeline_b import DisasterRAGPipelineB
     print("Loading TypeSafe JEV + LLM Disaster RAG Pipeline…")
@@ -114,6 +115,14 @@ try:
 except Exception as e:
     print(f"Warning: Could not load Disaster RAG Pipeline ({e}). /rag/plan endpoint will be disabled.")
     rag_pipeline = None
+
+try:
+    from pre_rag_gate import classify_pre_rag, re_evaluate_pre_rag
+    print("✓ Pre-RAG Gatekeeper module loaded successfully.")
+except Exception as e:
+    print(f"Warning: Could not load Pre-RAG Gatekeeper ({e}).")
+    classify_pre_rag = None
+    re_evaluate_pre_rag = None
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Text cleaner — must match the logic used during training
@@ -184,6 +193,7 @@ def classify():
         try:
             plan = rag_pipeline.run(scenario_id=scenario_id, scenario=text)
             last_rec = rag_pipeline.last_run_record or {}
+            jev_assess = last_rec.get("jev_assessment") or (plan.get("jev_assessment") if isinstance(plan, dict) else None)
             result["ragReport"] = {
                 "success": True if plan else False,
                 "scenario_id": scenario_id,
@@ -191,6 +201,7 @@ def classify():
                 "pipeline": "jev_llm",
                 "stage_1_resources": last_rec.get("stage_1_resources", []),
                 "stage_1_probabilities": last_rec.get("stage_1_probabilities", {}),
+                "jev_assessment": jev_assess,
                 "retrieved_chunks": last_rec.get("retrieved_chunks", []),
                 "latency": last_rec.get("latency", {}),
                 "tokens": last_rec.get("tokens", {})
@@ -201,12 +212,63 @@ def classify():
     return jsonify(result)
 
 
+@app.post("/pre-rag/classify")
+def pre_rag_classify_endpoint():
+    """
+    Initial Pre-RAG Completeness & Severity Classification.
+    Classifies request as Critical, Non-Critical, or Uncertain.
+    Generates clarifying questions if Non-Critical or Uncertain.
+    """
+    if not classify_pre_rag:
+        return jsonify({"error": "Pre-RAG classifier module not available"}), 503
+
+    data = request.get_json(silent=True) or {}
+    scenario = (data.get("scenario") or data.get("query") or "").strip()
+    history = data.get("history")
+    follow_up_answer = data.get("clarification_answer") or data.get("follow_up_answer")
+
+    if not scenario:
+        return jsonify({"error": "Missing 'scenario' or 'query' field in JSON body"}), 400
+
+    try:
+        result = classify_pre_rag(query=scenario, history=history, follow_up_answer=follow_up_answer)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.post("/pre-rag/re-evaluate")
+def pre_rag_re_evaluate_endpoint():
+    """
+    Re-evaluate user request after caller answers clarifying questions.
+    If severity escalates -> allocates resources (can_proceed_to_rag = True).
+    If not -> routes to low-tier support (can_proceed_to_rag = False).
+    """
+    if not re_evaluate_pre_rag:
+        return jsonify({"error": "Pre-RAG re-evaluation module not available"}), 503
+
+    data = request.get_json(silent=True) or {}
+    scenario = (data.get("scenario") or data.get("query") or "").strip()
+    follow_up_answer = (data.get("clarification_answer") or data.get("follow_up_answer") or "").strip()
+    history = data.get("history")
+
+    if not scenario or not follow_up_answer:
+        return jsonify({"error": "Both 'scenario' and 'clarification_answer' fields are required"}), 400
+
+    try:
+        result = re_evaluate_pre_rag(initial_query=scenario, follow_up_answer=follow_up_answer, history=history)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.post("/rag/plan")
 def rag_plan_endpoint():
     """
     Execute TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B).
-    Evaluates scenario, identifies required resources from the 9 relief categories,
-    retrieves authoritative SOPs from VectorDB/cache, and synthesizes dispatch plan.
+    Pre-RAG intake gate evaluates completeness and severity first.
+    If uncertain -> prompts for clarification questions.
+    If critical / escalated -> retrieves authoritative SOPs and synthesizes dispatch plan.
     """
     if not rag_pipeline:
         return jsonify({"error": "Disaster RAG pipeline is not available"}), 503
@@ -220,24 +282,52 @@ def rag_plan_endpoint():
         return jsonify({"error": "Scenario text is empty"}), 400
 
     scenario_id = data.get("scenario_id", f"AASHRAY-{int(time.time())}")
+    clarification_answer = data.get("clarification_answer")
+    bypass_pre_rag = data.get("bypass_pre_rag", False)
 
     try:
-        plan = rag_pipeline.run(scenario_id=scenario_id, scenario=scenario)
-        last_rec = rag_pipeline.last_run_record or {}
+        plan = rag_pipeline.run(
+            scenario_id=scenario_id,
+            scenario=scenario,
+            clarification_answer=clarification_answer,
+            bypass_pre_rag=bypass_pre_rag
+        )
+        if not plan:
+            return jsonify({"error": "Failed to generate RAG plan"}), 500
 
         return jsonify({
-            "success": True if plan else False,
+            "success": True,
             "scenario_id": scenario_id,
-            "pipeline": "jev_llm",
+            "pipeline": "jev_v3_rag",
+            "is_disaster_related": plan.get("is_disaster_related", True),
+            "can_proceed_to_rag": plan.get("can_proceed_to_rag", True),
+            "needs_clarification": plan.get("needs_clarification", False),
+            "pre_rag_intake": plan.get("pre_rag_intake"),
+            "severity": plan.get("severity"),
+            "action": plan.get("action"),
+            "clarifying_questions": plan.get("clarifying_questions", []),
+            "missing_info": plan.get("missing_info", []),
+            "disaster_assessment": plan.get("disaster_assessment"),
             "plan": plan,
-            "stage_1_resources": last_rec.get("stage_1_resources", []),
-            "stage_1_probabilities": last_rec.get("stage_1_probabilities", {}),
-            "retrieved_chunks": last_rec.get("retrieved_chunks", []),
-            "latency": last_rec.get("latency", {}),
-            "tokens": last_rec.get("tokens", {})
+            "assessment": plan.get("assessment"),
+            "situation": plan.get("situation"),
+            "person_message": plan.get("person_message"),
+            "dispatcher_notes": plan.get("dispatcher_notes"),
+            "resources": plan.get("resources"),
+            "selected_resources": plan.get("selected_resources", []),
+            "not_selected_resources": plan.get("not_selected_resources", []),
+            "non_selected_resources": plan.get("not_selected_resources", []),
+            "raw_probabilities": plan.get("raw_probabilities", {}),
+            "excerpts": plan.get("excerpts", []),
+            "census_context": plan.get("census_context"),
+            "place": plan.get("place"),
+            "agencies": plan.get("agencies", []),
+            "latency": plan.get("latency", {}),
+            "telemetry": plan.get("telemetry", {})
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 
 @app.post("/similarity")
@@ -269,4 +359,4 @@ def caption_image_endpoint():
 if __name__ == "__main__":
     port = int(os.environ.get("ML_PORT", 5001))
     print(f"🚀 ML service starting on http://0.0.0.0:{port}")
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=False, threaded=True)

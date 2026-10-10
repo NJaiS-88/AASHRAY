@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Entry = require('../models/entry.model');
-const { protect } = require('../middleware/auth');
+const { protect, getOrCreateFallbackUser } = require('../middleware/auth');
 
 const { validateRelatedness } = require('../config/similarity');
 
@@ -157,7 +157,7 @@ async function generateImageCaption(imageBase64) {
 /**
  * Call Python ML service to execute TypeSafe JEV + LLM Disaster RAG Pipeline (Pipeline B).
  */
-async function generateRagPlan(scenarioText, scenarioId) {
+async function generateRagPlan(scenarioText, scenarioId, clarificationAnswer) {
     if (!scenarioText || !scenarioText.trim()) return null;
     try {
         const response = await fetch(`${ML_SERVICE_URL}/rag/plan`, {
@@ -165,9 +165,10 @@ async function generateRagPlan(scenarioText, scenarioId) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 scenario: scenarioText.trim(),
-                scenario_id: scenarioId || `SCEN-${Date.now()}`
+                scenario_id: scenarioId || `SCEN-${Date.now()}`,
+                clarification_answer: clarificationAnswer || undefined
             }),
-            signal: AbortSignal.timeout(45000), // 45s timeout for retrieval + generation
+            signal: AbortSignal.timeout(90000), // 90s timeout for retrieval + generation
         });
         if (response.ok) {
             return await response.json();
@@ -207,7 +208,6 @@ router.post('/', protect, async (req, res) => {
         const similarityReport = await getSimilarityReport(parts);
 
         // Run ML disaster classification — pass every text source as a separate segment
-        // classifyText deduplicates and joins them all into one combined string
         const disasterReport = await classifyText(
             primaryText,
             contextText,
@@ -217,7 +217,6 @@ router.post('/', protect, async (req, res) => {
         );
 
         // Build the full combined scenario string for RAG retrieval
-        // Include ALL sources: text1, text2, text3, audioText, imageCaption
         const combinedScenario = [
             primaryText,
             contextText,
@@ -229,14 +228,43 @@ router.post('/', protect, async (req, res) => {
         .filter((v, i, arr) => arr.indexOf(v) === i)  // deduplicate
         .join(' ');
 
-        // If classified as disaster, trigger the TypeSafe JEV + LLM RAG Pipeline
+        const activeUser = req.user || (await getOrCreateFallbackUser());
+
+        // Check if there is a recent pending entry that needed clarification from this user
+        const pendingEntry = await Entry.findOne({
+            user: activeUser?._id,
+            $or: [
+                { 'ragReport.needs_clarification': true },
+                { 'ragReport.can_proceed_to_rag': false },
+                { 'ragReport.action': 'ask_clarifying_questions' }
+            ]
+        }).sort({ createdAt: -1 });
+
         let ragReport = null;
-        if (disasterReport && disasterReport.label === 'disaster' && combinedScenario) {
+        if (pendingEntry && combinedScenario) {
+            // Re-evaluate pending entry using this new query as clarification
+            const priorScenario = [
+                pendingEntry.text1 || pendingEntry.text,
+                pendingEntry.text2,
+                pendingEntry.text3,
+                pendingEntry.audioText,
+                pendingEntry.imageCaption
+            ].filter(Boolean).filter((v, i, arr) => arr.indexOf(v) === i).join(' ');
+
+            console.log(`[Entries] Re-evaluating pending entry ${pendingEntry._id} with additional query: "${combinedScenario}"`);
+            ragReport = await generateRagPlan(priorScenario, `ENTRY-${pendingEntry._id}`, combinedScenario);
+            if (ragReport) {
+                pendingEntry.ragReport = ragReport;
+                pendingEntry.markModified('ragReport');
+                await pendingEntry.save();
+            }
+        } else if (combinedScenario) {
+            // Normal query: always pass through Pre-RAG evaluation & RAG pipeline
             ragReport = await generateRagPlan(combinedScenario);
         }
 
         const entry = new Entry({
-            user: req.user._id,
+            user: activeUser?._id,
             text: primaryText,
             text1: primaryText,
             text2: contextText,
@@ -262,7 +290,9 @@ router.post('/', protect, async (req, res) => {
 // POST generate or refresh RAG plan for a specific entry
 router.post('/:id/rag', protect, async (req, res) => {
     try {
-        const entry = await Entry.findOne({ _id: req.params.id, user: req.user._id });
+        const activeUser = req.user || (await getOrCreateFallbackUser());
+        const filter = activeUser?._id ? { _id: req.params.id, user: activeUser._id } : { _id: req.params.id };
+        const entry = await Entry.findOne(filter);
         if (!entry) return res.status(404).json({ message: 'Entry not found' });
 
         // Collect every text source independently — no || short-circuiting between sources
@@ -290,6 +320,47 @@ router.post('/:id/rag', protect, async (req, res) => {
         }
 
         entry.ragReport = ragReport;
+        entry.markModified('ragReport');
+        await entry.save();
+        res.json(entry);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// POST user clarification answer for an entry (re-evaluates severity and escalates to RAG or routes to low-tier)
+router.post('/:id/clarify', protect, async (req, res) => {
+    try {
+        const { clarification } = req.body;
+        if (!clarification || !clarification.trim()) {
+            return res.status(400).json({ message: 'Missing clarification text' });
+        }
+
+        const activeUser = req.user || (await getOrCreateFallbackUser());
+        const filter = activeUser?._id ? { _id: req.params.id, user: activeUser._id } : { _id: req.params.id };
+        const entry = await Entry.findOne(filter);
+        if (!entry) return res.status(404).json({ message: 'Entry not found' });
+
+        const sources = [
+            (entry.text1 || entry.text || '').trim(),
+            (entry.text2 || '').trim(),
+            (entry.text3 || '').trim(),
+            (entry.audioText || '').trim(),
+            (entry.imageCaption || '').trim()
+        ];
+
+        const combinedScenario = sources
+            .filter(Boolean)
+            .filter((v, i, arr) => arr.indexOf(v) === i)
+            .join(' ');
+
+        const ragReport = await generateRagPlan(combinedScenario, `ENTRY-${entry._id}`, clarification.trim());
+        if (!ragReport) {
+            return res.status(502).json({ message: 'Could not re-evaluate plan with clarification at this time' });
+        }
+
+        entry.ragReport = ragReport;
+        entry.markModified('ragReport');
         await entry.save();
         res.json(entry);
     } catch (error) {
@@ -300,7 +371,9 @@ router.post('/:id/rag', protect, async (req, res) => {
 // GET all entries for the user
 router.get('/', protect, async (req, res) => {
     try {
-        const entries = await Entry.find({ user: req.user._id }).sort({ createdAt: 1 });
+        const activeUser = req.user || (await getOrCreateFallbackUser());
+        const filter = activeUser?._id ? { user: activeUser._id } : {};
+        const entries = await Entry.find(filter).sort({ createdAt: 1 });
         res.json(entries);
     } catch (error) {
         res.status(500).json({ message: error.message });

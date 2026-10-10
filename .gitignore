@@ -35,4 +35,7 @@ Thumbs.db
 disaster_distilbert_model/
 retrieval_cache/
 runs.jsonl
+runs_v3.jsonl
+raw_jev_logs/
+scratch/
 
