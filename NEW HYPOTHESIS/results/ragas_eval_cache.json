@@ -1,0 +1,307 @@
+{
+  "llm_llm___SCEN-DIS-01___rep1": {
+    "faithfulness": 0.8,
+    "response_relevancy": 0.7093375844097506,
+    "context_precision": 0.99999999999
+  },
+  "llm_llm___SCEN-DIS-01___rep2": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.8012742385732519,
+    "context_precision": 0.9999999999875
+  },
+  "llm_llm___SCEN-DIS-01___rep3": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.8012742385732519,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-01___rep1": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.7415230836571758,
+    "context_precision": 0.99999999999
+  },
+  "jev_llm___SCEN-DIS-01___rep2": {
+    "faithfulness": 0.7857142857142857,
+    "response_relevancy": 0.6789996545290207,
+    "context_precision": 0.99999999999
+  },
+  "jev_llm___SCEN-DIS-01___rep3": {
+    "faithfulness": 0.7058823529411765,
+    "response_relevancy": 0.7756270112252338,
+    "context_precision": 0.0
+  },
+  "llm_llm_control___SCEN-DIS-01___rep1": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.8011999731390415,
+    "context_precision": 0.9999999999857143
+  },
+  "llm_llm___SCEN-DIS-02___rep1": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.45115171193176196,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-02___rep2": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4737148700812253,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-02___rep3": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4737148700812253,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-02___rep1": {
+    "faithfulness": 0.7692307692307693,
+    "response_relevancy": 0.7974470544009367,
+    "context_precision": 0.4777777777618519
+  },
+  "jev_llm___SCEN-DIS-02___rep2": {
+    "faithfulness": 0.6363636363636364,
+    "response_relevancy": 0.7799651155128907,
+    "context_precision": 0.4166666666458333
+  },
+  "jev_llm___SCEN-DIS-02___rep3": {
+    "faithfulness": 0.6363636363636364,
+    "response_relevancy": 0.8030208481970733,
+    "context_precision": 0.4777777777618519
+  },
+  "llm_llm_control___SCEN-DIS-02___rep1": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.47936135263994983,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-03___rep1": {
+    "faithfulness": 0.7142857142857143,
+    "response_relevancy": 0.6024454110232226,
+    "context_precision": 0.16666666665
+  },
+  "llm_llm___SCEN-DIS-03___rep2": {
+    "faithfulness": 0.5263157894736842,
+    "response_relevancy": 0.5289487342625145,
+    "context_precision": 0.2916666666520833
+  },
+  "llm_llm___SCEN-DIS-03___rep3": {
+    "faithfulness": 0.6666666666666666,
+    "response_relevancy": 0.507262644578492,
+    "context_precision": 0.2916666666520833
+  },
+  "jev_llm___SCEN-DIS-03___rep1": {
+    "faithfulness": 0.72,
+    "response_relevancy": 0.4889521032505122,
+    "context_precision": 1.0
+  },
+  "jev_llm___SCEN-DIS-03___rep2": {
+    "faithfulness": 0.5588235294117647,
+    "response_relevancy": 0.48513245504004765,
+    "context_precision": 1.0
+  },
+  "jev_llm___SCEN-DIS-03___rep3": {
+    "faithfulness": 0.5454545454545454,
+    "response_relevancy": 0.5956113241342222,
+    "context_precision": 1.0
+  },
+  "llm_llm_control___SCEN-DIS-03___rep1": {
+    "faithfulness": 0.5,
+    "response_relevancy": 0.47172384601762507,
+    "context_precision": 1.0
+  },
+  "llm_llm___SCEN-DIS-04___rep1": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4468567978132343,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-04___rep2": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4459548784754869,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-04___rep3": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4542507545767864,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-04___rep1": {
+    "faithfulness": 0.09090909090909091,
+    "response_relevancy": 0.6704086598879797,
+    "context_precision": 0.999999999975
+  },
+  "jev_llm___SCEN-DIS-04___rep2": {
+    "faithfulness": 0.8571428571428571,
+    "response_relevancy": 0.4338204207572167,
+    "context_precision": 0.30952380950833336
+  },
+  "jev_llm___SCEN-DIS-04___rep3": {
+    "faithfulness": 0.7272727272727273,
+    "response_relevancy": 0.6301809521906667,
+    "context_precision": 0.999999999975
+  },
+  "llm_llm_control___SCEN-DIS-04___rep1": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.4459548784754869,
+    "context_precision": 0.9999999999
+  },
+  "llm_llm___SCEN-DIS-05___rep1": {
+    "faithfulness": 0.8666666666666667,
+    "response_relevancy": 0.7459746452521673,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-05___rep2": {
+    "faithfulness": 0.8214285714285714,
+    "response_relevancy": 0.7925776565076177,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-05___rep3": {
+    "faithfulness": 0.8275862068965517,
+    "response_relevancy": 0.8080430489392372,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-05___rep1": {
+    "faithfulness": 0.7307692307692307,
+    "response_relevancy": 0.8349633449279621,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-05___rep2": {
+    "faithfulness": 0.8571428571428571,
+    "response_relevancy": 0.7925776565076177,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-05___rep3": {
+    "faithfulness": 0.9666666666666667,
+    "response_relevancy": 0.7918499863866665,
+    "context_precision": 0.0
+  },
+  "llm_llm_control___SCEN-DIS-05___rep1": {
+    "faithfulness": 0.782608695652174,
+    "response_relevancy": 0.7971279783738792,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-06___rep1": {
+    "faithfulness": 0.9333333333333333,
+    "response_relevancy": 0.8784613848185331,
+    "context_precision": 0.9999999999833333
+  },
+  "llm_llm___SCEN-DIS-06___rep2": {
+    "faithfulness": 0.8666666666666667,
+    "response_relevancy": 0.8785204431010613,
+    "context_precision": 0.9999999999833333
+  },
+  "llm_llm___SCEN-DIS-06___rep3": {
+    "faithfulness": 0.7333333333333333,
+    "response_relevancy": 0.8058553683951072,
+    "context_precision": 0.9999999999833333
+  },
+  "jev_llm___SCEN-DIS-06___rep1": {
+    "faithfulness": 0.7391304347826086,
+    "response_relevancy": 0.8557231640852904,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-06___rep2": {
+    "faithfulness": 0.7222222222222222,
+    "response_relevancy": 0.8581300140572441,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-06___rep3": {
+    "faithfulness": 0.7777777777777778,
+    "response_relevancy": 0.7517315995422903,
+    "context_precision": 0.867248408149615
+  },
+  "llm_llm_control___SCEN-DIS-06___rep1": {
+    "faithfulness": 0.9230769230769231,
+    "response_relevancy": 0.8471130614273988,
+    "context_precision": 0.9999999999833333
+  },
+  "llm_llm___SCEN-DIS-07___rep1": {
+    "faithfulness": 0.8823529411764706,
+    "response_relevancy": 0.7864366406898893,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-07___rep2": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.81769274501693,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-07___rep3": {
+    "faithfulness": 0.9130434782608695,
+    "response_relevancy": 0.7767241789660456,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-07___rep1": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.7931349678587548,
+    "context_precision": 0.9047552042277321
+  },
+  "jev_llm___SCEN-DIS-07___rep2": {
+    "faithfulness": 1.0,
+    "response_relevancy": 0.7730073127269166,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-07___rep3": {
+    "faithfulness": 0.875,
+    "response_relevancy": 0.8000740574322452,
+    "context_precision": 0.0
+  },
+  "llm_llm_control___SCEN-DIS-07___rep1": {
+    "faithfulness": 0.9090909090909091,
+    "response_relevancy": 0.8272519786091146,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-08___rep1": {
+    "faithfulness": 0.8846153846153846,
+    "response_relevancy": 0.8706600631649979,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-08___rep2": {
+    "faithfulness": 0.8421052631578947,
+    "response_relevancy": 0.7281028433653095,
+    "context_precision": 0.8128276815709079
+  },
+  "llm_llm___SCEN-DIS-08___rep3": {
+    "faithfulness": 0.9130434782608695,
+    "response_relevancy": 0.8588517355123311,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-08___rep1": {
+    "faithfulness": 0.9523809523809523,
+    "response_relevancy": 0.73918264198853,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-08___rep2": {
+    "faithfulness": 0.9545454545454546,
+    "response_relevancy": 0.8218594119309134,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-08___rep3": {
+    "faithfulness": 0.9473684210526315,
+    "response_relevancy": 0.7395841671343841,
+    "context_precision": 0.0
+  },
+  "llm_llm_control___SCEN-DIS-08___rep1": {
+    "faithfulness": 0.9444444444444444,
+    "response_relevancy": 0.7775408798633493,
+    "context_precision": 0.771378968244326
+  },
+  "llm_llm___SCEN-DIS-09___rep1": {
+    "faithfulness": 0.625,
+    "response_relevancy": 0.0,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-09___rep2": {
+    "faithfulness": 0.4444444444444444,
+    "response_relevancy": 0.8149479875957885,
+    "context_precision": 0.0
+  },
+  "llm_llm___SCEN-DIS-09___rep3": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.0,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-09___rep1": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.0,
+    "context_precision": 0.0
+  },
+  "jev_llm___SCEN-DIS-09___rep2": {
+    "faithfulness": 0.0,
+    "response_relevancy": 0.0,
+    "context_precision": 0.0
+  }
+}

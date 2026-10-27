@@ -1,0 +1,415 @@
+{
+ "version": "2.0-draft",
+ "hazard_codes": {
+  "F": "flood",
+  "UF": "urban_flood",
+  "LS": "landslide",
+  "AV": "snow_avalanche"
+ },
+ "note": "cost ratios are PLACEHOLDERS to be replaced by expert elicitation; parents keep backward compat with the 9 canonical classes",
+ "resources": [
+  {
+   "id": "drinking_water",
+   "parent_canonical": "water",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "Sphere min 15 L/person/day (verify vs SDRF norms in retrieved docs)"
+  },
+  {
+   "id": "water_purification",
+   "parent_canonical": "water",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF"
+   ],
+   "quantity_basis": "chlorine tablets/bleaching powder, boiling guidance"
+  },
+  {
+   "id": "sanitation_hygiene_kits",
+   "parent_canonical": "water",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF",
+    "LS"
+   ],
+   "quantity_basis": "Sphere: 1 toilet/20 persons; soap, sanitary pads, hygiene kit per household"
+  },
+  {
+   "id": "food_dry_rations",
+   "parent_canonical": "food",
+   "cost_tier": "survival_basic",
+   "c_fn_over_c_fp_placeholder": 6,
+   "tau_cost_prior": 0.143,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "~2100 kcal/person/day; dry rations per household per day"
+  },
+  {
+   "id": "community_kitchen_cooked_food",
+   "parent_canonical": "food",
+   "cost_tier": "survival_basic",
+   "c_fn_over_c_fp_placeholder": 6,
+   "tau_cost_prior": 0.143,
+   "hazards": [
+    "F",
+    "UF",
+    "LS"
+   ],
+   "quantity_basis": "cooked meals/day by camp population"
+  },
+  {
+   "id": "infant_child_nutrition",
+   "parent_canonical": "food",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "infant formula/ORS/Zinc/ready-to-use food for 0-6 yr (census 0-6 share)"
+  },
+  {
+   "id": "fuel_cooking",
+   "parent_canonical": "food",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "AV"
+   ],
+   "quantity_basis": "LPG/kerosene/dry fuel"
+  },
+  {
+   "id": "livestock_fodder_veterinary",
+   "parent_canonical": "food",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "LS"
+   ],
+   "quantity_basis": "fodder, cattle camps, vet care, carcass disposal (agri-dependence lens)"
+  },
+  {
+   "id": "emergency_shelter_relief_camp",
+   "parent_canonical": "shelter",
+   "cost_tier": "survival_basic",
+   "c_fn_over_c_fp_placeholder": 6,
+   "tau_cost_prior": 0.143,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "Sphere 3.5 m2 covered space/person"
+  },
+  {
+   "id": "shelter_kits_tarpaulin",
+   "parent_canonical": "shelter",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "tarpaulin, rope, bedding per household"
+  },
+  {
+   "id": "clothing_blankets_warmth",
+   "parent_canonical": "clothing",
+   "cost_tier": "survival_basic",
+   "c_fn_over_c_fp_placeholder": 6,
+   "tau_cost_prior": 0.143,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "blankets/warm clothing; cold-wave & avalanche priority"
+  },
+  {
+   "id": "cash_assistance",
+   "parent_canonical": "money",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "SDRF ex-gratia / immediate cash relief (verify current norms)"
+  },
+  {
+   "id": "search_and_rescue",
+   "parent_canonical": "search_and_rescue",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "NDRF/SDRF/fire services, trapped persons"
+  },
+  {
+   "id": "boat_water_rescue",
+   "parent_canonical": "search_and_rescue",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF"
+   ],
+   "quantity_basis": "boats, life jackets, swimmers"
+  },
+  {
+   "id": "evacuation_transport",
+   "parent_canonical": "search_and_rescue",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "vehicles/helicopter for evacuation; stretcher carry"
+  },
+  {
+   "id": "missing_persons_reunification",
+   "parent_canonical": "search_and_rescue",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "tracing, helpline, registry"
+  },
+  {
+   "id": "emergency_medical_care",
+   "parent_canonical": "medical_help",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "ambulance, field hospital, triage"
+  },
+  {
+   "id": "first_aid_trauma",
+   "parent_canonical": "medical_help",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "bleeding control, fractures, crush injury, hypothermia"
+  },
+  {
+   "id": "maternal_newborn_care",
+   "parent_canonical": "medical_help",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "pregnant/lactating women, delivery kit, referral (women lens)"
+  },
+  {
+   "id": "elderly_disability_assistance",
+   "parent_canonical": "medical_help",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "mobility aids, bedridden evac (needs C-14/C-20 data)"
+  },
+  {
+   "id": "psychosocial_support",
+   "parent_canonical": "medical_help",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "psychological first aid, counsellors"
+  },
+  {
+   "id": "medicines_medical_supplies",
+   "parent_canonical": "medical_products",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "ORS, antibiotics, dressings, tetanus, anti-snake-venom"
+  },
+  {
+   "id": "chronic_care_medication",
+   "parent_canonical": "medical_products",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF"
+   ],
+   "quantity_basis": "insulin, dialysis, antihypertensives, oxygen"
+  },
+  {
+   "id": "disease_vector_control",
+   "parent_canonical": "medical_products",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF"
+   ],
+   "quantity_basis": "post-flood cholera/dengue/leptospirosis, chlorination, fogging"
+  },
+  {
+   "id": "heavy_machinery_debris_clearance",
+   "parent_canonical": "tools",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "LS",
+    "AV",
+    "UF"
+   ],
+   "quantity_basis": "JCB/excavators, road clearance, drainage pumps"
+  },
+  {
+   "id": "tools_equipment",
+   "parent_canonical": "tools",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "LS"
+   ],
+   "quantity_basis": "dewatering pumps, cutters, ropes, torches"
+  },
+  {
+   "id": "power_lighting",
+   "parent_canonical": "tools",
+   "cost_tier": "survival_basic",
+   "c_fn_over_c_fp_placeholder": 6,
+   "tau_cost_prior": 0.143,
+   "hazards": [
+    "F",
+    "UF",
+    "LS"
+   ],
+   "quantity_basis": "generators, lanterns, solar lights, safe power cut-off"
+  },
+  {
+   "id": "communication_early_warning",
+   "parent_canonical": "tools",
+   "cost_tier": "life_critical",
+   "c_fn_over_c_fp_placeholder": 20,
+   "tau_cost_prior": 0.048,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "satellite phone, loudspeaker/SMS/voice alerts, helpline"
+  },
+  {
+   "id": "women_child_protection",
+   "parent_canonical": "NEW:protection",
+   "cost_tier": "health_critical",
+   "c_fn_over_c_fp_placeholder": 10,
+   "tau_cost_prior": 0.091,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "safe spaces in camps, GBV and trafficking prevention"
+  },
+  {
+   "id": "dead_body_management",
+   "parent_canonical": "NEW:dignified_management",
+   "cost_tier": "recovery",
+   "c_fn_over_c_fp_placeholder": 3,
+   "tau_cost_prior": 0.25,
+   "hazards": [
+    "F",
+    "UF",
+    "LS",
+    "AV"
+   ],
+   "quantity_basis": "identification, dignified disposal (NDMA guideline)"
+  }
+ ]
+}

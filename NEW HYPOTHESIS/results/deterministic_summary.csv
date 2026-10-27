@@ -1,0 +1,4 @@
+pipeline,denominator_N,gold_resource_coverage,invented_resources,citation_validity,evidence_sufficient_share,json_validity
+llm_llm,105,0.6816,0.0,1.0,0.8874,1.0
+llm_llm_control,35,0.6848,0.0,1.0,0.8797,1.0
+jev_llm,105,0.8848,0.0,1.0,0.7015,1.0

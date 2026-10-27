@@ -1,0 +1,226 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-10-10",
+  "national": [
+    {
+      "name": "National Emergency Helpline (ERSS)",
+      "role": "Single Emergency Response Number for Police, Fire, Ambulance",
+      "phone": "112",
+      "source": "Ministry of Home Affairs ERSS Directory",
+      "reviewed_date": "2026-10-10"
+    },
+    {
+      "name": "National Disaster Response Force (NDRF) Headquarters Control Room",
+      "role": "Specialized Disaster Search & Rescue Command",
+      "phone": "011-24363260",
+      "source": "NDRF Official Disaster Directory",
+      "reviewed_date": "2026-10-10"
+    },
+    {
+      "name": "National Emergency Medical Service (Ambulance)",
+      "role": "Emergency Medical Transport & Triage Ambulance",
+      "phone": "108",
+      "source": "National Health Mission Emergency Medical Transport Directory",
+      "reviewed_date": "2026-10-10"
+    },
+    {
+      "name": "National Fire Emergency Service",
+      "role": "Firefighting, Vehicle Extrication & Rescue",
+      "phone": "101",
+      "source": "Directorate General of Fire Services",
+      "reviewed_date": "2026-10-10"
+    },
+    {
+      "name": "State Emergency Operation Centre Helpline",
+      "role": "State Disaster Coordination & Resource Mobilization",
+      "phone": "1070",
+      "source": "National Disaster Management Authority Helpline Directory",
+      "reviewed_date": "2026-10-10"
+    },
+    {
+      "name": "District Disaster Management Authority Emergency Operations Centre",
+      "role": "District Level Emergency Control Room & Incident Commander",
+      "phone": "1077",
+      "source": "NDMA District Incident Response Directory",
+      "reviewed_date": "2026-10-10"
+    }
+  ],
+  "states": {
+    "kerala": {
+      "state_agencies": [
+        {
+          "name": "Kerala State Disaster Management Authority (KSDMA) SEOC",
+          "role": "State Level Disaster Management Control Room",
+          "phone": "1070",
+          "source": "KSDMA State Disaster Management Plan",
+          "reviewed_date": "2026-10-10"
+        },
+        {
+          "name": "Kerala Fire & Rescue Services Headquarters",
+          "role": "Water Rescue, Scuba Diving & Urban Search and Rescue",
+          "phone": "101",
+          "source": "Kerala Fire Services Directory",
+          "reviewed_date": "2026-10-10"
+        },
+        {
+          "name": "KANIV-108 Emergency Ambulance Service",
+          "role": "Advanced & Basic Life Support Ambulances",
+          "phone": "108",
+          "source": "Kerala Health Dept EMS Registry",
+          "reviewed_date": "2026-10-10"
+        }
+      ],
+      "districts": {
+        "wayanad": [
+          {
+            "name": "District Emergency Operations Centre (DEOC) Collectorate Kalpetta",
+            "role": "District Disaster Management Authority (DDMA) Wayanad",
+            "phone": "04936-204151 / 1077",
+            "source": "DDMA Wayanad Disaster Management Plan 2026",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "Kalpetta Fire and Rescue Station",
+            "role": "First Response Fire, Structural Collapse & Water Rescue",
+            "phone": "04936-202201",
+            "source": "Kerala Fire & Rescue District Directory",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "Mananthavady Fire and Rescue Station",
+            "role": "Flood Rescue & Forest Border Emergency Operations",
+            "phone": "04935-240201",
+            "source": "Kerala Fire & Rescue District Directory",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "Wayanad Government Medical College Hospital (Mananthavady)",
+            "role": "Level-2 Trauma Center, Blood Bank & Emergency Triage",
+            "phone": "04935-240223",
+            "source": "Directorate of Health Services Kerala",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "District Police Control Room Wayanad",
+            "role": "Law & Order, Evacuation Security & Traffic Clearance",
+            "phone": "04936-202525",
+            "source": "Kerala Police District Directory",
+            "reviewed_date": "2026-10-10"
+          }
+        ],
+        "ernakulam": [
+          {
+            "name": "DEOC Collectorate Kakkanad Ernakulam",
+            "role": "DDMA Ernakulam Emergency Operations Centre",
+            "phone": "0484-2423513 / 1077",
+            "source": "DDMA Ernakulam DM Plan",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "Ernakulam General Hospital",
+            "role": "Tertiary Care Emergency & Mass Casualty Unit",
+            "phone": "0484-2361251",
+            "source": "Directorate of Health Services Kerala",
+            "reviewed_date": "2026-10-10"
+          }
+        ]
+      }
+    },
+    "uttarakhand": {
+      "state_agencies": [
+        {
+          "name": "Uttarakhand State Disaster Management Authority (USDMA) SEOC",
+          "role": "State Level High Altitude Disaster Command",
+          "phone": "1070",
+          "source": "USDMA Official Directory",
+          "reviewed_date": "2026-10-10"
+        },
+        {
+          "name": "SDRF Uttarakhand Police Headquarters",
+          "role": "High-Angle Mountain Rescue & Avalanche Response",
+          "phone": "0135-2712685",
+          "source": "SDRF Uttarakhand Registry",
+          "reviewed_date": "2026-10-10"
+        }
+      ],
+      "districts": {
+        "chamoli": [
+          {
+            "name": "District Emergency Operations Centre Gopeshwar",
+            "role": "DDMA Chamoli Disaster Control Room",
+            "phone": "01372-251077 / 1077",
+            "source": "DDMA Chamoli DM Plan",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "District Hospital Gopeshwar",
+            "role": "Trauma & High Altitude Hypothermia Stabilization",
+            "phone": "01372-252102",
+            "source": "Uttarakhand Health Directory",
+            "reviewed_date": "2026-10-10"
+          }
+        ],
+        "dehradun": [
+          {
+            "name": "District Emergency Operations Centre Dehradun",
+            "role": "DDMA Dehradun Control Room",
+            "phone": "0135-2726066 / 1077",
+            "source": "DDMA Dehradun DM Plan",
+            "reviewed_date": "2026-10-10"
+          }
+        ]
+      }
+    },
+    "himachal pradesh": {
+      "state_agencies": [
+        {
+          "name": "Himachal Pradesh State Disaster Management Authority (HPSDMA)",
+          "role": "State Disaster Control Room",
+          "phone": "1070",
+          "source": "HPSDMA Plan",
+          "reviewed_date": "2026-10-10"
+        }
+      ],
+      "districts": {
+        "shimla": [
+          {
+            "name": "DEOC Shimla Control Room",
+            "role": "DDMA Shimla Emergency Operations",
+            "phone": "0177-2800880 / 1077",
+            "source": "DDMA Shimla DM Plan",
+            "reviewed_date": "2026-10-10"
+          }
+        ]
+      }
+    },
+    "maharashtra": {
+      "state_agencies": [
+        {
+          "name": "Maharashtra State Disaster Management Authority (MSDMA) SEOC Mantralaya",
+          "role": "State Disaster Operations",
+          "phone": "1070",
+          "source": "MSDMA Directory",
+          "reviewed_date": "2026-10-10"
+        }
+      ],
+      "districts": {
+        "mumbai": [
+          {
+            "name": "Brihanmumbai Municipal Corporation (BMC) Disaster Management Cell",
+            "role": "City-Wide Flood & Emergency Response Control Room",
+            "phone": "1916 / 022-22694727",
+            "source": "MCGM Disaster Management Dept",
+            "reviewed_date": "2026-10-10"
+          },
+          {
+            "name": "Mumbai Fire Brigade Headquarters Byculla",
+            "role": "Structural Fire & Urban Building Collapse Search Rescue",
+            "phone": "101 / 022-23076111",
+            "source": "Mumbai Fire Brigade Official Directory",
+            "reviewed_date": "2026-10-10"
+          }
+        ]
+      }
+    }
+  }
+}
