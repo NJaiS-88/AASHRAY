@@ -50,12 +50,44 @@ const entrySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         default: null
     },
+    resourceEngineReport: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null
+    },
+    intakeRecord: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null
+    },
+    conversationId: {
+        type: String,
+        index: true,
+        default: null
+    },
+    conversationTitle: {
+        type: String,
+        default: ''
+    },
+    status: {
+        type: String,
+        enum: ['DRAFT', 'NEEDS_CLARIFICATION', 'READY_FOR_ASSESSMENT', 'ORCHESTRATING', 'MISSION_ACTIVE'],
+        default: 'READY_FOR_ASSESSMENT'
+    },
     imageCaption: {
         type: String,
         default: ''
     },
     clientTimestamp: {
         type: Date,
+    },
+    isDevTest: {
+        type: Boolean,
+        default: false,
+        index: true
+    },
+    deletedByUser: {
+        type: Boolean,
+        default: false,
+        index: true
     }
 }, { timestamps: true });
 

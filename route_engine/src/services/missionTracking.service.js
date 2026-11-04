@@ -53,7 +53,7 @@ export async function persistMissionRouteState({
   }));
 
   try {
-    const record = await prisma.missionRouteState.upsert({
+    const upsertPromise = prisma.missionRouteState.upsert({
       where: { missionId },
       create: {
         missionId,
@@ -91,6 +91,11 @@ export async function persistMissionRouteState({
       }
     });
 
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Prisma database connection timeout')), 1000)
+    );
+
+    const record = await Promise.race([upsertPromise, timeoutPromise]);
     return record;
   } catch (err) {
     console.error('Failed to persist mission route state:', err.message);

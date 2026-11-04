@@ -1342,5 +1342,1925 @@
       }
     ],
     "closed_at": null
+  },
+  {
+    "mission_id": "MIS-0F638A97",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A3084005",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T13:06:40.670357Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-4DF0CAF0",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C23C0BC3",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T17:13:09.216480Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A7C94E36",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E1E8401F",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T17:46:43.340242Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-09D4F1CC",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0962BFC6",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T17:46:57.428781Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-D3F3A620",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0F2B0D3A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T18:10:57.837471Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1C5E0384",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B8CCD659",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T18:34:38.249555Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-BA30D8E4",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B57CB152",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T19:19:03.454500Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F3481707",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3E05C86F",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T19:21:09.056919Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-7D65FB8E",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-11AE924C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T19:51:17.375264Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-51444464",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2D57D997",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T19:52:38.683511Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F0F7C30C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9AAF8877",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T19:53:22.282328Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A7CA704C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EED0849F",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T19:53:41.790890Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-EA221570",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E2790C38",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T19:55:21.030654Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-D83BDB40",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-698D1560",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T19:56:23.711303Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-DBDFE338",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8C069D82",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T20:06:46.280184Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-DCA15A6C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-380D318A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:08:32.442791Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B126E807",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B32EE168",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:08:42.329754Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-7CDAFDC1",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2377CBDF",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:08:47.667119Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-DF3C39D8",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AD8333DF",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:08:49.481872Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C518FE0A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A2EB0F97",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:09:24.226447Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-403C141C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2BEB4367",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:10:11.007327Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-D2EF68F8",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-060AEAC0",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:10:53.569378Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-3B07A690",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BD0591EA",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:11:04.894944Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B7B3548D",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F8337A70",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:11:12.632803Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-85F777D5",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F28EDA2A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:11:20.420552Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A6580F96",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5B5E7441",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:11:23.195697Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-066DBD79",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BF80B25C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:12:24.711806Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-836BE175",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C4E769E8",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:12:35.847984Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B183B245",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-86DA81B1",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:12:46.241437Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-8D6EF26B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A0DE8FFB",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:12:48.876657Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-64B38C40",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4267A3E3",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T20:16:42.685907Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A45E4F45",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9B0AB242",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T20:17:08.699521Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-47B929AB",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1F229AD5",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:34:33.260445Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-49EE62D9",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B3E50C87",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T20:34:55.986709Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-8E8CE69B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7E4FAF06",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T20:35:29.120871Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C793735F",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-55D31FAC",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:38:11.778997Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-00F6CB27",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8407AE22",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:38:20.290118Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9AEEC7B9",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AD40D906",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:38:28.017716Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9EEDE92A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A3D924F5",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:38:38.361788Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-288A907C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5BE24E1D",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:38:41.061582Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B5A69A39",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E7671129",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:39:14.685723Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5FD0B443",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-238F5F8C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:39:58.442073Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1865BFC5",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1391D4A4",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:40:27.561584Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-17A83193",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BB955E8C",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T20:41:29.169922Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-AD0CA7AB",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-27E2C18E",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T20:41:39.381619Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-4364AEEB",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D08CEC0A",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T20:45:34.831395Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9A9AB0E8",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E2807D0E",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T20:47:16.151761Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-ED7A2353",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1D39BF96",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T21:13:11.733136Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F4D3474A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-85F2AB65",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T21:13:23.409623Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-EF6B4406",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8C3D0519",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T21:13:33.568242Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-6FFF9018",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-6DE65C13",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T21:13:36.226313Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-90642AF3",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A3352BBF",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T21:18:03.758609Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CFF5BF77",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5F59D3FA",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T21:18:14.906459Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-4625FE98",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EA6AB733",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T21:18:25.546704Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B301981A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4743DCA0",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T21:18:28.424505Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1590A9A2",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D7C4ABC4",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T21:20:13.057099Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-3C07194B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9A282BF6",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T21:20:35.520043Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-E62317B1",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-94054899",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T21:56:24.774895Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-67D8F957",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-35A76E97",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T21:56:29.254266Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-4BF7A0FC",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3C467C18",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T21:58:27.711464Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-D4AB4608",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-003071F8",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T21:58:42.887556Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-17DD0B79",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-765329D5",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T22:03:52.755677Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F1655BA9",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2D40D107",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-27T22:04:12.953731Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5611193C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EFE98E49",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:04:46.022670Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-0F1EBE28",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-47C5B038",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:05:09.654479Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9B061052",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A2D1AEB0",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T22:05:35.228679Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C2076801",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A8434A81",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-27T22:12:54.725273Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F7A9C5AB",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A133F448",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:13:23.276466Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F7853F41",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1C999B91",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:14:04.970572Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-43D93034",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-64537CF7",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:14:13.315741Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-07F7410A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8FB74848",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:14:21.758542Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B00F0706",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2DC24378",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:14:31.870901Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-ADCBE762",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-11C77DC2",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:14:34.527011Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-D1C11BD7",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-FC1A92D8",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:31:53.168062Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-93066F14",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2A11FA2B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:32:02.239831Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-BCC8AB3A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CC197075",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:32:09.887762Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-720380BB",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1EC02479",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:32:19.997397Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-DA468CE4",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F42E4317",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-27T22:32:22.784461Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CD3C2D5C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1EEAD62D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-27T22:39:00.745077Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1E154EC0",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-991E5DD8",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:01:23.093935Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C15D16C0",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3E4D38F1",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:02:44.552463Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B959564E",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5288D1A5",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T08:06:28.140686Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F6625042",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2D8B0B53",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:09:09.003404Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-25D268D2",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-01C62314",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:09:56.526666Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F55530DE",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-38513C2D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:11:22.881700Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9B4E88DA",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-FAA5DEA5",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:12:20.724751Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-E36CC9CC",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-9AB45B40",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:14:01.993945Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-BC5E635D",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-FDA55471",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:15:02.936875Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-B2459053",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-ECB82B2D",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:16:01.706511Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-127BAF68",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-64FEE2BF",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:18:26.161086Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-479E66AA",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1570DA81",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:19:11.671817Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-495F7DF7",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B54D1ED5",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:20:58.341119Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CD296D26",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8B7967C5",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T08:21:06.840614Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-DD1E2D46",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-37251D33",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T08:21:57.186063Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-7FA4D6F4",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EE9CE370",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:22:45.567153Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9B746474",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-6455AF89",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T08:22:54.038143Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-35CACA52",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-60F65C40",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:23:06.621375Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-86D6E9C0",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-97169CB3",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:23:20.476943Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F819D2A4",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-12622B2C",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:23:32.300701Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-E1CF4871",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-8337F2E0",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:23:48.390452Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-455EE9DC",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-56E7C8F1",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T08:23:52.606237Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-2929F62B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D15B518E",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:34:43.439916Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-287AEE3B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EC4244EB",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T08:37:37.802022Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CE78848C",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-011D91A2",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T17:42:30.599865Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-841BB6FD",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-14D41565",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T18:08:29.478420Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C7BF82B9",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E90C26E6",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:21:10.564823Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C91C1133",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-367DC82E",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:21:27.674288Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-85E2E99F",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5FD80F58",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:21:44.274348Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-EED140E5",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-170CB560",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:21:52.626768Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-613837AA",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-BE12F72C",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:21:57.781086Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-BD278C6E",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-21C926DD",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:22:26.029098Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-ED809539",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-A95F94B1",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:22:42.998911Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-7F3DB89A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-99D20ABB",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:23:00.033957Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-759B7961",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0293CB03",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:23:08.316902Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-2C8B8CFF",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AC60C51E",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:23:14.073895Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-04880578",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-57DC95EF",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:37:43.399620Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1A8886C3",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B7C7165A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T18:39:11.205666Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-1C643CB3",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1CCC2C2B",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T18:41:04.953284Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-178DEBB2",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-AA985F4B",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T18:53:57.997191Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-18E2DDEA-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CA93ACAA",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:01:44.493239Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-18E2DDEA-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2350F0ED",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:01:50.694092Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-4CA2FD12",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-1DD3D3AA",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:01:56.206991Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-95B7901D",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C5E2FD37",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:02:26.182152Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-0B8A92CE",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3404947A",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:02:43.263964Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-F1196FF5",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EE5EE77A",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:03:00.808680Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-10CAB448",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-7BA786FF",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:03:08.667239Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-6679B769",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D4C69CA3",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:03:13.870951Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-071CDE06",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-DEA19FD5",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:04:44.965206Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CE12AE4B-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-CFB1199B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:08:58.705836Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CE12AE4B-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-B222EE79",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T19:09:04.214351Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-48DEF729",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C0A57F3F",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:24:52.428443Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5794BB7F-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-C523A7BF",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:25:20.267570Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5794BB7F-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E7E2F27B",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:25:24.928648Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-291D7D7B-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-E090B9CF",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:26:14.388801Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-291D7D7B-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4A946009",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:26:20.647317Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9A3F3EE2-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D0BF76A1",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:26:33.190046Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-9A3F3EE2-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-2412D9FF",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:26:37.262384Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-FC50E61C-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-947DFEDD",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:28:02.081869Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-FC50E61C-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5BFD5CAB",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:28:06.740928Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-03E514FB-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3FC61022",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:28:24.130111Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-03E514FB-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-EC2F2BD1",
+        "responder_id": "R005",
+        "assigned_at": "2026-10-28T19:28:29.514793Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-C7935AB0",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-04437405",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:28:34.707797Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-77F08114",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-328AA681",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:28:53.272473Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A6E28774",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3E8C2B6B",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:29:10.101139Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-CD19CAF2",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-5CA5B37C",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:29:26.797523Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-7B0D506D",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-89632915",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:29:34.799716Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-BD09A74A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-96C632F1",
+        "responder_id": "R002",
+        "assigned_at": "2026-10-28T19:29:40.127859Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A6359385-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-97FCF5EE",
+        "responder_id": "R001",
+        "assigned_at": "2026-10-28T19:36:28.481418Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-A6359385-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-ADCEBEDF",
+        "responder_id": "R004",
+        "assigned_at": "2026-10-28T19:36:34.623075Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-39AF2A93-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-540686B8",
+        "responder_id": "R002",
+        "assigned_at": "2026-11-04T10:17:05.215065Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-39AF2A93-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-F2F73423",
+        "responder_id": "R005",
+        "assigned_at": "2026-11-04T10:17:22.739796Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-2EC699C3-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D8361D9A",
+        "responder_id": "R001",
+        "assigned_at": "2026-11-04T10:23:31.919852Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-48E9CF36-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-3E63C10B",
+        "responder_id": "R002",
+        "assigned_at": "2026-11-04T10:40:59.209584Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-48E9CF36-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-4E9960E7",
+        "responder_id": "R005",
+        "assigned_at": "2026-11-04T10:41:05.023462Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-90DD0520-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-189276C0",
+        "responder_id": "R002",
+        "assigned_at": "2026-11-04T10:41:33.710872Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-90DD0520-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-10F535DF",
+        "responder_id": "R005",
+        "assigned_at": "2026-11-04T10:41:41.708326Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-FD320E1B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-0C5F4EAB",
+        "responder_id": "R001",
+        "assigned_at": "2026-11-04T10:41:53.813120Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5F6B7862-A",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-093B89B8",
+        "responder_id": "R002",
+        "assigned_at": "2026-11-04T11:06:41.196868Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-5F6B7862-B",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-13EF27C2",
+        "responder_id": "R005",
+        "assigned_at": "2026-11-04T11:06:46.768252Z"
+      }
+    ],
+    "closed_at": null
+  },
+  {
+    "mission_id": "MIS-97272D27",
+    "status": "ASSIGNED",
+    "assignments": [
+      {
+        "assignment_id": "ASSIGN-D5D4F8B3",
+        "responder_id": "R001",
+        "assigned_at": "2026-11-04T11:17:20.121321Z"
+      }
+    ],
+    "closed_at": null
   }
 ]

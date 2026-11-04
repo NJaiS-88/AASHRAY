@@ -39,3 +39,8 @@ runs_v3.jsonl
 raw_jev_logs/
 scratch/
 
+# Excluded large experiment datasets and reference PDF
+resource_engine/experiments/resource_allocation_final/data/final_12000_scenarios.json
+resource_engine/experiments/resource_allocation_development/data/development_3000_scenarios.json
+resource_engine/experiments/resource_allocation_final/results/final_scenario_results.csv
+NEW HYPOTHESIS/pdfs/management_urban_flooding.pdf

@@ -40,6 +40,11 @@ class MissionCreationService:
                 status="NOT_AVAILABLE",
             ),
             status="CREATED",
+            affected_population=request.affected_population,
+            risk_indicators=request.risk_indicators,
+            incident_type=request.incident_type,
+            phase=request.phase,
+            parent_mission_id=request.parent_mission_id,
         )
 
     def _determine_responder_type(

@@ -5,4 +5,19 @@ const axiosClient = axios.create({
     withCredentials: true,
 });
 
+axiosClient.interceptors.request.use((config) => {
+    try {
+        const stored = localStorage.getItem('user');
+        if (stored) {
+            const user = JSON.parse(stored);
+            if (user?.token) {
+                config.headers.Authorization = `Bearer ${user.token}`;
+            }
+        }
+    } catch (e) {
+        // ignore parse error
+    }
+    return config;
+});
+
 export default axiosClient;

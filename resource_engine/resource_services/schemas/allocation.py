@@ -3,7 +3,6 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from .incident import Incident
-from .resource_requirement import ResourceRequirement
 
 
 PriorityLevel = Literal[
@@ -16,17 +15,13 @@ PriorityLevel = Literal[
 
 class WarehouseAllocation(BaseModel):
     warehouse_id: str
-    supplies: ResourceRequirement
+    supplies: dict[str, float]
 
 
 class AllocationRequest(BaseModel):
-    # One emergency entering the Resource Engine.
-    # Severity and urgency will later be supplied by upstream services;
-    # until those exist they are plain inputs to the engine.
-
     incident_id: str
 
-    requirements: ResourceRequirement
+    requirements: dict[str, float]
 
     severity: float = Field(ge=0.0, le=1.0)
 
@@ -36,9 +31,6 @@ class AllocationRequest(BaseModel):
 
 
 class IncidentAllocationRequest(Incident):
-    # Route level input: an incident plus the priority inputs the
-    # allocation decision now needs. Severity is inherited from Incident.
-
     urgency: float = Field(ge=0.0, le=1.0)
 
     priority: PriorityLevel
@@ -48,13 +40,13 @@ class AllocationResult(BaseModel):
     allocation_id: str
     incident_id: str
 
-    required_resources: ResourceRequirement
+    required_resources: dict[str, float]
 
     warehouse_allocations: list[WarehouseAllocation]
 
-    allocated_resources: ResourceRequirement
+    allocated_resources: dict[str, float]
 
-    remaining_shortage: ResourceRequirement
+    remaining_shortage: dict[str, float]
 
     allocation_status: str
 

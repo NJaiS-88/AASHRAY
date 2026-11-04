@@ -125,15 +125,15 @@ class RouteEngineClient:
 
     def __init__(
         self,
-        base_url: str | None = None,
+        base_url: Any = "__DEFAULT__",
         http_client: httpx.Client | None = None,
         timeout: float = 30.0,
     ):
-        self.base_url = (
-            base_url
-            if base_url is not None
-            else os.getenv("ROUTE_ENGINE_URL")
-        )
+        if base_url == "__DEFAULT__":
+            raw = os.getenv("ROUTE_ENGINE_URL", "http://localhost:3000")
+        else:
+            raw = base_url
+        self.base_url = raw.rstrip("/") if raw else None
         self.http_client = http_client
         self.timeout = timeout
 
@@ -282,6 +282,49 @@ class RouteEngineClient:
                     else:
                         reason_strings.append(str(r))
 
+                backup_routes_data = data.get("backupRoutes") or []
+                rejected_routes_data = data.get("rejectedRoutes") or []
+                decision_reasons_data = data.get("decisionReasons") or []
+
+                formatted_backups = []
+                for b in backup_routes_data:
+                    b_poly = b.get("encodedPolyline")
+                    b_coords = decode_polyline(b_poly) if b_poly else []
+                    b_score = b.get("score")
+                    formatted_backups.append({
+                        "route_id": b.get("routeId", f"backup-{leg_index}"),
+                        "selection_status": "FEASIBLE_ALTERNATIVE",
+                        "status": "FEASIBLE_ALTERNATIVE",
+                        "leg_index": leg_index,
+                        "distance_km": round((b.get("distanceMeters") or 0) / 1000.0, 2),
+                        "estimated_time_minutes": round((b.get("durationSeconds") or 0) / 60.0, 2),
+                        "risk_score": b_score,
+                        "rejection_reason": None,
+                        "encoded_polyline": b_poly,
+                        "coordinates": [{"latitude": c.latitude, "longitude": c.longitude} for c in b_coords],
+                    })
+
+                formatted_rejected = []
+                for r in rejected_routes_data:
+                    r_poly = r.get("encodedPolyline")
+                    r_coords = decode_polyline(r_poly) if r_poly else []
+                    formatted_rejected.append({
+                        "route_id": r.get("routeId", f"rejected-{leg_index}"),
+                        "selection_status": "REJECTED",
+                        "status": "REJECTED",
+                        "leg_index": leg_index,
+                        "distance_km": round((r.get("distanceMeters") or 0) / 1000.0, 2),
+                        "estimated_time_minutes": round((r.get("durationSeconds") or 0) / 60.0, 2),
+                        "risk_score": r.get("score"),
+                        "rule_violated": r.get("ruleViolated") or r.get("blockingCondition"),
+                        "evidence_source": r.get("evidenceSource") or "RoadConditionEngine",
+                        "confidence": r.get("confidence"),
+                        "blocking_condition": r.get("blockingCondition"),
+                        "rejection_reason": r.get("rejectionReason") or "Candidate route failed safety verification rules.",
+                        "encoded_polyline": r_poly,
+                        "coordinates": [{"latitude": c.latitude, "longitude": c.longitude} for c in r_coords],
+                    })
+
                 planned_leg = RouteLeg(
                     leg_index=leg_index,
                     route_engine_mission_id=route_engine_mission_id,
@@ -301,6 +344,8 @@ class RouteEngineClient:
                     road_condition_confidence=assessment.get("confidence"),
                     matched_incidents=primary.get("matchedIncidents") or [],
                     reasons=reason_strings,
+                    backup_routes=formatted_backups,
+                    rejected_routes=formatted_rejected,
                 )
                 planned_legs.append(planned_leg)
 
@@ -323,12 +368,24 @@ class RouteEngineClient:
         total_distance = round(sum(leg.distance_km for leg in planned_legs), 2)
         total_duration = round(sum(leg.estimated_time_minutes for leg in planned_legs), 2)
 
+        all_alternatives = []
+        all_rejected = []
+        all_decision_reasons = []
+        for leg in planned_legs:
+            all_alternatives.extend(leg.backup_routes)
+            all_rejected.extend(leg.rejected_routes)
+            if leg.reasons:
+                all_decision_reasons.extend(leg.reasons)
+
         combined_route = RouteData(
             status="AVAILABLE",
             distance_km=total_distance,
             estimated_time_minutes=total_duration,
             coordinates=combined_coords,
             legs=planned_legs,
+            alternative_routes=all_alternatives,
+            rejected_routes=all_rejected,
+            decision_reasons=all_decision_reasons,
         )
 
         return RouteBoundaryResult(

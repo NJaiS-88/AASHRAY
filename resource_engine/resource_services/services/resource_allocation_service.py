@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
-from resource_services.schemas.resource_requirement import ResourceRequirement
 from resource_services.schemas.warehouse import Warehouse
 from resource_services.schemas.allocation import (
     AllocationRequest,
@@ -11,7 +10,6 @@ from resource_services.schemas.allocation import (
 )
 
 
-# Categorical priority converted to a normalized numerical value.
 PRIORITY_NORMALIZATION = {
     "LOW": 0.25,
     "MODERATE": 0.50,
@@ -19,25 +17,18 @@ PRIORITY_NORMALIZATION = {
     "CRITICAL": 1.00,
 }
 
-
-# Used when the rules file does not provide allocation priority weights.
 DEFAULT_PRIORITY_WEIGHTS = {
     "severity": 0.4,
     "urgency": 0.4,
     "priority": 0.2,
 }
 
-
-# Inclusive upper bounds, applied in order.
 PRIORITY_LEVEL_THRESHOLDS = [
     (0.35, "LOW"),
     (0.60, "MODERATE"),
     (0.80, "HIGH"),
 ]
 
-
-# The score is rounded before it is compared against the thresholds so that
-# the inclusive boundaries above are not missed by floating point noise.
 SCORE_PRECISION = 4
 
 
@@ -121,14 +112,12 @@ class ResourceAllocationService:
     def allocate(
         self,
         incident_id: str,
-        requirements: ResourceRequirement,
+        requirements: dict[str, float],
         severity: float,
         urgency: float,
         priority: str,
     ) -> AllocationResult:
 
-        # A single emergency always starts from the full available inventory,
-        # so a single allocation behaves exactly as it did before.
         return self._allocate_from_inventory(
             incident_id=incident_id,
             requirements=requirements,
@@ -143,9 +132,6 @@ class ResourceAllocationService:
         requests: list[AllocationRequest],
     ) -> list[AllocationResult]:
 
-        # Rank the emergencies by overall priority score, highest first,
-        # then allocate from one shared working inventory so that every
-        # allocation reduces what the next emergency can draw from.
         ranked_requests = sorted(
             requests,
             key=lambda request: self.calculate_overall_priority_score(
@@ -178,7 +164,7 @@ class ResourceAllocationService:
     def _allocate_from_inventory(
         self,
         incident_id: str,
-        requirements: ResourceRequirement,
+        requirements: dict[str, float],
         severity: float,
         urgency: float,
         priority: str,
@@ -197,17 +183,8 @@ class ResourceAllocationService:
             overall_priority_score
         )
 
-        remaining = {
-            "water": requirements.water,
-            "food": requirements.food,
-            "medical_kits": requirements.medical_kits,
-        }
-
-        allocated = {
-            "water": 0.0,
-            "food": 0.0,
-            "medical_kits": 0.0,
-        }
+        remaining = dict(requirements)
+        allocated = {resource: 0.0 for resource in requirements}
 
         warehouse_allocations = []
 
@@ -215,51 +192,38 @@ class ResourceAllocationService:
 
             warehouse_stock = working_inventory[warehouse.warehouse_id]
 
-            warehouse_supplies = {
-                "water": 0.0,
-                "food": 0.0,
-                "medical_kits": 0.0,
-            }
+            warehouse_supplies: dict[str, float] = {}
 
-            for resource in remaining:
+            for resource, needed in remaining.items():
+                if needed <= 0:
+                    continue
 
                 available = warehouse_stock.get(resource, 0.0)
+                quantity = min(available, needed)
 
-                quantity = min(
-                    available,
-                    remaining[resource],
-                )
+                if quantity > 0:
+                    warehouse_supplies[resource] = quantity
+                    allocated[resource] += quantity
+                    remaining[resource] -= quantity
+                    warehouse_stock[resource] = available - quantity
 
-                warehouse_supplies[resource] = quantity
-
-                allocated[resource] += quantity
-                remaining[resource] -= quantity
-
-                # The working inventory is reduced immediately so the next
-                # emergency cannot receive resources already committed here.
-                warehouse_stock[resource] = available - quantity
-
-            # Only include a warehouse if it contributes something.
-            if any(quantity > 0 for quantity in warehouse_supplies.values()):
+            if warehouse_supplies:
                 warehouse_allocations.append(
                     WarehouseAllocation(
                         warehouse_id=warehouse.warehouse_id,
-                        supplies=ResourceRequirement(
-                            **warehouse_supplies
-                        ),
+                        supplies=warehouse_supplies,
                     )
                 )
 
-            # Stop once all requirements are satisfied.
-            if all(quantity <= 0 for quantity in remaining.values()):
+            if all(qty <= 0 for qty in remaining.values()):
                 break
 
         shortage = {
-            resource: max(quantity, 0.0)
-            for resource, quantity in remaining.items()
+            resource: max(qty, 0.0)
+            for resource, qty in remaining.items()
         }
 
-        if all(quantity <= 0 for quantity in shortage.values()):
+        if all(qty <= 0 for qty in shortage.values()):
             status = "FULLY_FULFILLED"
         else:
             status = "PARTIALLY_FULFILLED"
@@ -269,12 +233,8 @@ class ResourceAllocationService:
             incident_id=incident_id,
             required_resources=requirements,
             warehouse_allocations=warehouse_allocations,
-            allocated_resources=ResourceRequirement(
-                **allocated
-            ),
-            remaining_shortage=ResourceRequirement(
-                **shortage
-            ),
+            allocated_resources=allocated,
+            remaining_shortage=shortage,
             allocation_status=status,
             normalized_priority=normalized_priority,
             overall_priority_score=overall_priority_score,

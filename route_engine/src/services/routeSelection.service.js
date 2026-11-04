@@ -36,21 +36,44 @@ export function selectRoutes({ scoredRoutes = [], resourcePolicy = null, priorit
   const validRoutes = [];
 
   for (const route of scoredRoutes) {
-    if (route.status === 'INVALID') {
-      const primaryRejection = route.reasons?.[0]?.message || 'Route is blocked by road closure/hazard';
+    const isUnavailable = route.status === 'UNAVAILABLE' || route.blockingCondition === 'MISSING_GEOMETRY' || route.ruleViolated === 'MISSING_GEOMETRY';
+    if (isUnavailable) {
       rejectedRoutes.push({
         routeId: route.routeId,
-        status: 'INVALID',
-        distanceMeters: route.distanceMeters,
-        durationSeconds: route.durationSeconds,
-        blockingCondition: route.blockingCondition || route.reasons?.[0]?.type || 'ROAD_BLOCKED',
-        evidenceSource: route.reasons?.[0]?.source || 'OPENWEB_NINJA',
-        confidence: route.reasons?.[0]?.confidence || 'HIGH',
-        freshness: route.reasons?.[0]?.freshness || 'N/A',
-        rejectionReason: primaryRejection,
+        status: 'UNAVAILABLE',
+        selectionStatus: 'UNAVAILABLE',
+        distanceMeters: route.distanceMeters ?? null,
+        durationSeconds: route.durationSeconds ?? null,
+        encodedPolyline: null,
+        score: null,
+        blockingCondition: 'MISSING_GEOMETRY',
+        evidenceSource: route.evidenceSource || 'ROUTING_PROVIDER',
+        confidence: 'HIGH',
+        freshness: 'N/A',
+        rejectionReason: route.rejectionReason || 'Route geometry or evaluation could not be obtained from routing provider.',
+        ruleViolated: 'MISSING_GEOMETRY',
         allReasons: route.reasons || []
       });
-    } else if (route.status === 'VALID') {
+    } else if (route.status === 'INVALID' || route.status === 'REJECTED') {
+      const primaryRejection = route.rejectionReason || route.reasons?.[0]?.message || 'Route is blocked by verified hazard or road closure';
+      const ruleViolated = route.blockingCondition || route.ruleViolated || route.reasons?.[0]?.type || 'ROAD_CLOSED';
+      rejectedRoutes.push({
+        routeId: route.routeId,
+        status: 'REJECTED',
+        selectionStatus: 'REJECTED',
+        distanceMeters: route.distanceMeters ?? null,
+        durationSeconds: route.durationSeconds ?? null,
+        encodedPolyline: route.encodedPolyline || null,
+        score: route.score ?? null,
+        blockingCondition: ruleViolated,
+        evidenceSource: route.evidenceSource || route.reasons?.[0]?.source || 'ROAD_CONDITION_ENGINE',
+        confidence: route.confidence || route.reasons?.[0]?.confidence || 'HIGH',
+        freshness: route.freshness || route.reasons?.[0]?.freshness || 'N/A',
+        rejectionReason: primaryRejection,
+        ruleViolated,
+        allReasons: route.reasons || []
+      });
+    } else if (route.status === 'VALID' || route.status === 'SELECTED' || route.status === 'FEASIBLE_ALTERNATIVE') {
       validRoutes.push(route);
     }
   }
@@ -76,8 +99,18 @@ export function selectRoutes({ scoredRoutes = [], resourcePolicy = null, priorit
     };
   }
 
-  const primary = validRoutes[0];
-  const backups = validRoutes.slice(1);
+  const primary = {
+    ...validRoutes[0],
+    selectionStatus: 'SELECTED',
+    rejectionReason: null
+  };
+
+  const backups = validRoutes.slice(1).map((b, idx) => ({
+    ...b,
+    selectionStatus: 'FEASIBLE_ALTERNATIVE',
+    rejectionReason: null,
+    description: b.description || `Feasible alternative corridor (rank ${idx + 2}, score: ${b.score}).`
+  }));
 
   decisionReasons.push(
     `Selected route ${primary.routeId} as PRIMARY with best risk-adjusted score of ${primary.score}.`
@@ -85,14 +118,14 @@ export function selectRoutes({ scoredRoutes = [], resourcePolicy = null, priorit
 
   if (backups.length > 0) {
     const backupIds = backups.map(b => `${b.routeId} (score: ${b.score})`).join(', ');
-    decisionReasons.push(`Designated ${backups.length} valid alternative(s) as BACKUP: ${backupIds}.`);
+    decisionReasons.push(`Designated ${backups.length} valid alternative(s) as FEASIBLE_ALTERNATIVE: ${backupIds}.`);
   } else {
     decisionReasons.push('No alternative valid routes available for backup designation.');
   }
 
   if (rejectedRoutes.length > 0) {
     decisionReasons.push(
-      `Excluded ${rejectedRoutes.length} route(s) due to confirmed hazards/closures.`
+      `Explicitly rejected ${rejectedRoutes.length} candidate route(s) due to verified safety or road closure rules.`
     );
   }
 

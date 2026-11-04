@@ -80,8 +80,8 @@ def run_to_mission_request(incident, warehouses_path=WAREHOUSES_PATH):
         DemandFulfilmentRequest(
             allocation_id=allocation.allocation_id,
             incident_id=allocation.incident_id,
-            required_resources=allocation.required_resources.model_dump(),
-            allocated_resources=allocation.allocated_resources.model_dump(),
+            required_resources=allocation.required_resources.model_dump() if hasattr(allocation.required_resources, "model_dump") else allocation.required_resources,
+            allocated_resources=allocation.allocated_resources.model_dump() if hasattr(allocation.allocated_resources, "model_dump") else allocation.allocated_resources,
         )
     )
 
@@ -98,12 +98,12 @@ def run_to_mission_request(incident, warehouses_path=WAREHOUSES_PATH):
         priority=allocation.final_priority_level,
         patient_present=incident.patient_present,
         # MVP contract: `resources` = the actually allocated resources.
-        resources=allocation.allocated_resources.model_dump(),
+        resources=allocation.allocated_resources.model_dump() if hasattr(allocation.allocated_resources, "model_dump") else allocation.allocated_resources,
         warehouse_pickups=[
             {
                 "warehouse_id": pickup.warehouse_id,
                 "location": locations[pickup.warehouse_id],
-                "supplies": pickup.supplies.model_dump(),
+                "supplies": pickup.supplies.model_dump() if hasattr(pickup.supplies, "model_dump") else pickup.supplies,
             }
             for pickup in allocation.warehouse_allocations
         ],

@@ -258,18 +258,18 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-white text-zinc-900 overflow-hidden font-sans relative">
+    <div className="flex h-screen overflow-hidden font-sans relative" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Sidebar for chat history */}
       <div 
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-zinc-50 border-r border-zinc-200/80 flex flex-col transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform" style={{ background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)' }} className=" transition-transform duration-300 ease-in-out md:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="p-4 border-b border-zinc-200 flex justify-between items-center bg-white">
-          <span className="font-bold text-sm tracking-wider text-zinc-900">AASHRAY</span>
+        <div className="p-4 flex justify-between items-center" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
+          <span className="font-bold text-sm tracking-wider" style={{ color: 'var(--brand)' }}>AASHRAY</span>
           <button 
             onClick={() => setSidebarOpen(false)}
-            className="p-1.5 hover:bg-zinc-100 rounded-lg text-zinc-500 hover:text-zinc-900 md:hidden"
+            className="p-1.5 hover:bg-zinc-100 rounded-lg md:hidden" style={{ color: 'var(--muted-text)' }}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -280,9 +280,9 @@ export default function Dashboard() {
         {/* Entry History List */}
         <div className="flex-1 overflow-y-auto p-3 space-y-1">
           {loadingHistory ? (
-            <div className="text-xs text-zinc-400 px-2 font-mono">Loading...</div>
+            <div className="text-xs px-2 font-mono" style={{ color: 'var(--disabled-text)' }}>Loading...</div>
           ) : entries.length === 0 ? (
-            <div className="text-xs text-zinc-400 px-2 italic font-mono">No entries</div>
+            <div className="text-xs px-2 italic font-mono" style={{ color: 'var(--disabled-text)' }}>No entries</div>
           ) : (
             entries.map((entry, idx) => {
               const isDisaster = entry.disasterReport?.label === 'disaster';
@@ -296,7 +296,7 @@ export default function Dashboard() {
                   className={`w-full text-left px-2.5 py-2 rounded-lg text-xs transition-all overflow-hidden text-ellipsis whitespace-nowrap flex items-center gap-1.5 ${
                     isDisaster
                       ? 'bg-red-50 hover:bg-red-100 text-red-800 border border-red-200/60'
-                      : 'hover:bg-zinc-200/60 text-zinc-600 hover:text-zinc-900'
+                      : 'hover:bg-indigo-50 text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   {isDisaster && (
@@ -312,18 +312,18 @@ export default function Dashboard() {
         </div>
 
         {/* User profile footer */}
-        <div className="p-4 border-t border-zinc-200 bg-white flex items-center justify-between">
+        <div className="p-4 flex items-center justify-between" style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-card)' }}>
           <div className="flex items-center gap-2 overflow-hidden">
-            <div className="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center font-bold text-zinc-700 text-xs uppercase">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs uppercase" style={{ background: 'var(--primary-soft)', color: 'var(--brand)' }}>
               {user?.email?.charAt(0) || 'U'}
             </div>
             <div className="overflow-hidden">
-              <div className="text-xs font-semibold text-zinc-800 truncate">{user?.email || 'User'}</div>
+              <div className="text-xs font-semibold truncate" style={{ color: 'var(--text-primary)' }}>{user?.email || 'User'}</div>
             </div>
           </div>
           <button 
             onClick={handleLogout}
-            className="p-1.5 text-zinc-500 hover:text-red-600 hover:bg-zinc-100 rounded-lg transition-all"
+            className="p-1.5 hover:bg-red-50 rounded-lg transition-all" style={{ color: 'var(--muted-text)' }}
             title="Log out"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -334,19 +334,19 @@ export default function Dashboard() {
       </div>
 
       {/* Main chat window container */}
-      <div className="flex-1 flex flex-col min-w-0 md:pl-64 bg-white">
+      <div className="flex-1 flex flex-col min-w-0 md:pl-64" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <header className="h-14 border-b border-zinc-200 bg-white flex items-center justify-between px-4">
+        <header className="h-14 flex items-center justify-between px-4" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="p-2 hover:bg-zinc-100 rounded-lg text-zinc-500 hover:text-zinc-900 md:hidden"
+              className="p-2 hover:bg-zinc-100 rounded-lg md:hidden" style={{ color: 'var(--muted-text)' }}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="font-bold text-zinc-900 text-sm tracking-wider">AASHRAY</span>
+            <span className="font-bold text-sm tracking-wider" style={{ color: 'var(--brand)' }}>AASHRAY</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -357,10 +357,10 @@ export default function Dashboard() {
               className={`flex items-center gap-1.5 text-[11px] px-3 py-1 rounded-full border transition-all ${
                 location 
                   ? 'border-zinc-200 bg-zinc-50 text-zinc-700' 
-                  : 'border-zinc-200 bg-white text-zinc-500 hover:text-zinc-800'
+                  : 'border-slate-200 bg-white text-slate-500 hover:text-slate-800'
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${location ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${location ? 'bg-indigo-600' : 'bg-slate-300'}`} />
               {locating ? 'Locating...' : 'GPS Active'}
             </button>
           </div>
@@ -381,11 +381,11 @@ export default function Dashboard() {
         )}
 
         {/* Chat Feed */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4 space-y-6" style={{ background: 'var(--bg-primary)' }}>
           {entries.length === 0 && !isSubmitting ? (
             /* Welcome Empty State */
             <div className="h-full flex flex-col items-center justify-center max-w-xl mx-auto text-center space-y-2">
-              <h2 className="text-2xl font-bold tracking-wider text-zinc-900">AASHRAY</h2>
+              <h2 className="text-2xl font-bold tracking-wider" style={{ color: 'var(--brand)' }}>AASHRAY</h2>
             </div>
           ) : (
             <div className="max-w-2xl mx-auto space-y-6">
@@ -394,32 +394,32 @@ export default function Dashboard() {
                   {/* User Bubble */}
                   <div className="flex gap-3 items-start justify-end">
                     <div className="flex flex-col items-end gap-1.5 max-w-[85%]">
-                      <div className="bg-zinc-100 text-zinc-900 rounded-2xl rounded-tr-none px-4 py-2.5 text-sm border border-zinc-200/60 space-y-3">
+                      <div className="rounded-2xl rounded-tr-none px-4 py-2.5 text-sm space-y-3" style={{ background: 'var(--primary-soft)', border: '1px solid var(--brand-muted)', color: 'var(--text-primary)' }}>
                         {/* Display multiple text inputs if present */}
                         <div className="space-y-2">
                           {(entry.text1 || entry.text) && (
                             <div>
-                              {entry.text2 || entry.text3 ? <span className="text-[9px] text-zinc-400 font-mono block">Input 1 (Primary):</span> : null}
+                              {entry.text2 || entry.text3 ? <span className="text-[9px] font-mono block" style={{ color: 'var(--disabled-text)' }}>Input 1 (Primary):</span> : null}
                               <p className="leading-relaxed">{entry.text1 || entry.text}</p>
                             </div>
                           )}
                           {entry.text2 && (
                             <div className="border-t border-zinc-200/40 pt-1.5">
-                              <span className="text-[9px] text-zinc-400 font-mono block">Input 2 (Context):</span>
-                              <p className="leading-relaxed text-zinc-700">{entry.text2}</p>
+                              <span className="text-[9px] font-mono block" style={{ color: 'var(--disabled-text)' }}>Input 2 (Context):</span>
+                              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{entry.text2}</p>
                             </div>
                           )}
                           {entry.text3 && (
                             <div className="border-t border-zinc-200/40 pt-1.5">
-                              <span className="text-[9px] text-zinc-400 font-mono block">Input 3 (Detail/Voice):</span>
-                              <p className="leading-relaxed text-zinc-700">{entry.text3}</p>
+                              <span className="text-[9px] font-mono block" style={{ color: 'var(--disabled-text)' }}>Input 3 (Detail/Voice):</span>
+                              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{entry.text3}</p>
                             </div>
                           )}
                         </div>
                         
                         {/* Inline Image Preview */}
                         {entry.image && (
-                          <div className="rounded-lg overflow-hidden border border-zinc-200 max-w-xs bg-zinc-50">
+                          <div className="rounded-lg overflow-hidden max-w-xs" style={{ border: '1px solid var(--border)', background: 'var(--surface-muted)' }}>
                             <img src={entry.image} alt="Captured" className="w-full object-contain max-h-48" />
                           </div>
                         )}
@@ -434,7 +434,7 @@ export default function Dashboard() {
 
                       {/* Attached Live Coordinates Map */}
                       {entry.location?.lat && entry.location?.lng && (
-                        <div className="w-64 bg-white border border-zinc-200 rounded-xl p-2 shadow-sm">
+                        <div className="w-64 rounded-xl p-2" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-soft)' }}>
                           <MapComponent lat={entry.location.lat} lng={entry.location.lng} isExpandable={true} />
                         </div>
                       )}
@@ -444,7 +444,7 @@ export default function Dashboard() {
                         <button
                           type="button"
                           onClick={() => setActiveReport({ similarity: entry.similarityReport, disaster: entry.disasterReport })}
-                          className="flex items-center gap-1 text-[9px] font-mono text-zinc-500 hover:text-zinc-900 border border-zinc-200 bg-zinc-50 px-2 py-0.5 rounded-full transition-colors cursor-pointer"
+                          className="flex items-center gap-1 text-[9px] font-mono px-2 py-0.5 rounded-full transition-colors cursor-pointer" style={{ color: 'var(--muted-text)', border: '1px solid var(--border)', background: 'var(--surface-muted)' }}
                         >
                           {entry.disasterReport?.label === 'disaster' ? (
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -458,44 +458,44 @@ export default function Dashboard() {
                         </button>
                       )}
 
-                      <span className="text-[9px] text-zinc-400 font-mono">
+                      <span className="text-[9px] font-mono" style={{ color: 'var(--disabled-text)' }}>
                         {new Date(entry.clientTimestamp || entry.createdAt).toLocaleTimeString()}
                       </span>
                     </div>
 
-                    <div className="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center text-[10px] font-bold text-zinc-700 shrink-0">
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0" style={{ background: 'var(--primary-soft)', color: 'var(--brand)' }}>
                       U
                     </div>
                   </div>
 
                   {/* Assistant response */}
                   <div className="flex gap-3 items-start">
-                    <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-white shrink-0 shadow-sm">
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow-sm" style={{ background: 'var(--brand)', color: '#fff' }}>
                       A
                     </div>
                     <div className="flex flex-col gap-1 max-w-[85%]">
-                      <div className="bg-zinc-50 border border-zinc-200/85 rounded-2xl rounded-tl-none px-4 py-2.5 text-sm space-y-2">
+                      <div className="rounded-2xl rounded-tl-none px-4 py-2.5 text-sm space-y-2" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                         {entry.text1 || entry.text ? (
                           <div>
-                            <span className="text-[10px] text-zinc-400 font-mono block">Echo:</span>
-                            <p className="text-zinc-800 mt-0.5">{entry.text1 || entry.text}</p>
+                            <span className="text-[10px] font-mono block" style={{ color: 'var(--disabled-text)' }}>Echo:</span>
+                            <p className="mt-0.5" style={{ color: 'var(--text-primary)' }}>{entry.text1 || entry.text}</p>
                           </div>
                         ) : null}
 
                         {entry.audioText ? (
                           <div className="mt-2">
-                            <span className="text-[10px] text-zinc-400 font-mono block">Whisper:</span>
-                            <p className="text-zinc-800 font-medium bg-white border border-zinc-200 p-2 rounded-lg mt-0.5 italic">
+                            <span className="text-[10px] font-mono block" style={{ color: 'var(--disabled-text)' }}>Whisper:</span>
+                            <p className="font-medium p-2 rounded-lg mt-0.5 italic" style={{ color: 'var(--text-primary)', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                               "{entry.audioText}"
                             </p>
                           </div>
                         ) : (
                           entry.audio && (
-                            <div className="text-xs text-zinc-400 italic">Transcribing audio...</div>
+                            <div className="text-xs italic" style={{ color: 'var(--disabled-text)' }}>Transcribing audio...</div>
                           )
                         )}
                       </div>
-                      <span className="text-[9px] text-zinc-400 font-mono">Response</span>
+                      <span className="text-[9px] font-mono" style={{ color: 'var(--disabled-text)' }}>Response</span>
                     </div>
                   </div>
                 </div>
@@ -504,10 +504,10 @@ export default function Dashboard() {
               {/* Submitting Status placeholder */}
               {isSubmitting && (
                 <div className="flex gap-3 items-start animate-pulse">
-                  <div className="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center text-xs text-zinc-400 shrink-0">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0" style={{ background: 'var(--primary-soft)', color: 'var(--brand)' }}>
                     A
                   </div>
-                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs text-zinc-500">
+                  <div className="rounded-2xl rounded-tl-none px-4 py-2.5 text-xs" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--muted-text)' }}>
                     Processing...
                   </div>
                 </div>
@@ -518,14 +518,14 @@ export default function Dashboard() {
         </div>
 
         {/* Input Bar Section */}
-        <div className="p-4 bg-white border-t border-zinc-200">
+        <div className="p-4" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)' }}>
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-2.5">
             
             {/* Attachment Previews */}
             {(imageUrl || audioUrl || locationError) && (
-              <div className="flex flex-wrap gap-2 p-2 bg-zinc-50 rounded-xl border border-zinc-200">
+              <div className="flex flex-wrap gap-2 p-2 rounded-xl" style={{ background: 'var(--surface-muted)', border: '1px solid var(--border)' }}>
                 {imageUrl && (
-                  <div className="relative group w-16 h-16 rounded-lg overflow-hidden border border-zinc-200 bg-white flex items-center justify-center">
+                  <div className="relative group w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center" style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}>
                     <img src={imageUrl} alt="attachment" className="w-full h-full object-cover" />
                     <button
                       type="button"
@@ -540,8 +540,8 @@ export default function Dashboard() {
                 )}
 
                 {audioUrl && (
-                  <div className="flex items-center gap-1.5 bg-white border border-zinc-200 px-2.5 py-1 rounded-lg text-xs text-zinc-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-800 animate-pulse" />
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}>
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--brand)' }} />
                     <span>Voice ready</span>
                     <button
                       type="button"
@@ -565,31 +565,31 @@ export default function Dashboard() {
 
             {/* Expandable context inputs */}
             {showExtraInputs && (
-              <div className="flex flex-col gap-2 p-2 border border-zinc-200 rounded-xl bg-zinc-50">
+              <div className="flex flex-col gap-2 p-2 rounded-xl" style={{ border: '1px solid var(--border)', background: 'var(--surface-muted)' }}>
                 <input
                   type="text"
                   placeholder="Context Input (Text 2)..."
                   value={text2}
                   onChange={(e) => setText2(e.target.value)}
-                  className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1.5 text-xs text-zinc-800 outline-none focus:border-zinc-350"
+                  className="rounded-lg px-2.5 py-1.5 text-xs outline-none" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
                 />
                 <input
                   type="text"
                   placeholder="Detail Input / Voice Transcript (Text 3)..."
                   value={text3}
                   onChange={(e) => setText3(e.target.value)}
-                  className="bg-white border border-zinc-200 rounded-lg px-2.5 py-1.5 text-xs text-zinc-800 outline-none focus:border-zinc-350"
+                  className="rounded-lg px-2.5 py-1.5 text-xs outline-none" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
                 />
               </div>
             )}
 
             {/* Prompt Form Input Area */}
-            <div className="relative flex items-end gap-1.5 bg-zinc-50 border border-zinc-200 rounded-2xl p-2 focus-within:border-zinc-300 transition-colors">
+            <div className="relative flex items-end gap-1.5 rounded-2xl p-2 transition-colors" style={{ background: 'var(--surface-muted)', border: '1px solid var(--border)' }}>
               {/* Camera clicker trigger */}
               <button
                 type="button"
                 onClick={() => setShowCamera(true)}
-                className="p-2 hover:bg-zinc-200/60 rounded-lg text-zinc-500 hover:text-zinc-800 transition-colors"
+                className="p-2 hover:bg-zinc-100 rounded-lg transition-colors" style={{ color: 'var(--muted-text)' }}
                 title="Camera clicker"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -603,7 +603,7 @@ export default function Dashboard() {
                 <button
                   type="button"
                   onClick={startRecording}
-                  className="p-2 hover:bg-zinc-200/60 rounded-lg text-zinc-500 hover:text-zinc-800 transition-colors"
+                  className="p-2 hover:bg-zinc-100 rounded-lg transition-colors" style={{ color: 'var(--muted-text)' }}
                   title="Record audio"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -624,7 +624,7 @@ export default function Dashboard() {
 
               {/* Core Text Input */}
               <textarea
-                className="flex-1 bg-transparent border-0 outline-none resize-none text-zinc-800 text-sm max-h-24 py-1.5 px-2 focus:ring-0 placeholder:text-zinc-400"
+                className="flex-1 bg-transparent border-0 outline-none resize-none text-sm max-h-24 py-1.5 px-2 focus:ring-0" style={{ color: 'var(--text-primary)' }}
                 placeholder="Message AASHRAY..."
                 rows={1}
                 value={text}
@@ -641,7 +641,7 @@ export default function Dashboard() {
               <button
                 type="submit"
                 disabled={isSubmitting || !isOnline || (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob)}
-                className="p-2 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 disabled:opacity-30 disabled:bg-zinc-200 disabled:text-zinc-400 transition-all shadow-sm"
+                className="p-2 rounded-xl transition-all shadow-sm disabled:opacity-30" style={{ background: 'var(--brand)', color: '#fff' }}
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -649,15 +649,15 @@ export default function Dashboard() {
               </button>
             </div>
             
-            <div className="flex justify-between items-center text-[9px] text-zinc-400 px-1 font-mono">
+            <div className="flex justify-between items-center text-[9px] px-1 font-mono" style={{ color: 'var(--disabled-text)' }}>
               <div className="flex items-center gap-2">
                 <span>GPS coords: {location ? `${location.lat.toFixed(5)}, ${location.lng.toFixed(5)}` : 'Not loaded'}</span>
-                <button type="button" onClick={getCurrentLocation} className="hover:text-zinc-600 underline">Refresh GPS</button>
+                <button type="button" onClick={getCurrentLocation} className="underline" style={{ color: 'var(--muted-text)' }}>Refresh GPS</button>
               </div>
               <button
                 type="button"
                 onClick={() => setShowExtraInputs(!showExtraInputs)}
-                className="text-[9px] text-zinc-500 hover:text-zinc-800 underline font-mono"
+                className="text-[9px] underline font-mono" style={{ color: 'var(--muted-text)' }}
               >
                 {showExtraInputs ? 'Hide Context Inputs' : '+ Expand Context Inputs'}
               </button>
@@ -668,16 +668,16 @@ export default function Dashboard() {
 
       {/* Side drawer for Behind the Scenes similarity + ML classification details */}
       {activeReport && (
-        <div className="fixed inset-y-0 right-0 z-50 w-80 bg-white border-l border-zinc-200 shadow-2xl flex flex-col transition-all duration-300">
+        <div className="fixed inset-y-0 right-0 z-50 w-80 flex flex-col transition-all duration-300" style={{ background: 'var(--bg-card)', borderLeft: '1px solid var(--border)', boxShadow: '-8px 0 32px rgba(15,23,42,0.12)' }}>
           {/* Drawer Header */}
-          <div className="p-4 border-b border-zinc-200 flex justify-between items-center bg-zinc-50">
+          <div className="p-4 flex justify-between items-center" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-secondary)' }}>
             <div className="flex flex-col">
-              <h3 className="font-bold text-sm text-zinc-900 tracking-wide">Behind the Scenes</h3>
-              <span className="text-[10px] text-zinc-400 font-mono">Analysis Report</span>
+              <h3 className="font-bold text-sm tracking-wide" style={{ color: 'var(--text-primary)' }}>Behind the Scenes</h3>
+              <span className="text-[10px] font-mono" style={{ color: 'var(--disabled-text)' }}>Analysis Report</span>
             </div>
             <button
               onClick={() => setActiveReport(null)}
-              className="text-zinc-400 hover:text-zinc-900 p-1 hover:bg-zinc-200 rounded-lg transition-colors cursor-pointer"
+              className="p-1 hover:bg-zinc-100 rounded-lg transition-colors cursor-pointer" style={{ color: 'var(--muted-text)' }}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -691,7 +691,7 @@ export default function Dashboard() {
             {/* ── ML Disaster Classification ── */}
             {activeReport.disaster && (
               <div className="space-y-2">
-                <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">ML Classification</div>
+                <div className="text-[10px] font-mono uppercase tracking-wider" style={{ color: 'var(--disabled-text)' }}>ML Classification</div>
                 <div className={`rounded-xl border p-3 space-y-2 ${
                   activeReport.disaster.label === 'disaster'
                     ? 'bg-red-50 border-red-200'
@@ -728,7 +728,7 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  <div className="text-[9px] text-zinc-500 font-mono border-t border-zinc-200/60 pt-1.5">
+                  <div className="text-[9px] font-mono pt-1.5" style={{ color: 'var(--muted-text)', borderTop: '1px solid var(--border-soft)' }}>
                     Model: {activeReport.disaster.model_name}
                   </div>
                 </div>
@@ -737,8 +737,8 @@ export default function Dashboard() {
 
             {/* ── Similarity Report ── */}
             {activeReport.similarity && (
-              <div className="space-y-2 border-t border-zinc-100 pt-4">
-                <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">Input Similarity</div>
+              <div className="space-y-2 pt-4" style={{ borderTop: '1px solid var(--border-soft)' }}>
+                <div className="text-[10px] font-mono uppercase tracking-wider" style={{ color: 'var(--disabled-text)' }}>Input Similarity</div>
 
                 {/* Status */}
                 <div className="space-y-1">
@@ -749,42 +749,42 @@ export default function Dashboard() {
                   }`}>
                     {activeReport.similarity.status}
                   </span>
-                  <p className="text-[11px] text-zinc-500 italic mt-1 leading-relaxed">
+                  <p className="text-[11px] italic mt-1 leading-relaxed" style={{ color: 'var(--muted-text)' }}>
                     {activeReport.similarity.details}
                   </p>
                 </div>
 
                 {/* Inputs */}
-                <div className="space-y-2 border-t border-zinc-100 pt-3">
-                  <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">Inputs Compared</div>
+                <div className="space-y-2 pt-3" style={{ borderTop: '1px solid var(--border-soft)' }}>
+                  <div className="text-[10px] font-mono uppercase tracking-wider" style={{ color: 'var(--disabled-text)' }}>Inputs Compared</div>
                   {activeReport.similarity.inputs && Object.keys(activeReport.similarity.inputs).map(key => (
-                    <div key={key} className="bg-zinc-50 p-2 rounded border border-zinc-200/40">
+                    <div key={key} className="p-2 rounded" style={{ background: 'var(--surface-muted)', border: '1px solid var(--border-soft)' }}>
                       <span className="text-[9px] text-zinc-400 font-mono uppercase">{key}:</span>
-                      <p className="text-zinc-700 mt-0.5">{activeReport.similarity.inputs[key]}</p>
+                      <p className="mt-0.5" style={{ color: 'var(--text-secondary)' }}>{activeReport.similarity.inputs[key]}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Pairwise Scores */}
                 {activeReport.similarity.pairwise_similarities && (
-                  <div className="space-y-2 border-t border-zinc-100 pt-3">
-                    <div className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">Pairwise Similarity Scores</div>
+                  <div className="space-y-2 pt-3" style={{ borderTop: '1px solid var(--border-soft)' }}>
+                    <div className="text-[10px] font-mono uppercase tracking-wider" style={{ color: 'var(--disabled-text)' }}>Pairwise Similarity Scores</div>
                     <div className="space-y-1">
                       {activeReport.similarity.pairwise_similarities.map((item, idx) => (
-                        <div key={idx} className="flex justify-between items-center py-1 border-b border-zinc-100">
-                          <span className="text-zinc-600 font-mono text-[10px]">{item.pair}</span>
+                        <div key={idx} className="flex justify-between items-center py-1" style={{ borderBottom: '1px solid var(--border-soft)' }}>
+                          <span className="font-mono text-[10px]" style={{ color: 'var(--text-secondary)' }}>{item.pair}</span>
                           <span className={`font-mono font-semibold ${item.similarity >= 0.40 ? 'text-emerald-600' : 'text-red-500'}`}>
                             {item.similarity.toFixed(3)}
                           </span>
                         </div>
                       ))}
-                      <div className="flex justify-between items-center pt-2 font-bold text-zinc-900">
+                      <div className="flex justify-between items-center pt-2 font-bold" style={{ color: 'var(--text-primary)' }}>
                         <span>Average:</span>
                         <span className={`font-mono ${activeReport.similarity.avg_pairwise_similarity >= 0.40 ? 'text-emerald-600' : 'text-red-500'}`}>
                           {activeReport.similarity.avg_pairwise_similarity.toFixed(3)}
                         </span>
                       </div>
-                      <div className="text-[9px] text-zinc-400 mt-1 italic">
+                      <div className="text-[9px] mt-1 italic" style={{ color: 'var(--disabled-text)' }}>
                         Threshold: ≥ 0.400 = Related
                       </div>
                     </div>
@@ -795,7 +795,7 @@ export default function Dashboard() {
 
             {/* Fallback when no reports */}
             {!activeReport.disaster && !activeReport.similarity && (
-              <div className="text-xs text-zinc-400 italic">No analysis data available.</div>
+              <div className="text-xs italic" style={{ color: 'var(--disabled-text)' }}>No analysis data available.</div>
             )}
           </div>
         </div>

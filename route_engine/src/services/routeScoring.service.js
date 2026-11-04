@@ -43,13 +43,15 @@ export function calculateTravelTimeScores(routes) {
 
   routes.forEach(route => {
     const d = typeof route.durationSeconds === 'number' && !Number.isNaN(route.durationSeconds) ? Math.max(0, route.durationSeconds) : minDuration;
+    // Base penalty scales with absolute travel time (e.g. 1 hour = 30 points, 10 mins = 5 points)
+    const absoluteScore = Math.min(60, (d / 3600) * 30);
     if (span === 0) {
-      // All routes have identical duration or there is only 1 route
-      scores.set(route.routeId, 0);
+      scores.set(route.routeId, Number(absoluteScore.toFixed(2)));
     } else {
-      // Relative penalty: 0 for fastest, 100 for slowest
-      const normalized = ((d - minDuration) / span) * 100;
-      scores.set(route.routeId, Number(normalized.toFixed(2)));
+      // Combined: absolute duration baseline + relative penalty across competing options
+      const relativePenalty = ((d - minDuration) / span) * 40;
+      const combined = Math.min(100, absoluteScore + relativePenalty);
+      scores.set(route.routeId, Number(combined.toFixed(2)));
     }
   });
 
@@ -73,27 +75,46 @@ export function calculateTravelTimeScores(routes) {
  * @param {Array<Object>} matchedIncidents
  * @returns {{ isInvalid: boolean, roadRiskScore: number, uncertaintyScore: number, invalidReasons: Array<Object>, explanationReasons: Array<Object> }}
  */
-export function calculateRiskAndUncertainty(assessment, matchedIncidents = []) {
+export function calculateRiskAndUncertainty(assessment, matchedIncidents = [], route = null) {
   const status = assessment?.status || 'UNKNOWN';
   const reasons = assessment?.reasons || [];
 
   const invalidReasons = [];
   const explanationReasons = [];
 
-  // Check for blocking conditions
+  // Check for blocking conditions from assessment reasons
   for (const r of reasons) {
-    if (r.type === 'ROAD_CLOSED' || r.type === 'ROAD_BLOCKED' || status === 'BLOCKED') {
+    const isClosure = r.type === 'ROAD_CLOSED' || r.type === 'ROAD_BLOCKED' || r.type === 'IMPASSABLE' || r.type === 'ROAD_IMPASSABLE' || status === 'BLOCKED';
+    if (isClosure) {
       const conf = String(r.confidence || assessment.confidence || '').toUpperCase();
       // Fresh or high-confidence BLOCKED invalidates the route
       if (conf === 'HIGH' || conf === 'VERY_HIGH' || conf === 'MEDIUM') {
         invalidReasons.push({
           type: r.type || 'ROAD_CLOSED',
-          message: `Candidate route is blocked: ${r.type} reported by ${r.source || 'provider'}`,
+          message: r.message || `Candidate route is blocked: ${r.type} reported by ${r.source || 'provider'}`,
           source: r.source || 'OPENWEB_NINJA',
           evidenceId: r.evidenceId || null,
           confidence: r.confidence || assessment.confidence,
           freshness: r.ageSeconds !== undefined ? (r.ageSeconds <= 180 ? 'FRESH' : 'STALE') : 'UNKNOWN',
           dataAgeSeconds: r.ageSeconds ?? null
+        });
+      }
+    }
+  }
+
+  // Also check directly for blocking incidents along matched corridor
+  for (const inc of matchedIncidents) {
+    const isBlocking = inc.isBlocking || inc.status === 'BLOCKED' || inc.conditionType === 'ROAD_CLOSED' || inc.type === 'ROAD_CLOSED' || inc.conditionType === 'IMPASSABLE' || inc.type === 'IMPASSABLE';
+    if (isBlocking) {
+      const alreadyAdded = invalidReasons.some(r => r.evidenceId && r.evidenceId === (inc.incidentId || inc.externalId));
+      if (!alreadyAdded) {
+        invalidReasons.push({
+          type: inc.conditionType || inc.type || 'ROAD_CLOSED',
+          message: `Candidate route intersects impassable road hazard: ${inc.conditionType || inc.type || 'ROAD_CLOSED'} (${inc.street || 'on corridor'}) reported by ${inc.source || 'provider'}`,
+          source: inc.source || 'OPENWEB_NINJA',
+          evidenceId: inc.incidentId || inc.externalId || null,
+          confidence: inc.confidence || 'HIGH',
+          freshness: inc.freshness || 'FRESH'
         });
       }
     }
@@ -123,11 +144,12 @@ export function calculateRiskAndUncertainty(assessment, matchedIncidents = []) {
   let uncertaintyScore = 0;
 
   if (status === 'UNKNOWN' || (!matchedIncidents.length && reasons.length === 0)) {
-    // No evidence does NOT mean OPEN. It remains VALID with limited confidence / uncertainty penalty.
-    uncertaintyScore = 40.0;
+    // Uncertainty scales with route corridor extent (base 15 + ~0.8/km)
+    const distKm = (route?.distanceMeters ? route.distanceMeters / 1000 : route?.distanceKm) || 5;
+    uncertaintyScore = Math.min(60, 15 + Math.round(distKm * 0.8));
     explanationReasons.push({
       type: 'LIMITED_EVIDENCE',
-      message: 'No real-time road condition incidents detected in vicinity. Route confidence is limited.',
+      message: `No real-time road condition incidents detected along corridor (${distKm.toFixed(1)} km). Route uncertainty calibrated to corridor length.`,
       source: 'ROAD_CONDITION_ENGINE',
       confidence: 'UNKNOWN',
       freshness: 'N/A'
@@ -208,12 +230,28 @@ export function scoreCandidateRoutes({ candidateRoutes = [], policy = null }) {
   // 2. Score each route individually
   return candidateRoutes.map(route => {
     const routeId = route.routeId;
+
+    // Check for missing geometry / unavailable candidate
+    if (!route.encodedPolyline && (!route.coordinates || route.coordinates.length < 2)) {
+      return {
+        ...route,
+        status: 'UNAVAILABLE',
+        score: null,
+        reasons: [{
+          type: 'MISSING_GEOMETRY',
+          message: 'Route candidate missing geometry from routing provider.',
+          source: 'ROUTING_PROVIDER',
+          confidence: 'HIGH'
+        }]
+      };
+    }
+
     const ttScore = travelTimeScores.get(routeId) ?? 0;
     const assessment = route.roadConditionAssessment || { status: 'UNKNOWN', confidence: 'UNKNOWN', reasons: [] };
     const matchedIncidents = route.matchedIncidents || [];
 
     const { isInvalid, roadRiskScore, uncertaintyScore, invalidReasons, explanationReasons } = 
-      calculateRiskAndUncertainty(assessment, matchedIncidents);
+      calculateRiskAndUncertainty(assessment, matchedIncidents, route);
 
     if (isInvalid) {
       return {
@@ -226,6 +264,27 @@ export function scoreCandidateRoutes({ candidateRoutes = [], policy = null }) {
           uncertaintyScore: 0
         },
         reasons: invalidReasons
+      };
+    }
+
+    // Check if route risk violates configured maximum allowed threshold
+    const maxAllowedRisk = weights.maxRoadRiskThreshold ?? (policy?.maxRoadRiskThreshold ?? 95);
+    if (roadRiskScore >= maxAllowedRisk) {
+      return {
+        ...route,
+        status: 'INVALID',
+        score: null,
+        breakdown: {
+          travelTimeScore: ttScore,
+          roadRiskScore,
+          uncertaintyScore
+        },
+        reasons: [{
+          type: 'MAX_RISK_THRESHOLD_EXCEEDED',
+          message: `Candidate route risk score (${roadRiskScore}) exceeds maximum allowed risk threshold (${maxAllowedRisk}) for ${policy?.resourceType || 'vehicle'}.`,
+          source: 'RESOURCE_RISK_POLICY',
+          confidence: 'HIGH'
+        }]
       };
     }
 

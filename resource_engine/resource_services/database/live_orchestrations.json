@@ -1,0 +1,1493 @@
+[
+  {
+    "incident_id": "INC-CYCLONE-BANDRA-05",
+    "incident_type": "CYCLONE",
+    "locality_name": "Bandra West Coastal",
+    "latitude": "19.055",
+    "longitude": "72.825",
+    "population": "30000",
+    "population_density": "12000.0",
+    "affected_population": "210",
+    "severity": "0.5",
+    "urgency": "0.6",
+    "priority": "MODERATE",
+    "estimated_duration_hours": "5.0",
+    "patient_present": "false",
+    "hazard_details": [],
+    "status": "COMPLETED",
+    "created_at": "2026-11-04T11:17:39.236038Z",
+    "is_live": true,
+    "full_orchestration": {
+      "orchestration_id": "ORCH-2DE9197A",
+      "incident_id": "INC-CYCLONE-BANDRA-05",
+      "status": "COMPLETED",
+      "fulfilment_status": "PARTIALLY_FULFILLED",
+      "completed_stages": [
+        "REQUIREMENT",
+        "ALLOCATION",
+        "DEMAND_FULFILMENT",
+        "MISSION_CREATION",
+        "AGENT_ASSIGNMENT",
+        "ROUTE_ENGINE"
+      ],
+      "requirement": {
+        "incident_id": "INC-CYCLONE-BANDRA-05",
+        "requirements": {
+          "drinking_water": 4001.0,
+          "sanitation_hygiene_kits": 55.0,
+          "food_dry_rations": 244.0,
+          "community_kitchen_cooked_food": 2.0,
+          "infant_child_nutrition": 33.0,
+          "emergency_shelter_relief_camp": 853.0,
+          "shelter_kits_tarpaulin": 55.0,
+          "clothing_blankets_warmth": 244.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 1.0,
+          "evacuation_transport": 7.0,
+          "missing_persons_reunification": 1.0,
+          "emergency_medical_care": 1.0,
+          "first_aid_trauma": 27.0,
+          "maternal_newborn_care": 9.0,
+          "elderly_disability_assistance": 20.0,
+          "psychosocial_support": 2.0,
+          "medicines_medical_supplies": 14.0,
+          "power_lighting": 2.0,
+          "communication_early_warning": 1.0,
+          "women_child_protection": 2.0,
+          "dead_body_management": 1.0
+        },
+        "selected_resource_ids": [
+          "drinking_water",
+          "sanitation_hygiene_kits",
+          "food_dry_rations",
+          "community_kitchen_cooked_food",
+          "infant_child_nutrition",
+          "emergency_shelter_relief_camp",
+          "shelter_kits_tarpaulin",
+          "clothing_blankets_warmth",
+          "cash_assistance",
+          "search_and_rescue",
+          "evacuation_transport",
+          "missing_persons_reunification",
+          "emergency_medical_care",
+          "first_aid_trauma",
+          "maternal_newborn_care",
+          "elderly_disability_assistance",
+          "psychosocial_support",
+          "medicines_medical_supplies",
+          "power_lighting",
+          "communication_early_warning",
+          "women_child_protection",
+          "dead_body_management"
+        ],
+        "calculation_details": {
+          "drinking_water": {
+            "baseline_quantity": 15.0,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.27,
+            "raw_quantity": 4000.5,
+            "final_quantity": 4001.0
+          },
+          "sanitation_hygiene_kits": {
+            "baseline_quantity": 1.0,
+            "demand_base": 47,
+            "quantity_basis": "per_household",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 54.52,
+            "final_quantity": 55.0
+          },
+          "food_dry_rations": {
+            "baseline_quantity": 1.0,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 243.6,
+            "final_quantity": 244.0
+          },
+          "community_kitchen_cooked_food": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_site",
+            "adjustment_factor": 1.15,
+            "raw_quantity": 1.15,
+            "final_quantity": 2.0
+          },
+          "infant_child_nutrition": {
+            "baseline_quantity": 0.12,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.27,
+            "raw_quantity": 32.004,
+            "final_quantity": 33.0
+          },
+          "emergency_shelter_relief_camp": {
+            "baseline_quantity": 3.5,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 852.6,
+            "final_quantity": 853.0
+          },
+          "shelter_kits_tarpaulin": {
+            "baseline_quantity": 1.0,
+            "demand_base": 47,
+            "quantity_basis": "per_household",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 54.52,
+            "final_quantity": 55.0
+          },
+          "clothing_blankets_warmth": {
+            "baseline_quantity": 1.0,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 243.6,
+            "final_quantity": 244.0
+          },
+          "cash_assistance": {
+            "blocked": true,
+            "reason": "BLOCKED: SDRF ex-gratia norms vary by state. Requires policy approval."
+          },
+          "search_and_rescue": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "fixed_team",
+            "adjustment_factor": 1.0,
+            "raw_quantity": 1.0,
+            "final_quantity": 1.0
+          },
+          "evacuation_transport": {
+            "baseline_quantity": 0.025,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.22,
+            "raw_quantity": 6.405,
+            "final_quantity": 7.0
+          },
+          "missing_persons_reunification": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_incident",
+            "adjustment_factor": 1.0,
+            "raw_quantity": 1.0,
+            "final_quantity": 1.0
+          },
+          "emergency_medical_care": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "fixed_team",
+            "adjustment_factor": 1.0,
+            "raw_quantity": 1.0,
+            "final_quantity": 1.0
+          },
+          "first_aid_trauma": {
+            "baseline_quantity": 0.1,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.27,
+            "raw_quantity": 26.67,
+            "final_quantity": 27.0
+          },
+          "maternal_newborn_care": {
+            "baseline_quantity": 0.03,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.27,
+            "raw_quantity": 8.001,
+            "final_quantity": 9.0
+          },
+          "elderly_disability_assistance": {
+            "baseline_quantity": 0.08,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.16,
+            "raw_quantity": 19.488,
+            "final_quantity": 20.0
+          },
+          "psychosocial_support": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_site",
+            "adjustment_factor": 1.1,
+            "raw_quantity": 1.1,
+            "final_quantity": 2.0
+          },
+          "medicines_medical_supplies": {
+            "baseline_quantity": 0.05,
+            "demand_base": 210.0,
+            "quantity_basis": "per_person",
+            "adjustment_factor": 1.27,
+            "raw_quantity": 13.335,
+            "final_quantity": 14.0
+          },
+          "power_lighting": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_site",
+            "adjustment_factor": 1.1,
+            "raw_quantity": 1.1,
+            "final_quantity": 2.0
+          },
+          "communication_early_warning": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_incident",
+            "adjustment_factor": 1.0,
+            "raw_quantity": 1.0,
+            "final_quantity": 1.0
+          },
+          "women_child_protection": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_site",
+            "adjustment_factor": 1.1,
+            "raw_quantity": 1.1,
+            "final_quantity": 2.0
+          },
+          "dead_body_management": {
+            "baseline_quantity": 1.0,
+            "demand_base": 1.0,
+            "quantity_basis": "per_incident",
+            "adjustment_factor": 1.0,
+            "raw_quantity": 1.0,
+            "final_quantity": 1.0
+          }
+        }
+      },
+      "allocation": {
+        "allocation_id": "ALLOC-65ABBA6B",
+        "incident_id": "INC-CYCLONE-BANDRA-05",
+        "required_resources": {
+          "drinking_water": 4001.0,
+          "sanitation_hygiene_kits": 55.0,
+          "food_dry_rations": 244.0,
+          "community_kitchen_cooked_food": 2.0,
+          "infant_child_nutrition": 33.0,
+          "emergency_shelter_relief_camp": 853.0,
+          "shelter_kits_tarpaulin": 55.0,
+          "clothing_blankets_warmth": 244.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 1.0,
+          "evacuation_transport": 7.0,
+          "missing_persons_reunification": 1.0,
+          "emergency_medical_care": 1.0,
+          "first_aid_trauma": 27.0,
+          "maternal_newborn_care": 9.0,
+          "elderly_disability_assistance": 20.0,
+          "psychosocial_support": 2.0,
+          "medicines_medical_supplies": 14.0,
+          "power_lighting": 2.0,
+          "communication_early_warning": 1.0,
+          "women_child_protection": 2.0,
+          "dead_body_management": 1.0
+        },
+        "warehouse_allocations": [
+          {
+            "warehouse_id": "WH001",
+            "supplies": {
+              "drinking_water": 1000.0,
+              "sanitation_hygiene_kits": 55.0,
+              "food_dry_rations": 244.0,
+              "community_kitchen_cooked_food": 2.0,
+              "infant_child_nutrition": 33.0,
+              "emergency_shelter_relief_camp": 200.0,
+              "shelter_kits_tarpaulin": 55.0,
+              "clothing_blankets_warmth": 150.0,
+              "first_aid_trauma": 27.0,
+              "maternal_newborn_care": 9.0,
+              "medicines_medical_supplies": 14.0,
+              "power_lighting": 2.0,
+              "communication_early_warning": 1.0
+            }
+          },
+          {
+            "warehouse_id": "WH002",
+            "supplies": {
+              "drinking_water": 600.0,
+              "emergency_shelter_relief_camp": 100.0,
+              "clothing_blankets_warmth": 80.0,
+              "evacuation_transport": 5.0
+            }
+          },
+          {
+            "warehouse_id": "WH003",
+            "supplies": {
+              "drinking_water": 700.0,
+              "emergency_shelter_relief_camp": 150.0,
+              "clothing_blankets_warmth": 14.0,
+              "psychosocial_support": 2.0
+            }
+          },
+          {
+            "warehouse_id": "WH004",
+            "supplies": {
+              "drinking_water": 300.0
+            }
+          },
+          {
+            "warehouse_id": "WH005",
+            "supplies": {
+              "drinking_water": 150.0,
+              "evacuation_transport": 2.0,
+              "women_child_protection": 2.0
+            }
+          }
+        ],
+        "allocated_resources": {
+          "drinking_water": 2750.0,
+          "sanitation_hygiene_kits": 55.0,
+          "food_dry_rations": 244.0,
+          "community_kitchen_cooked_food": 2.0,
+          "infant_child_nutrition": 33.0,
+          "emergency_shelter_relief_camp": 450.0,
+          "shelter_kits_tarpaulin": 55.0,
+          "clothing_blankets_warmth": 244.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 0.0,
+          "evacuation_transport": 7.0,
+          "missing_persons_reunification": 0.0,
+          "emergency_medical_care": 0.0,
+          "first_aid_trauma": 27.0,
+          "maternal_newborn_care": 9.0,
+          "elderly_disability_assistance": 0.0,
+          "psychosocial_support": 2.0,
+          "medicines_medical_supplies": 14.0,
+          "power_lighting": 2.0,
+          "communication_early_warning": 1.0,
+          "women_child_protection": 2.0,
+          "dead_body_management": 0.0
+        },
+        "remaining_shortage": {
+          "drinking_water": 1251.0,
+          "sanitation_hygiene_kits": 0.0,
+          "food_dry_rations": 0.0,
+          "community_kitchen_cooked_food": 0.0,
+          "infant_child_nutrition": 0.0,
+          "emergency_shelter_relief_camp": 403.0,
+          "shelter_kits_tarpaulin": 0.0,
+          "clothing_blankets_warmth": 0.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 1.0,
+          "evacuation_transport": 0.0,
+          "missing_persons_reunification": 1.0,
+          "emergency_medical_care": 1.0,
+          "first_aid_trauma": 0.0,
+          "maternal_newborn_care": 0.0,
+          "elderly_disability_assistance": 20.0,
+          "psychosocial_support": 0.0,
+          "medicines_medical_supplies": 0.0,
+          "power_lighting": 0.0,
+          "communication_early_warning": 0.0,
+          "women_child_protection": 0.0,
+          "dead_body_management": 1.0
+        },
+        "allocation_status": "PARTIALLY_FULFILLED",
+        "normalized_priority": 0.5,
+        "overall_priority_score": 0.54,
+        "final_priority_level": "MODERATE"
+      },
+      "demand_fulfilment": {
+        "verification_id": "VERIFY-11EBCDD8",
+        "incident_id": "INC-CYCLONE-BANDRA-05",
+        "allocation_id": "ALLOC-65ABBA6B",
+        "fulfilment_status": "PARTIALLY_FULFILLED",
+        "resource_status": {
+          "drinking_water": {
+            "required": 4001.0,
+            "allocated": 2750.0,
+            "shortage": 1251.0,
+            "status": "SHORTAGE"
+          },
+          "sanitation_hygiene_kits": {
+            "required": 55.0,
+            "allocated": 55.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "food_dry_rations": {
+            "required": 244.0,
+            "allocated": 244.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "community_kitchen_cooked_food": {
+            "required": 2.0,
+            "allocated": 2.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "infant_child_nutrition": {
+            "required": 33.0,
+            "allocated": 33.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "emergency_shelter_relief_camp": {
+            "required": 853.0,
+            "allocated": 450.0,
+            "shortage": 403.0,
+            "status": "SHORTAGE"
+          },
+          "shelter_kits_tarpaulin": {
+            "required": 55.0,
+            "allocated": 55.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "clothing_blankets_warmth": {
+            "required": 244.0,
+            "allocated": 244.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "cash_assistance": {
+            "required": 0.0,
+            "allocated": 0.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "search_and_rescue": {
+            "required": 1.0,
+            "allocated": 0.0,
+            "shortage": 1.0,
+            "status": "SHORTAGE"
+          },
+          "evacuation_transport": {
+            "required": 7.0,
+            "allocated": 7.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "missing_persons_reunification": {
+            "required": 1.0,
+            "allocated": 0.0,
+            "shortage": 1.0,
+            "status": "SHORTAGE"
+          },
+          "emergency_medical_care": {
+            "required": 1.0,
+            "allocated": 0.0,
+            "shortage": 1.0,
+            "status": "SHORTAGE"
+          },
+          "first_aid_trauma": {
+            "required": 27.0,
+            "allocated": 27.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "maternal_newborn_care": {
+            "required": 9.0,
+            "allocated": 9.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "elderly_disability_assistance": {
+            "required": 20.0,
+            "allocated": 0.0,
+            "shortage": 20.0,
+            "status": "SHORTAGE"
+          },
+          "psychosocial_support": {
+            "required": 2.0,
+            "allocated": 2.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "medicines_medical_supplies": {
+            "required": 14.0,
+            "allocated": 14.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "power_lighting": {
+            "required": 2.0,
+            "allocated": 2.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "communication_early_warning": {
+            "required": 1.0,
+            "allocated": 1.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "women_child_protection": {
+            "required": 2.0,
+            "allocated": 2.0,
+            "shortage": 0.0,
+            "status": "FULFILLED"
+          },
+          "dead_body_management": {
+            "required": 1.0,
+            "allocated": 0.0,
+            "shortage": 1.0,
+            "status": "SHORTAGE"
+          }
+        },
+        "total_shortage": {
+          "drinking_water": 1251.0,
+          "sanitation_hygiene_kits": 0.0,
+          "food_dry_rations": 0.0,
+          "community_kitchen_cooked_food": 0.0,
+          "infant_child_nutrition": 0.0,
+          "emergency_shelter_relief_camp": 403.0,
+          "shelter_kits_tarpaulin": 0.0,
+          "clothing_blankets_warmth": 0.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 1.0,
+          "evacuation_transport": 0.0,
+          "missing_persons_reunification": 1.0,
+          "emergency_medical_care": 1.0,
+          "first_aid_trauma": 0.0,
+          "maternal_newborn_care": 0.0,
+          "elderly_disability_assistance": 20.0,
+          "psychosocial_support": 0.0,
+          "medicines_medical_supplies": 0.0,
+          "power_lighting": 0.0,
+          "communication_early_warning": 0.0,
+          "women_child_protection": 0.0,
+          "dead_body_management": 1.0
+        }
+      },
+      "mission": {
+        "mission_id": "MIS-97272D27",
+        "incident_id": "INC-CYCLONE-BANDRA-05",
+        "destination": {
+          "latitude": 19.055,
+          "longitude": 72.825
+        },
+        "required_responder_types": [
+          "RESCUE_TRUCK"
+        ],
+        "risk_score": 0.5,
+        "priority": "MODERATE",
+        "resources": {
+          "drinking_water": 2750.0,
+          "sanitation_hygiene_kits": 55.0,
+          "food_dry_rations": 244.0,
+          "community_kitchen_cooked_food": 2.0,
+          "infant_child_nutrition": 33.0,
+          "emergency_shelter_relief_camp": 450.0,
+          "shelter_kits_tarpaulin": 55.0,
+          "clothing_blankets_warmth": 244.0,
+          "cash_assistance": 0.0,
+          "search_and_rescue": 0.0,
+          "evacuation_transport": 7.0,
+          "missing_persons_reunification": 0.0,
+          "emergency_medical_care": 0.0,
+          "first_aid_trauma": 27.0,
+          "maternal_newborn_care": 9.0,
+          "elderly_disability_assistance": 0.0,
+          "psychosocial_support": 2.0,
+          "medicines_medical_supplies": 14.0,
+          "power_lighting": 2.0,
+          "communication_early_warning": 1.0,
+          "women_child_protection": 2.0,
+          "dead_body_management": 0.0
+        },
+        "pickup_sequence": [
+          {
+            "sequence": 1,
+            "type": "WAREHOUSE",
+            "warehouse_id": "WH001",
+            "supplies": {
+              "drinking_water": 1000.0,
+              "sanitation_hygiene_kits": 55.0,
+              "food_dry_rations": 244.0,
+              "community_kitchen_cooked_food": 2.0,
+              "infant_child_nutrition": 33.0,
+              "emergency_shelter_relief_camp": 200.0,
+              "shelter_kits_tarpaulin": 55.0,
+              "clothing_blankets_warmth": 150.0,
+              "first_aid_trauma": 27.0,
+              "maternal_newborn_care": 9.0,
+              "medicines_medical_supplies": 14.0,
+              "power_lighting": 2.0,
+              "communication_early_warning": 1.0
+            }
+          },
+          {
+            "sequence": 2,
+            "type": "WAREHOUSE",
+            "warehouse_id": "WH002",
+            "supplies": {
+              "drinking_water": 600.0,
+              "emergency_shelter_relief_camp": 100.0,
+              "clothing_blankets_warmth": 80.0,
+              "evacuation_transport": 5.0
+            }
+          },
+          {
+            "sequence": 3,
+            "type": "WAREHOUSE",
+            "warehouse_id": "WH003",
+            "supplies": {
+              "drinking_water": 700.0,
+              "emergency_shelter_relief_camp": 150.0,
+              "clothing_blankets_warmth": 14.0,
+              "psychosocial_support": 2.0
+            }
+          },
+          {
+            "sequence": 4,
+            "type": "WAREHOUSE",
+            "warehouse_id": "WH004",
+            "supplies": {
+              "drinking_water": 300.0
+            }
+          },
+          {
+            "sequence": 5,
+            "type": "WAREHOUSE",
+            "warehouse_id": "WH005",
+            "supplies": {
+              "drinking_water": 150.0,
+              "evacuation_transport": 2.0,
+              "women_child_protection": 2.0
+            }
+          },
+          {
+            "sequence": 6,
+            "type": "DESTINATION",
+            "warehouse_id": null,
+            "supplies": null
+          }
+        ],
+        "route": {
+          "status": "NOT_AVAILABLE",
+          "coordinates": [],
+          "distance_km": null,
+          "estimated_time_minutes": null,
+          "legs": [],
+          "alternative_routes": [],
+          "rejected_routes": [],
+          "decision_reasons": [],
+          "emergency_threshold_minutes": null,
+          "emergency_threshold_exceeded": false,
+          "emergency_threshold_warning": null,
+          "eta_review_escalation": false
+        },
+        "status": "CREATED",
+        "affected_population": 210,
+        "risk_indicators": [],
+        "incident_type": "CYCLONE",
+        "phase": "SINGLE_PHASE",
+        "parent_mission_id": null
+      },
+      "agent_assignment": {
+        "assignment_id": "ASSIGN-D5D4F8B3",
+        "mission_id": "MIS-97272D27",
+        "responder_id": "R001",
+        "responder_type": "RESCUE_TRUCK",
+        "responder_location": {
+          "latitude": 19.08,
+          "longitude": 72.88
+        },
+        "target_warehouse_id": "WH001",
+        "target_warehouse_location": {
+          "latitude": 19.076,
+          "longitude": 72.8777
+        },
+        "distance_to_warehouse_km": 0.506,
+        "assignment_status": "ASSIGNED"
+      },
+      "route": {
+        "status": "ROUTE_PLANNED",
+        "routing_inputs": {
+          "mission_id": "MIS-97272D27",
+          "responder_id": "R001",
+          "responder_location": {
+            "latitude": 19.08,
+            "longitude": 72.88
+          },
+          "pickups": [
+            {
+              "warehouse_id": "WH001",
+              "location": {
+                "latitude": 19.076,
+                "longitude": 72.8777
+              }
+            },
+            {
+              "warehouse_id": "WH002",
+              "location": {
+                "latitude": 19.11,
+                "longitude": 72.85
+              }
+            },
+            {
+              "warehouse_id": "WH003",
+              "location": {
+                "latitude": 19.02,
+                "longitude": 72.85
+              }
+            },
+            {
+              "warehouse_id": "WH004",
+              "location": {
+                "latitude": 19.06,
+                "longitude": 73.02
+              }
+            },
+            {
+              "warehouse_id": "WH005",
+              "location": {
+                "latitude": 19.05,
+                "longitude": 72.82
+              }
+            }
+          ],
+          "destination": {
+            "latitude": 19.055,
+            "longitude": 72.825
+          },
+          "vehicle_type": "RESCUE_TRUCK",
+          "priority": "MODERATE"
+        },
+        "route": {
+          "status": "AVAILABLE",
+          "coordinates": [
+            {
+              "latitude": 19.08,
+              "longitude": 72.88
+            },
+            {
+              "latitude": 19.07868,
+              "longitude": 72.87924
+            },
+            {
+              "latitude": 19.07736,
+              "longitude": 72.87848
+            },
+            {
+              "latitude": 19.076,
+              "longitude": 72.8777
+            },
+            {
+              "latitude": 19.08722,
+              "longitude": 72.86856
+            },
+            {
+              "latitude": 19.09844,
+              "longitude": 72.85942
+            },
+            {
+              "latitude": 19.11,
+              "longitude": 72.85
+            },
+            {
+              "latitude": 19.0803,
+              "longitude": 72.85
+            },
+            {
+              "latitude": 19.0506,
+              "longitude": 72.85
+            },
+            {
+              "latitude": 19.02,
+              "longitude": 72.85
+            },
+            {
+              "latitude": 19.0332,
+              "longitude": 72.9061
+            },
+            {
+              "latitude": 19.0464,
+              "longitude": 72.9622
+            },
+            {
+              "latitude": 19.06,
+              "longitude": 73.02
+            },
+            {
+              "latitude": 19.0567,
+              "longitude": 72.954
+            },
+            {
+              "latitude": 19.0534,
+              "longitude": 72.888
+            },
+            {
+              "latitude": 19.05,
+              "longitude": 72.82
+            },
+            {
+              "latitude": 19.05165,
+              "longitude": 72.82165
+            },
+            {
+              "latitude": 19.0533,
+              "longitude": 72.8233
+            },
+            {
+              "latitude": 19.055,
+              "longitude": 72.825
+            }
+          ],
+          "distance_km": 72.59,
+          "estimated_time_minutes": 145.18,
+          "legs": [
+            {
+              "leg_index": 0,
+              "route_engine_mission_id": "MIS-97272D27-LEG-0",
+              "source_type": "RESPONDER",
+              "source_id": "R001",
+              "destination_type": "WAREHOUSE",
+              "destination_id": "WH001",
+              "source_location": {
+                "latitude": 19.08,
+                "longitude": 72.88
+              },
+              "destination_location": {
+                "latitude": 19.076,
+                "longitude": 72.8777
+              },
+              "distance_km": 1.0,
+              "estimated_time_minutes": 2.0,
+              "coordinates": [
+                {
+                  "latitude": 19.08,
+                  "longitude": 72.88
+                },
+                {
+                  "latitude": 19.07868,
+                  "longitude": 72.87924
+                },
+                {
+                  "latitude": 19.07736,
+                  "longitude": 72.87848
+                },
+                {
+                  "latitude": 19.076,
+                  "longitude": 72.8777
+                }
+              ],
+              "encoded_polyline": "_qmsB_ky{LfGvCfGvCnGzC",
+              "route_id": "candidate-route-primary",
+              "score": 2.7,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (1.0 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 0,
+                  "distance_km": 1.15,
+                  "estimated_time_minutes": 2.37,
+                  "risk_score": 14.75,
+                  "rejection_reason": null,
+                  "encoded_polyline": "_qmsB_ky{Lfw@}y@ovAdcCfw@{y@",
+                  "coordinates": [
+                    {
+                      "latitude": 19.08,
+                      "longitude": 72.88
+                    },
+                    {
+                      "latitude": 19.071,
+                      "longitude": 72.88943
+                    },
+                    {
+                      "latitude": 19.085,
+                      "longitude": 72.86828
+                    },
+                    {
+                      "latitude": 19.076,
+                      "longitude": 72.8777
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            },
+            {
+              "leg_index": 1,
+              "route_engine_mission_id": "MIS-97272D27-LEG-1",
+              "source_type": "WAREHOUSE",
+              "source_id": "WH001",
+              "destination_type": "WAREHOUSE",
+              "destination_id": "WH002",
+              "source_location": {
+                "latitude": 19.076,
+                "longitude": 72.8777
+              },
+              "destination_location": {
+                "latitude": 19.11,
+                "longitude": 72.85
+              },
+              "distance_km": 6.08,
+              "estimated_time_minutes": 12.17,
+              "coordinates": [
+                {
+                  "latitude": 19.076,
+                  "longitude": 72.8777
+                },
+                {
+                  "latitude": 19.08722,
+                  "longitude": 72.86856
+                },
+                {
+                  "latitude": 19.09844,
+                  "longitude": 72.85942
+                },
+                {
+                  "latitude": 19.11,
+                  "longitude": 72.85
+                }
+              ],
+              "encoded_polyline": "_xlsBs|x{LceAbx@ceAbx@ggAzy@",
+              "route_id": "candidate-route-primary",
+              "score": 4.82,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (6.1 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 1,
+                  "distance_km": 7.0,
+                  "estimated_time_minutes": 14.35,
+                  "risk_score": 17.3,
+                  "rejection_reason": null,
+                  "encoded_polyline": "_xlsBs|x{LcBgRgmErrEcBgR",
+                  "coordinates": [
+                    {
+                      "latitude": 19.076,
+                      "longitude": 72.8777
+                    },
+                    {
+                      "latitude": 19.0765,
+                      "longitude": 72.88078
+                    },
+                    {
+                      "latitude": 19.1095,
+                      "longitude": 72.84692
+                    },
+                    {
+                      "latitude": 19.11,
+                      "longitude": 72.85
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            },
+            {
+              "leg_index": 2,
+              "route_engine_mission_id": "MIS-97272D27-LEG-2",
+              "source_type": "WAREHOUSE",
+              "source_id": "WH002",
+              "destination_type": "WAREHOUSE",
+              "destination_id": "WH003",
+              "source_location": {
+                "latitude": 19.11,
+                "longitude": 72.85
+              },
+              "destination_location": {
+                "latitude": 19.02,
+                "longitude": 72.85
+              },
+              "distance_km": 12.49,
+              "estimated_time_minutes": 24.97,
+              "coordinates": [
+                {
+                  "latitude": 19.11,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.0803,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.0506,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.02,
+                  "longitude": 72.85
+                }
+              ],
+              "encoded_polyline": "olssBoos{LrxD?rxD?f~D?",
+              "route_id": "candidate-route-primary",
+              "score": 7.49,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (12.5 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 2,
+                  "distance_km": 14.36,
+                  "estimated_time_minutes": 29.47,
+                  "risk_score": 20.32,
+                  "rejection_reason": null,
+                  "encoded_polyline": "olssBoos{Lr}Do}@ftD~{Br}Do}@",
+                  "coordinates": [
+                    {
+                      "latitude": 19.11,
+                      "longitude": 72.85
+                    },
+                    {
+                      "latitude": 19.0795,
+                      "longitude": 72.86
+                    },
+                    {
+                      "latitude": 19.0505,
+                      "longitude": 72.84
+                    },
+                    {
+                      "latitude": 19.02,
+                      "longitude": 72.85
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            },
+            {
+              "leg_index": 3,
+              "route_engine_mission_id": "MIS-97272D27-LEG-3",
+              "source_type": "WAREHOUSE",
+              "source_id": "WH003",
+              "destination_type": "WAREHOUSE",
+              "destination_id": "WH004",
+              "source_location": {
+                "latitude": 19.02,
+                "longitude": 72.85
+              },
+              "destination_location": {
+                "latitude": 19.06,
+                "longitude": 73.02
+              },
+              "distance_km": 24.23,
+              "estimated_time_minutes": 48.47,
+              "coordinates": [
+                {
+                  "latitude": 19.02,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.0332,
+                  "longitude": 72.9061
+                },
+                {
+                  "latitude": 19.0464,
+                  "longitude": 72.9622
+                },
+                {
+                  "latitude": 19.06,
+                  "longitude": 73.02
+                }
+              ],
+              "encoded_polyline": "_zasBoos{LoqAs}IoqAs}I_tAghJ",
+              "route_id": "candidate-route-primary",
+              "score": 12.37,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (24.2 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 3,
+                  "distance_km": 27.87,
+                  "estimated_time_minutes": 57.18,
+                  "risk_score": 26.13,
+                  "rejection_reason": null,
+                  "encoded_polyline": "_zasBoos{LoKcgI_`FguKoKcgI",
+                  "coordinates": [
+                    {
+                      "latitude": 19.02,
+                      "longitude": 72.85
+                    },
+                    {
+                      "latitude": 19.022,
+                      "longitude": 72.9025
+                    },
+                    {
+                      "latitude": 19.058,
+                      "longitude": 72.9675
+                    },
+                    {
+                      "latitude": 19.06,
+                      "longitude": 73.02
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            },
+            {
+              "leg_index": 4,
+              "route_engine_mission_id": "MIS-97272D27-LEG-4",
+              "source_type": "WAREHOUSE",
+              "source_id": "WH004",
+              "destination_type": "WAREHOUSE",
+              "destination_id": "WH005",
+              "source_location": {
+                "latitude": 19.06,
+                "longitude": 73.02
+              },
+              "destination_location": {
+                "latitude": 19.05,
+                "longitude": 72.82
+              },
+              "distance_km": 27.79,
+              "estimated_time_minutes": 55.57,
+              "coordinates": [
+                {
+                  "latitude": 19.06,
+                  "longitude": 73.02
+                },
+                {
+                  "latitude": 19.0567,
+                  "longitude": 72.954
+                },
+                {
+                  "latitude": 19.0534,
+                  "longitude": 72.888
+                },
+                {
+                  "latitude": 19.05,
+                  "longitude": 72.82
+                }
+              ],
+              "encoded_polyline": "_tisB_vt|LrSn{KrSn{KfT~gL",
+              "route_id": "candidate-route-primary",
+              "score": 13.88,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (27.8 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 4,
+                  "distance_km": 31.95,
+                  "estimated_time_minutes": 65.57,
+                  "risk_score": 27.98,
+                  "rejection_reason": null,
+                  "encoded_polyline": "_tisB_vt|Lr`A~xFwcA~lVr`A~xF",
+                  "coordinates": [
+                    {
+                      "latitude": 19.06,
+                      "longitude": 73.02
+                    },
+                    {
+                      "latitude": 19.0495,
+                      "longitude": 72.98
+                    },
+                    {
+                      "latitude": 19.0605,
+                      "longitude": 72.86
+                    },
+                    {
+                      "latitude": 19.05,
+                      "longitude": 72.82
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            },
+            {
+              "leg_index": 5,
+              "route_engine_mission_id": "MIS-97272D27-LEG-5",
+              "source_type": "WAREHOUSE",
+              "source_id": "WH005",
+              "destination_type": "DESTINATION",
+              "destination_id": "INCIDENT_DESTINATION",
+              "source_location": {
+                "latitude": 19.05,
+                "longitude": 72.82
+              },
+              "destination_location": {
+                "latitude": 19.055,
+                "longitude": 72.825
+              },
+              "distance_km": 1.0,
+              "estimated_time_minutes": 2.0,
+              "coordinates": [
+                {
+                  "latitude": 19.05,
+                  "longitude": 72.82
+                },
+                {
+                  "latitude": 19.05165,
+                  "longitude": 72.82165
+                },
+                {
+                  "latitude": 19.0533,
+                  "longitude": 72.8233
+                },
+                {
+                  "latitude": 19.055,
+                  "longitude": 72.825
+                }
+              ],
+              "encoded_polyline": "ougsB_tm{LiIiIiIiIsIsI",
+              "route_id": "candidate-route-primary",
+              "score": 2.7,
+              "road_condition_status": "UNKNOWN",
+              "road_condition_confidence": "UNKNOWN",
+              "matched_incidents": [],
+              "reasons": [
+                "No real-time road condition incidents detected along corridor (1.0 km). Route uncertainty calibrated to corridor length."
+              ],
+              "backup_routes": [
+                {
+                  "route_id": "candidate-route-bypass",
+                  "selection_status": "FEASIBLE_ALTERNATIVE",
+                  "status": "FEASIBLE_ALTERNATIVE",
+                  "leg_index": 5,
+                  "distance_km": 1.15,
+                  "estimated_time_minutes": 2.37,
+                  "risk_score": 14.75,
+                  "rejection_reason": null,
+                  "encoded_polyline": "ougsB_tm{Ldi@ieAsrBjlBdi@ieA",
+                  "coordinates": [
+                    {
+                      "latitude": 19.05,
+                      "longitude": 72.82
+                    },
+                    {
+                      "latitude": 19.04325,
+                      "longitude": 72.83125
+                    },
+                    {
+                      "latitude": 19.06175,
+                      "longitude": 72.81375
+                    },
+                    {
+                      "latitude": 19.055,
+                      "longitude": 72.825
+                    }
+                  ]
+                }
+              ],
+              "rejected_routes": []
+            }
+          ],
+          "alternative_routes": [
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 0,
+              "distance_km": 1.15,
+              "estimated_time_minutes": 2.37,
+              "risk_score": 14.75,
+              "rejection_reason": null,
+              "encoded_polyline": "_qmsB_ky{Lfw@}y@ovAdcCfw@{y@",
+              "coordinates": [
+                {
+                  "latitude": 19.08,
+                  "longitude": 72.88
+                },
+                {
+                  "latitude": 19.071,
+                  "longitude": 72.88943
+                },
+                {
+                  "latitude": 19.085,
+                  "longitude": 72.86828
+                },
+                {
+                  "latitude": 19.076,
+                  "longitude": 72.8777
+                }
+              ]
+            },
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 1,
+              "distance_km": 7.0,
+              "estimated_time_minutes": 14.35,
+              "risk_score": 17.3,
+              "rejection_reason": null,
+              "encoded_polyline": "_xlsBs|x{LcBgRgmErrEcBgR",
+              "coordinates": [
+                {
+                  "latitude": 19.076,
+                  "longitude": 72.8777
+                },
+                {
+                  "latitude": 19.0765,
+                  "longitude": 72.88078
+                },
+                {
+                  "latitude": 19.1095,
+                  "longitude": 72.84692
+                },
+                {
+                  "latitude": 19.11,
+                  "longitude": 72.85
+                }
+              ]
+            },
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 2,
+              "distance_km": 14.36,
+              "estimated_time_minutes": 29.47,
+              "risk_score": 20.32,
+              "rejection_reason": null,
+              "encoded_polyline": "olssBoos{Lr}Do}@ftD~{Br}Do}@",
+              "coordinates": [
+                {
+                  "latitude": 19.11,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.0795,
+                  "longitude": 72.86
+                },
+                {
+                  "latitude": 19.0505,
+                  "longitude": 72.84
+                },
+                {
+                  "latitude": 19.02,
+                  "longitude": 72.85
+                }
+              ]
+            },
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 3,
+              "distance_km": 27.87,
+              "estimated_time_minutes": 57.18,
+              "risk_score": 26.13,
+              "rejection_reason": null,
+              "encoded_polyline": "_zasBoos{LoKcgI_`FguKoKcgI",
+              "coordinates": [
+                {
+                  "latitude": 19.02,
+                  "longitude": 72.85
+                },
+                {
+                  "latitude": 19.022,
+                  "longitude": 72.9025
+                },
+                {
+                  "latitude": 19.058,
+                  "longitude": 72.9675
+                },
+                {
+                  "latitude": 19.06,
+                  "longitude": 73.02
+                }
+              ]
+            },
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 4,
+              "distance_km": 31.95,
+              "estimated_time_minutes": 65.57,
+              "risk_score": 27.98,
+              "rejection_reason": null,
+              "encoded_polyline": "_tisB_vt|Lr`A~xFwcA~lVr`A~xF",
+              "coordinates": [
+                {
+                  "latitude": 19.06,
+                  "longitude": 73.02
+                },
+                {
+                  "latitude": 19.0495,
+                  "longitude": 72.98
+                },
+                {
+                  "latitude": 19.0605,
+                  "longitude": 72.86
+                },
+                {
+                  "latitude": 19.05,
+                  "longitude": 72.82
+                }
+              ]
+            },
+            {
+              "route_id": "candidate-route-bypass",
+              "selection_status": "FEASIBLE_ALTERNATIVE",
+              "status": "FEASIBLE_ALTERNATIVE",
+              "leg_index": 5,
+              "distance_km": 1.15,
+              "estimated_time_minutes": 2.37,
+              "risk_score": 14.75,
+              "rejection_reason": null,
+              "encoded_polyline": "ougsB_tm{Ldi@ieAsrBjlBdi@ieA",
+              "coordinates": [
+                {
+                  "latitude": 19.05,
+                  "longitude": 72.82
+                },
+                {
+                  "latitude": 19.04325,
+                  "longitude": 72.83125
+                },
+                {
+                  "latitude": 19.06175,
+                  "longitude": 72.81375
+                },
+                {
+                  "latitude": 19.055,
+                  "longitude": 72.825
+                }
+              ]
+            }
+          ],
+          "rejected_routes": [],
+          "decision_reasons": [
+            "No real-time road condition incidents detected along corridor (1.0 km). Route uncertainty calibrated to corridor length.",
+            "No real-time road condition incidents detected along corridor (6.1 km). Route uncertainty calibrated to corridor length.",
+            "No real-time road condition incidents detected along corridor (12.5 km). Route uncertainty calibrated to corridor length.",
+            "No real-time road condition incidents detected along corridor (24.2 km). Route uncertainty calibrated to corridor length.",
+            "No real-time road condition incidents detected along corridor (27.8 km). Route uncertainty calibrated to corridor length.",
+            "No real-time road condition incidents detected along corridor (1.0 km). Route uncertainty calibrated to corridor length."
+          ],
+          "emergency_threshold_minutes": 120.0,
+          "emergency_threshold_exceeded": true,
+          "emergency_threshold_warning": "EMERGENCY ETA ESCALATION: Estimated arrival time (145.2 mins) exceeds the operational target of 120 mins for CYCLONE. Priority review and emergency dispatch escalation active.",
+          "eta_review_escalation": true
+        },
+        "message": "Successfully planned route across 6 leg(s)."
+      },
+      "error": null,
+      "phase": "SINGLE_PHASE",
+      "parent_mission_id": null,
+      "sub_missions": []
+    }
+  }
+]

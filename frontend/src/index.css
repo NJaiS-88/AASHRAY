@@ -1,4 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
 @import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #FAFBFF;
+  --bg-secondary: #F5F7FC;
+  --surface-white: #FFFFFF;
+  --surface-muted: #F8FAFD;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #F5F7FC;
+  --bg-input: #FFFFFF;
+  --bg-hover: #F1F4F9;
+  --bg-badge: #EEF2FF;
+
+  /* Typography Colors */
+  --heading-text: #0F172A;
+  --body-text: #475569;
+  --muted-text: #64748B;
+  --disabled-text: #94A3B8;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #64748B;
+  --text-on-brand: #FFFFFF;
+
+  /* Brand / Primary */
+  --brand: #4F46E5;
+  --brand-hover: #3730A3;
+  --brand-light: #EEF2FF;
+  --brand-muted: #A5B4FC;
+  --primary-indigo: #4F46E5;
+  --primary-dark: #3730A3;
+  --primary-soft: #EEF2FF;
+
+  /* Accents */
+  --teal-accent: #14B8A6;
+  --soft-teal: #CCFBF1;
+
+  /* Borders */
+  --border: #E2E8F0;
+  --border-soft: #EDF2F7;
+  --border-hover: #CBD5E1;
+  --light-border: #E2E8F0;
+  --soft-border: #EDF2F7;
+
+  /* Semantic Feedback */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --severity-critical: #EF4444;
+  --severity-high: #F59E0B;
+  --severity-medium: #EAB308;
+  --severity-low: #10B981;
+
+  /* Dimensions & Radius */
+  --radius-card: 24px;
+  --radius-button: 14px;
+  --radius-input: 12px;
+  --max-width: 1280px;
+
+  /* Fonts */
+  --font-body: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-headline: 'Playfair Display', Georgia, serif;
+
+  /* Shadows */
+  --shadow-card: 0 10px 40px rgba(15, 23, 42, 0.06);
+  --shadow-soft: 0 4px 20px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 12px 48px rgba(79, 70, 229, 0.09), 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--body-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  color: var(--heading-text);
+  letter-spacing: -0.02em;
+}
 
 .leaflet-container {
   z-index: 0;

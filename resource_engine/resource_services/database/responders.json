@@ -7,7 +7,7 @@
       "latitude": 19.08,
       "longitude": 72.88
     },
-    "status": "AVAILABLE"
+    "status": "BUSY"
   },
   {
     "responder_id": "R002",
@@ -17,7 +17,7 @@
       "latitude": 19.06,
       "longitude": 72.9
     },
-    "status": "BUSY"
+    "status": "AVAILABLE"
   },
   {
     "responder_id": "R003",
@@ -47,6 +47,6 @@
       "latitude": 19.03,
       "longitude": 72.87
     },
-    "status": "BUSY"
+    "status": "AVAILABLE"
   }
 ]

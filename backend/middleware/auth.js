@@ -6,14 +6,15 @@ const User = require('../models/user.model');
  */
 async function getOrCreateFallbackUser() {
     try {
-        let user = await User.findOne();
+        let user = await User.findOne({ email: 'dispatcher@aashray.local' });
         if (!user) {
             user = await User.create({
                 name: 'Emergency Dispatcher',
                 email: 'dispatcher@aashray.local',
-                password: 'aashraypassword123'
+                password: 'aashraypassword123',
+                role: 'admin'
             });
-            console.log('Created local fallback responder user:', user.email);
+            console.log('Created local fallback responder admin user:', user.email);
         }
         return user;
     } catch (err) {
@@ -22,33 +23,41 @@ async function getOrCreateFallbackUser() {
     }
 }
 
+/**
+ * Authentication middleware.
+ * Validates JWT from cookie or Bearer Authorization header.
+ */
 const protect = async (req, res, next) => {
     let token = req.cookies?.jwt || (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.split(' ')[1] : null);
 
     if (token) {
         try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            let user = await User.findById(decoded.userId).select('-password');
+            const decoded = jwt.verify(token, process.env.JWT_SECRET || 'aashray_secret_jwt_key_2026');
+            const user = await User.findById(decoded.userId).select('-password');
             if (!user) {
-                console.warn(`User ID ${decoded.userId} not found in database (likely switched to local MongoDB). Falling back to active responder user.`);
-                user = await getOrCreateFallbackUser();
+                return res.status(401).json({ message: 'Not authorized, user not found' });
             }
             req.user = user;
             return next();
         } catch (error) {
-            console.warn('JWT verification failed. Using fallback responder user:', error.message);
-            req.user = await getOrCreateFallbackUser();
-            return next();
+            return res.status(401).json({ message: 'Not authorized, invalid or expired token' });
         }
-    } else {
-        // Fallback for local edge deployment or session without cookie
-        req.user = await getOrCreateFallbackUser();
-        if (req.user) {
-            return next();
-        }
-        res.status(401).json({ message: 'Not authorized, no token' });
     }
+
+    return res.status(401).json({ message: 'Not authorized, no token provided' });
 };
 
-module.exports = { protect, getOrCreateFallbackUser };
+/**
+ * Role-based access control for administrative endpoints.
+ */
+const requireAdmin = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ message: 'Not authorized, no token' });
+    }
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ message: 'Access denied: Administrator privileges required' });
+    }
+    next();
+};
 
+module.exports = { protect, requireAdmin, getOrCreateFallbackUser };

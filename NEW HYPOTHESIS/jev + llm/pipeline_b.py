@@ -54,7 +54,8 @@ class DisasterRAGPipelineB:
         coordinates: Optional[Dict[str, float]] = None,
         district_hint: Optional[str] = None,
         clarification_answer: Optional[str] = None,
-        bypass_pre_rag: bool = False
+        bypass_pre_rag: bool = False,
+        follow_up_data: Optional[Dict[str, Any]] = None
     ) -> Optional[Dict[str, Any]]:
         total_start = time.perf_counter()
 
@@ -69,7 +70,9 @@ class DisasterRAGPipelineB:
             pre_start = time.perf_counter()
             intake_eval = classify_pre_rag(
                 query=scenario,
-                follow_up_answer=clarification_answer
+                follow_up_answer=clarification_answer,
+                coordinates=coordinates,
+                follow_up_data=follow_up_data
             )
             pre_rag_latency = (time.perf_counter() - pre_start) * 1000.0
 
@@ -116,6 +119,7 @@ class DisasterRAGPipelineB:
                     "can_proceed_to_rag": False,
                     "needs_clarification": (severity == "Uncertain"),
                     "pre_rag_intake": intake_eval,
+                    "intake_record": intake_eval.get("intake_record") if intake_eval else None,
                     "severity": severity,
                     "action": action,
                     "is_disaster_related": False,
@@ -201,6 +205,7 @@ class DisasterRAGPipelineB:
                 "needs_clarification": False,
                 "pre_rag_intake": intake_eval,
                 "incident_type": "non_emergency",
+                "structured_facts": triage_result.get("structured_facts", {}),
                 "assessment": assessment,
                 "unified_assessment": assessment,
                 "situation": non_disaster_plan.get("situation", ""),
@@ -314,9 +319,11 @@ class DisasterRAGPipelineB:
             "can_proceed_to_rag": True,
             "needs_clarification": False,
             "pre_rag_intake": intake_eval,
+            "intake_record": intake_eval.get("intake_record") if intake_eval else None,
             "severity": intake_eval.get("severity") if intake_eval else assessment.get("severity", {}).get("word"),
             "action": "allocate_resources",
             "disaster_assessment": triage_result.get("disaster_assessment", {}),
+            "structured_facts": triage_result.get("structured_facts", {}),
             "incident_type": incident_type,
             "assessment": assessment,  # Single unified object for priority, severity, urgency
             "unified_assessment": assessment,

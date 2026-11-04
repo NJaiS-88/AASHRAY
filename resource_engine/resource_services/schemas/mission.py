@@ -59,6 +59,10 @@ class RouteLeg(BaseModel):
 
     reasons: list[str] = Field(default_factory=list)
 
+    backup_routes: list[dict] = Field(default_factory=list)
+
+    rejected_routes: list[dict] = Field(default_factory=list)
+
 
 class RouteData(BaseModel):
     status: Literal[
@@ -73,6 +77,20 @@ class RouteData(BaseModel):
     estimated_time_minutes: float | None = None
 
     legs: list[RouteLeg] = Field(default_factory=list)
+
+    alternative_routes: list[dict] = Field(default_factory=list)
+
+    rejected_routes: list[dict] = Field(default_factory=list)
+
+    decision_reasons: list[str] = Field(default_factory=list)
+
+    emergency_threshold_minutes: float | None = None
+
+    emergency_threshold_exceeded: bool = False
+
+    emergency_threshold_warning: str | None = None
+
+    eta_review_escalation: bool = False
 
     @model_validator(mode="after")
     def routed_legs_have_route_engine_ids(self):
@@ -113,6 +131,11 @@ class MissionCreationRequest(BaseModel):
     resources: dict[str, float]
 
     warehouse_pickups: list[WarehousePickup]
+    affected_population: int | None = None
+    risk_indicators: list[str] = Field(default_factory=list)
+    incident_type: str | None = None
+    phase: Literal["SINGLE_PHASE", "IMMEDIATE_RESPONSE", "FOLLOW_UP_LOGISTICS", "TWO_PHASE_COORDINATED"] | None = None
+    parent_mission_id: str | None = None
 
 
 class PickupSequenceItem(BaseModel):
@@ -147,3 +170,8 @@ class MissionCreationResult(BaseModel):
     route: RouteData
 
     status: Literal["CREATED"]
+    affected_population: int | None = None
+    risk_indicators: list[str] = Field(default_factory=list)
+    incident_type: str | None = None
+    phase: Literal["SINGLE_PHASE", "IMMEDIATE_RESPONSE", "FOLLOW_UP_LOGISTICS", "TWO_PHASE_COORDINATED"] | None = None
+    parent_mission_id: str | None = None

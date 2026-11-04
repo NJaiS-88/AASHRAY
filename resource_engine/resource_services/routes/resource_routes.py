@@ -19,7 +19,7 @@ router = APIRouter(
 )
 
 
-REQUIREMENT_RULES_PATH = "resource_services/config/resource_rules.json"
+REQUIREMENT_RULES_PATH = "resource_services/config/resource_rules_v2.json"
 WAREHOUSES_PATH = "resource_services/database/warehouses.json"
 
 
@@ -30,7 +30,9 @@ def allocate_resources(incident: IncidentAllocationRequest):
             REQUIREMENT_RULES_PATH
         )
 
-        requirement_result = requirement_service.calculate(incident)
+        requirement_result = requirement_service.calculate(
+            incident, urgency=incident.urgency
+        )
 
         allocation_service = ResourceAllocationService(
             WAREHOUSES_PATH,
@@ -72,7 +74,7 @@ def allocate_resources_for_multiple_incidents(
             AllocationRequest(
                 incident_id=incident.incident_id,
                 requirements=requirement_service.calculate(
-                    incident
+                    incident, urgency=incident.urgency
                 ).requirements,
                 severity=incident.severity,
                 urgency=incident.urgency,

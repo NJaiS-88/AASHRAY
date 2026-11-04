@@ -177,10 +177,159 @@ def _call_llm(prompt: str) -> Optional[Dict[str, Any]]:
     return None
 
 
+def extract_intake_record(
+    query: str,
+    coordinates: Optional[Dict[str, Any]] = None,
+    follow_up_answer: Optional[str] = None,
+    follow_up_data: Optional[Dict[str, Any]] = None
+) -> Dict[str, Any]:
+    """
+    Context-aware emergency intake extractor.
+    Extracts structured intake fields and determines missing requirements:
+    - incident_type: known hazard or other_or_unknown
+    - incident_location / coordinates: checks if GPS or text location is provided
+    - affected_population: exact or estimated count of affected persons
+    - missing_required_fields: only genuinely missing fields required for operational step
+    - clarifying_questions: targeted questions strictly for missing required fields
+    """
+    full_text = (query or "").strip()
+    if follow_up_answer and follow_up_answer.strip():
+        full_text = f"{full_text}\n{follow_up_answer.strip()}"
+    text_lower = full_text.lower()
+
+    # 1. Coordinate verification
+    lat = None
+    lng = None
+    has_valid_coords = False
+    if coordinates and isinstance(coordinates, dict):
+        raw_lat = coordinates.get("lat") or coordinates.get("latitude")
+        raw_lng = coordinates.get("lng") or coordinates.get("longitude")
+        try:
+            if raw_lat is not None and raw_lng is not None:
+                lat = float(raw_lat)
+                lng = float(raw_lng)
+                if -90.0 <= lat <= 90.0 and -180.0 <= lng <= 180.0 and not (lat == 0.0 and lng == 0.0):
+                    has_valid_coords = True
+        except (ValueError, TypeError):
+            pass
+
+    # 2. Text-based location detection
+    named_locations = [
+        "powai", "andheri", "ghatkopar", "bandra", "dadar", "kurla", "thane", "bhandup",
+        "malad", "borivali", "colaba", "worli", "chembur", "juhu", "vikhroli", "mulund",
+        "kalyan", "navi mumbai", "bengaluru", "delhi", "chennai", "kolkata", "hyderabad",
+        "mg road", "metro pillar", "sector", "colony", "nagar", "block", "street", "road"
+    ]
+    has_named_location = any(re.search(rf"\b{re.escape(loc)}\b", text_lower) for loc in named_locations)
+    location_known = has_valid_coords or has_named_location or bool(re.search(r"\b(?:in|at|near|beside)\s+(?:my\s+|our\s+|the\s+)?(?:locality|area|neighborhood|building|street|colony|block|society)\b", text_lower))
+
+    # 3. Incident hazard detection
+    incident_type = "other_or_unknown"
+    if follow_up_data and follow_up_data.get("incident_type"):
+        cand = str(follow_up_data.get("incident_type")).strip().lower()
+        if cand in [
+            "flooding_waterlogging", "building_collapse", "landslide",
+            "fire", "cyclone_storm", "earthquake", "road_accident", "medical_emergency"
+        ]:
+            incident_type = cand
+
+    if incident_type == "other_or_unknown":
+        if re.search(r"\b(?:waterlogg?ing|water\s*log(?:ged)?|flood(?:ing|s)?|water\s*rising|submerged|inundat(?:ed|ion)?|deluge)\b", text_lower):
+            incident_type = "flooding_waterlogging"
+        elif re.search(r"\b(?:slab\s+fell|slab\s+fall|collapse[ds]?|rubble|building\s+fell|wall\s+collapse|structure\s+collapse|trapped\s+under\s+rubble|debris\s+fell|crushed\s+under)\b", text_lower):
+            incident_type = "building_collapse"
+        elif re.search(r"\b(?:landslide[s]?|mudslide[s]?|rockfall[s]?|slope\s+failure)\b", text_lower):
+            incident_type = "landslide"
+        elif re.search(r"\b(?:fire|blaze|burning|flames|smoke\s+filling|explosion)\b", text_lower):
+            incident_type = "fire"
+        elif re.search(r"\b(?:cyclone|hurricane|typhoon|severe\s+storm|gale)\b", text_lower):
+            incident_type = "cyclone_storm"
+        elif re.search(r"\b(?:earthquake|tremor[s]?|quake|aftershock)\b", text_lower):
+            incident_type = "earthquake"
+        elif re.search(r"\b(?:car\s+crash|bus\s+crash|road\s+accident|collision|overturned\s+vehicle)\b", text_lower):
+            incident_type = "road_accident"
+        elif re.search(r"\b(?:heart\s+attack|cardiac|stroke|unconscious|cpr|severe\s+bleed(?:ing)?|profuse\s+bleed(?:ing)?)\b", text_lower):
+            incident_type = "medical_emergency"
+
+    # 4. Population extraction
+    affected_population = None
+    affected_population_is_estimate = False
+
+    if follow_up_data and follow_up_data.get("affected_population") is not None:
+        try:
+            val = int(follow_up_data.get("affected_population"))
+            if val > 0:
+                affected_population = val
+        except (ValueError, TypeError):
+            pass
+
+    if affected_population is None:
+        try:
+            from jev_v3_triage import extract_structured_facts
+            facts = extract_structured_facts(full_text)
+            affected_population = facts.get("people_affected")
+            if affected_population is None:
+                affected_population = facts.get("people_trapped") or facts.get("people_injured_reported")
+        except Exception:
+            pass
+
+    if affected_population is not None:
+        if re.search(r"\b(?:around|approx(?:imately)?|about|estimated?|nearly)\b", text_lower):
+            affected_population_is_estimate = True
+
+    # 5. Determine missing operational fields
+    missing_required_fields = []
+    if incident_type == "other_or_unknown":
+        missing_required_fields.append("hazard_type")
+    # Location is satisfied if GPS coordinates are valid OR named location exists
+    if not (has_valid_coords or has_named_location):
+        missing_required_fields.append("location")
+    # Affected population must be known (> 0)
+    if affected_population is None or affected_population <= 0:
+        missing_required_fields.append("affected_population")
+
+    # 6. Generate precise clarifying questions
+    clarifying_questions = []
+    if "hazard_type" in missing_required_fields:
+        clarifying_questions.append("What type of emergency or hazard is occurring (e.g. flooding, building collapse, fire, landslide)?")
+    if "location" in missing_required_fields:
+        clarifying_questions.append("What is your exact location or nearby landmark so emergency responders can locate you?")
+    if "affected_population" in missing_required_fields:
+        if incident_type == "building_collapse":
+            clarifying_questions.append("Approximately how many people are affected or trapped under rubble?")
+        elif incident_type == "flooding_waterlogging":
+            clarifying_questions.append("Approximately how many people are affected or need evacuation assistance?")
+        elif incident_type == "fire":
+            clarifying_questions.append("Approximately how many people are affected or trapped inside?")
+        else:
+            clarifying_questions.append("Approximately how many people are affected or in immediate danger?")
+
+    is_ready_for_orchestration = (len(missing_required_fields) == 0)
+    clarification_status = "complete" if is_ready_for_orchestration else "needs_clarification"
+
+    return {
+        "incident_type": incident_type,
+        "incident_location": "GPS Coordinates" if has_valid_coords else (full_text if has_named_location else None),
+        "latitude": lat,
+        "longitude": lng,
+        "has_valid_coordinates": has_valid_coords,
+        "has_named_location": has_named_location,
+        "location_known": location_known,
+        "affected_population": affected_population,
+        "affected_population_is_estimate": affected_population_is_estimate,
+        "missing_required_fields": missing_required_fields,
+        "clarifying_questions": clarifying_questions,
+        "clarification_status": clarification_status,
+        "is_ready_for_orchestration": is_ready_for_orchestration
+    }
+
+
 def _deterministic_pre_rag_fallback(
     query: str,
     follow_up_answer: Optional[str] = None,
-    history: Optional[List[Dict[str, str]]] = None
+    history: Optional[List[Dict[str, str]]] = None,
+    coordinates: Optional[Dict[str, Any]] = None,
+    follow_up_data: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
     """
     Robust rule-based fallback when external LLM API is unavailable.
@@ -219,22 +368,15 @@ def _deterministic_pre_rag_fallback(
 
     has_critical = any(re.search(p, text_lower) for p in critical_patterns)
     has_explicit_non_critical = any(re.search(p, answer_lower) for p in non_critical_patterns) or any(re.search(p, text_lower) for p in non_critical_patterns)
+    has_non_critical = has_explicit_non_critical
 
     # Detect leg is stuck specific case
     is_leg_stuck = bool(re.search(r"\b(?:leg|foot|arm|hand)\s+is\s+stuck\b", query.lower()))
 
-    missing_info = []
-    if not re.search(r"\b(at|near|road|street|nagar|colony|floor|building|sector|block|pillar|room)\b", text_lower):
-        missing_info.append("exact_location")
-    if not any(re.search(p, text_lower) for p in [r"\bbleed", r"\bpain", r"\binjur", r"\bswoll", r"\bsensation", r"\bhurt"]):
-        missing_info.append("physical_injury_and_sensation")
-    if not any(re.search(p, text_lower) for p in [r"\bunder\b", r"\bbetween\b", r"\bpin", r"\bconcrete", r"\bdoor", r"\bdebris", r"\bbeam", r"\bwall"]):
-        missing_info.append("entrapment_hazard_mechanism")
-
     # If re-evaluating:
     if is_re_evaluation:
-        # If caller explicitly confirmed non-critical/no injury
-        if has_explicit_non_critical and not re.search(r"\bbleed|\bcrush|\btrapped|\bwater rising", answer_lower):
+        has_active_trauma = any(re.search(p, answer_lower) for p in [r"\b(?:active|heavy|severe|profuse)\s+bleed", r"\bcrush", r"\btrapped under", r"\bwater rising", r"\bunconscious", r"\bfracture"])
+        if has_explicit_non_critical and not has_active_trauma:
             return {
                 "severity": "Non-Critical",
                 "reason": f"Clarification indicates non-life-threatening situation ({follow_up_answer}).",
@@ -247,7 +389,7 @@ def _deterministic_pre_rag_fallback(
                 "support_tier": "low_tier_support"
             }
         else:
-            # Caller provided additional query to an entrapment/distress scenario -> escalate!
+            intake_rec = extract_intake_record(query, coordinates, follow_up_answer, follow_up_data)
             return {
                 "severity": "Critical",
                 "reason": f"Caller provided clarification confirming physical distress and operational details: '{follow_up_answer}'.",
@@ -257,11 +399,13 @@ def _deterministic_pre_rag_fallback(
                 "action": "allocate_resources",
                 "can_proceed_to_rag": True,
                 "escalated": True,
-                "support_tier": "critical_emergency_dispatch"
+                "support_tier": "critical_emergency_dispatch",
+                "intake_record": intake_rec
             }
 
     # Initial classification
     if is_leg_stuck and not has_critical:
+        intake_rec = extract_intake_record(query, coordinates, follow_up_answer, follow_up_data)
         return {
             "severity": "Uncertain",
             "reason": "Request reports an entrapment ('leg is stuck') without vital physiological or hazard context.",
@@ -275,22 +419,12 @@ def _deterministic_pre_rag_fallback(
             "action": "ask_clarifying_questions",
             "can_proceed_to_rag": False,
             "escalated": False,
-            "support_tier": "clarification_intake"
+            "support_tier": "clarification_intake",
+            "intake_record": intake_rec
         }
 
-    if has_critical and len(text_lower.split()) >= 6:
-        return {
-            "severity": "Critical",
-            "reason": "Request describes an urgent, life-threatening emergency with active physical peril.",
-            "is_complete": len(missing_info) == 0,
-            "missing_info": missing_info,
-            "clarifying_questions": [],
-            "action": "allocate_resources",
-            "can_proceed_to_rag": True,
-            "escalated": False,
-            "support_tier": "critical_emergency_dispatch"
-        }
-    elif has_non_critical:
+    if has_non_critical and not has_critical:
+        intake_rec = extract_intake_record(query, coordinates, follow_up_answer, follow_up_data)
         return {
             "severity": "Non-Critical",
             "reason": "Request describes an inconvenience, financial query, or minor non-life-threatening issue.",
@@ -302,30 +436,47 @@ def _deterministic_pre_rag_fallback(
             "action": "route_to_low_tier_support",
             "can_proceed_to_rag": False,
             "escalated": False,
-            "support_tier": "low_tier_support"
+            "support_tier": "low_tier_support",
+            "intake_record": intake_rec
         }
-    else:
-        # Uncertain / incomplete
+
+    # Context-aware intake extraction
+    intake_record = extract_intake_record(query, coordinates, follow_up_answer, follow_up_data)
+
+    if intake_record["is_ready_for_orchestration"]:
         return {
-            "severity": "Uncertain",
-            "reason": "Request is unclear, terse, or missing critical situational context to assess severity.",
-            "is_complete": False,
-            "missing_info": missing_info or ["situation_details", "exact_location"],
-            "clarifying_questions": [
-                "Can you tell us more about what happened and if anyone is injured or in immediate danger?",
-                "What is your current location?"
-            ],
-            "action": "ask_clarifying_questions",
-            "can_proceed_to_rag": False,
+            "severity": "Critical",
+            "reason": f"Complete incident intake: {intake_record['incident_type']} affecting {intake_record['affected_population']} persons at confirmed location.",
+            "is_complete": True,
+            "missing_info": [],
+            "clarifying_questions": [],
+            "action": "allocate_resources",
+            "can_proceed_to_rag": True,
             "escalated": False,
-            "support_tier": "clarification_intake"
+            "support_tier": "critical_emergency_dispatch",
+            "intake_record": intake_record
         }
+
+    return {
+        "severity": "Uncertain",
+        "reason": f"Emergency report received. Awaiting essential missing details: {', '.join(intake_record['missing_required_fields'])}.",
+        "is_complete": False,
+        "missing_info": intake_record["missing_required_fields"],
+        "clarifying_questions": intake_record["clarifying_questions"],
+        "action": "ask_clarifying_questions",
+        "can_proceed_to_rag": False,
+        "escalated": False,
+        "support_tier": "clarification_intake",
+        "intake_record": intake_record
+    }
 
 
 def classify_pre_rag(
     query: str,
     history: Optional[List[Dict[str, str]]] = None,
-    follow_up_answer: Optional[str] = None
+    follow_up_answer: Optional[str] = None,
+    coordinates: Optional[Dict[str, Any]] = None,
+    follow_up_data: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
     """
     Main Pre-RAG classification & intake evaluation.
@@ -347,8 +498,26 @@ def classify_pre_rag(
             "support_tier": "clarification_intake"
         }
 
+    # Deterministic fallback check first for context-aware intake readiness
+    fallback_res = _deterministic_pre_rag_fallback(
+        clean_query,
+        clean_answer,
+        history,
+        coordinates=coordinates,
+        follow_up_data=follow_up_data
+    )
+    # If the intake is already complete and ready for orchestration, return immediately
+    if fallback_res.get("can_proceed_to_rag") and fallback_res.get("severity") == "Critical":
+        return fallback_res
+
+    # Also for leg stuck or explicit non-critical, deterministic rules are canonical
+    if "leg is stuck" in clean_query.lower() or fallback_res.get("severity") == "Non-Critical":
+        return fallback_res
+
     # Format user prompt for LLM
     prompt_parts = [f"Initial User Query: \"{clean_query}\""]
+    if coordinates:
+        prompt_parts.append(f"Confirmed GPS Coordinates: {coordinates}")
     if history:
         history_str = "\n".join([f"{h.get('role', 'caller')}: {h.get('content', '')}" for h in history])
         prompt_parts.append(f"Conversation History:\n{history_str}")
@@ -362,12 +531,12 @@ def classify_pre_rag(
     else:
         prompt_parts.append(
             "Instruction: Classify as Critical, Non-Critical, or Uncertain. "
-            "If Non-Critical or Uncertain, generate 1 to 3 clarifying questions. "
+            "If Non-Critical or Uncertain, generate 1 to 3 clarifying questions strictly for missing information. "
+            "Never ask for location if GPS coordinates or location is already provided. "
             "If Critical, set can_proceed_to_rag=true and action='allocate_resources'."
         )
 
     llm_prompt = "\n\n".join(prompt_parts)
-
     llm_result = _call_llm(llm_prompt)
 
     if llm_result and isinstance(llm_result, dict) and "severity" in llm_result:
@@ -398,16 +567,16 @@ def classify_pre_rag(
         if not isinstance(clarifying_qs, list):
             clarifying_qs = [str(clarifying_qs)]
 
-        # Specific user requirement:
-        # User: "My leg is stuck." -> LLM: "Can you tell me if your leg is bleeding, swollen, or losing sensation?"
-        if "leg is stuck" in clean_query.lower() and not clean_answer:
-            has_sensation_q = any("bleeding" in q.lower() or "swollen" in q.lower() or "sensation" in q.lower() for q in clarifying_qs)
-            if not has_sensation_q:
-                clarifying_qs.insert(0, "Can you tell me if your leg is bleeding, swollen, or losing sensation?")
+        # If coordinates or location is known, do not ask for location
+        intake_rec = fallback_res.get("intake_record") or extract_intake_record(clean_query, coordinates, clean_answer, follow_up_data)
+        if intake_rec.get("has_valid_coordinates") or intake_rec.get("has_named_location"):
+            clarifying_qs = [q for q in clarifying_qs if not re.search(r"\b(?:where|location|address|landmark|coordinates)\b", q.lower())]
 
         missing_info = llm_result.get("missing_info", [])
         if not isinstance(missing_info, list):
             missing_info = [str(missing_info)]
+        if intake_rec.get("has_valid_coordinates") or intake_rec.get("has_named_location"):
+            missing_info = [m for m in missing_info if "location" not in m.lower()]
 
         escalated = bool(llm_result.get("escalated", False))
         if clean_answer and severity == "Critical":
@@ -420,21 +589,24 @@ def classify_pre_rag(
             "reason": llm_result.get("reason", "Evaluated via Pre-RAG classification model."),
             "is_complete": is_complete,
             "missing_info": missing_info,
-            "clarifying_questions": clarifying_qs,
+            "clarifying_questions": clarifying_qs if clarifying_qs else fallback_res.get("clarifying_questions", []),
             "action": action,
             "can_proceed_to_rag": can_proceed,
             "escalated": escalated,
-            "support_tier": support_tier
+            "support_tier": support_tier,
+            "intake_record": intake_rec
         }
 
     # Fallback to deterministic rules
-    return _deterministic_pre_rag_fallback(clean_query, clean_answer, history)
+    return fallback_res
 
 
 def re_evaluate_pre_rag(
     initial_query: str,
     follow_up_answer: str,
-    history: Optional[List[Dict[str, str]]] = None
+    history: Optional[List[Dict[str, str]]] = None,
+    coordinates: Optional[Dict[str, Any]] = None,
+    follow_up_data: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
     """
     Re-evaluate user request after user has provided follow-up clarification.
@@ -444,5 +616,7 @@ def re_evaluate_pre_rag(
     return classify_pre_rag(
         query=initial_query,
         history=history,
-        follow_up_answer=follow_up_answer
+        follow_up_answer=follow_up_answer,
+        coordinates=coordinates,
+        follow_up_data=follow_up_data
     )

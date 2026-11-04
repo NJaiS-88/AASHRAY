@@ -284,13 +284,21 @@ def rag_plan_endpoint():
     scenario_id = data.get("scenario_id", f"AASHRAY-{int(time.time())}")
     clarification_answer = data.get("clarification_answer")
     bypass_pre_rag = data.get("bypass_pre_rag", False)
+    coordinates = data.get("coordinates") or data.get("location")
+    follow_up_data = {
+        "affected_population": data.get("affected_population"),
+        "incident_type": data.get("incident_type"),
+        "hazard_details": data.get("hazard_details")
+    }
 
     try:
         plan = rag_pipeline.run(
             scenario_id=scenario_id,
             scenario=scenario,
+            coordinates=coordinates,
             clarification_answer=clarification_answer,
-            bypass_pre_rag=bypass_pre_rag
+            bypass_pre_rag=bypass_pre_rag,
+            follow_up_data=follow_up_data
         )
         if not plan:
             return jsonify({"error": "Failed to generate RAG plan"}), 500
@@ -303,11 +311,14 @@ def rag_plan_endpoint():
             "can_proceed_to_rag": plan.get("can_proceed_to_rag", True),
             "needs_clarification": plan.get("needs_clarification", False),
             "pre_rag_intake": plan.get("pre_rag_intake"),
+            "intake_record": plan.get("intake_record") or (plan.get("pre_rag_intake") or {}).get("intake_record"),
             "severity": plan.get("severity"),
             "action": plan.get("action"),
             "clarifying_questions": plan.get("clarifying_questions", []),
             "missing_info": plan.get("missing_info", []),
             "disaster_assessment": plan.get("disaster_assessment"),
+            "structured_facts": plan.get("structured_facts", {}),
+            "incident_type": plan.get("incident_type") or (plan.get("intake_record") or {}).get("incident_type") or (plan.get("disaster_assessment") or {}).get("incident_type"),
             "plan": plan,
             "assessment": plan.get("assessment"),
             "situation": plan.get("situation"),

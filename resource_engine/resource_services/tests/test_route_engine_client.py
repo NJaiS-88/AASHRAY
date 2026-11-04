@@ -23,7 +23,7 @@ from resource_services.services.route_engine_client import (
 )
 
 
-RULES_PATH = "resource_services/config/resource_rules.json"
+RULES_PATH = "resource_services/config/resource_rules_v2.json"
 WAREHOUSES_PATH = "resource_services/database/warehouses.json"
 
 SAMPLE_POLYLINE = "_p~iF~ps|U_ulLnnqC_mqNvxq`@"
@@ -608,7 +608,8 @@ def test_orchestrator_keeps_aashray_mission_id_and_sends_leg_ids(tmp_path):
         route_engine_client=client,
     )
 
-    # 800 affected people need stock from two warehouses (WH001, WH002).
+    # 50 affected people with 2 selected resources need stock from two
+    # warehouses (WH001 fills most, WH002 covers the remainder).
     request = OrchestrationRequest(
         incident_id="INC-TWO-PICKUPS",
         incident_type="FLOOD",
@@ -619,10 +620,11 @@ def test_orchestrator_keeps_aashray_mission_id_and_sends_leg_ids(tmp_path):
             "name": "Test Locality",
             "population": 20000,
             "population_density": 12000,
-            "affected_population": 800,
+            "affected_population": 50,
         },
         urgency=0.9,
         priority="HIGH",
+        selected_resource_ids=["drinking_water", "food_dry_rations"],
     )
 
     result = orchestrator.run(request)

@@ -126,3 +126,17 @@ class OrchestrationResult(BaseModel):
     route: RouteBoundaryResult | None = None
 
     error: OrchestrationError | None = None
+
+    phase: Literal[
+        "SINGLE_PHASE",
+        "IMMEDIATE_RESPONSE",
+        "FOLLOW_UP_LOGISTICS",
+        "TWO_PHASE_COORDINATED",
+    ] | None = None
+
+    parent_mission_id: str | None = None
+
+    sub_missions: list["OrchestrationResult"] = Field(default_factory=list)
+
+
+OrchestrationResult.model_rebuild()

@@ -63,7 +63,7 @@ export async function getRoadIncidents({ bottomLeft, topRight }) {
       'X-API-Key': apiKey,
       'Accept': 'application/json'
     },
-    timeout: 30000
+    timeout: 800
   });
 
   const data = response.data || {};

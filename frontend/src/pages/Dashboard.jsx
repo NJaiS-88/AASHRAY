@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../api/axiosClient';
 import useAuthStore from '../store/useAuthStore';
 import MapComponent from '../components/MapComponent';
@@ -39,12 +40,57 @@ export default function Dashboard() {
   const chatEndRef = useRef(null);
   
   const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
+  const isAdmin = user?.role === 'admin';
 
-  // Fetch entries on load
-  const fetchEntries = async () => {
+  const [conversations, setConversations] = useState([]);
+  const [activeConversationId, setActiveConversationId] = useState(null);
+  const [showClearModal, setShowClearModal] = useState(false);
+  const [isClearing, setIsClearing] = useState(false);
+  const [clearError, setClearError] = useState(null);
+
+  const handleClearConversations = async () => {
     try {
-      const res = await axiosClient.get('/entries');
+      setIsClearing(true);
+      setClearError(null);
+      const res = await axiosClient.delete('/entries');
+      if (res.data?.status === 'success' || res.status === 200) {
+        setConversations([]);
+        setEntries([]);
+        setActiveConversationId(null);
+        setShowClearModal(false);
+      } else {
+        setClearError(res.data?.message || 'Failed to clear conversations');
+      }
+    } catch (err) {
+      console.error('Failed to clear conversations:', err);
+      setClearError(err.response?.data?.message || err.message || 'Failed to clear conversations');
+    } finally {
+      setIsClearing(false);
+    }
+  };
+
+  // Fetch conversations list
+  const fetchConversations = async () => {
+    try {
+      const res = await axiosClient.get('/entries/conversations');
+      const convList = res.data || [];
+      setConversations(convList);
+      return convList;
+    } catch (err) {
+      console.error('Failed to fetch conversations:', err);
+      return [];
+    }
+  };
+
+  // Fetch entries (thread-scoped or default)
+  const fetchEntries = async (convId = null) => {
+    try {
+      setLoadingHistory(true);
+      const targetId = convId !== null ? convId : activeConversationId;
+      const url = targetId ? `/entries?conversationId=${encodeURIComponent(targetId)}` : '/entries';
+      const res = await axiosClient.get(url);
       setEntries(res.data || []);
     } catch (err) {
       console.error('Failed to fetch entries:', err);
@@ -53,10 +99,24 @@ export default function Dashboard() {
     }
   };
 
+  const handleSelectConversation = (convId) => {
+    setActiveConversationId(convId);
+    fetchEntries(convId);
+  };
+
+  const handleNewChat = () => {
+    setActiveConversationId(null);
+    setEntries([]);
+  };
+
   const [generatingRagId, setGeneratingRagId] = useState(null);
   const [rawJsonEntry, setRawJsonEntry] = useState(null);
   const [clarificationInputs, setClarificationInputs] = useState({});
   const [submittingClarifyId, setSubmittingClarifyId] = useState(null);
+  const [populationInputs, setPopulationInputs] = useState({});
+  const [populationErrors, setPopulationErrors] = useState({});
+  const [selectedHazards, setSelectedHazards] = useState({});
+  const [selectedChips, setSelectedChips] = useState({});
 
   const handleGenerateRag = async (entryId) => {
     try {
@@ -74,19 +134,252 @@ export default function Dashboard() {
 
   const handleClarifySubmit = async (entryId) => {
     const text = (clarificationInputs[entryId] || '').trim();
-    if (!text) return;
+    const rawPop = populationInputs[entryId];
+    let parsedPop = undefined;
+    if (rawPop !== undefined && rawPop !== null && String(rawPop).trim() !== '') {
+      parsedPop = parseInt(rawPop, 10);
+      if (isNaN(parsedPop) || parsedPop <= 0) {
+        setPopulationErrors((prev) => ({ ...prev, [entryId]: 'Please enter a valid positive number (> 0)' }));
+        return;
+      }
+    }
+    setPopulationErrors((prev) => ({ ...prev, [entryId]: null }));
+
+    const hazardType = selectedHazards[entryId] || undefined;
+    const chips = selectedChips[entryId] || [];
+
+    if (!text && parsedPop === undefined && !hazardType && chips.length === 0) {
+      return;
+    }
+
     try {
       setSubmittingClarifyId(entryId);
-      const res = await axiosClient.post(`/entries/${entryId}/clarify`, { clarification: text });
+      const res = await axiosClient.post(`/entries/${entryId}/clarify`, {
+        clarification: text,
+        affected_population: parsedPop,
+        incident_type: hazardType,
+        hazard_details: chips
+      });
       if (res.data) {
         setEntries((prev) => prev.map((e) => (e._id === entryId ? res.data : e)));
         setClarificationInputs((prev) => ({ ...prev, [entryId]: '' }));
+        setPopulationInputs((prev) => ({ ...prev, [entryId]: '' }));
+        setSelectedHazards((prev) => ({ ...prev, [entryId]: undefined }));
+        setSelectedChips((prev) => ({ ...prev, [entryId]: [] }));
       }
     } catch (err) {
       console.error('Failed to submit clarification:', err);
     } finally {
       setSubmittingClarifyId(null);
     }
+  };
+
+  const renderClarificationBox = (entry) => {
+    const rawPlan = entry.ragReport?.plan || entry.ragReport;
+    const questions = entry.intakeRecord?.clarifying_questions?.length 
+      ? entry.intakeRecord.clarifying_questions 
+      : (entry.ragReport?.clarifying_questions?.length 
+          ? entry.ragReport.clarifying_questions 
+          : (rawPlan?.clarifying_questions || []));
+
+    const detectedType = entry.intakeRecord?.incident_type || entry.ragReport?.intake_record?.incident_type || 'other_or_unknown';
+    const activeHazard = selectedHazards[entry._id] || (detectedType !== 'other_or_unknown' ? detectedType : null);
+    const existingPop = entry.intakeRecord?.affected_population;
+    const popError = populationErrors[entry._id];
+
+    const hazardChoices = [
+      { label: 'Flooding / Waterlogging', value: 'flooding_waterlogging' },
+      { label: 'Building Collapse', value: 'building_collapse' },
+      { label: 'Fire / Explosion', value: 'fire' },
+      { label: 'Landslide / Mudslide', value: 'landslide' },
+      { label: 'Road Accident', value: 'road_accident' },
+      { label: 'Medical Emergency', value: 'medical_emergency' }
+    ];
+
+    const hazardDetailChips = {
+      flooding_waterlogging: [
+        'Water level rising rapidly',
+        'People stranded on roof / upper floor',
+        'Road access submerged / blocked',
+        'Power lines / transformers submerged'
+      ],
+      building_collapse: [
+        'People trapped under rubble',
+        'Crush injuries / medical emergency',
+        'Alley blocked by structural debris',
+        'Secondary collapse risk'
+      ],
+      fire: [
+        'Active blaze spreading rapidly',
+        'People trapped inside by heavy smoke',
+        'Gas cylinders / chemicals nearby',
+        'Stairwell access blocked'
+      ],
+      landslide: [
+        'Mud and rock blocking roadway',
+        'Houses buried / structurally damaged',
+        'Active slope movement'
+      ],
+      road_accident: [
+        'Passengers trapped inside vehicle',
+        'Multi-vehicle highway collision',
+        'Fuel leak hazard'
+      ],
+      medical_emergency: [
+        'Severe bleeding / trauma',
+        'Patient unconscious / unresponsive',
+        'Breathing difficulty'
+      ]
+    };
+
+    const activeChips = activeHazard && hazardDetailChips[activeHazard] ? hazardDetailChips[activeHazard] : [];
+
+    return (
+      <div className="mt-3 p-4 bg-amber-50/90 border border-amber-300 rounded-xl text-amber-950 text-xs space-y-3 shadow-xs">
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-1.5 text-amber-900 font-bold font-mono text-[11px] uppercase tracking-wider">
+            <span>⚠️</span> Clarification Needed (Orchestration Paused)
+          </span>
+          <span className="text-[10px] bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded font-semibold">
+            Missing Operational Details
+          </span>
+        </div>
+
+        <p className="text-[11px] text-amber-900/90 leading-relaxed">
+          Please clarify the genuinely missing information below so emergency dispatch can mobilize the exact required equipment:
+        </p>
+
+        {questions.length > 0 && (
+          <div className="space-y-1.5 bg-white/95 p-3 rounded-lg border border-amber-200 shadow-2xs">
+            <div className="text-[10px] uppercase font-bold text-amber-800 font-mono">Missing Information Questions:</div>
+            <ul className="list-disc list-inside space-y-1 text-[11px] text-zinc-800 font-medium">
+              {questions.map((q, qIdx) => (
+                <li key={qIdx}>{q}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Affected Population Section */}
+        {existingPop ? (
+          <div className="flex items-center gap-2 p-2.5 bg-emerald-50 border border-emerald-300 rounded-lg text-emerald-900 text-[11px] font-medium">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+            <span>Affected Population: <strong>{existingPop} people</strong> (Extracted from report)</span>
+          </div>
+        ) : (
+          <div className="p-3 bg-white/95 border border-amber-200 rounded-lg space-y-1.5 shadow-2xs">
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-amber-900 font-mono">
+              Estimated Affected Population <span className="text-red-600">*</span>:
+            </label>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min="1"
+                step="1"
+                placeholder="e.g. 5, 20, 100"
+                value={populationInputs[entry._id] ?? ''}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setPopulationInputs((prev) => ({ ...prev, [entry._id]: val }));
+                  if (populationErrors[entry._id]) {
+                    setPopulationErrors((prev) => ({ ...prev, [entry._id]: null }));
+                  }
+                }}
+                className="w-36 bg-amber-50/40 border border-amber-300 rounded-md px-2.5 py-1.5 text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-amber-600 font-mono font-semibold"
+              />
+              <span className="text-[11px] text-amber-900">persons in immediate danger / needing evacuation</span>
+            </div>
+            {popError && (
+              <p className="text-[10px] text-red-600 font-semibold">{popError}</p>
+            )}
+          </div>
+        )}
+
+        {/* Context-Aware Quick Selection */}
+        {!activeHazard && (
+          <div className="space-y-1.5 pt-0.5">
+            <span className="text-[10px] text-amber-900 font-bold uppercase tracking-wider font-mono">
+              Select Incident Hazard Type:
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {hazardChoices.map((h) => (
+                <button
+                  key={h.value}
+                  type="button"
+                  onClick={() => setSelectedHazards((prev) => ({ ...prev, [entry._id]: h.value }))}
+                  className="px-2.5 py-1 bg-white hover:bg-amber-100 border border-amber-300 hover:border-amber-400 rounded-md text-[11px] text-amber-950 font-medium transition-colors cursor-pointer shadow-2xs"
+                >
+                  {h.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeHazard && activeChips.length > 0 && (
+          <div className="space-y-1.5 pt-0.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] text-amber-900 font-bold uppercase tracking-wider font-mono">
+                Specific Hazard Indicators ({activeHazard.replace(/_/g, ' ')}):
+              </span>
+              <span className="text-[9px] text-amber-700 font-mono">Click to toggle indicator</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {activeChips.map((chip) => {
+                const isSelected = (selectedChips[entry._id] || []).includes(chip);
+                return (
+                  <button
+                    key={chip}
+                    type="button"
+                    onClick={() => {
+                      setSelectedChips((prev) => {
+                        const cur = prev[entry._id] || [];
+                        return {
+                          ...prev,
+                          [entry._id]: isSelected ? cur.filter((c) => c !== chip) : [...cur, chip]
+                        };
+                      });
+                    }}
+                    className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-colors cursor-pointer border ${
+                      isSelected
+                        ? 'bg-amber-700 text-white border-amber-800 shadow-xs'
+                        : 'bg-white hover:bg-amber-100/70 text-amber-950 border-amber-300 shadow-2xs'
+                    }`}
+                  >
+                    {isSelected ? '✓ ' : '+ '} {chip}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Text Input & Submit */}
+        <div className="pt-1 flex gap-2">
+          <input
+            type="text"
+            placeholder="Type any additional situational details or confirm above..."
+            value={clarificationInputs[entry._id] || ''}
+            onChange={(e) => setClarificationInputs((prev) => ({ ...prev, [entry._id]: e.target.value }))}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleClarifySubmit(entry._id);
+              }
+            }}
+            className="flex-1 bg-white border border-amber-300 rounded-lg px-3 py-2 text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-amber-600 shadow-2xs"
+          />
+          <button
+            type="button"
+            disabled={submittingClarifyId === entry._id}
+            onClick={() => handleClarifySubmit(entry._id)}
+            className="bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white font-semibold px-4 py-2 rounded-lg text-xs transition-colors cursor-pointer shrink-0 shadow-sm"
+          >
+            {submittingClarifyId === entry._id ? 'Dispatching...' : 'Confirm Details & Orchestrate'}
+          </button>
+        </div>
+      </div>
+    );
   };
 
   // UI Triage & Evidence View State
@@ -198,7 +491,14 @@ export default function Dashboard() {
   const [isSlowConnection, setIsSlowConnection] = useState(false);
 
   useEffect(() => {
-    fetchEntries();
+    fetchConversations().then((convList) => {
+      if (convList && convList.length > 0) {
+        setActiveConversationId(convList[0].conversationId);
+        fetchEntries(convList[0].conversationId);
+      } else {
+        fetchEntries(null);
+      }
+    });
     // Get initial location automatically
     getCurrentLocation();
 
@@ -251,6 +551,7 @@ export default function Dashboard() {
     try {
       await axiosClient.post('/auth/logout');
       logout();
+      navigate('/');
     } catch (err) {
       console.error('Logout failed', err);
     }
@@ -464,13 +765,19 @@ export default function Dashboard() {
         audioText: finalAudioText,
         imageCaption: finalImageCaption,
         location: location,
+        conversationId: activeConversationId || undefined,
         clientTimestamp: new Date().toISOString(),
       };
 
-      await axiosClient.post('/entries', payload);
-
-      // Refresh entries
-      await fetchEntries();
+      const res = await axiosClient.post('/entries', payload);
+      const created = res.data;
+      if (created && created.conversationId) {
+        setActiveConversationId(created.conversationId);
+        await fetchEntries(created.conversationId);
+      } else {
+        await fetchEntries(activeConversationId);
+      }
+      await fetchConversations();
 
       // Reset prompt input elements & promise refs
       setText('');
@@ -500,27 +807,22 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-white text-zinc-900 overflow-hidden font-sans relative">
+    <div className="flex h-screen overflow-hidden relative" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}>
       {/* Sidebar for chat history */}
       <div 
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-zinc-50 border-r border-zinc-200/80 flex flex-col transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{ background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)' }}
       >
-        <div className="p-4 border-b border-zinc-200 flex justify-between items-center bg-white">
-          <span className="font-bold text-sm tracking-wider text-zinc-900">AASHRAY</span>
+        <div className="p-4 flex justify-between items-center" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
+          <span className="font-bold text-sm tracking-wider" style={{ color: 'var(--brand)', fontFamily: 'var(--font-headline)' }}>AASHRAY</span>
           <div className="flex items-center gap-1.5">
             <button
-              onClick={async () => {
-                try {
-                  await axiosClient.delete('/entries');
-                  setEntries([]);
-                } catch (e) {
-                  console.error('Failed to clear chats:', e);
-                }
-              }}
-              title="Clear all chat history from backend"
-              className="text-[10px] font-semibold bg-zinc-100 hover:bg-zinc-200 text-zinc-700 px-2 py-1 rounded transition-colors flex items-center gap-1 border border-zinc-200"
+              onClick={handleNewChat}
+              title="Start a new emergency conversation"
+              className="text-[11px] font-semibold px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer"
+              style={{ background: 'var(--brand)', color: '#ffffff', border: 'none' }}
             >
               <span>+ New Chat</span>
             </button>
@@ -535,34 +837,67 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Entry History List */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-1">
-          {loadingHistory ? (
-            <div className="text-xs text-zinc-400 px-2 font-mono">Loading...</div>
-          ) : entries.length === 0 ? (
-            <div className="text-xs text-zinc-400 px-2 italic font-mono">No entries</div>
+        {/* Conversation Threads List */}
+        <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
+          <div className="flex items-center justify-between px-2 py-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--muted-text)' }}>
+              Conversations ({conversations.length})
+            </span>
+            {conversations.length > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setClearError(null);
+                  setShowClearModal(true);
+                }}
+                title="Clear conversations"
+                className="text-[10px] font-semibold flex items-center gap-1 px-1.5 py-0.5 rounded transition-colors text-zinc-400 hover:text-rose-600 hover:bg-rose-50 cursor-pointer"
+              >
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                <span>Clear</span>
+              </button>
+            )}
+          </div>
+          {loadingHistory && conversations.length === 0 ? (
+            <div className="text-xs text-zinc-400 px-2 font-mono">Loading threads...</div>
+          ) : conversations.length === 0 ? (
+            <div className="text-xs text-zinc-400 px-2 italic font-mono">No previous threads</div>
           ) : (
-            entries.map((entry, idx) => {
-              const isDisaster = entry.disasterReport?.label === 'disaster';
+            conversations.map((conv) => {
+              const isActive = activeConversationId === conv.conversationId;
+              const isClarify = conv.status === 'NEEDS_CLARIFICATION';
               return (
                 <button
-                  key={entry._id || idx}
-                  onClick={() => {
-                    const el = document.getElementById(`entry-${entry._id}`);
-                    el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }}
-                  className={`w-full text-left px-2.5 py-2 rounded-lg text-xs transition-all overflow-hidden text-ellipsis whitespace-nowrap flex items-center gap-1.5 ${
-                    isDisaster
-                      ? 'bg-red-50 hover:bg-red-100 text-red-800 border border-red-200/60'
-                      : 'hover:bg-zinc-200/60 text-zinc-600 hover:text-zinc-900'
+                  key={conv.conversationId}
+                  onClick={() => handleSelectConversation(conv.conversationId)}
+                  className={`w-full text-left px-3 py-2.5 rounded-xl text-xs transition-all flex flex-col gap-1 border cursor-pointer ${
+                    isActive
+                      ? 'shadow-sm'
+                      : 'hover:bg-zinc-100/80 border-transparent text-zinc-600'
                   }`}
+                  style={{
+                    background: isActive ? 'var(--brand-light, #EFF6FF)' : 'transparent',
+                    borderColor: isActive ? 'var(--brand)' : 'transparent',
+                    color: isActive ? 'var(--brand)' : 'inherit'
+                  }}
                 >
-                  {isDisaster && (
-                    <span className="shrink-0 text-[10px] animate-pulse">🚨</span>
+                  <div className="flex items-center justify-between gap-1 w-full">
+                    <span className="font-semibold truncate text-xs" style={{ color: isActive ? 'var(--brand)' : 'var(--heading-text)' }}>
+                      {conv.conversationTitle}
+                    </span>
+                    {isClarify ? (
+                      <span className="shrink-0 text-[9px] font-bold px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded">Clarify</span>
+                    ) : (
+                      <span className="shrink-0 text-[9px] font-mono opacity-60">{conv.messageCount} msg</span>
+                    )}
+                  </div>
+                  {conv.lastMessage && (
+                    <span className="text-[11px] truncate opacity-70 w-full" style={{ color: 'var(--muted-text)' }}>
+                      {conv.lastMessage}
+                    </span>
                   )}
-                  <span className="truncate">
-                    {entry.text1 || entry.text || (entry.audioText ? `🎙️ ${entry.audioText}` : '📷 Captured photo')}
-                  </span>
                 </button>
               );
             })
@@ -570,9 +905,9 @@ export default function Dashboard() {
         </div>
 
         {/* User profile footer */}
-        <div className="p-4 border-t border-zinc-200 bg-white flex items-center justify-between">
+        <div className="p-4 flex items-center justify-between" style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-card)' }}>
           <div className="flex items-center gap-2 overflow-hidden">
-            <div className="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center font-bold text-zinc-700 text-xs uppercase">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs uppercase" style={{ background: 'var(--brand-light)', color: 'var(--brand)' }}>
               {user?.email?.charAt(0) || 'U'}
             </div>
             <div className="overflow-hidden">
@@ -592,9 +927,9 @@ export default function Dashboard() {
       </div>
 
       {/* Main chat window container */}
-      <div className="flex-1 flex flex-col min-w-0 md:pl-64 bg-white">
+      <div className="flex-1 flex flex-col min-w-0 md:pl-64" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <header className="h-14 border-b border-zinc-200 bg-white flex items-center justify-between px-4">
+        <header className="h-14 flex items-center justify-between px-4" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -604,10 +939,26 @@ export default function Dashboard() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="font-bold text-zinc-900 text-sm tracking-wider">AASHRAY</span>
+            <span className="font-bold text-sm tracking-wider" style={{ color: 'var(--brand)', fontFamily: 'var(--font-headline)' }}>AASHRAY</span>
           </div>
 
           <div className="flex items-center gap-2">
+            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full border" style={{
+              background: isAdmin ? 'var(--primary-soft)' : 'var(--bg-secondary)',
+              borderColor: isAdmin ? 'var(--brand-muted)' : 'var(--border)',
+              color: isAdmin ? 'var(--brand)' : 'var(--muted-text)'
+            }}>
+              {isAdmin ? 'Operations Admin' : 'Citizen Reporter'}
+            </span>
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="text-[11px] font-semibold px-2.5 py-1 rounded-full border transition-all flex items-center gap-1 hover:shadow-sm"
+                style={{ background: 'var(--surface-white)', borderColor: 'var(--border)', color: 'var(--brand)' }}
+              >
+                Logistics Console &rarr;
+              </Link>
+            )}
             <button
               type="button"
               onClick={getCurrentLocation}
@@ -618,7 +969,7 @@ export default function Dashboard() {
                   : 'border-zinc-200 bg-white text-zinc-500 hover:text-zinc-800'
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${location ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${location ? 'bg-indigo-600' : 'bg-slate-300'}`} />
               {locating ? 'Locating...' : 'GPS Active'}
             </button>
           </div>
@@ -641,9 +992,24 @@ export default function Dashboard() {
         {/* Chat Feed */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           {entries.length === 0 && !isSubmitting ? (
-            /* Welcome Empty State */
-            <div className="h-full flex flex-col items-center justify-center max-w-xl mx-auto text-center space-y-2">
-              <h2 className="text-2xl font-bold tracking-wider text-zinc-900">AASHRAY</h2>
+            /* Welcome Hero Section */
+            <div className="h-full flex flex-col items-center justify-center max-w-xl mx-auto text-center px-4 py-12 space-y-4">
+              <span className="text-[11px] font-mono uppercase tracking-widest font-semibold px-3 py-1 rounded-full border" style={{ background: 'var(--bg-badge)', color: 'var(--brand)', borderColor: 'var(--border)' }}>
+                AASHRAY DISASTER INTELLIGENCE PLATFORM
+              </span>
+              <h1 className="text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-headline)', color: 'var(--heading-text)' }}>
+                Autonomous <span style={{ color: 'var(--brand)' }}>Disaster Triage</span> &amp; Response
+              </h1>
+              <p className="text-sm leading-relaxed max-w-md" style={{ color: 'var(--muted-text)' }}>
+                {isAdmin
+                  ? "Operational console for disaster triage verification, 30-resource taxonomy evaluation, and logistics dispatch."
+                  : "Submit emergency reports with voice, text, photo, and live location coordinates for instant verified guidance."}
+              </p>
+              <div className="pt-2 flex items-center gap-2">
+                <span className="text-xs font-medium px-3 py-1 rounded-lg border" style={{ background: 'var(--surface-white)', borderColor: 'var(--border)', color: 'var(--body-text)' }}>
+                  Active Mode: <strong style={{ color: 'var(--heading-text)' }}>{isAdmin ? 'Operations Commander' : 'Citizen Reporter'}</strong>
+                </span>
+              </div>
             </div>
           ) : (
             <div className="max-w-2xl mx-auto space-y-6">
@@ -704,7 +1070,7 @@ export default function Dashboard() {
                       )}
 
                       {/* Similarity Validation report trigger */}
-                      {(entry.similarityReport || entry.disasterReport || entry.ragReport) && (
+                      {isAdmin && (entry.similarityReport || entry.disasterReport || entry.ragReport) && (
                         <button
                           type="button"
                           onClick={() => setActiveReport({ similarity: entry.similarityReport, disaster: entry.disasterReport, rag: entry.ragReport })}
@@ -716,8 +1082,8 @@ export default function Dashboard() {
                             <span className={`w-1.5 h-1.5 rounded-full ${entry.similarityReport.status === 'RELATED' ? 'bg-emerald-500' : 'bg-red-500'}`} />
                           ) : null}
                           <span>Behind the Scenes
-                            {entry.disasterReport?.label === 'disaster' && ' · 🚨 DISASTER'}
-                            {entry.ragReport && ' · 🛡️ RAG PLAN'}
+                            {entry.disasterReport?.label === 'disaster' && ' · [DISASTER]'}
+                            {entry.ragReport && ' · [RAG PLAN]'}
                             {entry.similarityReport && ` (${entry.similarityReport.status})`}
                           </span>
                         </button>
@@ -735,7 +1101,7 @@ export default function Dashboard() {
 
                   {/* Assistant response */}
                   <div className="flex gap-3 items-start">
-                    <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-white shrink-0 shadow-sm">
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow-sm" style={{ background: 'var(--brand)', color: '#fff' }}>
                       A
                     </div>
                     <div className="flex flex-col gap-1 max-w-[85%]">
@@ -761,7 +1127,7 @@ export default function Dashboard() {
                         )}
 
                         {/* ── JEV v3 Triage, RAG & Report: 3 Simplified Views (Section I) ── */}
-                        {entry.ragReport?.plan ? (() => {
+                        {(entry.ragReport && (entry.ragReport.plan || entry.ragReport.person_message || entry.ragReport.situation)) ? (() => {
                           const plan = entry.ragReport.plan || entry.ragReport;
                           const unified = plan.unified_assessment || plan.assessment || entry.ragReport.assessment || entry.ragReport.jev_assessment || {};
                           const personMessage = plan.person_message || entry.ragReport.person_message;
@@ -909,12 +1275,156 @@ export default function Dashboard() {
                             : (unified.urgency_window || '');
 
                           const pColor = pLevel === 'P1'
-                            ? 'bg-red-500/20 text-red-300 border-red-500/40 ring-1 ring-red-500/30'
+                            ? 'bg-red-50 text-red-700 border-red-200 ring-1 ring-red-100'
                             : pLevel === 'P2'
-                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 ring-1 ring-amber-500/30'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200 ring-1 ring-amber-100'
                             : pLevel === 'P3'
-                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/40 ring-1 ring-blue-500/30'
-                            : 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40';
+                            ? 'bg-blue-50 text-blue-700 border-blue-200 ring-1 ring-blue-100'
+                            : 'bg-zinc-50 text-zinc-700 border-zinc-200';
+
+                          // ── Non-admin early return: show only citizen advisory ──
+                          if (!isAdmin) {
+                            return (
+                              <div className="mt-3 space-y-4 text-left">
+                                <div className="p-4 rounded-xl shadow-sm" style={{ background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: 'var(--radius-card)' }}>
+                                  <div className="flex items-center justify-between pb-2.5 mb-3" style={{ borderBottom: '1px solid #BBF7D0' }}>
+                                    <div className="flex items-center gap-2">
+                                      <span className="w-2 h-2 rounded-full" style={{ background: 'var(--success)' }} />
+                                      <span className="text-xs font-bold uppercase tracking-wider font-mono" style={{ color: 'var(--accent-emerald)' }}>
+                                        Emergency Response Advisory
+                                      </span>
+                                    </div>
+                                    <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full" style={{ background: '#DCFCE7', color: '#166534' }}>
+                                      Verified Citizen Guidance
+                                    </span>
+                                  </div>
+                                  <div className="p-3.5 rounded-lg text-xs leading-relaxed font-sans" style={{ background: 'var(--bg-card)', border: '1px solid #BBF7D0', color: 'var(--text-primary)' }}>
+                                    {personMessage ? (
+                                      <p className="whitespace-pre-line">{personMessage}</p>
+                                    ) : situation ? (
+                                      <p className="whitespace-pre-line">{situation}</p>
+                                    ) : (
+                                      <p className="italic" style={{ color: 'var(--text-secondary)' }}>
+                                        Emergency responders have been alerted for your coordinates. Please move to safe, higher ground if hazards are rising. Keep phone lines open.
+                                      </p>
+                                    )}
+                                  </div>
+                                  {(entry.ragReport?.needs_clarification || plan?.needs_clarification) && renderClarificationBox(entry)}
+
+                                  {/* Verified Reporter-Facing Mission Status (Requirement 6) */}
+                                  {entry.missionUpdate && (
+                                    <div className="mt-3 p-4 rounded-xl border shadow-sm flex flex-col gap-3" style={{ background: '#F8FAFC', borderColor: '#CBD5E1' }}>
+                                      <div className="flex items-center justify-between pb-2 border-b" style={{ borderColor: '#E2E8F0' }}>
+                                        <div className="flex items-center gap-2">
+                                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                                          <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                                            Emergency Dispatch Active
+                                          </span>
+                                        </div>
+                                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                                          {entry.missionUpdate.status}
+                                        </span>
+                                      </div>
+
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                        <div className="p-2.5 rounded-lg bg-white border border-slate-200 flex flex-col">
+                                          <span className="text-[10px] text-slate-500 uppercase font-semibold">Mission Reference ID</span>
+                                          <span className="font-mono font-bold text-slate-800 mt-0.5">{entry.missionUpdate.mission_id}</span>
+                                        </div>
+                                        <div className="p-2.5 rounded-lg bg-white border border-slate-200 flex flex-col">
+                                          <span className="text-[10px] text-slate-500 uppercase font-semibold">Estimated Responder Arrival</span>
+                                          <span className={`font-bold mt-0.5 flex items-center gap-1.5 ${entry.missionUpdate.emergency_threshold_exceeded ? 'text-amber-700' : 'text-emerald-700'}`}>
+                                            <span>⏱️</span> {entry.missionUpdate.eta_display || 'En route'}
+                                          </span>
+                                          {entry.missionUpdate.emergency_threshold_exceeded && (
+                                            <span className="text-[10px] font-medium text-amber-700 mt-1 flex items-center gap-1">
+                                              <span>⚠️</span> Operational target exceeded ({entry.missionUpdate.emergency_threshold_minutes || 90}m) — priority escort active
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      {/* Citizen-Facing Resource Summary: Plain text, maximum eight resources */}
+                                      {(() => {
+                                        const confirmed = (entry.missionUpdate.confirmed_resources || [])
+                                          .filter(r => Number(r.quantity) > 0);
+                                        const totalCount = confirmed.length;
+                                        const allocStatus = entry.missionUpdate.allocation_status;
+                                        const isPending = entry.status === 'ORCHESTRATING' || allocStatus === 'PENDING';
+                                        const isFailed = allocStatus === 'FAILED';
+                                        const isNoStock = allocStatus === 'NO_STOCK_AVAILABLE' || allocStatus === 'STOCK_EXHAUSTED';
+                                        const isPartiallyFulfilled = entry.missionUpdate.fulfilment_status === 'PARTIALLY_FULFILLED' || allocStatus === 'PARTIALLY_FULFILLED';
+                                        
+                                        // Deterministic stable ordering: sort by allocated quantity descending, then alphabetical by name
+                                        const displayed = [...confirmed]
+                                          .sort((a, b) => (Number(b.quantity) - Number(a.quantity)) || a.resource_name.localeCompare(b.resource_name))
+                                          .slice(0, 8);
+
+                                        return (
+                                          <div className="flex flex-col gap-1.5 text-xs text-slate-700 pt-1">
+                                            <div className="flex items-center justify-between">
+                                              <span className="font-bold text-slate-800">Resources allocated</span>
+                                              {isPartiallyFulfilled && totalCount > 0 && (
+                                                <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                                                  Partially Fulfilled
+                                                </span>
+                                              )}
+                                              {allocStatus === 'FULLY_FULFILLED' && totalCount > 0 && (
+                                                <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                                                  Fully Allocated
+                                                </span>
+                                              )}
+                                            </div>
+                                            {isPending && totalCount === 0 ? (
+                                              <p className="text-slate-500 italic pl-1 flex items-center gap-1.5">
+                                                <span className="inline-block w-2 h-2 rounded-full bg-indigo-500 animate-ping" />
+                                                <span>Allocation in progress...</span>
+                                              </p>
+                                            ) : isFailed && totalCount === 0 ? (
+                                              <p className="text-rose-600 italic pl-1">
+                                                Resource allocation unavailable (allocation failed)
+                                              </p>
+                                            ) : isNoStock && totalCount === 0 ? (
+                                              <p className="text-amber-700 italic pl-1">
+                                                No inventory in stock for required supplies (shortage reported)
+                                              </p>
+                                            ) : totalCount === 0 ? (
+                                              <p className="text-slate-500 italic pl-1">No resources allocated yet</p>
+                                            ) : (
+                                              <ul className="space-y-1 pl-1">
+                                                {displayed.map((item, idx) => {
+                                                  const unitStr = item.unit || 'units';
+                                                  return (
+                                                    <li key={idx} className="leading-relaxed flex items-baseline gap-1.5 text-slate-800">
+                                                      <span className="text-slate-400 select-none">-</span>
+                                                      <span className="font-medium">{item.resource_name}</span>
+                                                      <span className="text-slate-400">—</span>
+                                                      <span className="font-mono text-slate-700">{item.quantity} {unitStr}</span>
+                                                    </li>
+                                                  );
+                                                })}
+                                              </ul>
+                                            )}
+                                            {totalCount > 8 && (
+                                              <p className="text-[11px] text-slate-500 italic mt-0.5 pl-1">
+                                                Showing 8 of {totalCount} allocated resource types.
+                                              </p>
+                                            )}
+                                          </div>
+                                        );
+                                      })()}
+
+                                      <div className="text-[11px] text-slate-600 bg-slate-100/70 p-2.5 rounded-lg border border-slate-200 flex items-center justify-between">
+                                        <span>🚨 If immediate life danger or hazards escalate, dial <strong>112</strong> or <strong>108</strong> directly.</span>
+                                        <span className="text-[10px] text-slate-400 font-mono">Live Dispatch Verified</span>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          }
+
 
                           return (
                             <div className="mt-3 space-y-4 text-left">
@@ -922,71 +1432,29 @@ export default function Dashboard() {
                               {/* VIEW 1: WHAT THE PERSON SEES (CITIZEN ADVISORY)               */}
                               {/* Plain language, no codes, person_message only                 */}
                               {/* ───────────────────────────────────────────────────────────── */}
-                              <div className="p-4 bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-950 text-zinc-100 rounded-xl border border-emerald-500/30 shadow-md">
-                                <div className="flex items-center justify-between border-b border-emerald-500/20 pb-2.5 mb-3">
+                              <div className="p-4 rounded-xl shadow-sm" style={{ background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: 'var(--radius-card)' }}>
+                                <div className="flex items-center justify-between pb-2.5 mb-3" style={{ borderBottom: '1px solid #BBF7D0' }}>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-base">📢</span>
-                                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span className="text-xs font-bold uppercase tracking-wider font-mono" style={{ color: 'var(--accent-emerald)' }}>
                                       1. What the Reporter Sees
                                     </span>
                                   </div>
-                                  <span className="text-[10px] text-emerald-300/70 font-sans italic">
-                                    Plain citizen advisory • No operational codes
+                                  <span className="text-[10px] font-sans italic" style={{ color: 'var(--text-tertiary)' }}>
+                                    Plain citizen advisory
                                   </span>
                                 </div>
-                                <div className="p-3.5 bg-emerald-950/40 border border-emerald-500/20 rounded-lg text-xs leading-relaxed text-emerald-100 font-sans">
+                                <div className="p-3.5 rounded-lg text-xs leading-relaxed font-sans" style={{ background: 'var(--bg-card)', border: '1px solid #BBF7D0', color: 'var(--text-primary)' }}>
                                   {personMessage ? (
                                     <p className="whitespace-pre-line">{personMessage}</p>
                                   ) : (
-                                    <p className="italic text-emerald-200/80">
+                                    <p className="italic" style={{ color: 'var(--text-secondary)' }}>
                                       Help has been alerted for your location. Please move to safe, higher ground if water or debris is rising. Keep phone lines open for responder contact.
                                     </p>
                                   )}
                                 </div>
 
-                                {plan?.needs_clarification && (
-                                  <div className="mt-3 p-3.5 bg-amber-950/60 border border-amber-500/40 rounded-lg text-amber-200 text-xs space-y-2">
-                                    <div className="flex items-center gap-2 text-amber-300 font-bold font-mono text-[11px] uppercase tracking-wider">
-                                      <span>⚠️</span> Pre-RAG Intake Clarification Needed
-                                    </div>
-                                    <p className="text-[11px] text-amber-200/90">
-                                      The query requires more information before emergency resources can be allocated.
-                                    </p>
-                                    {plan?.clarifying_questions?.length > 0 && (
-                                      <div className="space-y-1 bg-black/40 p-2.5 rounded border border-amber-500/20">
-                                        <div className="text-[10px] uppercase font-bold text-amber-400">Clarifying Questions:</div>
-                                        <ul className="list-disc list-inside space-y-0.5 text-[11px] text-zinc-200">
-                                          {plan.clarifying_questions.map((q, qIdx) => (
-                                            <li key={qIdx}>{q}</li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    )}
-                                    <div className="pt-1 flex gap-2">
-                                      <input
-                                        type="text"
-                                        placeholder="Type your answer to clarify (e.g. bleeding status, what is pinning leg, location)..."
-                                        value={clarificationInputs[entry._id] || ''}
-                                        onChange={(e) => setClarificationInputs((prev) => ({ ...prev, [entry._id]: e.target.value }))}
-                                        onKeyDown={(e) => {
-                                          if (e.key === 'Enter' && !e.shiftKey) {
-                                            e.preventDefault();
-                                            handleClarifySubmit(entry._id);
-                                          }
-                                        }}
-                                        className="flex-1 bg-slate-900 border border-amber-500/40 rounded px-2.5 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
-                                      />
-                                      <button
-                                        type="button"
-                                        disabled={submittingClarifyId === entry._id || !(clarificationInputs[entry._id] || '').trim()}
-                                        onClick={() => handleClarifySubmit(entry._id)}
-                                        className="bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white font-medium px-3 py-1.5 rounded text-xs transition-colors cursor-pointer shrink-0"
-                                      >
-                                        {submittingClarifyId === entry._id ? 'Evaluating...' : 'Submit & Re-Evaluate'}
-                                      </button>
-                                    </div>
-                                  </div>
-                                )}
+                                {plan?.needs_clarification && renderClarificationBox(entry)}
                               </div>
 
                               {/* ───────────────────────────────────────────────────────────── */}
@@ -995,12 +1463,12 @@ export default function Dashboard() {
                               {/* selected resource cards with why, how-to-use, what next,      */}
                               {/* and source badge (Document or Expert judgment)               */}
                               {/* ───────────────────────────────────────────────────────────── */}
-                              <div className="p-4 bg-slate-900 text-zinc-100 rounded-xl border border-slate-800 shadow-md space-y-4">
+                              <div className="p-4 rounded-xl shadow-sm space-y-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card)' }}>
                                 {/* Header / Incident Meta */}
-                                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                                <div className="flex flex-wrap items-center justify-between gap-2 pb-3" style={{ borderBottom: '1px solid var(--border)' }}>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-base">🚨</span>
-                                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">
+                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">TACTICAL</span>
+                                    <span className="text-xs font-bold uppercase tracking-wider font-mono" style={{ color: 'var(--brand)' }}>
                                       2. Dispatch Summary
                                     </span>
                                   </div>
@@ -1033,24 +1501,24 @@ export default function Dashboard() {
 
                                 {/* Severity and Urgency in Words (Invariant B2) */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                  <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
-                                    <div className="text-[10px] font-mono uppercase text-zinc-400 flex items-center justify-between">
+                                  <div className="p-2.5 rounded-lg" style={{ background: 'var(--bg-input)', border: '1px solid var(--border)' }}>
+                                    <div className="text-[10px] font-mono uppercase flex items-center justify-between" style={{ color: 'var(--text-tertiary)' }}>
                                       <span>Severity</span>
-                                      <span className="font-bold text-red-400">{sevLevel}</span>
+                                      <span className="font-bold" style={{ color: 'var(--severity-critical)' }}>{sevLevel}</span>
                                     </div>
-                                    <div className="text-xs font-semibold text-zinc-200 mt-1">
+                                    <div className="text-xs font-semibold mt-1" style={{ color: 'var(--text-primary)' }}>
                                       {sevWord}
                                     </div>
                                   </div>
-                                  <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
-                                    <div className="text-[10px] font-mono uppercase text-zinc-400 flex items-center justify-between">
+                                  <div className="p-2.5 rounded-lg" style={{ background: 'var(--bg-input)', border: '1px solid var(--border)' }}>
+                                    <div className="text-[10px] font-mono uppercase flex items-center justify-between" style={{ color: 'var(--text-tertiary)' }}>
                                       <span>Urgency</span>
-                                      <span className="font-bold text-amber-400">{urgLevel}</span>
+                                      <span className="font-bold" style={{ color: 'var(--accent-amber)' }}>{urgLevel}</span>
                                     </div>
-                                    <div className="text-xs font-semibold text-zinc-200 mt-1">
+                                    <div className="text-xs font-semibold mt-1" style={{ color: 'var(--text-primary)' }}>
                                       {urgWord}
                                       {urgWindow && (
-                                        <span className="text-zinc-400 font-normal font-mono text-[10px] ml-1.5">
+                                        <span className="font-normal font-mono text-[10px] ml-1.5" style={{ color: 'var(--text-tertiary)' }}>
                                           ({urgWindow})
                                         </span>
                                       )}
@@ -1088,13 +1556,14 @@ export default function Dashboard() {
                                       return (
                                         <div
                                           key={rIdx}
-                                          className="p-3 bg-slate-800/90 rounded-xl border border-slate-700 hover:border-slate-600 transition-all space-y-2.5"
+                                          className="p-3 rounded-xl transition-all space-y-2.5"
+                                          style={{ background: 'var(--bg-input)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card)' }}
                                         >
                                           {/* Card Header: Icon, Name, Band & Source Badge */}
-                                          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/60 pb-2">
+                                          <div className="flex flex-wrap items-center justify-between gap-2 pb-2" style={{ borderBottom: '1px solid var(--border)' }}>
                                             <div className="flex items-center gap-2">
                                               <span className="text-base">{getResourceIcon(res.resource_id)}</span>
-                                              <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">
+                                              <span className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--text-primary)' }}>
                                                 {res.resource_name}
                                               </span>
                                             </div>
@@ -1155,8 +1624,8 @@ export default function Dashboard() {
                                           )}
 
                                           {/* Why Triggered (Quote / Event) */}
-                                          <div className="text-[11px] text-zinc-300 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-                                            <span className="text-amber-300 font-semibold">Why: </span>
+                                          <div className="text-[11px] p-2 rounded-lg" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                                            <span className="font-semibold" style={{ color: 'var(--brand)' }}>Why: </span>
                                             <span>{res.why}</span>
                                           </div>
 
@@ -1166,7 +1635,7 @@ export default function Dashboard() {
                                               <div className="text-[10px] font-mono uppercase text-zinc-400 font-semibold">
                                                 Operational Steps:
                                               </div>
-                                              <ul className="text-xs text-zinc-200 space-y-1 list-disc list-inside bg-slate-900/40 p-2.5 rounded-lg border border-slate-800">
+                                              <ul className="text-xs space-y-1 list-disc list-inside p-2.5 rounded-lg" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
                                                 {res.how_to_use.map((step, sIdx) => (
                                                   <li key={sIdx} className="leading-snug">
                                                     {step}
@@ -1223,22 +1692,23 @@ export default function Dashboard() {
                               {/* Retrieved excerpts with underlined sentences, human doc titles, */}
                               {/* not-selected list with reason, Jev probability & cutoff        */}
                               {/* ───────────────────────────────────────────────────────────── */}
-                              <div className="bg-slate-900 rounded-xl border border-slate-800 shadow-md overflow-hidden">
+                              <div className="rounded-xl shadow-sm overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card)' }}>
                                 <button
                                   type="button"
                                   onClick={() => setExpandedAudit(prev => ({ ...prev, [entry._id]: !prev[entry._id] }))}
-                                  className="w-full p-3.5 flex items-center justify-between text-left bg-slate-800/60 hover:bg-slate-800 transition-colors cursor-pointer"
+                                  className="w-full p-3.5 flex items-center justify-between text-left transition-colors cursor-pointer"
+                                  style={{ background: 'var(--bg-input)' }}
                                 >
                                   <div className="flex items-center gap-2">
                                     <span className="text-sm">🔍</span>
-                                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-200 font-mono">
+                                    <span className="text-xs font-bold uppercase tracking-wider font-mono" style={{ color: 'var(--text-primary)' }}>
                                       3. Evidence & Audit Trail
                                     </span>
-                                    <span className="text-[10px] font-mono bg-slate-700 text-zinc-300 px-2 py-0.5 rounded-full">
+                                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-badge)', color: 'var(--text-secondary)' }}>
                                       {excerpts.length} excerpts • {nonSelected.length} non-selected
                                     </span>
                                   </div>
-                                  <span className="text-xs text-amber-400 font-mono">
+                                  <span className="text-xs font-mono" style={{ color: 'var(--brand)' }}>
                                     {isAuditOpen ? '▲ Collapse' : '▼ Expand Audit'}
                                   </span>
                                 </button>
@@ -1442,21 +1912,47 @@ export default function Dashboard() {
                               </div>
                             </div>
                           );
-                        })() : entry.disasterReport?.label === 'disaster' ? (
-                          <div className="mt-3 flex items-center justify-between bg-red-50 border border-red-200/70 p-2.5 rounded-xl">
-                            <span className="text-[11px] text-red-700 flex items-center gap-1.5 font-medium">
-                              🚨 Disaster Detected. Operational relief plan can be synthesized.
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => handleGenerateRag(entry._id)}
-                              disabled={generatingRagId === entry._id}
-                              className="text-[10px] font-semibold bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-md shadow-sm transition-all disabled:opacity-50 cursor-pointer"
-                            >
-                              {generatingRagId === entry._id ? 'Synthesizing...' : '⚡ Generate RAG Plan'}
-                            </button>
+                        })() : (
+                          <div className="mt-3 p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/70 text-left space-y-2.5">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="text-xs font-bold text-emerald-800 font-mono uppercase tracking-wide">
+                                  Emergency Report Logged
+                                </span>
+                              </div>
+                              <span className="text-[10px] font-medium bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
+                                Coordinates Received
+                              </span>
+                            </div>
+                            <p className="text-xs text-emerald-900 leading-relaxed font-sans">
+                              Responders have been notified of your report and coordinates. Triage guidance and responder assignment are being processed.
+                            </p>
+                            <div className="pt-1 flex items-center justify-between gap-2 border-t border-emerald-200/60">
+                              <span className="text-[10px] text-emerald-700 font-mono">
+                                {generatingRagId === entry._id ? '⚡ Synthesizing disaster relief plan...' : 'Status: Ready for operational assessment'}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleGenerateRag(entry._id)}
+                                disabled={generatingRagId === entry._id}
+                                className="text-[11px] font-semibold bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1 rounded-md shadow-sm transition-all disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
+                              >
+                                {generatingRagId === entry._id ? (
+                                  <>
+                                    <span className="w-2 h-2 rounded-full border border-white border-t-transparent animate-spin" />
+                                    <span>Processing...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <span>⚡</span>
+                                    <span>Refresh Advisory</span>
+                                  </>
+                                )}
+                              </button>
+                            </div>
                           </div>
-                        ) : null}
+                        )}
                       </div>
                       <span className="text-[9px] text-zinc-400 font-mono">Response</span>
                     </div>
@@ -1487,7 +1983,7 @@ export default function Dashboard() {
         </div>
 
         {/* Input Bar Section */}
-        <div className="p-4 bg-white border-t border-zinc-200">
+        <div className="p-4" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)' }}>
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-2.5">
             
             {/* Attachment Previews & Live Processing Status */}
@@ -1510,7 +2006,7 @@ export default function Dashboard() {
 
                 {audioUrl && (
                   <div className="flex items-center gap-1.5 bg-white border border-zinc-200 px-2.5 py-1 rounded-lg text-xs text-zinc-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-800 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--brand)' }} />
                     <span>Voice ready</span>
                     <button
                       type="button"
@@ -1606,7 +2102,7 @@ export default function Dashboard() {
             )}
 
             {/* Prompt Form Input Area */}
-            <div className="relative flex items-end gap-1.5 bg-zinc-50 border border-zinc-200 rounded-2xl p-2 focus-within:border-zinc-300 transition-colors">
+            <div className="relative flex items-end gap-1.5 rounded-2xl p-2 transition-colors" style={{ background: 'var(--bg-input)', border: '1px solid var(--border)', borderRadius: '16px' }}>
               {/* Camera clicker trigger */}
               <button
                 type="button"
@@ -1663,7 +2159,8 @@ export default function Dashboard() {
               <button
                 type="submit"
                 disabled={isSubmitting || (!text.trim() && !text2.trim() && !text3.trim() && !imageUrl && !audioBlob)}
-                className="p-2 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 disabled:opacity-30 disabled:bg-zinc-200 disabled:text-zinc-400 transition-all shadow-sm cursor-pointer"
+                className="p-2 rounded-xl disabled:opacity-30 transition-all shadow-sm cursor-pointer"
+                style={{ background: 'var(--brand)', color: 'var(--text-on-brand)', borderRadius: 'var(--radius-button)' }}
                 title={isSubmitting ? 'Analyzing & sending...' : 'Send message'}
               >
                 {isSubmitting ? (
@@ -1933,6 +2430,75 @@ export default function Dashboard() {
           onCapture={(dataUrl) => handleImageCaptured(dataUrl)}
           onClose={() => setShowCamera(false)}
         />
+      )}
+
+      {/* ── Clear Conversations Confirmation Modal ── */}
+      {showClearModal && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-150"
+          onClick={() => !isClearing && setShowClearModal(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl w-full max-w-md border overflow-hidden flex flex-col"
+            style={{ borderColor: 'var(--border)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-5 pb-3 flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-rose-50 text-rose-600 border border-rose-100">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-sm" style={{ color: 'var(--heading-text)', fontFamily: 'var(--font-headline)' }}>
+                  Clear Conversation History?
+                </h3>
+                <p className="text-xs mt-1.5 leading-relaxed" style={{ color: 'var(--body-text)' }}>
+                  This will remove your past chat history and user-facing emergency reports from this conversation list.
+                </p>
+                <div className="mt-3 p-2.5 rounded-lg bg-indigo-50/70 border border-indigo-100/80 text-[11px] text-indigo-900 leading-normal">
+                  <strong className="font-semibold">Note:</strong> Active dispatches and operational emergency records remain safely on file with emergency dispatch services for coordination.
+                </div>
+                {clearError && (
+                  <div className="mt-2.5 p-2 rounded bg-rose-50 border border-rose-200 text-rose-700 text-xs">
+                    {clearError}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="p-4 pt-2 bg-zinc-50 border-t flex items-center justify-end gap-2" style={{ borderColor: 'var(--border)' }}>
+              <button
+                type="button"
+                disabled={isClearing}
+                onClick={() => setShowClearModal(false)}
+                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-200/60 transition-colors cursor-pointer disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={isClearing}
+                onClick={handleClearConversations}
+                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              >
+                {isClearing ? (
+                  <>
+                    <svg className="animate-spin w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                    </svg>
+                    <span>Clearing...</span>
+                  </>
+                ) : (
+                  <span>Clear All Conversations</span>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* ── RAG Raw JSON Viewer Modal ── */}

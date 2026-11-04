@@ -406,55 +406,74 @@ def get_confirm_cutoff(resource_id: str) -> float:
 # ──────────────────────────────────────────────────────────────────────────────
 # 5. Cue Questions & Scorers (Concrete Situations)
 # ──────────────────────────────────────────────────────────────────────────────
+WORD_NUMS_TABLE = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20,
+    "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90, "hundred": 100
+}
+
+def _parse_qty_token(tok: str) -> Optional[int]:
+    if not tok:
+        return None
+    tok_clean = str(tok).strip().lower()
+    if tok_clean.isdigit():
+        return int(tok_clean)
+    return WORD_NUMS_TABLE.get(tok_clean)
+
 def extract_structured_facts(text: str) -> Dict[str, Any]:
     """
     Extracts structured facts for localized incidents:
     people_affected, people_trapped, people_injured_reported, vulnerable_mentioned, evidence_quotes.
+    Supports digits and number words (e.g. 'three', 'ten', 'around 200').
     Null when not stated, never guesses, quotes message literally.
     """
     t_lower = text.lower()
+    num_tok = r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|hundred)"
+    entity_tok = r"(?:(?:construction\s+)?workers|laborers|labourers|people|persons?|families|individuals|residents|villagers|citizens|civilians|passengers|poeple|victims|men|women|children)"
     
     # 1. Trapped count
     people_trapped = None
-    m_trap = re.search(r"(\d+)\s*(?:people|persons?|families|individuals|workers|poeple)?\s*(?:are\s*)?(?:trapped|tsuck|stuck|pinned)", t_lower)
+    m_trap = re.search(rf"\b({num_tok})\s*(?:{entity_tok})?\s*(?:are\s*)?(?:trapped|tsuck|stuck|pinned|inside)", t_lower)
     if m_trap:
-        try:
-            people_trapped = int(m_trap.group(1))
-        except ValueError:
-            pass
-    elif any(k in t_lower for k in [
-        "someone is trapped", "people trapped", "trapped on the roof", "trapped under debris",
-        "tsuck inside", "stuck inside", "inside the car", "inside a car", "trapped inside"
-    ]):
-        word_nums = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
-        for w, num in word_nums.items():
-            if re.search(rf"\b{w}\s*(?:people|persons?|poeple|individuals)?\s*(?:are\s*)?(?:tsuck|stuck|trapped|inside)", t_lower):
-                people_trapped = num
-                break
-        if people_trapped is None:
-            people_trapped = 2 if "two" in t_lower else 1
+        people_trapped = _parse_qty_token(m_trap.group(1))
+    else:
+        m_trap2 = re.search(rf"(?:trapped|stuck|tsuck|pinned)\s*(?:inside|under|on|in)?\s*(?:around|approx(?:imately)?|about)?\s*({num_tok})\b", t_lower)
+        if m_trap2:
+            people_trapped = _parse_qty_token(m_trap2.group(1))
 
-    # 2. Affected count
-    people_affected = None
-    m_aff = re.search(r"(\d+)\s*(?:people|persons?|families|individuals|villagers|residents|poeple)\s*(?:affected|stranded|marooned|homeless)", t_lower)
-    if m_aff:
-        try:
-            people_affected = int(m_aff.group(1))
-        except ValueError:
-            pass
-    elif "families" in t_lower:
-        m_fam = re.search(r"(\d+)\s*families", t_lower)
-        if m_fam:
-            people_affected = int(m_fam.group(1)) * 4  # approx 4 per family if specified
-
-    # 3. Injured count
+    # 2. Injured count
     people_injured = None
-    m_inj = re.search(r"(\d+)\s*(?:people|persons?|individuals|poeple)?\s*(?:injured|hurt|bleeding|casualties)", t_lower)
+    m_inj = re.search(rf"\b({num_tok})\s*(?:people|persons?|individuals|poeple)?\s*(?:injured|hurt|bleeding|casualties)", t_lower)
     if m_inj:
-        try:
-            people_injured = int(m_inj.group(1))
-        except ValueError:
-            pass
+        people_injured = _parse_qty_token(m_inj.group(1))
+
+    # 3. Affected count
+    people_affected = None
+    m_aff = re.search(rf"(?:affect(?:ing|ed)?|impacting|fell\s+on|around|approx(?:imately)?|about|nearly|more\s+than)\s*({num_tok})\s*(?:people|persons?|families|individuals|residents|workers|citizens|civilians)?", t_lower)
+    if m_aff:
+        people_affected = _parse_qty_token(m_aff.group(1))
+    if people_affected is None:
+        m_aff2 = re.search(rf"\b({num_tok})\s*(?:people|persons?|families|individuals|villagers|residents|poeple|citizens|civilians)\s*(?:are\s*)?(?:affected|stranded|marooned|homeless|submerged|impacted)", t_lower)
+        if m_aff2:
+            people_affected = _parse_qty_token(m_aff2.group(1))
+    if people_affected is None:
+        m_fam = re.search(rf"\b({num_tok})\s*families", t_lower)
+        if m_fam:
+            fam_count = _parse_qty_token(m_fam.group(1))
+            if fam_count:
+                people_affected = fam_count * 4
+    if people_affected is None:
+        m_gen = re.search(rf"\b({num_tok})\s+(?:people|persons?|individuals|residents|workers|citizens)\b", t_lower)
+        if m_gen:
+            people_affected = _parse_qty_token(m_gen.group(1))
+    if people_affected is None:
+        if people_trapped is not None:
+            people_affected = people_trapped
+        elif people_injured is not None:
+            people_affected = people_injured
 
     # 4. Vulnerable groups mentioned
     vulnerable = []
@@ -541,10 +560,10 @@ def evaluate_is_disaster_related_noul(text: str) -> Dict[str, Any]:
 
     # Active hazard / emergency distress cues
     emergency_cues = [
-        r"\b(?:flood|flooding|marooned|submerged|overflow|river breach|inundat|waterlogged|deluge)\b",
+        r"\b(?:flood\w*|marooned|submerged|submergence|overflow\w*|river breach|inundat\w*|waterlog\w*|water rising|deluge)\b",
         r"\b(?:cyclone|storm|hurricane|cloudburst|downpour|torrential|hailstorm|gale)\b",
         r"\b(?:landslide|mudslide|rockfall|avalanche|earthquake|tremor|seismic)\b",
-        r"\b(?:building collapse|wall collapse|roof collapse|trapped|tsuck|stuck inside|pinned|buried|extricate)\b",
+        r"\b(?:building collapse|wall collapse|roof collapse|slab fell|slab fall|slab collapse|structure collapse|debris fell|trapped|tsuck|stuck inside|pinned|buried|extricate|fell on)\b",
         r"\b(?:injured|bleeding|hurt|casualties|fatalities|corpse|dead body|crush injury|unconscious|head injury|fracture)\b",
         r"\b(?:dog|cat|pet|puppy|og|dgo|cow|cattle|livestock|buffalo|animal) (?:is |are )?(?:injured|hurt|bleeding|sick|stranded|dying|trapped)\b",
         r"\b(?:injured (?:dog|cat|pet|puppy|og|dgo|cow|cattle|livestock|buffalo|animal))\b",
@@ -656,7 +675,7 @@ def evaluate_incident_type_bidirectional(text: str) -> Tuple[str, float]:
     type_scores: Dict[str, float] = {k: 0.0 for k in INCIDENT_TYPES}
     
     # Keyword & semantic weights with word boundaries and phrase variations
-    if re.search(r"\b(flood|floods|flooding|flooded|submerged|submergence|overflow|overflowed|overflowing|river breach|river swelling|water level rising|water rising|marooned|inundat|inundation|deluge|waterlogged)\b", norm_lower):
+    if re.search(r"\b(flood|floods|flooding|flooded|submerged|submergence|overflow|overflowed|overflowing|river breach|river swelling|water level rising|water rising|marooned|inundat|inundation|deluge|waterlog(?:ging|ged)?)\b", norm_lower):
         type_scores["flood"] += 0.85
     if re.search(r"\b(urban flood|urban floods|city waterlog|drain overflow|submerged street)\b", norm_lower):
         type_scores["urban_flood"] += 0.85
@@ -824,8 +843,40 @@ def evaluate_resource_probabilities(text: str, incident_type: str, facts: Dict[s
     if jev_probs:
         return jev_probs
 
-    # Default noise floor if unreachable
-    return {r: 0.04 for r in RESOURCE_CRITERIA_QUESTIONS}
+    # Deterministic fallback when remote LLM service is offline or unreachable
+    t_lower = text.lower()
+    fallback_probs = {r: 0.04 for r in RESOURCE_CRITERIA_QUESTIONS}
+
+    if any(k in t_lower for k in ["crush", "trapped", "stuck", "concrete", "collapse", "rubble", "pinned"]):
+        fallback_probs["search_and_rescue"] = 0.88
+        fallback_probs["tools_equipment"] = 0.82
+        fallback_probs["first_aid_trauma"] = 0.85
+        fallback_probs["emergency_medical_care"] = 0.82
+    if any(k in t_lower for k in ["bleed", "injured", "fracture", "wound"]):
+        fallback_probs["first_aid_trauma"] = 0.90
+        fallback_probs["emergency_medical_care"] = 0.85
+        fallback_probs["medicines_medical_supplies"] = 0.80
+    if any(k in t_lower for k in ["flood", "water rising", "marooned", "submerged", "drowning"]):
+        fallback_probs["boat_water_rescue"] = 0.88
+        fallback_probs["drinking_water"] = 0.85
+        fallback_probs["water_purification"] = 0.80
+        fallback_probs["evacuation_transport"] = 0.82
+
+    if any(k in t_lower for k in ["dog", "cat", "pet", "puppy", "cattle", "animal", "cow", "buffalo"]):
+        fallback_probs["livestock_fodder_veterinary"] = 0.92
+        # Pet distress should not trigger human trauma resources
+        if not any(k in t_lower for k in ["person", "people", "man", "woman", "child", "family", "worker"]):
+            fallback_probs["first_aid_trauma"] = 0.04
+            fallback_probs["emergency_medical_care"] = 0.04
+            fallback_probs["medicines_medical_supplies"] = 0.04
+    if any(k in t_lower for k in ["landslide", "boulder", "mudslide"]):
+        fallback_probs["heavy_machinery_debris_clearance"] = 0.88
+        fallback_probs["search_and_rescue"] = 0.82
+    if any(k in t_lower for k in ["fire", "burn", "smoke", "explosion"]):
+        fallback_probs["tools_equipment"] = 0.85
+        fallback_probs["first_aid_trauma"] = 0.82
+
+    return fallback_probs
 
 def evaluate_implied_needs(
     text: str,
